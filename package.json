@@ -9,7 +9,7 @@
     "lint": "next lint",
     "generate-models": "contentful-typescript-codegen --output src/models/contentful.d.ts",
     "prepare": "husky",
-    "format": "pnpm exec prettier --write src/**/*.{ts,tsx,js,jsx,json,css,scss,md}"
+    "format": "pnpm exec prettier --write src/**/*.{ts,tsx,css}"
   },
   "dependencies": {
     "contentful": "^11.1.4",
