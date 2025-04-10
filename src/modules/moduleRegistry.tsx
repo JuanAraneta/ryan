@@ -1,4 +1,4 @@
-import { Error404, error404Morpher, Hero, heroMorpher } from "@/modules";
+import { NotFound, notFoundMorpher, Hero, heroMorpher } from "@/modules";
 import { PageParams } from "@/types/generic";
 import { FC } from "react";
 
@@ -24,9 +24,9 @@ const moduleRegistry = {
     component: Hero,
     morpher: heroMorpher,
   },
-  error404: {
-    component: Error404,
-    morpher: error404Morpher,
+  notFound: {
+    component: NotFound,
+    morpher: notFoundMorpher,
   },
 } as ModuleRegistry;
 

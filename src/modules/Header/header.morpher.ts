@@ -1,7 +1,8 @@
-import { PageParams } from "@/types/generic";
+import { IComponentDuplexFields } from "@/models/contentful";
+import { HeaderProps } from "./Header";
 
-export const headerMorpher = (props: any, pageParams: PageParams) => {
+export const headerMorpher: HeaderProps = (props: IComponentDuplexFields) => {
   return {
-    headline: props.headline,
+    name: props.headline,
   };
 };

@@ -1,3 +1,9 @@
-export const Header = (props: any) => {
-  return <>{props.headline}</>;
+import { FC } from "react";
+
+export interface HeaderProps {
+  name: string;
+}
+
+export const Header: FC<HeaderProps> = (props: HeaderProps) => {
+  return <>{props.name}</>;
 };

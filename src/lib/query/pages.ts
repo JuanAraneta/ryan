@@ -11,7 +11,6 @@ const pageCodename = "page";
 
 export const getPage = cache(async (params: PageParams) => {
   const { path, lang } = params;
-  console.log(params);
 
   try {
     const response = await client.getEntries({
@@ -21,7 +20,6 @@ export const getPage = cache(async (params: PageParams) => {
     });
 
     const pageFields = (response.items[0] as IPage).fields as IPageFields;
-    console.log(pageFields);
 
     return {
       ...pageFields,

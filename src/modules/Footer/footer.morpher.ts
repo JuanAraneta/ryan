@@ -1,7 +1,8 @@
-import { PageParams } from "@/types/generic";
+import { IFooterMenuFields } from "@/models/contentful";
+import { FooterProps } from "./Footer";
 
-export const footerMorpher = (props: any, pageParams: PageParams) => {
-    return {
-        name: props.name,
-    };
+export const footerMorpher: FooterProps = (props: IFooterMenuFields) => {
+  return {
+    name: props.name,
+  };
 };

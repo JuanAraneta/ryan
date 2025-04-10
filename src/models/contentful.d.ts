@@ -65,31 +65,11 @@ export interface IComponentQuoteFields {
   /** Internal name */
   internalName?: string | undefined;
 
-  /** Quote */
-  quote?: Document | undefined;
-
-  /** Quote alignment */
-  quoteAlignment?: boolean | undefined;
-
-  /** Image */
-  image?: Asset | undefined;
-
-  /** Image position */
-  imagePosition?: boolean | undefined;
-
-  /** Color palette */
-  colorPalette?:
-    | "1. White (#FFFFFF)"
-    | "2. White Smoke (#FCFCFC)"
-    | "3. Light Gray (#F4F4F4)"
-    | "4. Gray (#EAEAEA)"
-    | "5. Steel Gray (#BBBBBB)"
-    | "6. Dark Gray (#797979)"
-    | "7. Black (#000000)"
-    | undefined;
+  /** title */
+  title: string;
 }
 
-/** Full-width component for quotes, reviews and testimonials, includes multiple layout options */
+/** Module for not found page */
 
 export interface IComponentQuote extends Entry<IComponentQuoteFields> {
   sys: {
@@ -146,7 +126,7 @@ export interface IPageFields {
   slug: string;
 
   /** Modules */
-  modules?: IComponentHeroBanner[] | undefined;
+  modules?: (IComponentHeroBanner | IComponentQuote)[] | undefined;
 
   /** footer */
   footer: IFooterMenu;
