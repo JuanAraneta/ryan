@@ -1,4 +1,4 @@
-import managementClient from "./managementClient.ts";
+import managementClient from "./managementClient";
 
 const client = managementClient();
 

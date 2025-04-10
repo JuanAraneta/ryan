@@ -10,13 +10,13 @@ type Page = any;
 const pageCodename = "page";
 
 export const getPage = cache(async (params: PageParams) => {
-  const { path, lang } = params;
+  const { path, locale } = params;
 
   try {
     const response = await client.getEntries({
       content_type: pageCodename,
       "fields.slug": path,
-      locale: lang,
+      locale,
     });
 
     const pageFields = (response.items[0] as IPage).fields as IPageFields;

@@ -2,17 +2,22 @@ import { getPageParams } from "@/helpers/getPageParams";
 import { getPage } from "@/lib/query/pages";
 import ModuleRenderer from "@/modules/ModuleRenderer";
 import { notFound } from "next/navigation";
+import { DEFAULT_PAGE } from "@/constants";
 
 export default async function Page({
   params,
 }: {
-  params: Promise<{ lang: string; slug: string[] }>;
+  params: Promise<{ slug: string[] }>;
 }) {
-  const { lang, slug } = await params;
+  const { slug } = await params;
 
-  const currentPath = slug.pop();
-  const pageParams = await getPageParams();
-  const page = await getPage({ path: currentPath!, lang });
+  const pageParams = await getPageParams(slug);
+  console.log(pageParams);
+
+  const page = await getPage({
+    path: pageParams.path,
+    locale: pageParams.locale,
+  });
 
   if (!page) {
     notFound();

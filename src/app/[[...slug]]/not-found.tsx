@@ -8,7 +8,6 @@ export default async function NotFound() {
   const pageParams = await getPageParams();
 
   let page = await getPage({ ...pageParams, path: NOT_FOUND_PAGE_NAME });
-  console.log(page!.modules);
 
   if (!page) {
     return <>Not Found</>;

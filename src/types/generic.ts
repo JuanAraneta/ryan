@@ -1,3 +1,3 @@
-export type PageParams = { path: string; lang: string } & {
+export type PageParams = { path: string; locale: string } & {
   [key: string]: string;
 };

@@ -1,9 +1,7 @@
-import type { Metadata } from "next";
 import { getPage } from "@/lib/query/pages";
 import { Header } from "@/modules/Header/Header";
 import { Footer } from "@/modules/Footer/Footer";
 import { headerMorpher } from "@/modules/Header/header.morpher";
-
 import { footerMorpher } from "@/modules/Footer/footer.morpher";
 import { getPageParams } from "@/helpers/getPageParams";
 
@@ -17,11 +15,16 @@ export default async function RootLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ lang: string }>;
+  params: Promise<{ slug: string[] }>;
 }>) {
-  const { lang } = await params;
-  const pageParams = await getPageParams();
-  const page = await getPage({ ...pageParams, lang });
+  const { slug } = await params;
+
+  const pageParams = await getPageParams(slug);
+
+  const page = await getPage({
+    path: pageParams.path,
+    locale: pageParams.locale,
+  });
 
   const header = page?.header?.fields;
   const footer = page?.footer?.fields;
