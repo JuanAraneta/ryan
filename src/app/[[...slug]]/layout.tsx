@@ -21,10 +21,7 @@ export default async function RootLayout({
 
   const pageParams = await getPageParams(slug);
 
-  const page = await getPage({
-    path: pageParams.path,
-    locale: pageParams.locale,
-  });
+  const page = await getPage(pageParams);
 
   const header = page?.header?.fields;
   const footer = page?.footer?.fields;
