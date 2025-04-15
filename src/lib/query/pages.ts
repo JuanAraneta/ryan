@@ -30,8 +30,6 @@ export const getPage = cache(async (params: PageParams) => {
         })) ?? [],
     };
   } catch (error) {
-    console.log(error);
-
     return null;
   }
 });
