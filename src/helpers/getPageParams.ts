@@ -24,7 +24,7 @@ export const getPageParams = async (slug?: string[]) => {
 
   // Extract market from the url (assuming it's the first segment, e.g., "/canada/en-US" or  "/canada/services")
   const marketFromUrl = markets.find(
-    (market) => market.slug.toLowerCase() === slug[0]
+    (market) => market.slug.toLowerCase() === slug[0],
   );
 
   // Get Contentful locales
@@ -32,7 +32,7 @@ export const getPageParams = async (slug?: string[]) => {
 
   // Extract locale from the URL (assuming it could be the first or second segment, e.g., "/en-US/some-page" or "/canada/en-US")
   const localeFromUrl = locales.find(
-    (locale) => (slug[0] || slug[1]) === locale
+    (locale) => (slug[0] || slug[1]) === locale,
   );
 
   // Fallback to user's configured language if no language is in the URL

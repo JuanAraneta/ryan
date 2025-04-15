@@ -14,8 +14,6 @@ export default async function Page({
 
   const pageParams = await getPageParams(slug);
 
-  console.log(pageParams);
-
   const page = await getPage({
     path: pageParams.path,
     locale: pageParams.locale,
