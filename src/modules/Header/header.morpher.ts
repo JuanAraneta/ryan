@@ -1,8 +1,8 @@
-import { IComponentDuplexFields } from "@/models/contentful";
+import { IHeaderFields } from "@/models/contentful";
 import { HeaderProps } from "./Header";
 
-export const headerMorpher: HeaderProps = (props: IComponentDuplexFields) => {
+export const headerMorpher: HeaderProps = (props: IHeaderFields) => {
   return {
-    name: props.headline,
+    name: props.title,
   };
 };

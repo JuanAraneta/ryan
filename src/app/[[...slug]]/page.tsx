@@ -3,6 +3,7 @@ import { getPage } from "@/lib/query/pages";
 import ModuleRenderer from "@/modules/ModuleRenderer";
 import { notFound } from "next/navigation";
 import { DEFAULT_PAGE } from "@/constants";
+import { C } from "vitest/dist/chunks/reporters.d.CfRkRKN2.js";
 
 export default async function Page({
   params,
@@ -12,6 +13,7 @@ export default async function Page({
   const { slug } = await params;
 
   const pageParams = await getPageParams(slug);
+
   console.log(pageParams);
 
   const page = await getPage({

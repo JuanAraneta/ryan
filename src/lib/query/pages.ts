@@ -3,19 +3,17 @@ import { client } from "@/lib/contentful/client";
 import { PageParams } from "@/types/generic";
 import { IPage, IPageFields } from "@/models/contentful";
 
-// Page type should be replaced by CMS page content Type.
-type Page = any;
-
 // pageCodename should be get from page.codename if it's different to "page".
 const pageCodename = "page";
 
 export const getPage = cache(async (params: PageParams) => {
-  const { path, locale } = params;
+  const { path, locale, market } = params;
 
   try {
     const response = await client.getEntries({
       content_type: pageCodename,
       "fields.slug": path,
+      "fields.market.fields.slug": market,
       locale,
     });
 

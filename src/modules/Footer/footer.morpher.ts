@@ -1,8 +1,8 @@
-import { IFooterMenuFields } from "@/models/contentful";
+import { IFooterFields } from "@/models/contentful";
 import { FooterProps } from "./Footer";
 
-export const footerMorpher: FooterProps = (props: IFooterMenuFields) => {
+export const footerMorpher: FooterProps = (props: IFooterFields) => {
   return {
-    name: props.name,
+    name: props.title,
   };
 };
