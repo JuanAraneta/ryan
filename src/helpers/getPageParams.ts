@@ -24,7 +24,7 @@ export const getPageParams = async (slug?: string[]) => {
 
   // Extract market from the url (assuming it's the first segment, e.g., "/canada/en-US" or  "/canada/services")
   const marketFromUrl = markets.find(
-    (market) => market.slug.toLowerCase() === slug[0],
+    (market) => market.slug.toLowerCase() === slug[0]
   );
 
   // Get Contentful locales
@@ -32,20 +32,27 @@ export const getPageParams = async (slug?: string[]) => {
 
   // Extract locale from the URL (assuming it could be the first or second segment, e.g., "/en-US/some-page" or "/canada/en-US")
   const localeFromUrl = locales.find(
-    (locale) => (slug[0] || slug[1]) === locale,
+    (locale) => (slug[0] || slug[1]) === locale
   );
 
   // Fallback to user's configured language if no language is in the URL
   // const userLocale = headerList.get("accept-language")?.split(",")[0] || "en";
 
-  // If only locale is present return default page
-  if (
-    (slug.length === 1 && (localeFromUrl || marketFromUrl)) ||
-    (slug.length === 2 && localeFromUrl && marketFromUrl)
-  ) {
+  // Logic to determine the page path based on the URL slug.
+  // 1. If the slug consists only of the region (market) and/or language (locale),
+  //    the page path is set to the default page (DEFAULT_PAGE).
+  // 2. If the slug contains additional segments beyond the region and/or language,
+  //    the path is set to the rest of the slug, excluding the region/language part.
+  //    Example: For a slug like ['us', 'es-ar', 'about', 'team'], the path will be 'about/team'.
+  //    This allows for dynamic routing based on different markets and languages while defaulting to a
+  //    specific page when only market/locale info is present.
+  const hasMarket = Boolean(marketFromUrl);
+  const hasLocale = Boolean(localeFromUrl);
+  const knownSegments = Number(hasMarket) + Number(hasLocale);
+  if (slug.length <= knownSegments) {
     path = DEFAULT_PAGE;
   } else {
-    path = slug.pop() as string;
+    path = slug.slice(knownSegments).join("/");
   }
 
   return {

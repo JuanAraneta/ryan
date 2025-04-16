@@ -13,7 +13,6 @@ export default async function Page({
   const { slug } = await params;
 
   const pageParams = await getPageParams(slug);
-
   const page = await getPage(pageParams);
 
   if (!page) {

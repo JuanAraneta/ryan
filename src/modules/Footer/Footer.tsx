@@ -5,5 +5,5 @@ export interface FooterProps {
 }
 
 export const Footer: FC<FooterProps> = (props: FooterProps) => {
-  return <>{props.name}</>;
+  return <footer>{props.name}</footer>;
 };

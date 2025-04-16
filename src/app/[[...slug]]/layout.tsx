@@ -17,22 +17,17 @@ export default async function RootLayout({
   const { slug } = await params;
 
   const pageParams = await getPageParams(slug);
-
   const page = await getPage(pageParams);
 
   const header = page?.header?.fields;
   const footer = page?.footer?.fields;
   const metadata = page?.seoMetadata?.fields as ISeoMetadataFields;
 
-  console.log(metadata);
-
   return (
     <>
-      <head>
-        <SEOMetadata metadata={metadata} />
-      </head>
+      <head>{metadata && <SEOMetadata metadata={metadata} />}</head>
       <body>
-        <main>
+        <main className="min-h-screen">
           {header && <Header {...headerMorpher(header, pageParams)} />}
           {children}
           {footer && <Footer {...footerMorpher(footer, pageParams)} />}

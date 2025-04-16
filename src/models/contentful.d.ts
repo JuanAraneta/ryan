@@ -81,11 +81,14 @@ export interface IMarket extends Entry<IMarketFields> {
 }
 
 export interface IPageFields {
-  /** Ttile */
-  ttile: string;
+  /** Titile */
+  title: string;
 
   /** Slug */
   slug: string;
+
+  /** Slug prefix */
+  slugPrefix?: string | undefined;
 
   /** Market */
   market: IMarket;
