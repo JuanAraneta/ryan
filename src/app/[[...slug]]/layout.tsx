@@ -4,7 +4,11 @@ import { Footer } from "@/modules/Footer/Footer";
 import { headerMorpher } from "@/modules/Header/header.morpher";
 import { footerMorpher } from "@/modules/Footer/footer.morpher";
 import { getPageParams } from "@/helpers/getPageParams";
-import { ISeoMetadataFields } from "@/models/contentful";
+import {
+  ISeoMetadataFields,
+  IHeaderFields,
+  IFooterFields,
+} from "@/models/contentful";
 import { SEOMetadata } from "@/components/SEOMetadata/SEOMetadata";
 
 export default async function RootLayout({
@@ -19,8 +23,8 @@ export default async function RootLayout({
   const pageParams = await getPageParams(slug);
   const page = await getPage(pageParams);
 
-  const header = page?.header?.fields;
-  const footer = page?.footer?.fields;
+  const header = page?.header?.fields as IHeaderFields;
+  const footer = page?.footer?.fields as IFooterFields;
   const metadata = page?.seoMetadata?.fields as ISeoMetadataFields;
 
   return (
@@ -28,9 +32,9 @@ export default async function RootLayout({
       <head>{metadata && <SEOMetadata metadata={metadata} />}</head>
       <body>
         <main className="min-h-screen">
-          {header && <Header {...headerMorpher(header, pageParams)} />}
+          {header && <Header {...headerMorpher(header)} />}
           {children}
-          {footer && <Footer {...footerMorpher(footer, pageParams)} />}
+          {footer && <Footer {...footerMorpher(footer)} />}
         </main>
       </body>
     </>

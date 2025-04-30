@@ -1,4 +1,4 @@
-import { NotFound, notFoundMorpher, Hero, heroMorpher } from "@/modules";
+import { NotFound, notFoundMorpher } from "@/modules";
 import { PageParams } from "@/types/generic";
 import { FC } from "react";
 
@@ -20,10 +20,6 @@ type ModuleRegistry = Record<
 
 // Here define the moduleRegistry object, which is a mapping of module types to their corresponding components and morphers.
 const moduleRegistry = {
-  hero: {
-    component: Hero,
-    morpher: heroMorpher,
-  },
   notFound: {
     component: NotFound,
     morpher: notFoundMorpher,
