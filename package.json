@@ -16,11 +16,15 @@
     "contentful": "^11.1.4",
     "contentful-management": "^11.35.1",
     "dotenv": "^16.4.5",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-unicorn": "^59.0.1",
     "i18next": "^24.2.3",
     "i18next-resources-to-backend": "^1.2.1",
     "next": "15.2.4",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "typescript-eslint": "^8.35.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.0",
