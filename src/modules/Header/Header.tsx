@@ -1,9 +1,11 @@
+import { HeaderFragment } from "@/lib/contentful/fragments/HeaderFragment";
+import { ResultOf } from "gql.tada";
 import { FC } from "react";
 
-export interface HeaderProps {
-  name: string;
-}
+export type HeaderProps = {
+  data: ResultOf<typeof HeaderFragment>;
+};
 
-export const Header: FC<HeaderProps> = (props: HeaderProps) => {
-  return <>{props.name}</>;
+export const Header: FC<HeaderProps> = (props) => {
+  return <>{props.data.title}</>;
 };

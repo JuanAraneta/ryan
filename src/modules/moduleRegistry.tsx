@@ -1,29 +1,35 @@
-import { NotFound, notFoundMorpher } from "@/modules";
-import { PageParams } from "@/types/generic";
+import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
+import { ResultOf, TadaDocumentNode } from "gql.tada";
 import { FC } from "react";
 
 // Types to be changed to match the actual types used in the application.
 
 export type ModuleProps = any; // This is a placeholder for the module props type.
 export type ComponentProps = any; // This is a placeholder for the component props type.
-export type ModuleCodename = string; // This is a placeholder for the module codename.
 
-type ModuleComponent<M, C> = {
-  component: FC<C>;
-  morpher?: (input: M, pageParams?: PageParams) => C;
+type ModuleComponent<Data = any> = {
+  component: FC<{ data: Data }>;
+  queryById: TadaDocumentNode<Data, { id: string }>;
 };
 
 type ModuleRegistry = Record<
-  ModuleCodename,
-  ModuleComponent<ModuleProps, ComponentProps>
+  NonNullable<
+    NonNullable<ResultOf<typeof PageModulesCollectionFragment>["items"]>[number]
+  >["__typename"],
+  ModuleComponent | null
 >;
 
-// Here define the moduleRegistry object, which is a mapping of module types to their corresponding components and morphers.
-const moduleRegistry = {
-  notFound: {
-    component: NotFound,
-    morpher: notFoundMorpher,
-  },
-} as ModuleRegistry;
+// FIXME - Update the Modules array under Page in Contentful to have a specific whitelist of supported types to fix this
+const moduleRegistry: ModuleRegistry = {
+  Page: null,
+  Footer: null,
+  Header: null,
+  Market: null,
+  Script: null,
+  SeoMetadata: null,
+  SiteSettings: null,
+  SocialMediaLink: null,
+  UrlRedirect: null,
+};
 
 export default moduleRegistry;

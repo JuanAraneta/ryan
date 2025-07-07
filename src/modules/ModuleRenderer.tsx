@@ -1,28 +1,38 @@
-import moduleRegistry, { ModuleCodename } from "@/modules/moduleRegistry";
-import { PageParams } from "@/types/generic";
-
-type IContentItem = any; // This is the type of the response from CMS with the list of modules
+import { contentClient } from "@/lib/contentful/contentClient";
+import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
+import moduleRegistry from "@/modules/moduleRegistry";
+import { ResultOf } from "gql.tada";
 
 export default function ModuleRenderer({
-  modules,
-  pageParams,
+  data,
 }: {
-  modules: IContentItem[];
-  pageParams: PageParams;
+  data: ResultOf<typeof PageModulesCollectionFragment>;
 }) {
   return (
     <>
-      {modules.map((module, index) => {
-        const type = module.type as ModuleCodename;
-        if (!moduleRegistry[type]) {
-          console.log("Module type not found in registry", type);
-          return null;
-        }
-        const Component = moduleRegistry[type].component;
-        const morpher = moduleRegistry[type].morpher;
-        const props = morpher ? morpher(module, pageParams) : module;
-        return <Component key={index} {...props} />;
-      })}
+      {Promise.allSettled(
+        data.items.map(async (module, index) => {
+          if (!module) return null;
+          const type = module.__typename;
+          if (!moduleRegistry[type]) {
+            console.log(`Module type of "${type}" not found in registry`);
+            return null;
+          }
+
+          const { component: Component, queryById } = moduleRegistry[type];
+
+          const result = await contentClient.query(queryById, {
+            id: module.sys.id,
+          });
+
+          if (!result || !result.data) {
+            console.error(`Module request failed for id "${module.sys.id}"`);
+            return null;
+          }
+
+          return <Component key={index} data={result.data} />;
+        })
+      )}
     </>
   );
 }

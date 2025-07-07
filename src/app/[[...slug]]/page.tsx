@@ -1,25 +1,30 @@
-import { getPageParams } from "@/helpers/getPageParams";
-import { getPage } from "@/lib/query/pages";
 import ModuleRenderer from "@/modules/ModuleRenderer";
 import { notFound } from "next/navigation";
-import { DEFAULT_PAGE } from "@/constants";
-import { C } from "vitest/dist/chunks/reporters.d.CfRkRKN2.js";
+import { contentClient } from "@/lib/contentful/contentClient";
+import { GetPageBySlugAndMarketQuery } from "@/lib/contentful/query/GetPageBySlugAndMarketQuery";
+import { readFragment } from "gql.tada";
+import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
 
-export default async function Page({
-  params,
-}: {
+export default async function Page(props: {
   params: Promise<{ slug: string[] }>;
 }) {
-  const { slug } = await params;
+  const params = await props.params;
+  const slugs = Array.isArray(params.slug) ? params.slug : [params.slug];
 
-  const pageParams = await getPageParams(slug);
-  const page = await getPage(pageParams);
+  const [marketSlug, locale, slug] = slugs;
+  const pageResult = await contentClient.query(GetPageBySlugAndMarketQuery, {
+    marketSlug,
+    locale,
+    slug,
+  });
 
-  if (!page) {
-    notFound();
-  }
+  const page = pageResult.data?.pageCollection?.items[0];
+
+  if (!page || !page.modulesCollection) notFound();
 
   return (
-    <ModuleRenderer modules={page!.modules || []} pageParams={pageParams} />
+    <ModuleRenderer
+      data={readFragment(PageModulesCollectionFragment, page.modulesCollection)}
+    />
   );
 }

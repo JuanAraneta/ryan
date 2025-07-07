@@ -1,14 +1,12 @@
-import { getAllPages } from "@/lib/contentful/getAllPages"; // Your Contentful API call
-import { generateSitemap } from "@/lib/contentful/helpers"; // Your custom sitemap generator
+import { generateSitemap } from "@/lib/util/generateSitemap";
 
 export async function GET() {
-  const pages = await getAllPages();
-  const sitemap = generateSitemap(pages);
+  const sitemap = await generateSitemap();
 
   return new Response(sitemap, {
     headers: {
       "Content-Type": "application/xml",
-      "Cache-Control": "public, max-age=3600", // Cache for 1 hour
+      "Cache-Control": "public, max-age=3600",
     },
   });
 }

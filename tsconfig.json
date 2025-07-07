@@ -15,6 +15,12 @@
     "plugins": [
       {
         "name": "next"
+      },
+      {
+        "name": "gql.tada/ts-plugin",
+        "schema": "./contentful/schema.graphql",
+        "tadaOutputLocation": "./src/graphql-env.d.ts",
+        "shouldCheckForColocatedFragments": false
       }
     ],
     "paths": {
