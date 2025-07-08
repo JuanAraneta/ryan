@@ -1,4 +1,4 @@
-import ModuleRenderer from "@/modules/ModuleRenderer";
+import { ModuleRenderer } from "@/modules/ModuleRenderer";
 import { notFound } from "next/navigation";
 import { contentClient } from "@/lib/contentful/contentClient";
 import { GetPageBySlugAndMarketQuery } from "@/lib/contentful/query/GetPageBySlugAndMarketQuery";

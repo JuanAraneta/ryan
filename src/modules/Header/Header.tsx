@@ -7,5 +7,5 @@ export type HeaderProps = {
 };
 
 export const Header: FC<HeaderProps> = (props) => {
-  return <>{props.data.title}</>;
+  return <header>{props.data.title}</header>;
 };
