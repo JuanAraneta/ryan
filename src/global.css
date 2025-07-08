@@ -1,28 +1,170 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* breakpoints */
+  --breakpoint-dsk: 1024px;
+
+  /* font-family */
+  --font-sans: var(--font-sans);
+
+  /* colors */
+  --color-neutral-0: #ffffff;
+  --color-neutral-50: #f7f7f8;
+  --color-neutral-100: #efeff3;
+  --color-neutral-200: #d2d3dc;
+  --color-neutral-300: #a3a4b2;
+  --color-neutral-400: #8e90a0;
+  --color-neutral-500: #7a7c8e;
+  --color-neutral-600: #626374;
+  --color-neutral-700: #3e4050;
+  --color-neutral-800: #2c2e3a;
+  --color-neutral-900: #16171d;
+  --color-neutral-1000: #000000;
+  --color-white: var(--color-neutral-0);
+  --color-black: var(--color-neutral-1000);
+  --color-brand-300: #0c61f9;
+  --color-brand-500: #242fb0;
+  --color-brand-700: #0e247e;
+  --color-brand-800: #061157;
+  --color-brand-900: #010533;
+  --color-new-gold: #edae49;
+  --color-ryan-gold: #b98b43;
+  --color-medium-gold: #a57220;
+  --color-dark-gold: #6a4406;
+  --color-dim-blue: rgba(240, 243, 249, 0.4);
+  --color-silver-mist: #a5a9be;
+  --color-focus: #0052de;
+  --color-danger: #cc2936;
+  --color-success: #217e38;
+  /* theme-generic colors, default to light theme value */
+  --color-surface-field: var(--color-neutral-100);
+  --color-highlight: var(--color-brand-700);
+  --color-border-primary: var(--color-neutral-200);
+  --color-surface-container: var(--color-dim-blue);
+  --color-content-secondary: var(--color-neutral-600);
 }
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
+/* themes */
+@custom-variant light (&:where(.light, .light *));
+.light {
+  @apply text-neutral-900;
+  --color-surface-field: var(--color-neutral-100);
+  --color-highlight: var(--color-brand-700);
+  --color-border-primary: var(--color-neutral-200);
+  --color-surface-container: var(--color-dim-blue);
+  --color-content-secondary: var(--color-neutral-600);
+}
+@custom-variant dark (&:where(.dark, .dark *));
+.dark {
+  @apply text-white;
+  --color-surface-field: color-mix(
+    in oklab,
+    var(--color-white) 10%,
+    transparent
+  );
+  --color-highlight: var(--color-new-gold);
+  --color-border-primary: color-mix(
+    in oklab,
+    var(--color-white) 25%,
+    transparent
+  );
+  --color-surface-container: color-mix(
+    in oklab,
+    var(--color-white) 8%,
+    transparent
+  );
+  --color-content-secondary: var(--color-neutral-400);
 }
 
-@utility text-balance {
-  text-wrap: balance;
+/* gradients */
+@utility gradient-brand-h-dark-to-light {
+  @apply bg-gradient-to-r from-brand-900 to-brand-700;
+}
+@utility gradient-brand-h-light-to-dark {
+  @apply bg-gradient-to-r from-brand-700 to-brand-900;
+}
+@utility gradient-brand-v-dark-to-light {
+  @apply bg-gradient-to-b from-brand-900 to-brand-700;
+}
+@utility gradient-brand-v-light-to-dark {
+  @apply bg-gradient-to-b from-brand-700 to-brand-900;
+}
+@utility gradient-brand-v-darker-to-dark {
+  @apply bg-gradient-to-b from-brand-900 to-brand-800;
+}
+@utility gradient-brand-v-dark-to-darker {
+  @apply bg-gradient-to-b from-brand-800 to-brand-900;
+}
+@utility gradient-gold-h-dark-to-light {
+  @apply bg-gradient-to-r from-dark-gold to-new-gold;
+}
+@utility gradient-image-overlay {
+  @apply bg-gradient-to-b from-black to-transparent;
+}
+@utility gradient-container {
+  @apply bg-gradient-to-r from-brand-700 via-50% via-[rgba(88,104,158,0.5)] to-brand-700;
+}
+@utility gradient-primary-gray {
+  @apply bg-gradient-to-br from-neutral-100 to-white;
+}
+@utility gradient-secondary-gray-h-light-to-dark {
+  @apply bg-gradient-to-r from-white to-neutral-50;
+}
+@utility gradient-secondary-gray-h-dark-to-light {
+  @apply bg-gradient-to-r from-neutral-50 to-white;
+}
+@utility gradient-secondary-gray-v-light-to-dark {
+  @apply bg-gradient-to-b from-white to-neutral-50;
+}
+@utility gradient-secondary-gray-v-dark-to-light {
+  @apply bg-gradient-to-b from-neutral-50 to-white;
+}
+@utility gradient-tertiary-gray {
+  @apply bg-gradient-to-b from-neutral-100 to-neutral-50;
+}
+
+/* typography */
+@utility typo-display {
+  @apply text-[36px] dsk:text-[64px] leading-[42px] dsk:leading-[72px];
+}
+@utility typo-heading-1 {
+  @apply text-[34px] dsk:text-[48px] leading-[40px] dsk:leading-[56px];
+}
+@utility typo-heading-2 {
+  @apply text-[30px] dsk:text-[40px] leading-[36px] dsk:leading-[48px];
+}
+@utility typo-heading-3 {
+  @apply text-[26px] dsk:text-[32px] leading-[32px] dsk:leading-[40px];
+}
+@utility typo-heading-4 {
+  @apply text-[22px] dsk:text-[24px] leading-[28px] dsk:leading-[32px];
+}
+@utility typo-heading-5 {
+  @apply text-[20px] leading-[24px];
+}
+@utility typo-heading-6 {
+  @apply text-[14px] leading-[20px] tracking-[1px] uppercase font-bold;
+}
+@utility typo-body-large {
+  @apply text-[18px] leading-[24px];
+}
+@utility typo-body-base {
+  @apply text-[16px] leading-[22px];
+}
+@utility typo-body-small {
+  @apply text-[14px] leading-[20px];
+}
+@utility typo-eyebrow {
+  @apply text-[12px] leading-[18px] tracking-[1px] font-bold uppercase;
+}
+@utility typo-caption {
+  @apply text-[12px] leading-[18px];
+}
+@utility typo-button-cta {
+  @apply text-[14px] leading-none tracking-[1px] uppercase;
+}
+
+/* base styles */
+body {
+  @apply font-sans font-normal tracking-normal typo-body-base antialiased bg-white text-neutral-900;
 }
