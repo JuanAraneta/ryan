@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 
 export const useAnimationFrame = (
   callback: () => boolean | void,
-  deps: ReadonlyArray<unknown>
+  deps: ReadonlyArray<unknown>,
 ) => {
   const closeRecursion = useRef(false);
   useEffect(() => {
