@@ -4,11 +4,6 @@ import { FC } from "react";
 import { ModuleExpertsOverflow } from "./ExpertsOverflow";
 import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleExpertsOverflowById";
 
-// Types to be changed to match the actual types used in the application.
-
-export type ModuleProps = any; // This is a placeholder for the module props type.
-export type ComponentProps = any; // This is a placeholder for the component props type.
-
 type ModuleComponent<Data = any> = {
   component: FC<{ data: Data }>;
   queryById: TadaDocumentNode<Data, { id: string }>;
@@ -21,7 +16,6 @@ type ModuleRegistry = Record<
   ModuleComponent | null
 >;
 
-// FIXME - Update the Modules array under Page in Contentful to have a specific whitelist of supported types to fix this
 const moduleRegistry: ModuleRegistry = {
   ModuleExpertsOverflow: {
     component: ModuleExpertsOverflow,
