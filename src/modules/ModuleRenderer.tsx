@@ -15,7 +15,7 @@ export const ModuleRenderer = async ({
           if (!module) return null;
           const type = module.__typename;
           if (!moduleRegistry[type]) {
-            console.log(`Module type of "${type}" not found in registry`);
+            console.warn(`Module type of "${type}" not found in registry`);
             return null;
           }
 
@@ -31,11 +31,11 @@ export const ModuleRenderer = async ({
           }
 
           return <Component key={index} data={result.data} />;
-        }),
+        })
       ).then((result) =>
         result
           .filter((render) => render.status === "fulfilled")
-          .map((render) => render.value),
+          .map((render) => render.value)
       )}
     </>
   );

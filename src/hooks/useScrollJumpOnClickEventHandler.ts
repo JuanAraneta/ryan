@@ -3,7 +3,7 @@ import { RefObject, useCallback } from "react";
 export const useScrollJumpOnClickEventHandler = (
   scrollContainerRef: RefObject<Element | null>,
   direction: "prev" | "next",
-  childrenQuerySelector?: string,
+  childrenQuerySelector?: string
 ) =>
   useCallback(() => {
     const container = scrollContainerRef.current;
@@ -17,13 +17,11 @@ export const useScrollJumpOnClickEventHandler = (
 
     const scrollLeft =
       Number(
-        getComputedStyle(container).scrollPaddingLeft.slice(0, -"px".length),
+        getComputedStyle(container).scrollPaddingLeft.slice(0, -"px".length)
       ) + container.scrollLeft;
 
     const isAtMax =
       container.scrollLeft + container.clientWidth === container.scrollWidth;
-
-    console.log(isAtMax);
 
     const currentChildIndex =
       isAtMax && direction === "next"
