@@ -1,8 +1,9 @@
+"use client";
+
 import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
 import { ResultOf, FragmentOf } from "gql.tada";
-import { cloneElement, ComponentProps, forwardRef, useMemo } from "react";
+import { ComponentProps, forwardRef, useMemo } from "react";
 import { default as NextLink } from "next/link";
-import { RichText } from "./RichText";
 
 type LinkProps = { noLocalePrefix?: boolean } & (
   | (ComponentProps<"a"> & { href: string; link?: never })

@@ -1,5 +1,3 @@
-"use client";
-
 import { Link } from "@/components/core/Link";
 import { RichText, RichTitleText } from "@/components/core/RichText";
 import { ComponentStatisticFragment } from "@/lib/contentful/fragments/ComponentStatisticFragment";

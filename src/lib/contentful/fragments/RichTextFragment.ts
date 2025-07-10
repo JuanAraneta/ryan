@@ -2,7 +2,7 @@ import { graphql } from "gql.tada";
 import { ComponentLinkFragment } from "./ComponentLinkFragment";
 
 export const RichTextFragment = graphql(
-  /* GraphQL */ `
+  `
     fragment RichTextFragment on ContentTypeRichText {
       richText {
         json
