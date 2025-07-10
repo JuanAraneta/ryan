@@ -31,11 +31,11 @@ export const ModuleRenderer = async ({
           }
 
           return <Component key={index} data={result.data} />;
-        })
+        }),
       ).then((result) =>
         result
           .filter((render) => render.status === "fulfilled")
-          .map((render) => render.value)
+          .map((render) => render.value),
       )}
     </>
   );
