@@ -164,6 +164,15 @@
   @apply text-[14px] leading-none tracking-[1px] uppercase;
 }
 
+/* other utils */
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* base styles */
 body {
   @apply font-sans font-normal tracking-normal typo-body-base antialiased bg-white text-neutral-900;

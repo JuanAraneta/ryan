@@ -1,6 +1,8 @@
 import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
 import { ResultOf, TadaDocumentNode } from "gql.tada";
 import { FC } from "react";
+import { ModuleExpertsOverflow } from "./ExpertsOverflow";
+import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleExpertsOverflowById";
 
 // Types to be changed to match the actual types used in the application.
 
@@ -21,15 +23,10 @@ type ModuleRegistry = Record<
 
 // FIXME - Update the Modules array under Page in Contentful to have a specific whitelist of supported types to fix this
 const moduleRegistry: ModuleRegistry = {
-  Page: null,
-  Footer: null,
-  Header: null,
-  Market: null,
-  Script: null,
-  SeoMetadata: null,
-  SiteSettings: null,
-  SocialMediaLink: null,
-  UrlRedirect: null,
+  ModuleExpertsOverflow: {
+    component: ModuleExpertsOverflow,
+    queryById: GetModuleExpertsOverflowById,
+  },
 };
 
 export default moduleRegistry;
