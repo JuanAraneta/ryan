@@ -5,8 +5,9 @@ import { RichText, RichTitleText } from "@/components/core/RichText";
 import { ComponentStatisticFragment } from "@/lib/contentful/fragments/ComponentStatisticFragment";
 import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleExpertsOverflowById";
 import { readFragment, ResultOf } from "gql.tada";
-import { ModuleExpertsOverflowExpertsListScroll } from "./components/ModuleExpertsOverflowExpertsListScroll";
+import { ExpertsOverflowExpertsListScroll } from "./components/ExpertsOverflowExpertsListScroll";
 import { ModuleExpertsOverflowExpertsListCollectionFragment } from "@/lib/contentful/fragments/ModuleExpertsOverflowExpertsListCollectionFragment";
+import { AnimatableNumber } from "@/components/core/AnimatableNumber";
 
 export const ModuleExpertsOverflow = ({
   data,
@@ -19,7 +20,7 @@ export const ModuleExpertsOverflow = ({
   );
   return (
     <section className="dark gradient-brand-v-light-to-dark px-6 py-16 dsk:px-20 dsk:py-32">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col dsk:flex-row justify-between items-center">
         <div className="flex flex-col justify-center dsk:justify-left">
           <h2 className="typo-heading-6 text-highlight text-center dsk:text-left">
             <RichText content={data.moduleExpertsOverflow?.eyebrow} spansOnly />
@@ -30,7 +31,7 @@ export const ModuleExpertsOverflow = ({
               spansOnly
             />
           </p>
-          <div className="pt-6">
+          <div className="pt-6 flex items-center justify-center dsk:justify-start">
             <Link
               className="border border-highlight rounded-full px-6 py-4 typo-button-cta w-fit font-bold inline-block"
               link={data.moduleExpertsOverflow?.callToAction}
@@ -44,16 +45,20 @@ export const ModuleExpertsOverflow = ({
             </p>
             <p className="typo-display font-light text-highlight pt-3">
               {statistic?.prefix}
-              {new Intl.NumberFormat("en-US").format(
-                Number(statistic?.value ?? "0")
-              )}
+              <AnimatableNumber
+                value={
+                  new Intl.NumberFormat("en-US").format(
+                    Number(statistic?.value ?? "0")
+                  ) ?? "0"
+                }
+              />
               {statistic?.suffix}
             </p>
           </div>
         )}
       </div>
       {!!data.moduleExpertsOverflow?.expertsListCollection && (
-        <ModuleExpertsOverflowExpertsListScroll
+        <ExpertsOverflowExpertsListScroll
           data={readFragment(
             ModuleExpertsOverflowExpertsListCollectionFragment,
             data.moduleExpertsOverflow?.expertsListCollection

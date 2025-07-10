@@ -8,7 +8,7 @@ import { ResultOf } from "gql.tada";
 import { useRef } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
-export const ModuleExpertsOverflowExpertsListScroll = ({
+export const ExpertsOverflowExpertsListScroll = ({
   data,
 }: {
   data: ResultOf<typeof ModuleExpertsOverflowExpertsListCollectionFragment>;
