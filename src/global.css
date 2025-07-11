@@ -37,17 +37,21 @@
   --color-danger: #cc2936;
   --color-success: #217e38;
   /* theme-generic colors, default to light theme value */
+  --color-content-primary: var(--color-neutral-900);
   --color-surface-field: var(--color-neutral-100);
   --color-highlight: var(--color-brand-700);
   --color-border-primary: var(--color-neutral-200);
   --color-surface-container: var(--color-dim-blue);
   --color-content-secondary: var(--color-neutral-600);
+  /* transition-duration */
+  --default-transition-duration: 0.25s;
 }
 
 /* themes */
 @custom-variant light (&:where(.light, .light *));
 .light {
   @apply text-neutral-900;
+  --color-content-primary: var(--color-neutral-900);
   --color-surface-field: var(--color-neutral-100);
   --color-highlight: var(--color-brand-700);
   --color-border-primary: var(--color-neutral-200);
@@ -57,6 +61,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 .dark {
   @apply text-white;
+  --color-content-primary: var(--color-neutral-0);
   --color-surface-field: color-mix(
     in oklab,
     var(--color-white) 10%,
@@ -77,49 +82,49 @@
 }
 
 /* gradients */
-@utility gradient-brand-h-dark-to-light {
+.gradient-brand-h-dark-to-light {
   @apply bg-gradient-to-r from-brand-900 to-brand-700;
 }
-@utility gradient-brand-h-light-to-dark {
+.gradient-brand-h-light-to-dark {
   @apply bg-gradient-to-r from-brand-700 to-brand-900;
 }
-@utility gradient-brand-v-dark-to-light {
+.gradient-brand-v-dark-to-light {
   @apply bg-gradient-to-b from-brand-900 to-brand-700;
 }
-@utility gradient-brand-v-light-to-dark {
+.gradient-brand-v-light-to-dark {
   @apply bg-gradient-to-b from-brand-700 to-brand-900;
 }
-@utility gradient-brand-v-darker-to-dark {
+.gradient-brand-v-darker-to-dark {
   @apply bg-gradient-to-b from-brand-900 to-brand-800;
 }
-@utility gradient-brand-v-dark-to-darker {
+.gradient-brand-v-dark-to-darker {
   @apply bg-gradient-to-b from-brand-800 to-brand-900;
 }
-@utility gradient-gold-h-dark-to-light {
+.gradient-gold-h-dark-to-light {
   @apply bg-gradient-to-r from-dark-gold to-new-gold;
 }
-@utility gradient-image-overlay {
+.gradient-image-overlay {
   @apply bg-gradient-to-b from-black to-transparent;
 }
-@utility gradient-container {
+.gradient-container {
   @apply bg-gradient-to-r from-brand-700 via-50% via-[rgba(88,104,158,0.5)] to-brand-700;
 }
-@utility gradient-primary-gray {
+.gradient-primary-gray {
   @apply bg-gradient-to-br from-neutral-100 to-white;
 }
-@utility gradient-secondary-gray-h-light-to-dark {
+.gradient-secondary-gray-h-light-to-dark {
   @apply bg-gradient-to-r from-white to-neutral-50;
 }
-@utility gradient-secondary-gray-h-dark-to-light {
+.gradient-secondary-gray-h-dark-to-light {
   @apply bg-gradient-to-r from-neutral-50 to-white;
 }
-@utility gradient-secondary-gray-v-light-to-dark {
+.gradient-secondary-gray-v-light-to-dark {
   @apply bg-gradient-to-b from-white to-neutral-50;
 }
-@utility gradient-secondary-gray-v-dark-to-light {
+.gradient-secondary-gray-v-dark-to-light {
   @apply bg-gradient-to-b from-neutral-50 to-white;
 }
-@utility gradient-tertiary-gray {
+.gradient-tertiary-gray {
   @apply bg-gradient-to-b from-neutral-100 to-neutral-50;
 }
 
@@ -175,5 +180,5 @@
 
 /* base styles */
 body {
-  @apply font-sans font-normal tracking-normal typo-body-base antialiased bg-white text-neutral-900;
+  @apply font-sans font-normal tracking-normal typo-body-base antialiased bg-white text-content-primary;
 }

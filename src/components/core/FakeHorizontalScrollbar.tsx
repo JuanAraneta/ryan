@@ -2,6 +2,7 @@
 
 import { RefObject, useEffect, useRef } from "react";
 import { cx } from "cva";
+import { useConstants } from "../providers/ConstantsContext";
 
 export const FakeHorizontalScrollbar = ({
   scrollContainerRef,
@@ -14,6 +15,7 @@ export const FakeHorizontalScrollbar = ({
   itemQuerySelector?: string;
   scrollBarClassName?: string;
 }) => {
+  const constants = useConstants();
   const scrollThumbRef = useRef<HTMLButtonElement>(null);
   const scrollTrackRef = useRef<HTMLDivElement>(null);
 
@@ -134,7 +136,7 @@ export const FakeHorizontalScrollbar = ({
             behavior: "smooth",
           });
         }}
-        aria-label={constants.scrollTrackLabel}
+        aria-label={constants.scrollbarTrackAriaLabel ?? ""}
       />
       <button
         tabIndex={-1}
@@ -144,13 +146,8 @@ export const FakeHorizontalScrollbar = ({
           scrollBarClassName
         )}
         style={{ userSelect: "none" }}
-        aria-label={constants.scrollThumbLabel}
+        aria-label={constants.scrollbarThumbLabel ?? ""}
       />
     </div>
   );
 };
-
-const constants = {
-  scrollThumbLabel: "Custom scrollbar thumb",
-  scrollTrackLabel: "Custom scrollbar track",
-} as const;

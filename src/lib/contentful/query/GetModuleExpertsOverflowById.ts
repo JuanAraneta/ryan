@@ -3,6 +3,7 @@ import { RichTextFragment } from "../fragments/RichTextFragment";
 import { ComponentLinkFragment } from "../fragments/ComponentLinkFragment";
 import { ComponentStatisticFragment } from "../fragments/ComponentStatisticFragment";
 import { ModuleExpertsOverflowExpertsListCollectionFragment } from "../fragments/ModuleExpertsOverflowExpertsListCollectionFragment";
+import { AssetFragment } from "../fragments/AssetFragment";
 
 export const GetModuleExpertsOverflowById = graphql(
   `
@@ -29,6 +30,9 @@ export const GetModuleExpertsOverflowById = graphql(
       statistic {
         ...ComponentStatisticFragment
       }
+      statisticFlair {
+        ...AssetFragment
+      }
       expertsListCollection {
         ...ModuleExpertsOverflowExpertsListCollectionFragment
       }
@@ -39,5 +43,6 @@ export const GetModuleExpertsOverflowById = graphql(
     ComponentLinkFragment,
     ComponentStatisticFragment,
     ModuleExpertsOverflowExpertsListCollectionFragment,
+    AssetFragment,
   ]
 );

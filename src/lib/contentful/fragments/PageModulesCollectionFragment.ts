@@ -7,6 +7,16 @@ export const PageModulesCollectionFragment = graphql(`
       sys {
         id
       }
+      theme
+      backgroundColor
+      modulesCollection {
+        items {
+          __typename
+          sys {
+            id
+          }
+        }
+      }
     }
   }
 `);

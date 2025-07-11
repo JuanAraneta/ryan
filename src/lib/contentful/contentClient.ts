@@ -40,7 +40,7 @@ declare module "gql.tada" {
   // This change just ensures that DateTime comes back,
   // accurately, as a string without having to utilize a
   // "custom" graphql function.
-  declare const graphql: ReturnType<
+  const graphql: ReturnType<
     typeof initGraphQLTada<{
       introspection: introspection;
       scalars: { DateTime: string };

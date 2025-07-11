@@ -1,7 +1,7 @@
 import { graphql } from "gql.tada";
 
 export const AssetFragment = graphql(`
-  fragment HeaderFragment on Asset {
+  fragment AssetFragment on Asset {
     url
     contentType
   }

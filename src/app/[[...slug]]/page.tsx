@@ -1,4 +1,4 @@
-import { ModuleRenderer } from "@/modules/ModuleRenderer";
+import { ModuleContainerRenderer } from "@/modules/ModuleContainerRenderer";
 import { notFound } from "next/navigation";
 import { contentClient } from "@/lib/contentful/contentClient";
 import { GetPageBySlugAndMarketQuery } from "@/lib/contentful/query/GetPageBySlugAndMarketQuery";
@@ -23,7 +23,7 @@ export default async function Page(props: {
   if (!page || !page.modulesCollection) notFound();
 
   return (
-    <ModuleRenderer
+    <ModuleContainerRenderer
       data={readFragment(PageModulesCollectionFragment, page.modulesCollection)}
     />
   );

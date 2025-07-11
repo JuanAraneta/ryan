@@ -11,8 +11,14 @@ type ModuleComponent<Data = any> = {
 
 type ModuleRegistry = Record<
   NonNullable<
-    NonNullable<ResultOf<typeof PageModulesCollectionFragment>["items"]>[number]
-  >["__typename"],
+    NonNullable<
+      NonNullable<
+        NonNullable<
+          ResultOf<typeof PageModulesCollectionFragment>["items"][number]
+        >["modulesCollection"]
+      >["items"][number]
+    >["__typename"]
+  >,
   ModuleComponent | null
 >;
 

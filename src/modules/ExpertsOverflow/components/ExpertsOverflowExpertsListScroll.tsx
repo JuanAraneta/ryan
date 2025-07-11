@@ -2,9 +2,13 @@
 
 import { FakeHorizontalScrollbar } from "@/components/core/FakeHorizontalScrollbar";
 import { IconButton } from "@/components/core/IconButton";
+import { useConstants } from "@/components/providers/ConstantsContext";
+import { useRerenderOnScreenSize } from "@/hooks/useRerenderOnScreenSize";
 import { useScrollJumpOnClickEventHandler } from "@/hooks/useScrollJumpOnClickEventHandler";
+import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { ModuleExpertsOverflowExpertsListCollectionFragment } from "@/lib/contentful/fragments/ModuleExpertsOverflowExpertsListCollectionFragment";
-import { ResultOf } from "gql.tada";
+import { cx } from "cva";
+import { readFragment, ResultOf } from "gql.tada";
 import { useRef } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
@@ -24,6 +28,8 @@ export const ExpertsOverflowExpertsListScroll = ({
     "next",
     "li"
   );
+  const constants = useConstants();
+  useRerenderOnScreenSize();
 
   return (
     <div>
@@ -33,15 +39,17 @@ export const ExpertsOverflowExpertsListScroll = ({
       >
         <ul className="flex gap-6 flex-1 w-max">
           {data.items.map((expert, index) => {
+            const headshot = readFragment(AssetFragment, expert?.headshot);
+
             return (
               <li
                 key={index}
                 className="flex flex-col gap-6 snap-start snap-always"
               >
-                {!!expert?.headshot?.url && (
+                {!!expert && !!headshot?.url && (
                   <img
                     className="w-[300px] h-[400px] rounded-lg"
-                    src={expert.headshot.url}
+                    src={headshot.url}
                     alt={expert.fullName ?? ""}
                   />
                 )}
@@ -61,12 +69,28 @@ export const ExpertsOverflowExpertsListScroll = ({
           })}
         </ul>
       </div>
-      <div className="pt-6 dsk:pt-10 flex gap-6 items-center">
+      <div
+        className={cx(
+          "pt-6 dsk:pt-10 gap-6 items-center",
+          scrollContainerRef.current?.clientWidth ===
+            scrollContainerRef.current?.scrollWidth
+            ? "hidden"
+            : "flex"
+        )}
+      >
         <div className="hidden dsk:flex gap-6">
-          <IconButton onClick={prevClickHandler}>
+          <IconButton
+            variant="secondary"
+            onClick={prevClickHandler}
+            aria-label={constants.previousButtonAriaLabel ?? ""}
+          >
             <MdChevronLeft size={24} />
           </IconButton>
-          <IconButton onClick={nextClickHandler}>
+          <IconButton
+            variant="secondary"
+            onClick={nextClickHandler}
+            aria-label={constants.nextButtonAriaLabel ?? ""}
+          >
             <MdChevronRight size={24} />
           </IconButton>
         </div>
