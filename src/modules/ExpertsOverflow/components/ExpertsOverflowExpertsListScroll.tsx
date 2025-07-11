@@ -12,7 +12,11 @@ import { cx } from "cva";
 import { readFragment, ResultOf } from "gql.tada";
 import Link from "next/link";
 import { useRef } from "react";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import {
+  MdChevronLeft,
+  MdChevronRight,
+  MdOutlineArrowForward,
+} from "react-icons/md";
 
 export const ExpertsOverflowExpertsListScroll = ({
   data,
@@ -50,25 +54,33 @@ export const ExpertsOverflowExpertsListScroll = ({
               >
                 <Link
                   href={`/experts/${expert?.slug}`}
-                  className={cx(focusStyle, "rounded-lg")}
+                  className={cx(focusStyle, "group rounded-lg")}
                 >
                   {!!expert && !!headshot?.url && (
-                    <img
-                      className="w-[300px] h-[400px] rounded-lg"
-                      src={headshot.url}
-                      alt={expert.fullName ?? ""}
-                    />
+                    <div className="w-[300px] h-[400px] rounded-lg overflow-hidden">
+                      <img
+                        className="w-[300px] h-[400px] rounded-lg transition-transform group-hover:scale-105"
+                        src={headshot.url}
+                        alt={expert.fullName ?? ""}
+                      />
+                    </div>
                   )}
-                  <span className="block">
-                    <p className="typo-heading-4 font-light">
-                      {expert?.fullName}
-                    </p>
-                    <p className="typo-body-small font-bold text-content-secondary pt-3">
-                      {expert?.title}
-                    </p>
-                    <p className="typo-body-small font-bold text-content-secondary">
-                      {expert?.serviceLabel}
-                    </p>
+                  <span className="flex justify-between pt-6">
+                    <span className="block">
+                      <p className="typo-heading-4 font-light">
+                        {expert?.fullName}
+                      </p>
+                      <p className="typo-body-small font-bold text-content-secondary pt-3">
+                        {expert?.title}
+                      </p>
+                      <p className="typo-body-small font-bold text-content-secondary">
+                        {expert?.serviceLabel}
+                      </p>
+                    </span>
+                    <MdOutlineArrowForward
+                      className="opacity-0 group-hover:opacity-100 transition-opacity"
+                      size={24}
+                    />
                   </span>
                 </Link>
               </li>

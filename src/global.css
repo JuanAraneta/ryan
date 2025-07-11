@@ -45,6 +45,7 @@
   --color-content-secondary: var(--color-neutral-600);
   /* transition-duration */
   --default-transition-duration: 0.25s;
+  --default-transition-timing-function: ease-in;
 }
 
 /* themes */
