@@ -1,7 +1,6 @@
 import { contentClient } from "@/lib/contentful/contentClient";
 import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
 import moduleRegistry from "@/modules/moduleRegistry";
-import { cx } from "cva";
 import { ResultOf } from "gql.tada";
 
 export const ModuleContainerRenderer = async ({
@@ -17,10 +16,7 @@ export const ModuleContainerRenderer = async ({
           !moduleContainer.modulesCollection?.items ? null : (
             <div
               key={moduleContainer.sys.id}
-              className={cx(
-                moduleContainer.theme,
-                moduleContainer.backgroundColor,
-              )}
+              className={moduleContainer.backgroundColor ?? ""}
             >
               {await Promise.allSettled(
                 moduleContainer?.modulesCollection?.items.map(
@@ -29,7 +25,7 @@ export const ModuleContainerRenderer = async ({
                     const type = module.__typename;
                     if (!moduleRegistry[type]) {
                       console.warn(
-                        `Module type of "${type}" not found in registry`,
+                        `Module type of "${type}" not found in registry`
                       );
                       return null;
                     }
@@ -43,26 +39,26 @@ export const ModuleContainerRenderer = async ({
 
                     if (!result || !result.data) {
                       console.error(
-                        `Module request failed for id "${module.sys.id}"`,
+                        `Module request failed for id "${module.sys.id}"`
                       );
                       return null;
                     }
 
                     return <Component key={index} data={result.data} />;
-                  },
-                ),
+                  }
+                )
               ).then((result) =>
                 result
                   .filter((render) => render.status === "fulfilled")
-                  .map((render) => render.value),
+                  .map((render) => render.value)
               )}
             </div>
-          ),
-        ),
+          )
+        )
       ).then((result) =>
         result
           .filter((render) => render.status === "fulfilled")
-          .map((render) => render.value),
+          .map((render) => render.value)
       )}
     </>
   );

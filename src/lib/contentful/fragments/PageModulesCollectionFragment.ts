@@ -7,7 +7,6 @@ export const PageModulesCollectionFragment = graphql(`
       sys {
         id
       }
-      theme
       backgroundColor
       modulesCollection {
         items {
