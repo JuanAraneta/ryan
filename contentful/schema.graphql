@@ -143,6 +143,7 @@ type ComponentExpert implements Entry & _Node {
   headshot(locale: String, preview: Boolean): Asset
   linkedFrom(allowedLocales: [String]): ComponentExpertLinkingCollections
   serviceLabel(locale: String): String
+  slug(locale: String): String
   sys: Sys!
   title(locale: String): String
 }
@@ -173,6 +174,13 @@ input ComponentExpertFilter {
   serviceLabel_not: String
   serviceLabel_not_contains: String
   serviceLabel_not_in: [String]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
   sys: SysFilter
   title: String
   title_contains: String
@@ -206,6 +214,8 @@ enum ComponentExpertOrder {
   fullName_DESC
   serviceLabel_ASC
   serviceLabel_DESC
+  slug_ASC
+  slug_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -1240,6 +1250,8 @@ enum ModuleExpertsOverflowExpertsListCollectionOrder {
   fullName_DESC
   serviceLabel_ASC
   serviceLabel_DESC
+  slug_ASC
+  slug_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -2108,6 +2120,13 @@ input cfComponentExpertNestedFilter {
   serviceLabel_not: String
   serviceLabel_not_contains: String
   serviceLabel_not_in: [String]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
   sys: SysFilter
   title: String
   title_contains: String

@@ -1,11 +1,9 @@
+import { focusStyle } from "@/utils/focusStyle";
 import { cva, cx, type VariantProps } from "cva";
 import { Children, cloneElement, ComponentProps, JSX } from "react";
 
 const buttonClasses = cva(
-  [
-    "transition-colors flex justify-center items-center gap-2",
-    "outline-2 outline-transparent outline-offset-2 focus-visible:outline-focus",
-  ],
+  ["transition-colors flex justify-center items-center gap-2", focusStyle],
   {
     variants: {
       variant: {

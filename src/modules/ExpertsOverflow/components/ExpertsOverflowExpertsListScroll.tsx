@@ -7,8 +7,10 @@ import { useRerenderOnScreenSize } from "@/hooks/useRerenderOnScreenSize";
 import { useScrollJumpOnClickEventHandler } from "@/hooks/useScrollJumpOnClickEventHandler";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { ModuleExpertsOverflowExpertsListCollectionFragment } from "@/lib/contentful/fragments/ModuleExpertsOverflowExpertsListCollectionFragment";
+import { focusStyle } from "@/utils/focusStyle";
 import { cx } from "cva";
 import { readFragment, ResultOf } from "gql.tada";
+import Link from "next/link";
 import { useRef } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
@@ -44,26 +46,31 @@ export const ExpertsOverflowExpertsListScroll = ({
             return (
               <li
                 key={index}
-                className="flex flex-col gap-6 snap-start snap-always"
+                className="flex flex-col gap-6 snap-start snap-always py-2"
               >
-                {!!expert && !!headshot?.url && (
-                  <img
-                    className="w-[300px] h-[400px] rounded-lg"
-                    src={headshot.url}
-                    alt={expert.fullName ?? ""}
-                  />
-                )}
-                <div>
-                  <p className="typo-heading-4 font-light">
-                    {expert?.fullName}
-                  </p>
-                  <p className="typo-body-small font-bold text-content-secondary pt-3">
-                    {expert?.title}
-                  </p>
-                  <p className="typo-body-small font-bold text-content-secondary">
-                    {expert?.serviceLabel}
-                  </p>
-                </div>
+                <Link
+                  href={`/experts/${expert?.slug}`}
+                  className={cx(focusStyle, "rounded-lg")}
+                >
+                  {!!expert && !!headshot?.url && (
+                    <img
+                      className="w-[300px] h-[400px] rounded-lg"
+                      src={headshot.url}
+                      alt={expert.fullName ?? ""}
+                    />
+                  )}
+                  <span className="block">
+                    <p className="typo-heading-4 font-light">
+                      {expert?.fullName}
+                    </p>
+                    <p className="typo-body-small font-bold text-content-secondary pt-3">
+                      {expert?.title}
+                    </p>
+                    <p className="typo-body-small font-bold text-content-secondary">
+                      {expert?.serviceLabel}
+                    </p>
+                  </span>
+                </Link>
               </li>
             );
           })}
