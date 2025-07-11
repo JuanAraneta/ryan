@@ -12,7 +12,6 @@ import { Lato } from "next/font/google";
 import { ConstantsProvider } from "@/components/providers/ConstantsContext";
 import { GetConstantsQuery } from "@/lib/contentful/query/GetConstantsQuery";
 import { ConstantsFragment } from "@/lib/contentful/fragments/ConstantsFragment";
-import { cx } from "cva";
 
 const latoSans = Lato({
   variable: "--font-sans",
@@ -54,7 +53,7 @@ export default async function RootLayout(
           />
         )}
       </head>
-      <body className={cx(latoSans.variable, "light")}>
+      <body className={latoSans.variable}>
         <main className="min-h-screen">
           {page.header && (
             <Header data={readFragment(HeaderFragment, page.header)} />
