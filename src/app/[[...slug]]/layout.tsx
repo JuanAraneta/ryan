@@ -8,6 +8,17 @@ import { readFragment } from "gql.tada";
 import { SEOMetadataFragment } from "@/lib/contentful/fragments/SEOMetadataFragment";
 import { FooterFragment } from "@/lib/contentful/fragments/FooterFragment";
 import { HeaderFragment } from "@/lib/contentful/fragments/HeaderFragment";
+import { Lato } from "next/font/google";
+import { ConstantsProvider } from "@/components/providers/ConstantsContext";
+import { GetConstantsQuery } from "@/lib/contentful/query/GetConstantsQuery";
+import { ConstantsFragment } from "@/lib/contentful/fragments/ConstantsFragment";
+
+const latoSans = Lato({
+  variable: "--font-sans",
+  weight: ["300", "400", "700"],
+  style: ["normal", "italic"],
+  subsets: ["latin", "latin-ext"],
+});
 
 export default async function RootLayout(
   props: Readonly<{
@@ -19,18 +30,22 @@ export default async function RootLayout(
   const slugs = Array.isArray(params.slug) ? params.slug : [params.slug];
 
   const [marketSlug, locale, slug] = slugs;
-  const pageResult = await contentClient.query(GetPageBySlugAndMarketQuery, {
-    marketSlug,
-    locale,
-    slug,
-  });
+  const [pageResult, constantsResult] = await Promise.all([
+    contentClient.query(GetPageBySlugAndMarketQuery, {
+      marketSlug,
+      locale,
+      slug,
+    }),
+    contentClient.query(GetConstantsQuery, { locale }),
+  ]);
 
   const page = pageResult.data?.pageCollection?.items[0];
+  const constants = constantsResult.data?.constantsCollection?.items[0];
 
-  if (!page) notFound();
+  if (!page || !constants) notFound();
 
   return (
-    <>
+    <ConstantsProvider value={readFragment(ConstantsFragment, constants)}>
       <head>
         {page.seoMetadata && (
           <SEOMetadata
@@ -38,7 +53,7 @@ export default async function RootLayout(
           />
         )}
       </head>
-      <body>
+      <body className={latoSans.variable}>
         <main className="min-h-screen">
           {page.header && (
             <Header data={readFragment(HeaderFragment, page.header)} />
@@ -49,6 +64,6 @@ export default async function RootLayout(
           )}
         </main>
       </body>
-    </>
+    </ConstantsProvider>
   );
 }
