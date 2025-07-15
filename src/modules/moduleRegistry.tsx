@@ -1,29 +1,32 @@
-import { NotFound, notFoundMorpher } from "@/modules";
-import { PageParams } from "@/types/generic";
+import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
+import { ResultOf, TadaDocumentNode } from "gql.tada";
 import { FC } from "react";
+import { ModuleExpertsOverflow } from "./ExpertsOverflow";
+import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleExpertsOverflowById";
 
-// Types to be changed to match the actual types used in the application.
-
-export type ModuleProps = any; // This is a placeholder for the module props type.
-export type ComponentProps = any; // This is a placeholder for the component props type.
-export type ModuleCodename = string; // This is a placeholder for the module codename.
-
-type ModuleComponent<M, C> = {
-  component: FC<C>;
-  morpher?: (input: M, pageParams?: PageParams) => C;
+type ModuleComponent<Data = any> = {
+  component: FC<{ data: Data }>;
+  queryById: TadaDocumentNode<Data, { id: string }>;
 };
 
 type ModuleRegistry = Record<
-  ModuleCodename,
-  ModuleComponent<ModuleProps, ComponentProps>
+  NonNullable<
+    NonNullable<
+      NonNullable<
+        NonNullable<
+          ResultOf<typeof PageModulesCollectionFragment>["items"][number]
+        >["modulesCollection"]
+      >["items"][number]
+    >["__typename"]
+  >,
+  ModuleComponent | null
 >;
 
-// Here define the moduleRegistry object, which is a mapping of module types to their corresponding components and morphers.
-const moduleRegistry = {
-  notFound: {
-    component: NotFound,
-    morpher: notFoundMorpher,
+const moduleRegistry: ModuleRegistry = {
+  ModuleExpertsOverflow: {
+    component: ModuleExpertsOverflow,
+    queryById: GetModuleExpertsOverflowById,
   },
-} as ModuleRegistry;
+};
 
 export default moduleRegistry;

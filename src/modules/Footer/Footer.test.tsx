@@ -5,7 +5,7 @@ import { Footer } from "./Footer";
 describe("Footer Component", () => {
   it("renders the name prop correctly", () => {
     const testName = "Test Footer";
-    render(<Footer name={testName} />);
+    render(<Footer data={{ title: testName }} />);
     expect(screen.getByText(testName)).toBeTruthy();
   });
 });

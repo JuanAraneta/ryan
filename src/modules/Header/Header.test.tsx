@@ -5,7 +5,7 @@ import { Header } from "./Header";
 describe("Header Component", () => {
   it("renders the name prop correctly", () => {
     const testName = "Test Header";
-    render(<Header name={testName} />);
+    render(<Header data={{ title: testName }} />);
     expect(screen.getByText(testName)).toBeTruthy();
   });
 });
