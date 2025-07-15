@@ -102,6 +102,7 @@ input AssetFilter {
 }
 
 type AssetLinkingCollections {
+  componentCustomerStoryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentCustomerStoryCollection
   componentExpertCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentExpertCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   headerCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): HeaderCollection
@@ -131,6 +132,96 @@ enum AssetOrder {
   url_DESC
   width_ASC
   width_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/componentCustomerStory)
+"""
+type ComponentCustomerStory implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  customerLogo(locale: String, preview: Boolean): Asset
+  customerName(locale: String): String
+  headline(locale: String, preview: Boolean, where: ContentTypeRichTextFilter): ContentTypeRichText
+  heroMedia(locale: String, preview: Boolean): Asset
+  linkedFrom(allowedLocales: [String]): ComponentCustomerStoryLinkingCollections
+  quoteSource(locale: String): String
+  slug(locale: String): String
+  sys: Sys!
+}
+
+type ComponentCustomerStoryCollection {
+  items: [ComponentCustomerStory]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input ComponentCustomerStoryFilter {
+  AND: [ComponentCustomerStoryFilter]
+  OR: [ComponentCustomerStoryFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  customerLogo_exists: Boolean
+  customerName: String
+  customerName_contains: String
+  customerName_exists: Boolean
+  customerName_in: [String]
+  customerName_not: String
+  customerName_not_contains: String
+  customerName_not_in: [String]
+  headline: cfContentTypeRichTextNestedFilter
+  headline_exists: Boolean
+  heroMedia_exists: Boolean
+  quoteSource: String
+  quoteSource_contains: String
+  quoteSource_exists: Boolean
+  quoteSource_in: [String]
+  quoteSource_not: String
+  quoteSource_not_contains: String
+  quoteSource_not_in: [String]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
+}
+
+type ComponentCustomerStoryLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  moduleCustomerStoriesCarouselCollection(limit: Int = 100, locale: String, order: [ComponentCustomerStoryLinkingCollectionsModuleCustomerStoriesCarouselCollectionOrder], preview: Boolean, skip: Int = 0): ModuleCustomerStoriesCarouselCollection
+}
+
+enum ComponentCustomerStoryLinkingCollectionsModuleCustomerStoriesCarouselCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum ComponentCustomerStoryOrder {
+  customerName_ASC
+  customerName_DESC
+  quoteSource_ASC
+  quoteSource_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 """
@@ -273,7 +364,21 @@ input ComponentLinkFilter {
 
 type ComponentLinkLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  moduleCustomerStoriesCarouselCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsModuleCustomerStoriesCarouselCollectionOrder], preview: Boolean, skip: Int = 0): ModuleCustomerStoriesCarouselCollection
   moduleExpertsOverflowCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsModuleExpertsOverflowCollectionOrder], preview: Boolean, skip: Int = 0): ModuleExpertsOverflowCollection
+}
+
+enum ComponentLinkLinkingCollectionsModuleCustomerStoriesCarouselCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 enum ComponentLinkLinkingCollectionsModuleExpertsOverflowCollectionOrder {
@@ -536,9 +641,28 @@ input ContentTypeRichTextFilter {
 }
 
 type ContentTypeRichTextLinkingCollections {
+  componentCustomerStoryCollection(limit: Int = 100, locale: String, order: [ContentTypeRichTextLinkingCollectionsComponentCustomerStoryCollectionOrder], preview: Boolean, skip: Int = 0): ComponentCustomerStoryCollection
   componentStatisticCollection(limit: Int = 100, locale: String, order: [ContentTypeRichTextLinkingCollectionsComponentStatisticCollectionOrder], preview: Boolean, skip: Int = 0): ComponentStatisticCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  moduleCustomerStoriesCarouselCollection(limit: Int = 100, locale: String, order: [ContentTypeRichTextLinkingCollectionsModuleCustomerStoriesCarouselCollectionOrder], preview: Boolean, skip: Int = 0): ModuleCustomerStoriesCarouselCollection
   moduleExpertsOverflowCollection(limit: Int = 100, locale: String, order: [ContentTypeRichTextLinkingCollectionsModuleExpertsOverflowCollectionOrder], preview: Boolean, skip: Int = 0): ModuleExpertsOverflowCollection
+}
+
+enum ContentTypeRichTextLinkingCollectionsComponentCustomerStoryCollectionOrder {
+  customerName_ASC
+  customerName_DESC
+  quoteSource_ASC
+  quoteSource_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 enum ContentTypeRichTextLinkingCollectionsComponentStatisticCollectionOrder {
@@ -558,6 +682,19 @@ enum ContentTypeRichTextLinkingCollectionsComponentStatisticCollectionOrder {
   sys_publishedVersion_DESC
   value_ASC
   value_DESC
+}
+
+enum ContentTypeRichTextLinkingCollectionsModuleCustomerStoriesCarouselCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 enum ContentTypeRichTextLinkingCollectionsModuleExpertsOverflowCollectionOrder {
@@ -1115,9 +1252,8 @@ type ModuleContainer implements Entry & _Node {
   contentfulLabel(locale: String): String
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): ModuleContainerLinkingCollections
-  modulesCollection(limit: Int = 100, locale: String, order: [ModuleContainerModulesCollectionOrder], preview: Boolean, skip: Int = 0, where: ModuleExpertsOverflowFilter): ModuleContainerModulesCollection
+  modulesCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, where: ModuleContainerModulesFilter): ModuleContainerModulesCollection
   sys: Sys!
-  theme(locale: String): String
 }
 
 type ModuleContainerCollection {
@@ -1145,16 +1281,9 @@ input ModuleContainerFilter {
   contentfulLabel_not_contains: String
   contentfulLabel_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
-  modules: cfModuleExpertsOverflowNestedFilter
+  modules: cfmodulesMultiTypeNestedFilter
   modulesCollection_exists: Boolean
   sys: SysFilter
-  theme: String
-  theme_contains: String
-  theme_exists: Boolean
-  theme_in: [String]
-  theme_not: String
-  theme_not_contains: String
-  theme_not_in: [String]
 }
 
 type ModuleContainerLinkingCollections {
@@ -1178,24 +1307,29 @@ enum ModuleContainerLinkingCollectionsPageCollectionOrder {
 }
 
 type ModuleContainerModulesCollection {
-  items: [ModuleExpertsOverflow]!
+  items: [ModuleContainerModulesItem]!
   limit: Int!
   skip: Int!
   total: Int!
 }
 
-enum ModuleContainerModulesCollectionOrder {
-  contentfulLabel_ASC
-  contentfulLabel_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
+input ModuleContainerModulesFilter {
+  AND: [ModuleContainerModulesFilter]
+  OR: [ModuleContainerModulesFilter]
+  callToAction_exists: Boolean
+  contentfulLabel: String
+  contentfulLabel_contains: String
+  contentfulLabel_exists: Boolean
+  contentfulLabel_in: [String]
+  contentfulLabel_not: String
+  contentfulLabel_not_contains: String
+  contentfulLabel_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  sys: SysFilter
+  title_exists: Boolean
 }
+
+union ModuleContainerModulesItem = ModuleCustomerStoriesCarousel | ModuleExpertsOverflow
 
 enum ModuleContainerOrder {
   backgroundColor_ASC
@@ -1210,8 +1344,104 @@ enum ModuleContainerOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
-  theme_ASC
-  theme_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/moduleCustomerStoriesCarousel)
+"""
+type ModuleCustomerStoriesCarousel implements Entry & _Node {
+  _id: ID!
+  callToAction(locale: String, preview: Boolean, where: ComponentLinkFilter): ComponentLink
+  contentfulLabel(locale: String): String
+  contentfulMetadata: ContentfulMetadata!
+  customerStoriesCollection(limit: Int = 100, locale: String, order: [ModuleCustomerStoriesCarouselCustomerStoriesCollectionOrder], preview: Boolean, skip: Int = 0, where: ComponentCustomerStoryFilter): ModuleCustomerStoriesCarouselCustomerStoriesCollection
+  linkedFrom(allowedLocales: [String]): ModuleCustomerStoriesCarouselLinkingCollections
+  sys: Sys!
+  title(locale: String, preview: Boolean, where: ContentTypeRichTextFilter): ContentTypeRichText
+}
+
+type ModuleCustomerStoriesCarouselCollection {
+  items: [ModuleCustomerStoriesCarousel]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+type ModuleCustomerStoriesCarouselCustomerStoriesCollection {
+  items: [ComponentCustomerStory]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+enum ModuleCustomerStoriesCarouselCustomerStoriesCollectionOrder {
+  customerName_ASC
+  customerName_DESC
+  quoteSource_ASC
+  quoteSource_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+input ModuleCustomerStoriesCarouselFilter {
+  AND: [ModuleCustomerStoriesCarouselFilter]
+  OR: [ModuleCustomerStoriesCarouselFilter]
+  callToAction: cfComponentLinkNestedFilter
+  callToAction_exists: Boolean
+  contentfulLabel: String
+  contentfulLabel_contains: String
+  contentfulLabel_exists: Boolean
+  contentfulLabel_in: [String]
+  contentfulLabel_not: String
+  contentfulLabel_not_contains: String
+  contentfulLabel_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  customerStories: cfComponentCustomerStoryNestedFilter
+  customerStoriesCollection_exists: Boolean
+  sys: SysFilter
+  title: cfContentTypeRichTextNestedFilter
+  title_exists: Boolean
+}
+
+type ModuleCustomerStoriesCarouselLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  moduleContainerCollection(limit: Int = 100, locale: String, order: [ModuleCustomerStoriesCarouselLinkingCollectionsModuleContainerCollectionOrder], preview: Boolean, skip: Int = 0): ModuleContainerCollection
+}
+
+enum ModuleCustomerStoriesCarouselLinkingCollectionsModuleContainerCollectionOrder {
+  backgroundColor_ASC
+  backgroundColor_DESC
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum ModuleCustomerStoriesCarouselOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 """
@@ -1307,8 +1537,6 @@ enum ModuleExpertsOverflowLinkingCollectionsModuleContainerCollectionOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
-  theme_ASC
-  theme_DESC
 }
 
 enum ModuleExpertsOverflowOrder {
@@ -1438,8 +1666,6 @@ enum PageModulesCollectionOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
-  theme_ASC
-  theme_DESC
 }
 
 enum PageOrder {
@@ -1489,6 +1715,8 @@ type Query {
   _nodes(ids: [ID!]!, locale: String, preview: Boolean): [_Node]!
   asset(id: String!, locale: String, preview: Boolean): Asset
   assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, where: AssetFilter): AssetCollection
+  componentCustomerStory(id: String!, locale: String, preview: Boolean): ComponentCustomerStory
+  componentCustomerStoryCollection(limit: Int = 100, locale: String, order: [ComponentCustomerStoryOrder], preview: Boolean, skip: Int = 0, where: ComponentCustomerStoryFilter): ComponentCustomerStoryCollection
   componentExpert(id: String!, locale: String, preview: Boolean): ComponentExpert
   componentExpertCollection(limit: Int = 100, locale: String, order: [ComponentExpertOrder], preview: Boolean, skip: Int = 0, where: ComponentExpertFilter): ComponentExpertCollection
   componentLink(id: String!, locale: String, preview: Boolean): ComponentLink
@@ -1508,6 +1736,8 @@ type Query {
   marketCollection(limit: Int = 100, locale: String, order: [MarketOrder], preview: Boolean, skip: Int = 0, where: MarketFilter): MarketCollection
   moduleContainer(id: String!, locale: String, preview: Boolean): ModuleContainer
   moduleContainerCollection(limit: Int = 100, locale: String, order: [ModuleContainerOrder], preview: Boolean, skip: Int = 0, where: ModuleContainerFilter): ModuleContainerCollection
+  moduleCustomerStoriesCarousel(id: String!, locale: String, preview: Boolean): ModuleCustomerStoriesCarousel
+  moduleCustomerStoriesCarouselCollection(limit: Int = 100, locale: String, order: [ModuleCustomerStoriesCarouselOrder], preview: Boolean, skip: Int = 0, where: ModuleCustomerStoriesCarouselFilter): ModuleCustomerStoriesCarouselCollection
   moduleExpertsOverflow(id: String!, locale: String, preview: Boolean): ModuleExpertsOverflow
   moduleExpertsOverflowCollection(limit: Int = 100, locale: String, order: [ModuleExpertsOverflowOrder], preview: Boolean, skip: Int = 0, where: ModuleExpertsOverflowFilter): ModuleExpertsOverflowCollection
   page(id: String!, locale: String, preview: Boolean): Page
@@ -2101,6 +2331,37 @@ interface _Node {
   _id: ID!
 }
 
+input cfComponentCustomerStoryNestedFilter {
+  AND: [cfComponentCustomerStoryNestedFilter]
+  OR: [cfComponentCustomerStoryNestedFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  customerLogo_exists: Boolean
+  customerName: String
+  customerName_contains: String
+  customerName_exists: Boolean
+  customerName_in: [String]
+  customerName_not: String
+  customerName_not_contains: String
+  customerName_not_in: [String]
+  headline_exists: Boolean
+  heroMedia_exists: Boolean
+  quoteSource: String
+  quoteSource_contains: String
+  quoteSource_exists: Boolean
+  quoteSource_in: [String]
+  quoteSource_not: String
+  quoteSource_not_contains: String
+  quoteSource_not_in: [String]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
+}
+
 input cfComponentExpertNestedFilter {
   AND: [cfComponentExpertNestedFilter]
   OR: [cfComponentExpertNestedFilter]
@@ -2283,33 +2544,6 @@ input cfModuleContainerNestedFilter {
   contentfulMetadata: ContentfulMetadataFilter
   modulesCollection_exists: Boolean
   sys: SysFilter
-  theme: String
-  theme_contains: String
-  theme_exists: Boolean
-  theme_in: [String]
-  theme_not: String
-  theme_not_contains: String
-  theme_not_in: [String]
-}
-
-input cfModuleExpertsOverflowNestedFilter {
-  AND: [cfModuleExpertsOverflowNestedFilter]
-  OR: [cfModuleExpertsOverflowNestedFilter]
-  callToAction_exists: Boolean
-  contentfulLabel: String
-  contentfulLabel_contains: String
-  contentfulLabel_exists: Boolean
-  contentfulLabel_in: [String]
-  contentfulLabel_not: String
-  contentfulLabel_not_contains: String
-  contentfulLabel_not_in: [String]
-  contentfulMetadata: ContentfulMetadataFilter
-  expertsListCollection_exists: Boolean
-  eyebrow_exists: Boolean
-  statisticFlair_exists: Boolean
-  statistic_exists: Boolean
-  sys: SysFilter
-  title_exists: Boolean
 }
 
 input cfPageNestedFilter {
@@ -2450,4 +2684,20 @@ input cfSocialMediaLinkNestedFilter {
   url_not: String
   url_not_contains: String
   url_not_in: [String]
+}
+
+input cfmodulesMultiTypeNestedFilter {
+  AND: [cfmodulesMultiTypeNestedFilter]
+  OR: [cfmodulesMultiTypeNestedFilter]
+  callToAction_exists: Boolean
+  contentfulLabel: String
+  contentfulLabel_contains: String
+  contentfulLabel_exists: Boolean
+  contentfulLabel_in: [String]
+  contentfulLabel_not: String
+  contentfulLabel_not_contains: String
+  contentfulLabel_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  sys: SysFilter
+  title_exists: Boolean
 }

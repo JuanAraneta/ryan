@@ -10,12 +10,16 @@ export const PageModulesCollectionFragment = graphql(`
       backgroundColor
       modulesCollection {
         items {
-          __typename
-          sys {
-            id
-          }
+          ...EntryFragment
         }
       }
+    }
+  }
+
+  fragment EntryFragment on Entry {
+    __typename
+    sys {
+      id
     }
   }
 `);
