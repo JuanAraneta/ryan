@@ -3,6 +3,8 @@ import { ResultOf, TadaDocumentNode } from "gql.tada";
 import { FC } from "react";
 import { ModuleExpertsOverflow } from "./ExpertsOverflow";
 import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleExpertsOverflowById";
+import { ModuleCustomerStoriesCarousel } from "./ModuleCustomerStoriesCarousel";
+import { GetModuleCustomerStoriesOverflowById } from "@/lib/contentful/query/GetModuleCustomerStoriesOverflowById";
 
 type ModuleComponent<Data = any> = {
   component: FC<{ data: Data }>;
@@ -26,6 +28,10 @@ const moduleRegistry: ModuleRegistry = {
   ModuleExpertsOverflow: {
     component: ModuleExpertsOverflow,
     queryById: GetModuleExpertsOverflowById,
+  },
+  ModuleCustomerStoriesCarousel: {
+    component: ModuleCustomerStoriesCarousel,
+    queryById: GetModuleCustomerStoriesOverflowById,
   },
 };
 

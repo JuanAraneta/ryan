@@ -30,8 +30,17 @@ export const ModuleContainerRenderer = async ({
                       return null;
                     }
 
+                    const registeredModule = moduleRegistry[type];
+
+                    if (!registeredModule) {
+                      console.warn(
+                        `Unregistered module type "${type}" requested for page`
+                      );
+                      return null;
+                    }
+
                     const { component: Component, queryById } =
-                      moduleRegistry[type];
+                      registeredModule;
 
                     const result = await contentClient.query(queryById, {
                       id: module.sys.id,
@@ -39,7 +48,8 @@ export const ModuleContainerRenderer = async ({
 
                     if (!result || !result.data) {
                       console.error(
-                        `Module request failed for id "${module.sys.id}"`
+                        `Module request failed for id "${module.sys.id}"`,
+                        result
                       );
                       return null;
                     }
