@@ -62,7 +62,7 @@ export const CustomerStoriesCarousel = ({
                   <div className="relative w-full overflow-hidden">
                     {heroMedia?.url && (
                       <img
-                        className="h-[190px] dsk:h-[400px] w-full object-fill group-hover:scale-105 transition-transform"
+                        className="h-[190px] dsk:h-[400px] w-full object-cover group-hover:scale-105 transition-transform"
                         src={heroMedia.url}
                       />
                     )}
