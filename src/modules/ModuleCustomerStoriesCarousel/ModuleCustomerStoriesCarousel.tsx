@@ -13,7 +13,7 @@ export const ModuleCustomerStoriesCarousel = ({
 }) => (
   <section className="dark px-6 py-16 dsk:px-20 dsk:py-32">
     <div className="flex flex-col justify-center items-center text-center">
-      <h1 className="typo-display">
+      <h1 className="typo-display font-light">
         <RichTitleText
           content={data.moduleCustomerStoriesCarousel?.title}
           spansOnly
