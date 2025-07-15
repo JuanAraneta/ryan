@@ -25,7 +25,7 @@ export const ModuleContainerRenderer = async ({
                     const type = module.__typename;
                     if (!moduleRegistry[type]) {
                       console.warn(
-                        `Module type of "${type}" not found in registry`
+                        `Module type of "${type}" not found in registry`,
                       );
                       return null;
                     }
@@ -34,7 +34,7 @@ export const ModuleContainerRenderer = async ({
 
                     if (!registeredModule) {
                       console.warn(
-                        `Unregistered module type "${type}" requested for page`
+                        `Unregistered module type "${type}" requested for page`,
                       );
                       return null;
                     }
@@ -49,26 +49,26 @@ export const ModuleContainerRenderer = async ({
                     if (!result || !result.data) {
                       console.error(
                         `Module request failed for id "${module.sys.id}"`,
-                        result
+                        result,
                       );
                       return null;
                     }
 
                     return <Component key={index} data={result.data} />;
-                  }
-                )
+                  },
+                ),
               ).then((result) =>
                 result
                   .filter((render) => render.status === "fulfilled")
-                  .map((render) => render.value)
+                  .map((render) => render.value),
               )}
             </div>
-          )
-        )
+          ),
+        ),
       ).then((result) =>
         result
           .filter((render) => render.status === "fulfilled")
-          .map((render) => render.value)
+          .map((render) => render.value),
       )}
     </>
   );
