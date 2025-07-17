@@ -8,10 +8,10 @@ const buttonClasses = cva(
     variants: {
       variant: {
         primary: [
-          "border border-highlight light:text-highlight rounded-full px-6 py-4 typo-button-cta w-fit font-bold inline-block",
-          "dark:hover:bg-white/15 light:hover:bg-brand-700 light:hover:text-white",
-          "dark:active:bg-white/10 light:active:text-white light:active:bg-brand-800 light:active:border-brand-800",
-          "disabled:opacity-30 dark:disabled:border-border-primary light:disabled:border-content-primary light:disabled:text-content-primary",
+          "border border-highlight text-button-primary-content rounded-full px-6 py-4 typo-button-cta w-fit font-bold inline-block",
+          "hover:bg-button-primary-bg-hover hover:text-button-primary-content-hover",
+          "active:bg-button-primary-bg-active active:border-button-primary-border-active active:text-button-primary-content-hover",
+          "disabled:opacity-30 disabled:border-button-primary-border-disabled",
         ],
       },
     },

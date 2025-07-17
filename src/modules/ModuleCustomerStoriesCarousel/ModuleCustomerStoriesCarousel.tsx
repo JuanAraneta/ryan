@@ -5,13 +5,14 @@ import { GetModuleCustomerStoriesOverflowById } from "@/lib/contentful/query/Get
 import { readFragment, ResultOf } from "gql.tada";
 import { CustomerStoriesCarousel } from "./CustomerStoriesCarousel";
 import { ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment } from "@/lib/contentful/fragments/ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment";
+import { Section } from "@/components/core/Section";
 
 export const ModuleCustomerStoriesCarousel = ({
   data,
 }: {
   data: ResultOf<typeof GetModuleCustomerStoriesOverflowById>;
 }) => (
-  <section className="dark px-6 py-16 dsk:px-20 dsk:py-32">
+  <Section className="dark py-16 dsk:py-32">
     <div className="flex flex-col justify-center items-center text-center">
       <h1 className="typo-display font-light">
         <RichTitleText
@@ -35,5 +36,5 @@ export const ModuleCustomerStoriesCarousel = ({
         )}
       />
     )}
-  </section>
+  </Section>
 );
