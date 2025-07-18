@@ -13,6 +13,13 @@ const buttonClasses = cva(
           "active:bg-button-primary-bg-active active:border-button-primary-border-active active:text-button-primary-content-hover",
           "disabled:opacity-30 disabled:border-button-primary-border-disabled",
         ],
+        secondary: [
+          "bg-button-secondary-bg border border-button-secondary-bg text-button-secondary-content rounded-full px-6 py-4 typo-button-cta w-fit font-bold inline-block",
+          "hover:bg-brand-300 hover:border-brand-300 hover:text-white",
+          "active:bg-button-secondary-bg-active active:border-button-secondary-bg-active  active:text-button-primary-content-hover",
+          "disabled:opacity-30",
+          "focus-visible:text-button-white focus-visible:bg-button-secondary-bg-focus focus-visible:border-button-secondary-border-focus",
+        ],
       },
     },
     defaultVariants: {
