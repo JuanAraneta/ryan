@@ -21,7 +21,7 @@ export const ComponentCardDeviceMock = ({
   return (
     <div
       className={cx(
-        "dark rounded-2xl w-full p-10 flex flex-col dsk:flex-row items-center justify-center gap-5 dsk:gap-20",
+        "dark rounded-2xl w-full px-6 py-10 dsk:p-10 flex flex-col dsk:flex-row items-center justify-center gap-8 dsk:gap-20",
         backgroundColor?.background
       )}
     >
@@ -32,9 +32,9 @@ export const ComponentCardDeviceMock = ({
         <p className="typo-body-large pt-6 dsk:pt-8 text-neutral-100">
           <RichText content={data.body} spansOnly />
         </p>
-        <div className="pt-14">
+        <div className="pt-8 dsk:pt-14">
           <Button asChild variant="secondary" aria-describedby={h2Id}>
-            <Link link={data.callToAction} />
+            <Link link={data.callToAction} className="max-dsk:w-full" />
           </Button>
         </div>
       </div>

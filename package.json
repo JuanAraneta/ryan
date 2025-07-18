@@ -15,6 +15,7 @@
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.0.2",
     "@contentful/rich-text-types": "^17.0.1",
+    "@react-hookz/web": "^25.1.1",
     "@urql/core": "^5.2.0",
     "@urql/exchange-auth": "^2.2.1",
     "contentful": "^11.1.4",
