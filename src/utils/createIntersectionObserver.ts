@@ -6,11 +6,11 @@ export const createIntersectionObserver = (
     signal: AbortSignal;
     observe?: HTMLElement | Array<HTMLElement>;
     cleanup?: () => void;
-  }
+  },
 ) => {
   const observer = new IntersectionObserver(
     callback,
-    omit(options, ["signal", "observe"])
+    omit(options, ["signal", "observe"]),
   );
 
   options.signal.addEventListener(
@@ -19,13 +19,13 @@ export const createIntersectionObserver = (
       observer.disconnect();
       options.cleanup?.();
     },
-    { once: true }
+    { once: true },
   );
 
   const observe = options.observe;
   if (observe) {
     (Array.isArray(observe) ? observe : [observe]).forEach((element) =>
-      observer.observe(element)
+      observer.observe(element),
     );
   }
 
