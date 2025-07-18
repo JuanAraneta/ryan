@@ -1,5 +1,8 @@
 import { graphql } from "gql.tada";
 import { ComponentCardDeviceMockFragment } from "./fragments/CardDeviceMockFragment";
+import { ComponentCategorySolutionsHeadlineFragment } from "./fragments/ComponentCategorySolutionsHeadlineFragment";
+import { ComponentCategorySolutions2ColSubBodyFragment } from "./fragments/ComponentCategorySolutions2ColSubBodyFragment";
+import { CategorySolutionsImageLinkGridFragment } from "./fragments/CategorySolutionsImageLinkGridFragment";
 
 export const GetModuleChapterGroupById = graphql(
   `
@@ -20,12 +23,28 @@ export const GetModuleChapterGroupById = graphql(
           contentsCollection {
             items {
               __typename
-              ...ComponentCardDeviceMockFragment
+              ... on ComponentCardDeviceMock {
+                ...ComponentCardDeviceMockFragment
+              }
+              ... on ComponentCategorySolutionsHeadline {
+                ...ComponentCategorySolutionsHeadlineFragment
+              }
+              ... on ComponentCategorySolutions2ColSubBody {
+                ...ComponentCategorySolutions2ColSubBodyFragment
+              }
+              ... on CategorySolutionsImageLinkGrid {
+                ...CategorySolutionsImageLinkGridFragment
+              }
             }
           }
         }
       }
     }
   `,
-  [ComponentCardDeviceMockFragment]
+  [
+    ComponentCardDeviceMockFragment,
+    ComponentCategorySolutionsHeadlineFragment,
+    ComponentCategorySolutions2ColSubBodyFragment,
+    CategorySolutionsImageLinkGridFragment,
+  ]
 );

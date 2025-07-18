@@ -21,12 +21,12 @@ export const ScrollCarouselContainer = <ListItem,>({
   const prevClickHandler = useScrollJumpOnClickEventHandler(
     scrollContainerRef,
     "prev",
-    "li"
+    "li",
   );
   const nextClickHandler = useScrollJumpOnClickEventHandler(
     scrollContainerRef,
     "next",
-    "li"
+    "li",
   );
   const constants = useConstants();
   useRerenderOnScreenSize();
@@ -58,7 +58,7 @@ export const ScrollCarouselContainer = <ListItem,>({
           scrollContainerRef.current?.clientWidth ===
             scrollContainerRef.current?.scrollWidth
             ? "hidden"
-            : "flex"
+            : "flex",
         )}
       >
         <div className="hidden dsk:flex gap-6">
