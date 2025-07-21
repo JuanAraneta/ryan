@@ -48,7 +48,6 @@ export const buildRichTextMaps = (
     links.assets?.block?.forEach(
       (asset) => asset && assetMap.set(asset.sys?.id, asset)
     );
-
     (["block", "hyperlink", "inline"] as const).forEach((key) => {
       links.entries?.[key]?.forEach(
         (entry) => entry && entryMap.set(entry.sys?.id, entry)

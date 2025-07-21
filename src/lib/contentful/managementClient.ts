@@ -17,5 +17,5 @@ if (
 export const managementClient: Promise<Environment> = createClient({
   accessToken: CONTENTFUL_MANAGEMENT_API
 })
-  .getSpace(process.env.CONTENTFUL_SPACE_ID!!)
+  .getSpace(CONTENTFUL_SPACE_ID)
   .then((client) => client.getEnvironment(CONTENTFUL_ENVIRONMENT));

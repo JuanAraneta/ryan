@@ -1,4 +1,3 @@
-import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
 import { ResultOf, TadaDocumentNode } from "gql.tada";
 import { FC } from "react";
 import { ModuleExpertsOverflow } from "./ExpertsOverflow";
@@ -6,23 +5,19 @@ import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleEx
 import { ModuleCustomerStoriesCarousel } from "./ModuleCustomerStoriesCarousel";
 import { GetModuleCustomerStoriesOverflowById } from "@/lib/contentful/query/GetModuleCustomerStoriesOverflowById";
 
-type ModuleComponent<Data = any> = {
+type ModuleComponent<Data = unknown> = {
   component: FC<{ data: Data }>;
   queryById: TadaDocumentNode<Data, { id: string }>;
 };
 
-type ModuleRegistry = Record<
-  NonNullable<
-    NonNullable<
-      NonNullable<
-        NonNullable<
-          ResultOf<typeof PageModulesCollectionFragment>["items"][number]
-        >["modulesCollection"]
-      >["items"][number]
-    >["__typename"]
-  >,
-  ModuleComponent | null
->;
+type ModuleRegistry = {
+  ModuleExpertsOverflow: ModuleComponent<
+    ResultOf<typeof GetModuleExpertsOverflowById>
+  >;
+  ModuleCustomerStoriesCarousel: ModuleComponent<
+    ResultOf<typeof GetModuleCustomerStoriesOverflowById>
+  >;
+};
 
 const moduleRegistry: ModuleRegistry = {
   ModuleExpertsOverflow: {
