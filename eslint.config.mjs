@@ -29,9 +29,6 @@ const config = [
       },
     },
   }),
-  ...compat.config({
-    extends: ["plugin:drizzle/all"],
-  }),
   {
     rules: {
       "no-undef": "error",
@@ -46,12 +43,14 @@ const config = [
         },
       ],
       "unicorn/prevent-abbreviations": "off",
+      "unicorn/filename-case": "off",
     },
   },
   {
     files: ["**/*.{jsx,tsx}"],
     rules: {
       "no-console": "warn",
+      "one-var": ["error", "never"],
     },
   },
 ];
