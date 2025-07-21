@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { ConstantsFragment } from "@/lib/contentful/fragments/ConstantsFragment";
-import { ResultOf } from "gql.tada";
-import { createContext, ReactNode, useContext } from "react";
+import { ConstantsFragment } from '@/lib/contentful/fragments/ConstantsFragment';
+import { ResultOf } from 'gql.tada';
+import { createContext, ReactNode, useContext } from 'react';
 
 const ConstantsContext = createContext<null | ResultOf<
   typeof ConstantsFragment
@@ -10,13 +10,13 @@ const ConstantsContext = createContext<null | ResultOf<
 
 export const useConstants = (): ResultOf<typeof ConstantsFragment> => {
   const value = useContext(ConstantsContext);
-  if (value == null) throw new Error("No ConstantsContext found in tree");
+  if (value == null) throw new Error('No ConstantsContext found in tree');
   return value;
 };
 
 export const ConstantsProvider = ({
   value,
-  children
+  children,
 }: {
   value: ResultOf<typeof ConstantsFragment>;
   children: ReactNode;

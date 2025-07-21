@@ -1,6 +1,6 @@
-import { HeaderFragment } from "@/lib/contentful/fragments/HeaderFragment";
-import { ResultOf } from "gql.tada";
-import { FC } from "react";
+import { HeaderFragment } from '@/lib/contentful/fragments/HeaderFragment';
+import { ResultOf } from 'gql.tada';
+import { FC } from 'react';
 
 export type HeaderProps = {
   data: ResultOf<typeof HeaderFragment>;

@@ -1,9 +1,9 @@
-import { graphql } from "gql.tada";
-import { RichTextFragment } from "../fragments/RichTextFragment";
-import { ComponentLinkFragment } from "../fragments/ComponentLinkFragment";
-import { ComponentStatisticFragment } from "../fragments/ComponentStatisticFragment";
-import { ModuleExpertsOverflowExpertsListCollectionFragment } from "../fragments/ModuleExpertsOverflowExpertsListCollectionFragment";
-import { AssetFragment } from "../fragments/AssetFragment";
+import { graphql } from 'gql.tada';
+import { RichTextFragment } from '../fragments/RichTextFragment';
+import { ComponentLinkFragment } from '../fragments/ComponentLinkFragment';
+import { ComponentStatisticFragment } from '../fragments/ComponentStatisticFragment';
+import { ModuleExpertsOverflowExpertsListCollectionFragment } from '../fragments/ModuleExpertsOverflowExpertsListCollectionFragment';
+import { AssetFragment } from '../fragments/AssetFragment';
 
 export const GetModuleExpertsOverflowById = graphql(
   `
@@ -43,6 +43,6 @@ export const GetModuleExpertsOverflowById = graphql(
     ComponentLinkFragment,
     ComponentStatisticFragment,
     ModuleExpertsOverflowExpertsListCollectionFragment,
-    AssetFragment
+    AssetFragment,
   ]
 );

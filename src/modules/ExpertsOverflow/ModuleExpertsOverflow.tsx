@@ -1,17 +1,17 @@
-import { Link } from "@/components/core/Link";
-import { RichText, RichTitleText } from "@/components/core/RichText";
-import { ComponentStatisticFragment } from "@/lib/contentful/fragments/ComponentStatisticFragment";
-import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleExpertsOverflowById";
-import { readFragment, ResultOf } from "gql.tada";
-import { ExpertsOverflowExpertsListScroll } from "./components/ExpertsOverflowExpertsListScroll";
-import { ModuleExpertsOverflowExpertsListCollectionFragment } from "@/lib/contentful/fragments/ModuleExpertsOverflowExpertsListCollectionFragment";
-import { AnimatableNumber } from "@/components/core/AnimatableNumber";
-import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
-import { Button } from "@/components/core/Button";
-import Image from "next/image";
+import { Link } from '@/components/core/Link';
+import { RichText, RichTitleText } from '@/components/core/RichText';
+import { ComponentStatisticFragment } from '@/lib/contentful/fragments/ComponentStatisticFragment';
+import { GetModuleExpertsOverflowById } from '@/lib/contentful/query/GetModuleExpertsOverflowById';
+import { readFragment, ResultOf } from 'gql.tada';
+import { ExpertsOverflowExpertsListScroll } from './components/ExpertsOverflowExpertsListScroll';
+import { ModuleExpertsOverflowExpertsListCollectionFragment } from '@/lib/contentful/fragments/ModuleExpertsOverflowExpertsListCollectionFragment';
+import { AnimatableNumber } from '@/components/core/AnimatableNumber';
+import { AssetFragment } from '@/lib/contentful/fragments/AssetFragment';
+import { Button } from '@/components/core/Button';
+import Image from 'next/image';
 
 export const ModuleExpertsOverflow = ({
-  data
+  data,
 }: {
   data: ResultOf<typeof GetModuleExpertsOverflowById>;
 }) => {
@@ -55,9 +55,9 @@ export const ModuleExpertsOverflow = ({
                 {statistic?.prefix}
                 <AnimatableNumber
                   value={
-                    new Intl.NumberFormat("en-US").format(
-                      Number(statistic?.value ?? "0")
-                    ) ?? "0"
+                    new Intl.NumberFormat('en-US').format(
+                      Number(statistic?.value ?? '0')
+                    ) ?? '0'
                   }
                 />
                 {statistic?.suffix}

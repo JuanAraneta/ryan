@@ -1,1 +1,1 @@
-export * from "./ModuleCustomerStoriesCarousel";
+export * from './ModuleCustomerStoriesCarousel';

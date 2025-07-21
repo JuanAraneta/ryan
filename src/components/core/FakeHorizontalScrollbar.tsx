@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { RefObject, useEffect, useRef } from "react";
-import { cx } from "cva";
-import { useConstants } from "../providers/ConstantsContext";
+import { RefObject, useEffect, useRef } from 'react';
+import { cx } from 'cva';
+import { useConstants } from '../providers/ConstantsContext';
 
 export const FakeHorizontalScrollbar = ({
   scrollContainerRef,
   scrollSnapTo,
   itemQuerySelector,
-  scrollBarClassName
+  scrollBarClassName,
 }: {
   scrollContainerRef: RefObject<HTMLElement | null>;
-  scrollSnapTo?: "start"; // others must be added manually
+  scrollSnapTo?: 'start'; // others must be added manually
   itemQuerySelector?: string;
   scrollBarClassName?: string;
 }) => {
@@ -27,7 +27,7 @@ export const FakeHorizontalScrollbar = ({
     const getScrollContainerItems = () => [
       ...(itemQuerySelector
         ? scrollContainer.querySelectorAll(itemQuerySelector)
-        : scrollContainer.children)
+        : scrollContainer.children),
     ];
 
     const setScrollThumbState = () => {
@@ -54,29 +54,29 @@ export const FakeHorizontalScrollbar = ({
         scrollContainer.scrollTo({
           left:
             (initialOffset + e.clientX) *
-            (scrollContainer.scrollWidth / scrollTrack.clientWidth)
+            (scrollContainer.scrollWidth / scrollTrack.clientWidth),
         });
       };
 
     const handleDrag = (e: PointerEvent) => {
       const handleDragMove = createDragMoveHandler(
         Number.parseInt(
-          (scrollThumb.style.transform ?? "translateX(0px)").slice(
-            "translateX(".length,
-            0 - "px)".length
+          (scrollThumb.style.transform ?? 'translateX(0px)').slice(
+            'translateX('.length,
+            0 - 'px)'.length
           )
         ) - e.clientX
       );
       if (scrollSnapTo) {
-        scrollContainer.style.scrollSnapType = "none";
+        scrollContainer.style.scrollSnapType = 'none';
       }
-      document.body.style.cursor = "grabbing";
-      window.addEventListener("pointermove", handleDragMove);
+      document.body.style.cursor = 'grabbing';
+      window.addEventListener('pointermove', handleDragMove);
       window.addEventListener(
-        "pointerup",
+        'pointerup',
         () => {
-          window.removeEventListener("pointermove", handleDragMove);
-          if (scrollSnapTo === "start") {
+          window.removeEventListener('pointermove', handleDragMove);
+          if (scrollSnapTo === 'start') {
             const scrollItems = getScrollContainerItems();
             const containerLeftOffset =
               scrollContainer.getBoundingClientRect().left;
@@ -96,30 +96,30 @@ export const FakeHorizontalScrollbar = ({
                 ? firstInViewIndex
                 : firstInViewIndex + 1;
             scrollItems[snapItemIndex].scrollIntoView({
-              behavior: "smooth",
-              block: "nearest",
-              inline: "start"
+              behavior: 'smooth',
+              block: 'nearest',
+              inline: 'start',
             });
           }
           if (scrollSnapTo) {
-            setTimeout(() => (scrollContainer.style.scrollSnapType = ""), 500);
+            setTimeout(() => (scrollContainer.style.scrollSnapType = ''), 500);
           }
-          document.body.style.cursor = "auto";
+          document.body.style.cursor = 'auto';
         },
         { once: true }
       );
     };
 
-    window.addEventListener("resize", setScrollThumbState);
-    scrollContainer?.addEventListener("scroll", setScrollThumbState, {
-      passive: true
+    window.addEventListener('resize', setScrollThumbState);
+    scrollContainer?.addEventListener('scroll', setScrollThumbState, {
+      passive: true,
     });
-    scrollThumb?.addEventListener("pointerdown", handleDrag);
+    scrollThumb?.addEventListener('pointerdown', handleDrag);
 
     return () => {
-      window.removeEventListener("resize", setScrollThumbState);
-      scrollContainer?.removeEventListener("scroll", setScrollThumbState);
-      scrollThumb?.removeEventListener("pointerdown", handleDrag);
+      window.removeEventListener('resize', setScrollThumbState);
+      scrollContainer?.removeEventListener('scroll', setScrollThumbState);
+      scrollThumb?.removeEventListener('pointerdown', handleDrag);
     };
   });
 
@@ -133,20 +133,20 @@ export const FakeHorizontalScrollbar = ({
           const scrollRatio = e.nativeEvent.offsetX / clientWidth;
           scrollContainerRef.current?.scrollTo({
             left: scrollRatio * scrollContainerRef.current.scrollWidth,
-            behavior: "smooth"
+            behavior: 'smooth',
           });
         }}
-        aria-label={constants.scrollbarTrackAriaLabel ?? ""}
+        aria-label={constants.scrollbarTrackAriaLabel ?? ''}
       />
       <button
         tabIndex={-1}
         ref={scrollThumbRef}
         className={cx(
-          "absolute h-[4px] max-w-full cursor-grab touch-pan-y bg-neutral-200/40 transition-[height,top] active:cursor-grabbing",
+          'absolute h-[4px] max-w-full cursor-grab touch-pan-y bg-neutral-200/40 transition-[height,top] active:cursor-grabbing',
           scrollBarClassName
         )}
-        style={{ userSelect: "none" }}
-        aria-label={constants.scrollbarThumbLabel ?? ""}
+        style={{ userSelect: 'none' }}
+        aria-label={constants.scrollbarThumbLabel ?? ''}
       />
     </div>
   );

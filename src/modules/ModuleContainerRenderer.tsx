@@ -1,10 +1,10 @@
-import { contentClient } from "@/lib/contentful/contentClient";
-import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
-import moduleRegistry from "@/modules/moduleRegistry";
-import { ResultOf } from "gql.tada";
+import { contentClient } from '@/lib/contentful/contentClient';
+import { PageModulesCollectionFragment } from '@/lib/contentful/fragments/PageModulesCollectionFragment';
+import moduleRegistry from '@/modules/moduleRegistry';
+import { ResultOf } from 'gql.tada';
 
 export const ModuleContainerRenderer = async ({
-  data
+  data,
 }: {
   data: ResultOf<typeof PageModulesCollectionFragment>;
 }) => {
@@ -16,7 +16,7 @@ export const ModuleContainerRenderer = async ({
           !moduleContainer.modulesCollection?.items ? null : (
             <div
               key={moduleContainer.sys.id}
-              className={moduleContainer.backgroundColor ?? ""}
+              className={moduleContainer.backgroundColor ?? ''}
             >
               {await Promise.allSettled(
                 moduleContainer?.modulesCollection?.items.map(
@@ -43,7 +43,7 @@ export const ModuleContainerRenderer = async ({
                       registeredModule;
 
                     const result = await contentClient.query(queryById, {
-                      id: module.sys.id
+                      id: module.sys.id,
                     });
 
                     if (!result || !result.data) {
@@ -59,7 +59,7 @@ export const ModuleContainerRenderer = async ({
                 )
               ).then((result) =>
                 result
-                  .filter((render) => render.status === "fulfilled")
+                  .filter((render) => render.status === 'fulfilled')
                   .map((render) => render.value)
               )}
             </div>
@@ -67,7 +67,7 @@ export const ModuleContainerRenderer = async ({
         )
       ).then((result) =>
         result
-          .filter((render) => render.status === "fulfilled")
+          .filter((render) => render.status === 'fulfilled')
           .map((render) => render.value)
       )}
     </>

@@ -1,11 +1,11 @@
-import { focusStyle } from "@/utils/focusStyle";
-import { cva, cx, type VariantProps } from "cva";
-import { Children, cloneElement, ComponentProps, JSX } from "react";
+import { focusStyle } from '@/utils/focusStyle';
+import { cva, cx, type VariantProps } from 'cva';
+import { Children, cloneElement, ComponentProps, JSX } from 'react';
 
 const iconButtonClasses = cva(
   [
-    "cursor-pointer size-10 rounded-full flex items-center justify-center transition-colors border-2",
-    focusStyle
+    'cursor-pointer size-10 rounded-full flex items-center justify-center transition-colors border-2',
+    focusStyle,
   ],
   {
     variants: {
@@ -13,16 +13,16 @@ const iconButtonClasses = cva(
         // TODO
         primary: [],
         secondary: [
-          "light:border-content-primary dark:border-border-primary text-content-primary",
-          "light:hover:border-brand-800 light:hover:bg-brand-800 light:hover:text-white dark:hover:border-new-gold dark:hover:bg-new-gold dark:hover:text-neutral-900",
-          "light:active:border-brand-900 light:active:bg-brand-900 light:active:text-white dark:active:border-dark-gold dark:active:bg-dark-gold dark:active:text-neutral-900",
-          "disabled:opacity-30"
-        ]
-      }
+          'light:border-content-primary dark:border-border-primary text-content-primary',
+          'light:hover:border-brand-800 light:hover:bg-brand-800 light:hover:text-white dark:hover:border-new-gold dark:hover:bg-new-gold dark:hover:text-neutral-900',
+          'light:active:border-brand-900 light:active:bg-brand-900 light:active:text-white dark:active:border-dark-gold dark:active:bg-dark-gold dark:active:text-neutral-900',
+          'disabled:opacity-30',
+        ],
+      },
     },
     defaultVariants: {
-      variant: "primary"
-    }
+      variant: 'primary',
+    },
   }
 );
 
@@ -33,16 +33,16 @@ export const IconButton = ({
   ...props
 }: IconButtonVariantProps &
   (
-    | ComponentProps<"button">
+    | ComponentProps<'button'>
     | {
         asChild: true;
         children: JSX.Element;
       }
   )) => {
-  if ("asChild" in props) {
+  if ('asChild' in props) {
     if (Children.count(props.children) !== 1) {
       throw new Error(
-        "IconButton with asChild prop must container exactly 1 child element."
+        'IconButton with asChild prop must container exactly 1 child element.'
       );
     }
 
@@ -53,7 +53,7 @@ export const IconButton = ({
         className: cx(
           props.children.props?.className,
           iconButtonClasses({ variant })
-        )
+        ),
       }
     );
   } else {

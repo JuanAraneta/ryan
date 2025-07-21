@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
-import "../global.css";
+import type { Metadata } from 'next';
+import '../global.css';
 
 export const metadata: Metadata = {
-  title: "Next.js Template",
-  description: "Template for Next.js apps"
+  title: 'Next.js Template',
+  description: 'Template for Next.js apps',
 };
 
 export default async function RootLayout({
-  children
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {

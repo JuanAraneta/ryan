@@ -1,7 +1,7 @@
-import { graphql } from "gql.tada";
-import { RichTextFragment } from "../fragments/RichTextFragment";
-import { ComponentLinkFragment } from "../fragments/ComponentLinkFragment";
-import { ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment } from "../fragments/ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment";
+import { graphql } from 'gql.tada';
+import { RichTextFragment } from '../fragments/RichTextFragment';
+import { ComponentLinkFragment } from '../fragments/ComponentLinkFragment';
+import { ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment } from '../fragments/ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment';
 
 export const GetModuleCustomerStoriesOverflowById = graphql(
   `
@@ -34,6 +34,6 @@ export const GetModuleCustomerStoriesOverflowById = graphql(
   [
     RichTextFragment,
     ComponentLinkFragment,
-    ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment
+    ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment,
   ]
 );

@@ -1,23 +1,23 @@
-import { Header } from "@/modules/Header/Header";
-import { Footer } from "@/modules/Footer/Footer";
-import { SEOMetadata } from "@/components/SEOMetadata/SEOMetadata";
-import { contentClient } from "@/lib/contentful/contentClient";
-import { GetPageBySlugAndMarketQuery } from "@/lib/contentful/query/GetPageBySlugAndMarketQuery";
-import { notFound } from "next/navigation";
-import { readFragment } from "gql.tada";
-import { SEOMetadataFragment } from "@/lib/contentful/fragments/SEOMetadataFragment";
-import { FooterFragment } from "@/lib/contentful/fragments/FooterFragment";
-import { HeaderFragment } from "@/lib/contentful/fragments/HeaderFragment";
-import { Lato } from "next/font/google";
-import { ConstantsProvider } from "@/components/providers/ConstantsContext";
-import { GetConstantsQuery } from "@/lib/contentful/query/GetConstantsQuery";
-import { ConstantsFragment } from "@/lib/contentful/fragments/ConstantsFragment";
+import { Header } from '@/modules/Header/Header';
+import { Footer } from '@/modules/Footer/Footer';
+import { SEOMetadata } from '@/components/SEOMetadata/SEOMetadata';
+import { contentClient } from '@/lib/contentful/contentClient';
+import { GetPageBySlugAndMarketQuery } from '@/lib/contentful/query/GetPageBySlugAndMarketQuery';
+import { notFound } from 'next/navigation';
+import { readFragment } from 'gql.tada';
+import { SEOMetadataFragment } from '@/lib/contentful/fragments/SEOMetadataFragment';
+import { FooterFragment } from '@/lib/contentful/fragments/FooterFragment';
+import { HeaderFragment } from '@/lib/contentful/fragments/HeaderFragment';
+import { Lato } from 'next/font/google';
+import { ConstantsProvider } from '@/components/providers/ConstantsContext';
+import { GetConstantsQuery } from '@/lib/contentful/query/GetConstantsQuery';
+import { ConstantsFragment } from '@/lib/contentful/fragments/ConstantsFragment';
 
 const latoSans = Lato({
-  variable: "--font-sans",
-  weight: ["300", "400", "700"],
-  style: ["normal", "italic"],
-  subsets: ["latin", "latin-ext"]
+  variable: '--font-sans',
+  weight: ['300', '400', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin', 'latin-ext'],
 });
 
 export default async function RootLayout(
@@ -34,9 +34,9 @@ export default async function RootLayout(
     contentClient.query(GetPageBySlugAndMarketQuery, {
       marketSlug,
       locale,
-      slug
+      slug,
     }),
-    contentClient.query(GetConstantsQuery, { locale })
+    contentClient.query(GetConstantsQuery, { locale }),
   ]);
 
   const page = pageResult.data?.pageCollection?.items[0];

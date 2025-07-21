@@ -1,17 +1,17 @@
-import { ReactNode, useMemo, JSX } from "react";
-import { Block, BLOCKS, Inline, INLINES } from "@contentful/rich-text-types";
-import { ResultOf } from "gql.tada";
+import { ReactNode, useMemo, JSX } from 'react';
+import { Block, BLOCKS, Inline, INLINES } from '@contentful/rich-text-types';
+import { ResultOf } from 'gql.tada';
 import {
   Options,
   RenderMark,
-  RenderNode
-} from "@contentful/rich-text-react-renderer";
-import merge from "lodash/merge";
-import { DeepPartial } from "@/types/utils/DeepPartial";
-import { Link } from "../Link";
-import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
-import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
-import Image from "next/image";
+  RenderNode,
+} from '@contentful/rich-text-react-renderer';
+import merge from 'lodash/merge';
+import { DeepPartial } from '@/types/utils/DeepPartial';
+import { Link } from '../Link';
+import { AssetFragment } from '@/lib/contentful/fragments/AssetFragment';
+import { ComponentLinkFragment } from '@/lib/contentful/fragments/ComponentLinkFragment';
+import Image from 'next/image';
 
 type RichTextEntry<T = object> = {
   sys: {
@@ -49,7 +49,7 @@ export const buildRichTextMaps = (
     links.assets?.block?.forEach(
       (asset) => asset && assetMap.set(asset.sys?.id, asset)
     );
-    (["block", "hyperlink", "inline"] as const).forEach((key) => {
+    (['block', 'hyperlink', 'inline'] as const).forEach((key) => {
       links.entries?.[key]?.forEach(
         (entry) => entry && entryMap.set(entry.sys?.id, entry)
       );
@@ -84,7 +84,7 @@ export const useRichTextRenderOptions = (
   links?: DeepPartial<RichTextLinks>,
   {
     options,
-    overrides
+    overrides,
   }: {
     options?: Options;
     overrides?: RichTextRenderOverrides;
@@ -98,7 +98,7 @@ export const useRichTextRenderOptions = (
       {
         renderText: (text) =>
           text
-            .split("\n")
+            .split('\n')
             .flatMap((text, i) => [i > 0 && <br key={text} />, text]),
         renderNode: {
           [BLOCKS.HEADING_1]: (_, children) =>
@@ -150,11 +150,11 @@ export const useRichTextRenderOptions = (
           ),
           [INLINES.ENTRY_HYPERLINK]: (node, children) => {
             const embeddedEntry = entryMap.get(node?.data?.target?.sys?.id) as {
-              __typename: "Page";
+              __typename: 'Page';
               slug: string | null;
             } | null;
 
-            if (embeddedEntry?.__typename !== "Page") {
+            if (embeddedEntry?.__typename !== 'Page') {
               console.error(
                 `Non-page linked in INLINES.ENTRY_HYPERLINK, id: "${node?.data?.target?.sys?.id}"`
               );
@@ -165,7 +165,7 @@ export const useRichTextRenderOptions = (
                   link={{
                     internalSource: embeddedEntry,
                     label: null,
-                    externalSource: null
+                    externalSource: null,
                   }}
                   className="underline"
                 >
@@ -183,7 +183,7 @@ export const useRichTextRenderOptions = (
               node.data.target.sys.id
             ) as LinkWithType;
 
-            if (embeddedEntry?.__typename === "ComponentLink") {
+            if (embeddedEntry?.__typename === 'ComponentLink') {
               return <Link link={embeddedEntry} className="underline"></Link>;
             }
             return null;
@@ -201,14 +201,14 @@ export const useRichTextRenderOptions = (
             >;
             return (
               <Image
-                src={asset.url ?? ""}
+                src={asset.url ?? ''}
                 key={node.data.target.sys.id}
                 alt="Embedded asset"
               />
             );
           },
-          ...options?.renderNode
-        }
+          ...options?.renderNode,
+        },
       } satisfies Options,
       options,
       overrides

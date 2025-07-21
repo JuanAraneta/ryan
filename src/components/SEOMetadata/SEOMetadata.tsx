@@ -1,6 +1,6 @@
-import { SEOMetadataFragment } from "@/lib/contentful/fragments/SEOMetadataFragment";
-import { ResultOf } from "gql.tada";
-import { FC } from "react";
+import { SEOMetadataFragment } from '@/lib/contentful/fragments/SEOMetadataFragment';
+import { ResultOf } from 'gql.tada';
+import { FC } from 'react';
 
 interface SEOMetadataProps {
   metadata: ResultOf<typeof SEOMetadataFragment>;
@@ -28,9 +28,9 @@ export const SEOMetadata: FC<SEOMetadataProps> = ({ metadata }) => (
 
     <meta
       name="robots"
-      content={[metadata.noIndex && "noindex", metadata.noFollow && "nofollow"]
+      content={[metadata.noIndex && 'noindex', metadata.noFollow && 'nofollow']
         .filter(Boolean)
-        .join(", ")}
+        .join(', ')}
     />
   </>
 );

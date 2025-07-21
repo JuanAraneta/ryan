@@ -1,8 +1,8 @@
-import { graphql } from "gql.tada";
-import { SEOMetadataFragment } from "../fragments/SEOMetadataFragment";
-import { HeaderFragment } from "../fragments/HeaderFragment";
-import { FooterFragment } from "../fragments/FooterFragment";
-import { PageModulesCollectionFragment } from "../fragments/PageModulesCollectionFragment";
+import { graphql } from 'gql.tada';
+import { SEOMetadataFragment } from '../fragments/SEOMetadataFragment';
+import { HeaderFragment } from '../fragments/HeaderFragment';
+import { FooterFragment } from '../fragments/FooterFragment';
+import { PageModulesCollectionFragment } from '../fragments/PageModulesCollectionFragment';
 
 export const GetPageBySlugAndMarketQuery = graphql(
   `
@@ -39,6 +39,6 @@ export const GetPageBySlugAndMarketQuery = graphql(
     HeaderFragment,
     FooterFragment,
     SEOMetadataFragment,
-    PageModulesCollectionFragment
+    PageModulesCollectionFragment,
   ]
 );

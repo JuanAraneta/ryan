@@ -1,5 +1,5 @@
-import { graphql } from "gql.tada";
-import { ComponentLinkFragment } from "./ComponentLinkFragment";
+import { graphql } from 'gql.tada';
+import { ComponentLinkFragment } from './ComponentLinkFragment';
 
 export const RichTextFragment = graphql(
   `

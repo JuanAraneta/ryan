@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 export const useOnScreenEffect = <T extends Element>(
   callback: (isOnScreen: boolean) => unknown,
@@ -9,7 +9,7 @@ export const useOnScreenEffect = <T extends Element>(
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => callback(entry.isIntersecting),
-      { rootMargin: "0px" }
+      { rootMargin: '0px' }
     );
 
     const element = ref.current;

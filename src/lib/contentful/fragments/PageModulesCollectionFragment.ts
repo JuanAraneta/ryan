@@ -1,4 +1,4 @@
-import { graphql } from "gql.tada";
+import { graphql } from 'gql.tada';
 
 export const PageModulesCollectionFragment = graphql(`
   fragment PageModulesCollectionFragment on PageModulesCollection {

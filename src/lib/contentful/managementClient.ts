@@ -1,9 +1,9 @@
-import { createClient, Environment } from "contentful-management";
+import { createClient, Environment } from 'contentful-management';
 
 const {
   CONTENTFUL_MANAGEMENT_API,
   CONTENTFUL_SPACE_ID,
-  CONTENTFUL_ENVIRONMENT
+  CONTENTFUL_ENVIRONMENT,
 } = process.env;
 
 if (
@@ -11,11 +11,11 @@ if (
   !CONTENTFUL_SPACE_ID ||
   !CONTENTFUL_ENVIRONMENT
 ) {
-  throw new Error("CONTENTFUL_MANAGEMENT_API is not defined");
+  throw new Error('CONTENTFUL_MANAGEMENT_API is not defined');
 }
 
 export const managementClient: Promise<Environment> = createClient({
-  accessToken: CONTENTFUL_MANAGEMENT_API
+  accessToken: CONTENTFUL_MANAGEMENT_API,
 })
   .getSpace(CONTENTFUL_SPACE_ID)
   .then((client) => client.getEnvironment(CONTENTFUL_ENVIRONMENT));
