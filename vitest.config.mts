@@ -10,9 +10,9 @@ export default defineConfig({
   test: {
     include: ["**/*.test.ts", "**/*.test.tsx"],
     environment: "jsdom",
-    reporters: "verbose",
+    reporters: "verbose"
   },
   resolve: {
-    alias: [{ find: "@", replacement: path.resolve(__dirname, "./") }],
-  },
+    alias: [{ find: "@", replacement: path.resolve(__dirname, "./") }]
+  }
 });

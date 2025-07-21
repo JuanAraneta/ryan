@@ -8,6 +8,7 @@ import { ModuleExpertsOverflowExpertsListCollectionFragment } from "@/lib/conten
 import { AnimatableNumber } from "@/components/core/AnimatableNumber";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { Button } from "@/components/core/Button";
+import Image from "next/image";
 
 export const ModuleExpertsOverflow = ({
   data
@@ -43,7 +44,9 @@ export const ModuleExpertsOverflow = ({
         </div>
         {!!statistic && (
           <div className="hidden dsk:flex items-center justify-center gap-10">
-            {statisticFlair?.url && <img src={statisticFlair.url} />}
+            {statisticFlair?.url && (
+              <Image src={statisticFlair.url} alt="Statistic flair" />
+            )}
             <div className="flex flex-col">
               <p className="text-content-secondary typo-body-large">
                 <RichText content={statistic.label} spansOnly />

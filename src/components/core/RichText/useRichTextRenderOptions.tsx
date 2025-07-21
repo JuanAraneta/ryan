@@ -11,6 +11,7 @@ import { DeepPartial } from "@/types/utils/DeepPartial";
 import { Link } from "../Link";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
+import Image from "next/image";
 
 type RichTextEntry<T = object> = {
   sys: {
@@ -198,7 +199,13 @@ export const useRichTextRenderOptions = (
             const asset = assetMap.get(node.data.target.sys.id) as ResultOf<
               typeof AssetFragment
             >;
-            return <img src={asset.url ?? ""} key={node.data.target.sys.id} />;
+            return (
+              <Image
+                src={asset.url ?? ""}
+                key={node.data.target.sys.id}
+                alt="Embedded asset"
+              />
+            );
           },
           ...options?.renderNode
         }
@@ -208,4 +215,4 @@ export const useRichTextRenderOptions = (
     );
 
     return mergedOptions;
-  }, [links, options, overrides]);
+  }, [links, options, overrides, spansOnly]);

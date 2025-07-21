@@ -57,7 +57,7 @@ const config = [
       }
     },
     rules: {
-      "no-console": "warn",
+      "no-console": ["warn", { allow: ["warn", "error"] }],
       "one-var": ["error", "never"]
     }
   }
