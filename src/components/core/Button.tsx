@@ -43,7 +43,7 @@ export const Button = ({
 
     return cloneElement(
       // This is fine here; the type is very specific but the check above verifies the validity
-      props.children as any,
+      props.children as JSX.Element,
       {
         className: cx(
           props.children.props?.className,

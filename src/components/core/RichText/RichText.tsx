@@ -1,7 +1,7 @@
 "use client";
 
 import { FragmentOf, readFragment } from "gql.tada";
-import { ReactNode, useMemo } from "react";
+import { useMemo } from "react";
 import {
   documentToReactComponents,
   Options

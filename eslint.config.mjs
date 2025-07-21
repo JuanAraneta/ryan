@@ -2,8 +2,6 @@ import globals from "globals";
 import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
-import eslintPluginUnicorn from "eslint-plugin-unicorn";
-import tailwind from "eslint-plugin-tailwindcss";
 import { FlatCompat } from "@eslint/eslintrc";
 
 const compat = new FlatCompat({
@@ -13,14 +11,20 @@ const compat = new FlatCompat({
 
 /** @type {import('eslint').Linter.Config[]} */
 const config = [
-  { ignores: [".next/**", "public/**", "next.config.js", "postcss.config.js"] },
+  {
+    ignores: [
+      ".next/**",
+      "public/**",
+      "next.config.js",
+      "postcss.config.js",
+      "src/graphql-env.d.ts"
+    ]
+  },
   { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
   { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
-  eslintPluginUnicorn.configs["flat/recommended"],
-  ...tailwind.configs["flat/recommended"],
   ...compat.config({
     extends: ["next"],
     settings: {
@@ -42,15 +46,7 @@ const config = [
           varsIgnorePattern: "^_",
           caughtErrorsIgnorePattern: "^_"
         }
-      ],
-      "unicorn/prevent-abbreviations": "off",
-      "unicorn/filename-case": "off",
-      "unicorn/no-null": "off",
-      "unicorn/no-nested-ternary": "off",
-      "unicorn/prefer-top-level-await": "off",
-      "unicorn/no-array-for-each": "off",
-      "unicorn/prefer-global-this": "off",
-      "unicorn/no-negated-condition": "off"
+      ]
     }
   },
   {

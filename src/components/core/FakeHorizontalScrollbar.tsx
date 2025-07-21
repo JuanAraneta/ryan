@@ -60,7 +60,7 @@ export const FakeHorizontalScrollbar = ({
 
     const handleDrag = (e: PointerEvent) => {
       const handleDragMove = createDragMoveHandler(
-        parseInt(
+        Number.parseInt(
           (scrollThumb.style.transform ?? "translateX(0px)").slice(
             "translateX(".length,
             0 - "px)".length
