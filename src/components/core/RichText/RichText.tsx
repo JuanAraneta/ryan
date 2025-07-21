@@ -4,15 +4,15 @@ import { FragmentOf, readFragment } from "gql.tada";
 import { ReactNode, useMemo } from "react";
 import {
   documentToReactComponents,
-  Options,
+  Options
 } from "@contentful/rich-text-react-renderer";
 import {
   MARKS,
-  Document as RichTextDocument,
+  Document as RichTextDocument
 } from "@contentful/rich-text-types";
 import {
   RichTextRenderOverrides,
-  useRichTextRenderOptions,
+  useRichTextRenderOptions
 } from "./useRichTextRenderOptions";
 import { RichTextFragment } from "@/lib/contentful/fragments/RichTextFragment";
 import merge from "lodash/merge";
@@ -21,7 +21,7 @@ export const RichText = ({
   content: maskedContentFragment,
   options: optionsProp,
   overrides,
-  spansOnly = false,
+  spansOnly = false
 }: {
   content?: FragmentOf<typeof RichTextFragment> | null;
   options?: Options;
@@ -33,7 +33,7 @@ export const RichText = ({
   const options = useMemo(
     () => ({
       options: optionsProp,
-      overrides,
+      overrides
     }),
     [optionsProp, overrides]
   );
@@ -60,15 +60,15 @@ const richTitleTextOverrides: RichTextRenderOverrides = {
   renderMark: {
     [MARKS.ITALIC]: (text) => (
       <em className="italic font-normal text-highlight">{text}</em>
-    ),
-  },
+    )
+  }
 };
 
 export const RichTitleText = ({
   content: maskedContentFragment,
   options: optionsProp,
   overrides,
-  spansOnly = false,
+  spansOnly = false
 }: {
   content?: FragmentOf<typeof RichTextFragment> | null;
   options?: Options;
@@ -80,7 +80,7 @@ export const RichTitleText = ({
   const options = useMemo(
     () => ({
       options: optionsProp,
-      overrides: merge(richTitleTextOverrides, overrides),
+      overrides: merge(richTitleTextOverrides, overrides)
     }),
     [optionsProp, overrides]
   );

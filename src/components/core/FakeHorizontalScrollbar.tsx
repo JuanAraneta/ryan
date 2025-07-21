@@ -8,7 +8,7 @@ export const FakeHorizontalScrollbar = ({
   scrollContainerRef,
   scrollSnapTo,
   itemQuerySelector,
-  scrollBarClassName,
+  scrollBarClassName
 }: {
   scrollContainerRef: RefObject<HTMLElement | null>;
   scrollSnapTo?: "start"; // others must be added manually
@@ -27,7 +27,7 @@ export const FakeHorizontalScrollbar = ({
     const getScrollContainerItems = () => [
       ...(itemQuerySelector
         ? scrollContainer.querySelectorAll(itemQuerySelector)
-        : scrollContainer.children),
+        : scrollContainer.children)
     ];
 
     const setScrollThumbState = () => {
@@ -54,7 +54,7 @@ export const FakeHorizontalScrollbar = ({
         scrollContainer.scrollTo({
           left:
             (initialOffset + e.clientX) *
-            (scrollContainer.scrollWidth / scrollTrack.clientWidth),
+            (scrollContainer.scrollWidth / scrollTrack.clientWidth)
         });
       };
 
@@ -98,7 +98,7 @@ export const FakeHorizontalScrollbar = ({
             scrollItems[snapItemIndex].scrollIntoView({
               behavior: "smooth",
               block: "nearest",
-              inline: "start",
+              inline: "start"
             });
           }
           if (scrollSnapTo) {
@@ -112,7 +112,7 @@ export const FakeHorizontalScrollbar = ({
 
     window.addEventListener("resize", setScrollThumbState);
     scrollContainer?.addEventListener("scroll", setScrollThumbState, {
-      passive: true,
+      passive: true
     });
     scrollThumb?.addEventListener("pointerdown", handleDrag);
 
@@ -133,7 +133,7 @@ export const FakeHorizontalScrollbar = ({
           const scrollRatio = e.nativeEvent.offsetX / clientWidth;
           scrollContainerRef.current?.scrollTo({
             left: scrollRatio * scrollContainerRef.current.scrollWidth,
-            behavior: "smooth",
+            behavior: "smooth"
           });
         }}
         aria-label={constants.scrollbarTrackAriaLabel ?? ""}

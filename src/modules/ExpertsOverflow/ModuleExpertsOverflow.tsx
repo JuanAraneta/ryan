@@ -10,7 +10,7 @@ import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { Button } from "@/components/core/Button";
 
 export const ModuleExpertsOverflow = ({
-  data,
+  data
 }: {
   data: ResultOf<typeof GetModuleExpertsOverflowById>;
 }) => {

@@ -7,7 +7,7 @@ import { CustomerStoriesCarousel } from "./CustomerStoriesCarousel";
 import { ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment } from "@/lib/contentful/fragments/ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment";
 
 export const ModuleCustomerStoriesCarousel = ({
-  data,
+  data
 }: {
   data: ResultOf<typeof GetModuleCustomerStoriesOverflowById>;
 }) => (

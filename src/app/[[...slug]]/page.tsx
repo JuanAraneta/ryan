@@ -15,7 +15,7 @@ export default async function Page(props: {
   const pageResult = await contentClient.query(GetPageBySlugAndMarketQuery, {
     marketSlug,
     locale,
-    slug,
+    slug
   });
 
   const page = pageResult.data?.pageCollection?.items[0];

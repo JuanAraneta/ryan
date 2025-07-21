@@ -16,7 +16,7 @@ export const useConstants = (): ResultOf<typeof ConstantsFragment> => {
 
 export const ConstantsProvider = ({
   value,
-  children,
+  children
 }: {
   value: ResultOf<typeof ConstantsFragment>;
   children: ReactNode;

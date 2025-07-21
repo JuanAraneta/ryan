@@ -24,7 +24,7 @@ export const AnimatableNumber: React.FC<AnimatableNumberProps> = ({
   value: finalValueStrWithCommas,
   startingValue = 0,
   duration = 3000,
-  easing: easingProp = "quart",
+  easing: easingProp = "quart"
 }) => {
   const [onScreen, ref] = useOnScreenState<HTMLSpanElement>({ once: true });
   const easingFunction =
@@ -56,7 +56,7 @@ export const AnimatableNumber: React.FC<AnimatableNumberProps> = ({
     startingValue,
     finalValue,
     duration,
-    easingFunction,
+    easingFunction
   ]);
 
   return (
@@ -116,7 +116,7 @@ export const easing = {
   ): number => {
     const t = currentTime / duration - 1;
     return finalValue * (1 - t * t * t * t) + startValue;
-  },
+  }
 };
 
 const findPrecision = (num: string): number => {

@@ -4,7 +4,7 @@ import { ResultOf } from "gql.tada";
 import {
   Options,
   RenderMark,
-  RenderNode,
+  RenderNode
 } from "@contentful/rich-text-react-renderer";
 import merge from "lodash/merge";
 import { DeepPartial } from "@/types/utils/DeepPartial";
@@ -84,7 +84,7 @@ export const useRichTextRenderOptions = (
   links?: DeepPartial<RichTextLinks>,
   {
     options,
-    overrides,
+    overrides
   }: {
     options?: Options;
     overrides?: RichTextRenderOverrides;
@@ -165,7 +165,7 @@ export const useRichTextRenderOptions = (
                   link={{
                     internalSource: embeddedEntry,
                     label: null,
-                    externalSource: null,
+                    externalSource: null
                   }}
                   className="underline"
                 >
@@ -201,8 +201,8 @@ export const useRichTextRenderOptions = (
             >;
             return <img src={asset.url ?? ""} key={node.data.target.sys.id} />;
           },
-          ...options?.renderNode,
-        },
+          ...options?.renderNode
+        }
       } satisfies Options,
       options,
       overrides

@@ -15,11 +15,11 @@ import { useRef } from "react";
 import {
   MdChevronLeft,
   MdChevronRight,
-  MdOutlineArrowForward,
+  MdOutlineArrowForward
 } from "react-icons/md";
 
 export const ExpertsOverflowExpertsListScroll = ({
-  data,
+  data
 }: {
   data: ResultOf<typeof ModuleExpertsOverflowExpertsListCollectionFragment>;
 }) => {

@@ -1,7 +1,7 @@
 import {
   Client,
   fetchExchange,
-  cacheExchange as defaultCacheExchange,
+  cacheExchange as defaultCacheExchange
 } from "urql";
 import { authExchange } from "@urql/exchange-auth";
 import type { introspection } from "../../graphql-env";
@@ -14,7 +14,7 @@ export const contentClient = new Client({
     authExchange(async (utils) => ({
       addAuthToOperation(operation) {
         return utils.appendHeaders(operation, {
-          Authorization: `Bearer ${process.env.CONTENTFUL_DELIVERY_ACCESS_TOKEN}`,
+          Authorization: `Bearer ${process.env.CONTENTFUL_DELIVERY_ACCESS_TOKEN}`
         });
       },
       didAuthError(error) {
@@ -29,10 +29,10 @@ export const contentClient = new Client({
       },
       async refreshAuth() {
         throw new Error("No auth refresh operation");
-      },
+      }
     })),
-    fetchExchange,
-  ],
+    fetchExchange
+  ]
 });
 
 declare module "gql.tada" {

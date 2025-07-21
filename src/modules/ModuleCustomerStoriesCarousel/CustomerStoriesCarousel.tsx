@@ -16,7 +16,7 @@ import { useRef } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 export const CustomerStoriesCarousel = ({
-  data,
+  data
 }: {
   data: ResultOf<
     typeof ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment

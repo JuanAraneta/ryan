@@ -27,12 +27,12 @@ type ModuleRegistry = Record<
 const moduleRegistry: ModuleRegistry = {
   ModuleExpertsOverflow: {
     component: ModuleExpertsOverflow,
-    queryById: GetModuleExpertsOverflowById,
+    queryById: GetModuleExpertsOverflowById
   },
   ModuleCustomerStoriesCarousel: {
     component: ModuleCustomerStoriesCarousel,
-    queryById: GetModuleCustomerStoriesOverflowById,
-  },
+    queryById: GetModuleCustomerStoriesOverflowById
+  }
 };
 
 export default moduleRegistry;

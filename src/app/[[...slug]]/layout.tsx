@@ -17,7 +17,7 @@ const latoSans = Lato({
   variable: "--font-sans",
   weight: ["300", "400", "700"],
   style: ["normal", "italic"],
-  subsets: ["latin", "latin-ext"],
+  subsets: ["latin", "latin-ext"]
 });
 
 export default async function RootLayout(
@@ -34,9 +34,9 @@ export default async function RootLayout(
     contentClient.query(GetPageBySlugAndMarketQuery, {
       marketSlug,
       locale,
-      slug,
+      slug
     }),
-    contentClient.query(GetConstantsQuery, { locale }),
+    contentClient.query(GetConstantsQuery, { locale })
   ]);
 
   const page = pageResult.data?.pageCollection?.items[0];

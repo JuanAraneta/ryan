@@ -3,13 +3,13 @@ import { useEffect, useRef, useState } from "react";
 export const useOnScreenEffect = <T extends Element>(
   callback: (isOnScreen: boolean) => unknown,
   deps?: ReadonlyArray<unknown>,
-  fireInitialState = true,
+  fireInitialState = true
 ) => {
   const ref = useRef<T>(null);
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => callback(entry.isIntersecting),
-      { rootMargin: "0px" },
+      { rootMargin: "0px" }
     );
 
     const element = ref.current;
@@ -31,7 +31,7 @@ export const useOnScreenEffect = <T extends Element>(
 };
 
 export const useOnScreenState = <T extends Element>(
-  opts: { once?: boolean } = {},
+  opts: { once?: boolean } = {}
 ) => {
   const [isOnScreen, setIsOnScreen] = useState(false);
   const ref = useOnScreenEffect<T>(
@@ -39,7 +39,7 @@ export const useOnScreenState = <T extends Element>(
       if (opts.once && isOnScreen) return;
       setIsOnScreen(latestOnScreen);
     },
-    [isOnScreen, opts.once],
+    [isOnScreen, opts.once]
   );
 
   return [isOnScreen, ref] as const;

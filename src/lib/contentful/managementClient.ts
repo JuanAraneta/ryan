@@ -3,7 +3,7 @@ import { createClient, Environment } from "contentful-management";
 const {
   CONTENTFUL_MANAGEMENT_API,
   CONTENTFUL_SPACE_ID,
-  CONTENTFUL_ENVIRONMENT,
+  CONTENTFUL_ENVIRONMENT
 } = process.env;
 
 if (
@@ -15,7 +15,7 @@ if (
 }
 
 export const managementClient: Promise<Environment> = createClient({
-  accessToken: CONTENTFUL_MANAGEMENT_API,
+  accessToken: CONTENTFUL_MANAGEMENT_API
 })
   .getSpace(process.env.CONTENTFUL_SPACE_ID!!)
   .then((client) => client.getEnvironment(CONTENTFUL_ENVIRONMENT));

@@ -39,6 +39,6 @@ export const GetPageBySlugAndMarketQuery = graphql(
     HeaderFragment,
     FooterFragment,
     SEOMetadataFragment,
-    PageModulesCollectionFragment,
+    PageModulesCollectionFragment
   ]
 );
