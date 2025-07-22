@@ -6,7 +6,9 @@ import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleEx
 import { ModuleCustomerStoriesCarousel } from "./ModuleCustomerStoriesCarousel";
 import { GetModuleCustomerStoriesOverflowById } from "@/lib/contentful/query/GetModuleCustomerStoriesOverflowById";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ModuleComponent<Data = any> = {
+  // TODO: Check if there is a better way to type this
   component: FC<{ data: Data }>;
   queryById: TadaDocumentNode<Data, { id: string }>;
 };

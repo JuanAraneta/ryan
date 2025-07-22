@@ -15,5 +15,5 @@ export const ModuleExpertsOverflowExpertsListCollectionFragment = graphql(
       }
     }
   `,
-  [AssetFragment]
+  [AssetFragment],
 );

@@ -16,11 +16,11 @@ export const ModuleExpertsOverflow = ({
 }) => {
   const statistic = readFragment(
     ComponentStatisticFragment,
-    data.moduleExpertsOverflow?.statistic
+    data.moduleExpertsOverflow?.statistic,
   );
   const statisticFlair = readFragment(
     AssetFragment,
-    data.moduleExpertsOverflow?.statisticFlair
+    data.moduleExpertsOverflow?.statisticFlair,
   );
   return (
     <section className="dark px-6 py-16 dsk:px-20 dsk:py-32">
@@ -43,7 +43,12 @@ export const ModuleExpertsOverflow = ({
         </div>
         {!!statistic && (
           <div className="hidden dsk:flex items-center justify-center gap-10">
-            {statisticFlair?.url && <img src={statisticFlair.url} />}
+            {statisticFlair?.url && (
+              <img
+                src={statisticFlair.url}
+                alt="Statistic flair" // TODO: Add alt text from Contentful
+              />
+            )}
             <div className="flex flex-col">
               <p className="text-content-secondary typo-body-large">
                 <RichText content={statistic.label} spansOnly />
@@ -53,7 +58,7 @@ export const ModuleExpertsOverflow = ({
                 <AnimatableNumber
                   value={
                     new Intl.NumberFormat("en-US").format(
-                      Number(statistic?.value ?? "0")
+                      Number(statistic?.value ?? "0"),
                     ) ?? "0"
                   }
                 />
@@ -67,7 +72,7 @@ export const ModuleExpertsOverflow = ({
         <ExpertsOverflowExpertsListScroll
           data={readFragment(
             ModuleExpertsOverflowExpertsListCollectionFragment,
-            data.moduleExpertsOverflow?.expertsListCollection
+            data.moduleExpertsOverflow?.expertsListCollection,
           )}
         />
       )}

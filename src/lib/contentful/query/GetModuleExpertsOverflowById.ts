@@ -44,5 +44,5 @@ export const GetModuleExpertsOverflowById = graphql(
     ComponentStatisticFragment,
     ModuleExpertsOverflowExpertsListCollectionFragment,
     AssetFragment,
-  ]
+  ],
 );

@@ -1,5 +1,5 @@
 import * as dotenv from "dotenv";
-import "zx/globals";
+import { $ } from "zx";
 
 (async () => {
   dotenv.config();

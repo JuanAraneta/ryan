@@ -23,7 +23,7 @@ const iconButtonClasses = cva(
     defaultVariants: {
       variant: "primary",
     },
-  }
+  },
 );
 
 type IconButtonVariantProps = VariantProps<typeof iconButtonClasses>;
@@ -42,19 +42,19 @@ export const IconButton = ({
   if ("asChild" in props) {
     if (Children.count(props.children) !== 1) {
       throw new Error(
-        "IconButton with asChild prop must container exactly 1 child element."
+        "IconButton with asChild prop must container exactly 1 child element.",
       );
     }
 
     return cloneElement(
       // This is fine here; the type is very specific but the check above verifies the validity
-      props.children as any,
+      props.children as JSX.Element,
       {
         className: cx(
           props.children.props?.className,
-          iconButtonClasses({ variant })
+          iconButtonClasses({ variant }),
         ),
-      }
+      },
     );
   } else {
     return (

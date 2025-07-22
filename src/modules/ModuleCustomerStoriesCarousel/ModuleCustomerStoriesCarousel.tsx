@@ -31,7 +31,7 @@ export const ModuleCustomerStoriesCarousel = ({
       <CustomerStoriesCarousel
         data={readFragment(
           ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment,
-          data.moduleCustomerStoriesCarousel?.customerStoriesCollection
+          data.moduleCustomerStoriesCarousel?.customerStoriesCollection,
         )}
       />
     )}

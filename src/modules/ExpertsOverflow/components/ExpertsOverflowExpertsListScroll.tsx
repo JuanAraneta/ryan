@@ -27,12 +27,12 @@ export const ExpertsOverflowExpertsListScroll = ({
   const prevClickHandler = useScrollJumpOnClickEventHandler(
     scrollContainerRef,
     "prev",
-    "li"
+    "li",
   );
   const nextClickHandler = useScrollJumpOnClickEventHandler(
     scrollContainerRef,
     "next",
-    "li"
+    "li",
   );
   const constants = useConstants();
   useRerenderOnScreenSize();
@@ -61,7 +61,7 @@ export const ExpertsOverflowExpertsListScroll = ({
                       <img
                         className="size-full object-fill rounded-lg transition-transform group-hover:scale-105"
                         src={headshot.url}
-                        alt={expert.fullName ?? ""}
+                        alt={`${expert?.fullName} headshot`}
                       />
                     </div>
                   )}
@@ -94,7 +94,7 @@ export const ExpertsOverflowExpertsListScroll = ({
           scrollContainerRef.current?.clientWidth ===
             scrollContainerRef.current?.scrollWidth
             ? "hidden"
-            : "flex"
+            : "flex",
         )}
       >
         <div className="hidden dsk:flex gap-6">
