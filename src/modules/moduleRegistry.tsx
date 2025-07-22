@@ -1,9 +1,12 @@
-import { ResultOf, TadaDocumentNode } from "gql.tada";
 import { FC } from "react";
-import { ModuleExpertsOverflow } from "./ExpertsOverflow";
+import { ResultOf, TadaDocumentNode } from "gql.tada";
 import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleExpertsOverflowById";
-import { ModuleCustomerStoriesCarousel } from "./ModuleCustomerStoriesCarousel";
 import { GetModuleCustomerStoriesOverflowById } from "@/lib/contentful/query/GetModuleCustomerStoriesOverflowById";
+
+// Modules
+import { HeroHome } from "./HeroHome";
+import { ModuleExpertsOverflow } from "./ExpertsOverflow";
+import { ModuleCustomerStoriesCarousel } from "./ModuleCustomerStoriesCarousel";
 
 type ModuleComponent<Data = unknown> = {
   component: FC<{ data: Data }>;
@@ -17,9 +20,14 @@ type ModuleRegistry = {
   ModuleCustomerStoriesCarousel: ModuleComponent<
     ResultOf<typeof GetModuleCustomerStoriesOverflowById>
   >;
+  HeroHome: ModuleComponent<ResultOf<typeof GetModuleHeroHomeById>>;
 };
 
 const moduleRegistry: ModuleRegistry = {
+  HeroHome: {
+    component: HeroHome,
+    queryById: GetModuleHeroHomeById,
+  },
   ModuleExpertsOverflow: {
     component: ModuleExpertsOverflow,
     queryById: GetModuleExpertsOverflowById,

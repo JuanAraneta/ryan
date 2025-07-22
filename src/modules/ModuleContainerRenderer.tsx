@@ -2,6 +2,7 @@ import { contentClient } from "@/lib/contentful/contentClient";
 import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
 import moduleRegistry from "@/modules/moduleRegistry";
 import { ResultOf } from "gql.tada";
+import { HeroHome } from "./HeroHome";
 
 export const ModuleContainerRenderer = async ({
   data,
@@ -53,7 +54,6 @@ export const ModuleContainerRenderer = async ({
                       );
                       return null;
                     }
-
                     return <Component key={index} data={result.data} />;
                   },
                 ),
