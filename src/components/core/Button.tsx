@@ -1,6 +1,7 @@
 import { focusStyle } from "@/utils/focusStyle";
+import { reactNodeIsSingleElement } from "@/utils/reactNodeIsSingleElement";
 import { cva, cx, type VariantProps } from "cva";
-import { Children, cloneElement, ComponentProps, JSX } from "react";
+import { cloneElement, ComponentProps, ReactElement } from "react";
 
 const buttonClasses = cva(
   ["transition-colors flex justify-center items-center gap-2", focusStyle],
@@ -31,22 +32,17 @@ export const Button = ({
     | ComponentProps<"button">
     | {
         asChild: true;
-        children: JSX.Element;
+        children: ReactElement;
       }
   )) => {
   if ("asChild" in props) {
-    if (Children.count(props.children) !== 1) {
-      throw new Error(
-        "Button with asChild prop must container exactly 1 child element."
-      );
-    }
-
+    reactNodeIsSingleElement(props.children);
     return cloneElement(
-      // This is fine here; the type is very specific but the check above verifies the validity
+      // These are fine here; the type is very specific but the check above verifies the validity
       props.children as any,
       {
         className: cx(
-          props.children.props?.className,
+          (props?.children?.props as any)?.className,
           buttonClasses({ variant })
         ),
       }
