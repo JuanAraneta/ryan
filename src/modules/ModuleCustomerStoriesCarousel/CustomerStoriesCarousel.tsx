@@ -14,7 +14,6 @@ import { cx } from "cva";
 import { readFragment, ResultOf } from "gql.tada";
 import { useRef } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import Image from "next/image";
 
 export const CustomerStoriesCarousel = ({
   data,
@@ -62,21 +61,17 @@ export const CustomerStoriesCarousel = ({
                 >
                   <div className="relative w-full overflow-hidden">
                     {heroMedia?.url && (
-                      <Image
+                      <img
                         className="h-[190px] dsk:h-[400px] w-full object-cover group-hover:scale-105 transition-transform"
                         src={heroMedia.url}
-                        alt={story.customerName ?? ""}
-                        width={700}
-                        height={400}
+                        alt={`${story.customerName} hero media`}
                       />
                     )}
                     {!!customerLogo?.url && (
-                      <Image
+                      <img
                         className="absolute left-5 top-5 h-8"
                         src={customerLogo?.url}
-                        alt={story.customerName ?? ""}
-                        width={140}
-                        height={40}
+                        alt={`${story.customerName} customer logo`}
                       />
                     )}
                   </div>

@@ -8,7 +8,6 @@ import { ModuleExpertsOverflowExpertsListCollectionFragment } from "@/lib/conten
 import { AnimatableNumber } from "@/components/core/AnimatableNumber";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { Button } from "@/components/core/Button";
-import Image from "next/image";
 
 export const ModuleExpertsOverflow = ({
   data,
@@ -45,11 +44,9 @@ export const ModuleExpertsOverflow = ({
         {!!statistic && (
           <div className="hidden dsk:flex items-center justify-center gap-10">
             {statisticFlair?.url && (
-              <Image
+              <img
                 src={statisticFlair.url}
-                alt="Statistic flair"
-                width={300}
-                height={400}
+                alt="Statistic flair" // TODO: Add alt text from Contentful
               />
             )}
             <div className="flex flex-col">

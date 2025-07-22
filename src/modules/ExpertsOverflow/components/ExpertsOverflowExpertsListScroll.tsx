@@ -10,7 +10,6 @@ import { ModuleExpertsOverflowExpertsListCollectionFragment } from "@/lib/conten
 import { focusStyle } from "@/utils/focusStyle";
 import { cx } from "cva";
 import { readFragment, ResultOf } from "gql.tada";
-import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import {
@@ -59,12 +58,10 @@ export const ExpertsOverflowExpertsListScroll = ({
                 >
                   {!!expert && !!headshot?.url && (
                     <div className="w-[300px] h-[400px] rounded-lg overflow-hidden">
-                      <Image
+                      <img
                         className="size-full object-fill rounded-lg transition-transform group-hover:scale-105"
                         src={headshot.url}
-                        alt={expert.fullName ?? ""}
-                        width={300}
-                        height={400}
+                        alt={`${expert?.fullName} headshot`}
                       />
                     </div>
                   )}
