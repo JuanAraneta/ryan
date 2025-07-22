@@ -1,6 +1,9 @@
 directive @contentSourceMaps on QUERY
 
-directive @delegatedResourceLink(contentTypeId: String, field: JSON) on FIELD_DEFINITION | OBJECT
+directive @delegatedResourceLink(
+  contentTypeId: String
+  field: JSON
+) on FIELD_DEFINITION | OBJECT
 
 directive @enumMapper(value: JSON) on ENUM_VALUE
 
@@ -10,7 +13,9 @@ directive @fieldResolver(data: JSON, kind: String) on FIELD_DEFINITION
 
 directive @typeIdentifier(contentTypeId: String) on OBJECT
 
-"""Represents a binary file in a space. An asset can be any file type."""
+"""
+Represents a binary file in a space. An asset can be any file type.
+"""
 type Asset {
   contentType(locale: String): String
   contentfulMetadata: ContentfulMetadata!
@@ -102,15 +107,60 @@ input AssetFilter {
 }
 
 type AssetLinkingCollections {
-  categorySolutionsImageLinkCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): CategorySolutionsImageLinkCollection
-  componentCardDeviceMockCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentCardDeviceMockCollection
-  componentCustomerStoryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentCustomerStoryCollection
-  componentExpertCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentExpertCollection
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  headerCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): HeaderCollection
-  moduleExpertsOverflowCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ModuleExpertsOverflowCollection
-  seoMetadataCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): SeoMetadataCollection
-  socialMediaLinkCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): SocialMediaLinkCollection
+  categorySolutionsImageLinkCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): CategorySolutionsImageLinkCollection
+  componentCardDeviceMockCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): ComponentCardDeviceMockCollection
+  componentCustomerStoryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): ComponentCustomerStoryCollection
+  componentExpertCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): ComponentExpertCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
+  headerCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): HeaderCollection
+  moduleExpertsOverflowCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): ModuleExpertsOverflowCollection
+  seoMetadataCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): SeoMetadataCollection
+  socialMediaLinkCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): SocialMediaLinkCollection
 }
 
 enum AssetOrder {
@@ -143,8 +193,14 @@ type CategorySolutionsImageLink implements Entry & _Node {
   _id: ID!
   contentfulMetadata: ContentfulMetadata!
   image(locale: String, preview: Boolean): Asset
-  link(locale: String, preview: Boolean, where: ComponentLinkFilter): ComponentLink
-  linkedFrom(allowedLocales: [String]): CategorySolutionsImageLinkLinkingCollections
+  link(
+    locale: String
+    preview: Boolean
+    where: ComponentLinkFilter
+  ): ComponentLink
+  linkedFrom(
+    allowedLocales: [String]
+  ): CategorySolutionsImageLinkLinkingCollections
   sys: Sys!
 }
 
@@ -171,8 +227,17 @@ input CategorySolutionsImageLinkFilter {
 type CategorySolutionsImageLinkGrid implements Entry & _Node {
   _id: ID!
   contentfulMetadata: ContentfulMetadata!
-  itemsCollection(limit: Int = 100, locale: String, order: [CategorySolutionsImageLinkGridItemsCollectionOrder], preview: Boolean, skip: Int = 0, where: CategorySolutionsImageLinkFilter): CategorySolutionsImageLinkGridItemsCollection
-  linkedFrom(allowedLocales: [String]): CategorySolutionsImageLinkGridLinkingCollections
+  itemsCollection(
+    limit: Int = 100
+    locale: String
+    order: [CategorySolutionsImageLinkGridItemsCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: CategorySolutionsImageLinkFilter
+  ): CategorySolutionsImageLinkGridItemsCollection
+  linkedFrom(
+    allowedLocales: [String]
+  ): CategorySolutionsImageLinkGridLinkingCollections
   sys: Sys!
 }
 
@@ -211,8 +276,19 @@ enum CategorySolutionsImageLinkGridItemsCollectionOrder {
 }
 
 type CategorySolutionsImageLinkGridLinkingCollections {
-  componentCategorySolutionsChapterCollection(limit: Int = 100, locale: String, order: [CategorySolutionsImageLinkGridLinkingCollectionsComponentCategorySolutionsChapterCollectionOrder], preview: Boolean, skip: Int = 0): ComponentCategorySolutionsChapterCollection
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  componentCategorySolutionsChapterCollection(
+    limit: Int = 100
+    locale: String
+    order: [CategorySolutionsImageLinkGridLinkingCollectionsComponentCategorySolutionsChapterCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ComponentCategorySolutionsChapterCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
 }
 
 enum CategorySolutionsImageLinkGridLinkingCollectionsComponentCategorySolutionsChapterCollectionOrder {
@@ -240,8 +316,19 @@ enum CategorySolutionsImageLinkGridOrder {
 }
 
 type CategorySolutionsImageLinkLinkingCollections {
-  categorySolutionsImageLinkGridCollection(limit: Int = 100, locale: String, order: [CategorySolutionsImageLinkLinkingCollectionsCategorySolutionsImageLinkGridCollectionOrder], preview: Boolean, skip: Int = 0): CategorySolutionsImageLinkGridCollection
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  categorySolutionsImageLinkGridCollection(
+    limit: Int = 100
+    locale: String
+    order: [CategorySolutionsImageLinkLinkingCollectionsCategorySolutionsImageLinkGridCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): CategorySolutionsImageLinkGridCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
 }
 
 enum CategorySolutionsImageLinkLinkingCollectionsCategorySolutionsImageLinkGridCollectionOrder {
@@ -271,12 +358,26 @@ enum CategorySolutionsImageLinkOrder {
 """
 type ComponentCardDeviceMock implements Entry & _Node {
   _id: ID!
-  backgroundColor(locale: String, preview: Boolean, where: ThemeBackgroundFilter): ThemeBackground
-  body(locale: String, preview: Boolean, where: ContentTypeRichTextFilter): ContentTypeRichText
-  callToAction(locale: String, preview: Boolean, where: ComponentLinkFilter): ComponentLink
+  backgroundColor(
+    locale: String
+    preview: Boolean
+    where: ThemeBackgroundFilter
+  ): ThemeBackground
+  body(
+    locale: String
+    preview: Boolean
+    where: ContentTypeRichTextFilter
+  ): ContentTypeRichText
+  callToAction(
+    locale: String
+    preview: Boolean
+    where: ComponentLinkFilter
+  ): ComponentLink
   contentfulMetadata: ContentfulMetadata!
   deviceMock(locale: String, preview: Boolean): Asset
-  linkedFrom(allowedLocales: [String]): ComponentCardDeviceMockLinkingCollections
+  linkedFrom(
+    allowedLocales: [String]
+  ): ComponentCardDeviceMockLinkingCollections
   sys: Sys!
   title(locale: String): String
 }
@@ -310,8 +411,19 @@ input ComponentCardDeviceMockFilter {
 }
 
 type ComponentCardDeviceMockLinkingCollections {
-  componentCategorySolutionsChapterCollection(limit: Int = 100, locale: String, order: [ComponentCardDeviceMockLinkingCollectionsComponentCategorySolutionsChapterCollectionOrder], preview: Boolean, skip: Int = 0): ComponentCategorySolutionsChapterCollection
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  componentCategorySolutionsChapterCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentCardDeviceMockLinkingCollectionsComponentCategorySolutionsChapterCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ComponentCategorySolutionsChapterCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
 }
 
 enum ComponentCardDeviceMockLinkingCollectionsComponentCategorySolutionsChapterCollectionOrder {
@@ -345,9 +457,15 @@ enum ComponentCardDeviceMockOrder {
 """
 type ComponentCategorySolutions2ColSubBody implements Entry & _Node {
   _id: ID!
-  body(locale: String, preview: Boolean, where: ContentTypeRichTextFilter): ContentTypeRichText
+  body(
+    locale: String
+    preview: Boolean
+    where: ContentTypeRichTextFilter
+  ): ContentTypeRichText
   contentfulMetadata: ContentfulMetadata!
-  linkedFrom(allowedLocales: [String]): ComponentCategorySolutions2ColSubBodyLinkingCollections
+  linkedFrom(
+    allowedLocales: [String]
+  ): ComponentCategorySolutions2ColSubBodyLinkingCollections
   subhead(locale: String): String
   sys: Sys!
 }
@@ -376,8 +494,19 @@ input ComponentCategorySolutions2ColSubBodyFilter {
 }
 
 type ComponentCategorySolutions2ColSubBodyLinkingCollections {
-  componentCategorySolutionsChapterCollection(limit: Int = 100, locale: String, order: [ComponentCategorySolutions2ColSubBodyLinkingCollectionsComponentCategorySolutionsChapterCollectionOrder], preview: Boolean, skip: Int = 0): ComponentCategorySolutionsChapterCollection
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  componentCategorySolutionsChapterCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentCategorySolutions2ColSubBodyLinkingCollectionsComponentCategorySolutionsChapterCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ComponentCategorySolutionsChapterCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
 }
 
 enum ComponentCategorySolutions2ColSubBodyLinkingCollectionsComponentCategorySolutionsChapterCollectionOrder {
@@ -412,8 +541,16 @@ enum ComponentCategorySolutions2ColSubBodyOrder {
 type ComponentCategorySolutionsChapter implements Entry & _Node {
   _id: ID!
   contentfulMetadata: ContentfulMetadata!
-  contentsCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, where: ComponentCategorySolutionsChapterContentsFilter): ComponentCategorySolutionsChapterContentsCollection
-  linkedFrom(allowedLocales: [String]): ComponentCategorySolutionsChapterLinkingCollections
+  contentsCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+    where: ComponentCategorySolutionsChapterContentsFilter
+  ): ComponentCategorySolutionsChapterContentsCollection
+  linkedFrom(
+    allowedLocales: [String]
+  ): ComponentCategorySolutionsChapterLinkingCollections
   sys: Sys!
   title(locale: String): String
 }
@@ -439,7 +576,11 @@ input ComponentCategorySolutionsChapterContentsFilter {
   sys: SysFilter
 }
 
-union ComponentCategorySolutionsChapterContentsItem = CategorySolutionsImageLinkGrid | ComponentCardDeviceMock | ComponentCategorySolutions2ColSubBody | ComponentCategorySolutionsHeadline
+union ComponentCategorySolutionsChapterContentsItem =
+  | CategorySolutionsImageLinkGrid
+  | ComponentCardDeviceMock
+  | ComponentCategorySolutions2ColSubBody
+  | ComponentCategorySolutionsHeadline
 
 input ComponentCategorySolutionsChapterFilter {
   AND: [ComponentCategorySolutionsChapterFilter]
@@ -458,8 +599,19 @@ input ComponentCategorySolutionsChapterFilter {
 }
 
 type ComponentCategorySolutionsChapterLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  moduleChapterGroupCollection(limit: Int = 100, locale: String, order: [ComponentCategorySolutionsChapterLinkingCollectionsModuleChapterGroupCollectionOrder], preview: Boolean, skip: Int = 0): ModuleChapterGroupCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
+  moduleChapterGroupCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentCategorySolutionsChapterLinkingCollectionsModuleChapterGroupCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ModuleChapterGroupCollection
 }
 
 enum ComponentCategorySolutionsChapterLinkingCollectionsModuleChapterGroupCollectionOrder {
@@ -495,8 +647,17 @@ type ComponentCategorySolutionsHeadline implements Entry & _Node {
   _id: ID!
   contentfulLabel(locale: String): String
   contentfulMetadata: ContentfulMetadata!
-  headlineCollection(limit: Int = 100, locale: String, order: [ComponentCategorySolutionsHeadlineHeadlineCollectionOrder], preview: Boolean, skip: Int = 0, where: ContentTypeRichTextFilter): ComponentCategorySolutionsHeadlineHeadlineCollection
-  linkedFrom(allowedLocales: [String]): ComponentCategorySolutionsHeadlineLinkingCollections
+  headlineCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentCategorySolutionsHeadlineHeadlineCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ContentTypeRichTextFilter
+  ): ComponentCategorySolutionsHeadlineHeadlineCollection
+  linkedFrom(
+    allowedLocales: [String]
+  ): ComponentCategorySolutionsHeadlineLinkingCollections
   sys: Sys!
 }
 
@@ -544,8 +705,19 @@ enum ComponentCategorySolutionsHeadlineHeadlineCollectionOrder {
 }
 
 type ComponentCategorySolutionsHeadlineLinkingCollections {
-  componentCategorySolutionsChapterCollection(limit: Int = 100, locale: String, order: [ComponentCategorySolutionsHeadlineLinkingCollectionsComponentCategorySolutionsChapterCollectionOrder], preview: Boolean, skip: Int = 0): ComponentCategorySolutionsChapterCollection
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  componentCategorySolutionsChapterCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentCategorySolutionsHeadlineLinkingCollectionsComponentCategorySolutionsChapterCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ComponentCategorySolutionsChapterCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
 }
 
 enum ComponentCategorySolutionsHeadlineLinkingCollectionsComponentCategorySolutionsChapterCollectionOrder {
@@ -582,7 +754,11 @@ type ComponentCustomerStory implements Entry & _Node {
   contentfulMetadata: ContentfulMetadata!
   customerLogo(locale: String, preview: Boolean): Asset
   customerName(locale: String): String
-  headline(locale: String, preview: Boolean, where: ContentTypeRichTextFilter): ContentTypeRichText
+  headline(
+    locale: String
+    preview: Boolean
+    where: ContentTypeRichTextFilter
+  ): ContentTypeRichText
   heroMedia(locale: String, preview: Boolean): Asset
   linkedFrom(allowedLocales: [String]): ComponentCustomerStoryLinkingCollections
   quoteSource(locale: String): String
@@ -630,8 +806,19 @@ input ComponentCustomerStoryFilter {
 }
 
 type ComponentCustomerStoryLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  moduleCustomerStoriesCarouselCollection(limit: Int = 100, locale: String, order: [ComponentCustomerStoryLinkingCollectionsModuleCustomerStoriesCarouselCollectionOrder], preview: Boolean, skip: Int = 0): ModuleCustomerStoriesCarouselCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
+  moduleCustomerStoriesCarouselCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentCustomerStoryLinkingCollectionsModuleCustomerStoriesCarouselCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ModuleCustomerStoriesCarouselCollection
 }
 
 enum ComponentCustomerStoryLinkingCollectionsModuleCustomerStoriesCarouselCollectionOrder {
@@ -723,8 +910,19 @@ input ComponentExpertFilter {
 }
 
 type ComponentExpertLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  moduleExpertsOverflowCollection(limit: Int = 100, locale: String, order: [ComponentExpertLinkingCollectionsModuleExpertsOverflowCollectionOrder], preview: Boolean, skip: Int = 0): ModuleExpertsOverflowCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
+  moduleExpertsOverflowCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentExpertLinkingCollectionsModuleExpertsOverflowCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ModuleExpertsOverflowCollection
 }
 
 enum ComponentExpertLinkingCollectionsModuleExpertsOverflowCollectionOrder {
@@ -803,11 +1001,40 @@ input ComponentLinkFilter {
 }
 
 type ComponentLinkLinkingCollections {
-  categorySolutionsImageLinkCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsCategorySolutionsImageLinkCollectionOrder], preview: Boolean, skip: Int = 0): CategorySolutionsImageLinkCollection
-  componentCardDeviceMockCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsComponentCardDeviceMockCollectionOrder], preview: Boolean, skip: Int = 0): ComponentCardDeviceMockCollection
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  moduleCustomerStoriesCarouselCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsModuleCustomerStoriesCarouselCollectionOrder], preview: Boolean, skip: Int = 0): ModuleCustomerStoriesCarouselCollection
-  moduleExpertsOverflowCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsModuleExpertsOverflowCollectionOrder], preview: Boolean, skip: Int = 0): ModuleExpertsOverflowCollection
+  categorySolutionsImageLinkCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentLinkLinkingCollectionsCategorySolutionsImageLinkCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): CategorySolutionsImageLinkCollection
+  componentCardDeviceMockCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentLinkLinkingCollectionsComponentCardDeviceMockCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ComponentCardDeviceMockCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
+  moduleCustomerStoriesCarouselCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentLinkLinkingCollectionsModuleCustomerStoriesCarouselCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ModuleCustomerStoriesCarouselCollection
+  moduleExpertsOverflowCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentLinkLinkingCollectionsModuleExpertsOverflowCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ModuleExpertsOverflowCollection
 }
 
 enum ComponentLinkLinkingCollectionsCategorySolutionsImageLinkCollectionOrder {
@@ -882,7 +1109,11 @@ type ComponentStatistic implements Entry & _Node {
   _id: ID!
   contentfulLabel(locale: String): String
   contentfulMetadata: ContentfulMetadata!
-  label(locale: String, preview: Boolean, where: ContentTypeRichTextFilter): ContentTypeRichText
+  label(
+    locale: String
+    preview: Boolean
+    where: ContentTypeRichTextFilter
+  ): ContentTypeRichText
   linkedFrom(allowedLocales: [String]): ComponentStatisticLinkingCollections
   prefix(locale: String): String
   suffix(locale: String): String
@@ -935,8 +1166,19 @@ input ComponentStatisticFilter {
 }
 
 type ComponentStatisticLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  moduleExpertsOverflowCollection(limit: Int = 100, locale: String, order: [ComponentStatisticLinkingCollectionsModuleExpertsOverflowCollectionOrder], preview: Boolean, skip: Int = 0): ModuleExpertsOverflowCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
+  moduleExpertsOverflowCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentStatisticLinkingCollectionsModuleExpertsOverflowCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ModuleExpertsOverflowCollection
 }
 
 enum ComponentStatisticLinkingCollectionsModuleExpertsOverflowCollectionOrder {
@@ -1044,7 +1286,12 @@ input ConstantsFilter {
 }
 
 type ConstantsLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
 }
 
 enum ConstantsOrder {
@@ -1107,14 +1354,61 @@ input ContentTypeRichTextFilter {
 }
 
 type ContentTypeRichTextLinkingCollections {
-  componentCardDeviceMockCollection(limit: Int = 100, locale: String, order: [ContentTypeRichTextLinkingCollectionsComponentCardDeviceMockCollectionOrder], preview: Boolean, skip: Int = 0): ComponentCardDeviceMockCollection
-  componentCategorySolutions2ColSubBodyCollection(limit: Int = 100, locale: String, order: [ContentTypeRichTextLinkingCollectionsComponentCategorySolutions2ColSubBodyCollectionOrder], preview: Boolean, skip: Int = 0): ComponentCategorySolutions2ColSubBodyCollection
-  componentCategorySolutionsHeadlineCollection(limit: Int = 100, locale: String, order: [ContentTypeRichTextLinkingCollectionsComponentCategorySolutionsHeadlineCollectionOrder], preview: Boolean, skip: Int = 0): ComponentCategorySolutionsHeadlineCollection
-  componentCustomerStoryCollection(limit: Int = 100, locale: String, order: [ContentTypeRichTextLinkingCollectionsComponentCustomerStoryCollectionOrder], preview: Boolean, skip: Int = 0): ComponentCustomerStoryCollection
-  componentStatisticCollection(limit: Int = 100, locale: String, order: [ContentTypeRichTextLinkingCollectionsComponentStatisticCollectionOrder], preview: Boolean, skip: Int = 0): ComponentStatisticCollection
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  moduleCustomerStoriesCarouselCollection(limit: Int = 100, locale: String, order: [ContentTypeRichTextLinkingCollectionsModuleCustomerStoriesCarouselCollectionOrder], preview: Boolean, skip: Int = 0): ModuleCustomerStoriesCarouselCollection
-  moduleExpertsOverflowCollection(limit: Int = 100, locale: String, order: [ContentTypeRichTextLinkingCollectionsModuleExpertsOverflowCollectionOrder], preview: Boolean, skip: Int = 0): ModuleExpertsOverflowCollection
+  componentCardDeviceMockCollection(
+    limit: Int = 100
+    locale: String
+    order: [ContentTypeRichTextLinkingCollectionsComponentCardDeviceMockCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ComponentCardDeviceMockCollection
+  componentCategorySolutions2ColSubBodyCollection(
+    limit: Int = 100
+    locale: String
+    order: [ContentTypeRichTextLinkingCollectionsComponentCategorySolutions2ColSubBodyCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ComponentCategorySolutions2ColSubBodyCollection
+  componentCategorySolutionsHeadlineCollection(
+    limit: Int = 100
+    locale: String
+    order: [ContentTypeRichTextLinkingCollectionsComponentCategorySolutionsHeadlineCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ComponentCategorySolutionsHeadlineCollection
+  componentCustomerStoryCollection(
+    limit: Int = 100
+    locale: String
+    order: [ContentTypeRichTextLinkingCollectionsComponentCustomerStoryCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ComponentCustomerStoryCollection
+  componentStatisticCollection(
+    limit: Int = 100
+    locale: String
+    order: [ContentTypeRichTextLinkingCollectionsComponentStatisticCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ComponentStatisticCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
+  moduleCustomerStoriesCarouselCollection(
+    limit: Int = 100
+    locale: String
+    order: [ContentTypeRichTextLinkingCollectionsModuleCustomerStoriesCarouselCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ModuleCustomerStoriesCarouselCollection
+  moduleExpertsOverflowCollection(
+    limit: Int = 100
+    locale: String
+    order: [ContentTypeRichTextLinkingCollectionsModuleExpertsOverflowCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ModuleExpertsOverflowCollection
 }
 
 enum ContentTypeRichTextLinkingCollectionsComponentCardDeviceMockCollectionOrder {
@@ -1395,8 +1689,19 @@ input FooterFilter {
 }
 
 type FooterLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  pageCollection(limit: Int = 100, locale: String, order: [FooterLinkingCollectionsPageCollectionOrder], preview: Boolean, skip: Int = 0): PageCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
+  pageCollection(
+    limit: Int = 100
+    locale: String
+    order: [FooterLinkingCollectionsPageCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): PageCollection
 }
 
 enum FooterLinkingCollectionsPageCollectionOrder {
@@ -1462,8 +1767,19 @@ input HeaderFilter {
 }
 
 type HeaderLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  pageCollection(limit: Int = 100, locale: String, order: [HeaderLinkingCollectionsPageCollectionOrder], preview: Boolean, skip: Int = 0): PageCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
+  pageCollection(
+    limit: Int = 100
+    locale: String
+    order: [HeaderLinkingCollectionsPageCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): PageCollection
 }
 
 enum HeaderLinkingCollectionsPageCollectionOrder {
@@ -1494,14 +1810,20 @@ enum HeaderOrder {
   title_DESC
 }
 
-"""The 'HexColor' type represents color in `rgb:ffffff` string format."""
+"""
+The 'HexColor' type represents color in `rgb:ffffff` string format.
+"""
 scalar HexColor
 
 enum ImageFormat {
-  """AVIF image format."""
+  """
+  AVIF image format.
+  """
   AVIF
 
-  """JPG image format."""
+  """
+  JPG image format.
+  """
   JPG
 
   """
@@ -1512,7 +1834,9 @@ enum ImageFormat {
   """
   JPG_PROGRESSIVE
 
-  """PNG image format"""
+  """
+  PNG image format
+  """
   PNG
 
   """
@@ -1521,42 +1845,66 @@ enum ImageFormat {
   """
   PNG8
 
-  """WebP image format."""
+  """
+  WebP image format.
+  """
   WEBP
 }
 
 enum ImageResizeFocus {
-  """Focus the resizing on the bottom."""
+  """
+  Focus the resizing on the bottom.
+  """
   BOTTOM
 
-  """Focus the resizing on the bottom left."""
+  """
+  Focus the resizing on the bottom left.
+  """
   BOTTOM_LEFT
 
-  """Focus the resizing on the bottom right."""
+  """
+  Focus the resizing on the bottom right.
+  """
   BOTTOM_RIGHT
 
-  """Focus the resizing on the center."""
+  """
+  Focus the resizing on the center.
+  """
   CENTER
 
-  """Focus the resizing on the largest face."""
+  """
+  Focus the resizing on the largest face.
+  """
   FACE
 
-  """Focus the resizing on the area containing all the faces."""
+  """
+  Focus the resizing on the area containing all the faces.
+  """
   FACES
 
-  """Focus the resizing on the left."""
+  """
+  Focus the resizing on the left.
+  """
   LEFT
 
-  """Focus the resizing on the right."""
+  """
+  Focus the resizing on the right.
+  """
   RIGHT
 
-  """Focus the resizing on the top."""
+  """
+  Focus the resizing on the top.
+  """
   TOP
 
-  """Focus the resizing on the top left."""
+  """
+  Focus the resizing on the top left.
+  """
   TOP_LEFT
 
-  """Focus the resizing on the top right."""
+  """
+  Focus the resizing on the top right.
+  """
   TOP_RIGHT
 }
 
@@ -1571,7 +1919,9 @@ enum ImageResizeStrategy {
   """
   FILL
 
-  """Resizes the image to fit into the specified dimensions."""
+  """
+  Resizes the image to fit into the specified dimensions.
+  """
   FIT
 
   """
@@ -1585,7 +1935,9 @@ enum ImageResizeStrategy {
   """
   SCALE
 
-  """Creates a thumbnail from the image."""
+  """
+  Creates a thumbnail from the image.
+  """
   THUMB
 }
 
@@ -1604,10 +1956,14 @@ input ImageTransformOptions {
   """
   cornerRadius: Int
 
-  """Desired image format. Defaults to the original image format."""
+  """
+  Desired image format. Defaults to the original image format.
+  """
   format: ImageFormat
 
-  """Desired height in pixels. Defaults to the original image height."""
+  """
+  Desired height in pixels. Defaults to the original image height.
+  """
   height: Dimension
 
   """
@@ -1616,13 +1972,19 @@ input ImageTransformOptions {
   """
   quality: Quality
 
-  """Desired resize focus area. Defaults to `CENTER`."""
+  """
+  Desired resize focus area. Defaults to `CENTER`.
+  """
   resizeFocus: ImageResizeFocus
 
-  """Desired resize strategy. Defaults to `FIT`."""
+  """
+  Desired resize strategy. Defaults to `FIT`.
+  """
   resizeStrategy: ImageResizeStrategy
 
-  """Desired width in pixels. Defaults to the original image width."""
+  """
+  Desired width in pixels. Defaults to the original image width.
+  """
   width: Dimension
 }
 
@@ -1640,7 +2002,14 @@ type Market implements Entry & _Node {
   linkedFrom(allowedLocales: [String]): MarketLinkingCollections
   name(locale: String): String
   slug(locale: String): String
-  socialMediaLinksCollection(limit: Int = 100, locale: String, order: [MarketSocialMediaLinksCollectionOrder], preview: Boolean, skip: Int = 0, where: SocialMediaLinkFilter): MarketSocialMediaLinksCollection
+  socialMediaLinksCollection(
+    limit: Int = 100
+    locale: String
+    order: [MarketSocialMediaLinksCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: SocialMediaLinkFilter
+  ): MarketSocialMediaLinksCollection
   sys: Sys!
 }
 
@@ -1675,9 +2044,26 @@ input MarketFilter {
 }
 
 type MarketLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  pageCollection(limit: Int = 100, locale: String, order: [MarketLinkingCollectionsPageCollectionOrder], preview: Boolean, skip: Int = 0): PageCollection
-  siteSettingsCollection(limit: Int = 100, locale: String, order: [MarketLinkingCollectionsSiteSettingsCollectionOrder], preview: Boolean, skip: Int = 0): SiteSettingsCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
+  pageCollection(
+    limit: Int = 100
+    locale: String
+    order: [MarketLinkingCollectionsPageCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): PageCollection
+  siteSettingsCollection(
+    limit: Int = 100
+    locale: String
+    order: [MarketLinkingCollectionsSiteSettingsCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): SiteSettingsCollection
 }
 
 enum MarketLinkingCollectionsPageCollectionOrder {
@@ -1756,7 +2142,14 @@ enum MarketSocialMediaLinksCollectionOrder {
 """
 type ModuleChapterGroup implements Entry & _Node {
   _id: ID!
-  chaptersCollection(limit: Int = 100, locale: String, order: [ModuleChapterGroupChaptersCollectionOrder], preview: Boolean, skip: Int = 0, where: ComponentCategorySolutionsChapterFilter): ModuleChapterGroupChaptersCollection
+  chaptersCollection(
+    limit: Int = 100
+    locale: String
+    order: [ModuleChapterGroupChaptersCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ComponentCategorySolutionsChapterFilter
+  ): ModuleChapterGroupChaptersCollection
   contentfulLabel(locale: String): String
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): ModuleChapterGroupLinkingCollections
@@ -1807,8 +2200,19 @@ input ModuleChapterGroupFilter {
 }
 
 type ModuleChapterGroupLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  moduleContainerCollection(limit: Int = 100, locale: String, order: [ModuleChapterGroupLinkingCollectionsModuleContainerCollectionOrder], preview: Boolean, skip: Int = 0): ModuleContainerCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
+  moduleContainerCollection(
+    limit: Int = 100
+    locale: String
+    order: [ModuleChapterGroupLinkingCollectionsModuleContainerCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ModuleContainerCollection
 }
 
 enum ModuleChapterGroupLinkingCollectionsModuleContainerCollectionOrder {
@@ -1845,11 +2249,21 @@ enum ModuleChapterGroupOrder {
 type ModuleContainer implements Entry & _Node {
   _id: ID!
   backgroundColor(locale: String): String
-  backgroundColorReference(locale: String, preview: Boolean, where: ThemeBackgroundFilter): ThemeBackground
+  backgroundColorReference(
+    locale: String
+    preview: Boolean
+    where: ThemeBackgroundFilter
+  ): ThemeBackground
   contentfulLabel(locale: String): String
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): ModuleContainerLinkingCollections
-  modulesCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, where: ModuleContainerModulesFilter): ModuleContainerModulesCollection
+  modulesCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+    where: ModuleContainerModulesFilter
+  ): ModuleContainerModulesCollection
   sys: Sys!
 }
 
@@ -1886,8 +2300,19 @@ input ModuleContainerFilter {
 }
 
 type ModuleContainerLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  pageCollection(limit: Int = 100, locale: String, order: [ModuleContainerLinkingCollectionsPageCollectionOrder], preview: Boolean, skip: Int = 0): PageCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
+  pageCollection(
+    limit: Int = 100
+    locale: String
+    order: [ModuleContainerLinkingCollectionsPageCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): PageCollection
 }
 
 enum ModuleContainerLinkingCollectionsPageCollectionOrder {
@@ -1926,7 +2351,10 @@ input ModuleContainerModulesFilter {
   sys: SysFilter
 }
 
-union ModuleContainerModulesItem = ModuleChapterGroup | ModuleCustomerStoriesCarousel | ModuleExpertsOverflow
+union ModuleContainerModulesItem =
+  | ModuleChapterGroup
+  | ModuleCustomerStoriesCarousel
+  | ModuleExpertsOverflow
 
 enum ModuleContainerOrder {
   backgroundColor_ASC
@@ -1948,13 +2376,30 @@ enum ModuleContainerOrder {
 """
 type ModuleCustomerStoriesCarousel implements Entry & _Node {
   _id: ID!
-  callToAction(locale: String, preview: Boolean, where: ComponentLinkFilter): ComponentLink
+  callToAction(
+    locale: String
+    preview: Boolean
+    where: ComponentLinkFilter
+  ): ComponentLink
   contentfulLabel(locale: String): String
   contentfulMetadata: ContentfulMetadata!
-  customerStoriesCollection(limit: Int = 100, locale: String, order: [ModuleCustomerStoriesCarouselCustomerStoriesCollectionOrder], preview: Boolean, skip: Int = 0, where: ComponentCustomerStoryFilter): ModuleCustomerStoriesCarouselCustomerStoriesCollection
-  linkedFrom(allowedLocales: [String]): ModuleCustomerStoriesCarouselLinkingCollections
+  customerStoriesCollection(
+    limit: Int = 100
+    locale: String
+    order: [ModuleCustomerStoriesCarouselCustomerStoriesCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ComponentCustomerStoryFilter
+  ): ModuleCustomerStoriesCarouselCustomerStoriesCollection
+  linkedFrom(
+    allowedLocales: [String]
+  ): ModuleCustomerStoriesCarouselLinkingCollections
   sys: Sys!
-  title(locale: String, preview: Boolean, where: ContentTypeRichTextFilter): ContentTypeRichText
+  title(
+    locale: String
+    preview: Boolean
+    where: ContentTypeRichTextFilter
+  ): ContentTypeRichText
 }
 
 type ModuleCustomerStoriesCarouselCollection {
@@ -2009,8 +2454,19 @@ input ModuleCustomerStoriesCarouselFilter {
 }
 
 type ModuleCustomerStoriesCarouselLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  moduleContainerCollection(limit: Int = 100, locale: String, order: [ModuleCustomerStoriesCarouselLinkingCollectionsModuleContainerCollectionOrder], preview: Boolean, skip: Int = 0): ModuleContainerCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
+  moduleContainerCollection(
+    limit: Int = 100
+    locale: String
+    order: [ModuleCustomerStoriesCarouselLinkingCollectionsModuleContainerCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ModuleContainerCollection
 }
 
 enum ModuleCustomerStoriesCarouselLinkingCollectionsModuleContainerCollectionOrder {
@@ -2046,16 +2502,39 @@ enum ModuleCustomerStoriesCarouselOrder {
 """
 type ModuleExpertsOverflow implements Entry & _Node {
   _id: ID!
-  callToAction(locale: String, preview: Boolean, where: ComponentLinkFilter): ComponentLink
+  callToAction(
+    locale: String
+    preview: Boolean
+    where: ComponentLinkFilter
+  ): ComponentLink
   contentfulLabel(locale: String): String
   contentfulMetadata: ContentfulMetadata!
-  expertsListCollection(limit: Int = 100, locale: String, order: [ModuleExpertsOverflowExpertsListCollectionOrder], preview: Boolean, skip: Int = 0, where: ComponentExpertFilter): ModuleExpertsOverflowExpertsListCollection
-  eyebrow(locale: String, preview: Boolean, where: ContentTypeRichTextFilter): ContentTypeRichText
+  expertsListCollection(
+    limit: Int = 100
+    locale: String
+    order: [ModuleExpertsOverflowExpertsListCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ComponentExpertFilter
+  ): ModuleExpertsOverflowExpertsListCollection
+  eyebrow(
+    locale: String
+    preview: Boolean
+    where: ContentTypeRichTextFilter
+  ): ContentTypeRichText
   linkedFrom(allowedLocales: [String]): ModuleExpertsOverflowLinkingCollections
-  statistic(locale: String, preview: Boolean, where: ComponentStatisticFilter): ComponentStatistic
+  statistic(
+    locale: String
+    preview: Boolean
+    where: ComponentStatisticFilter
+  ): ComponentStatistic
   statisticFlair(locale: String, preview: Boolean): Asset
   sys: Sys!
-  title(locale: String, preview: Boolean, where: ContentTypeRichTextFilter): ContentTypeRichText
+  title(
+    locale: String
+    preview: Boolean
+    where: ContentTypeRichTextFilter
+  ): ContentTypeRichText
 }
 
 type ModuleExpertsOverflowCollection {
@@ -2117,8 +2596,19 @@ input ModuleExpertsOverflowFilter {
 }
 
 type ModuleExpertsOverflowLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  moduleContainerCollection(limit: Int = 100, locale: String, order: [ModuleExpertsOverflowLinkingCollectionsModuleContainerCollectionOrder], preview: Boolean, skip: Int = 0): ModuleContainerCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
+  moduleContainerCollection(
+    limit: Int = 100
+    locale: String
+    order: [ModuleExpertsOverflowLinkingCollectionsModuleContainerCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ModuleContainerCollection
 }
 
 enum ModuleExpertsOverflowLinkingCollectionsModuleContainerCollectionOrder {
@@ -2159,9 +2649,27 @@ type Page implements Entry & _Node {
   header(locale: String, preview: Boolean, where: HeaderFilter): Header
   linkedFrom(allowedLocales: [String]): PageLinkingCollections
   market(locale: String, preview: Boolean, where: MarketFilter): Market
-  modulesCollection(limit: Int = 100, locale: String, order: [PageModulesCollectionOrder], preview: Boolean, skip: Int = 0, where: ModuleContainerFilter): PageModulesCollection
-  pagesCollection(limit: Int = 100, locale: String, order: [PagePagesCollectionOrder], preview: Boolean, skip: Int = 0, where: PageFilter): PagePagesCollection
-  seoMetadata(locale: String, preview: Boolean, where: SeoMetadataFilter): SeoMetadata
+  modulesCollection(
+    limit: Int = 100
+    locale: String
+    order: [PageModulesCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ModuleContainerFilter
+  ): PageModulesCollection
+  pagesCollection(
+    limit: Int = 100
+    locale: String
+    order: [PagePagesCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: PageFilter
+  ): PagePagesCollection
+  seoMetadata(
+    locale: String
+    preview: Boolean
+    where: SeoMetadataFilter
+  ): SeoMetadata
   slug(locale: String): String
   sys: Sys!
   title(locale: String): String
@@ -2208,9 +2716,26 @@ input PageFilter {
 }
 
 type PageLinkingCollections {
-  componentLinkCollection(limit: Int = 100, locale: String, order: [PageLinkingCollectionsComponentLinkCollectionOrder], preview: Boolean, skip: Int = 0): ComponentLinkCollection
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  pageCollection(limit: Int = 100, locale: String, order: [PageLinkingCollectionsPageCollectionOrder], preview: Boolean, skip: Int = 0): PageCollection
+  componentLinkCollection(
+    limit: Int = 100
+    locale: String
+    order: [PageLinkingCollectionsComponentLinkCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ComponentLinkCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
+  pageCollection(
+    limit: Int = 100
+    locale: String
+    order: [PageLinkingCollectionsPageCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): PageCollection
 }
 
 enum PageLinkingCollectionsComponentLinkCollectionOrder {
@@ -2311,60 +2836,320 @@ type Query {
   _node(id: ID!, locale: String, preview: Boolean): _Node
   _nodes(ids: [ID!]!, locale: String, preview: Boolean): [_Node]!
   asset(id: String!, locale: String, preview: Boolean): Asset
-  assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, where: AssetFilter): AssetCollection
-  categorySolutionsImageLink(id: String!, locale: String, preview: Boolean): CategorySolutionsImageLink
-  categorySolutionsImageLinkCollection(limit: Int = 100, locale: String, order: [CategorySolutionsImageLinkOrder], preview: Boolean, skip: Int = 0, where: CategorySolutionsImageLinkFilter): CategorySolutionsImageLinkCollection
-  categorySolutionsImageLinkGrid(id: String!, locale: String, preview: Boolean): CategorySolutionsImageLinkGrid
-  categorySolutionsImageLinkGridCollection(limit: Int = 100, locale: String, order: [CategorySolutionsImageLinkGridOrder], preview: Boolean, skip: Int = 0, where: CategorySolutionsImageLinkGridFilter): CategorySolutionsImageLinkGridCollection
-  componentCardDeviceMock(id: String!, locale: String, preview: Boolean): ComponentCardDeviceMock
-  componentCardDeviceMockCollection(limit: Int = 100, locale: String, order: [ComponentCardDeviceMockOrder], preview: Boolean, skip: Int = 0, where: ComponentCardDeviceMockFilter): ComponentCardDeviceMockCollection
-  componentCategorySolutions2ColSubBody(id: String!, locale: String, preview: Boolean): ComponentCategorySolutions2ColSubBody
-  componentCategorySolutions2ColSubBodyCollection(limit: Int = 100, locale: String, order: [ComponentCategorySolutions2ColSubBodyOrder], preview: Boolean, skip: Int = 0, where: ComponentCategorySolutions2ColSubBodyFilter): ComponentCategorySolutions2ColSubBodyCollection
-  componentCategorySolutionsChapter(id: String!, locale: String, preview: Boolean): ComponentCategorySolutionsChapter
-  componentCategorySolutionsChapterCollection(limit: Int = 100, locale: String, order: [ComponentCategorySolutionsChapterOrder], preview: Boolean, skip: Int = 0, where: ComponentCategorySolutionsChapterFilter): ComponentCategorySolutionsChapterCollection
-  componentCategorySolutionsHeadline(id: String!, locale: String, preview: Boolean): ComponentCategorySolutionsHeadline
-  componentCategorySolutionsHeadlineCollection(limit: Int = 100, locale: String, order: [ComponentCategorySolutionsHeadlineOrder], preview: Boolean, skip: Int = 0, where: ComponentCategorySolutionsHeadlineFilter): ComponentCategorySolutionsHeadlineCollection
-  componentCustomerStory(id: String!, locale: String, preview: Boolean): ComponentCustomerStory
-  componentCustomerStoryCollection(limit: Int = 100, locale: String, order: [ComponentCustomerStoryOrder], preview: Boolean, skip: Int = 0, where: ComponentCustomerStoryFilter): ComponentCustomerStoryCollection
-  componentExpert(id: String!, locale: String, preview: Boolean): ComponentExpert
-  componentExpertCollection(limit: Int = 100, locale: String, order: [ComponentExpertOrder], preview: Boolean, skip: Int = 0, where: ComponentExpertFilter): ComponentExpertCollection
+  assetCollection(
+    limit: Int = 100
+    locale: String
+    order: [AssetOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: AssetFilter
+  ): AssetCollection
+  categorySolutionsImageLink(
+    id: String!
+    locale: String
+    preview: Boolean
+  ): CategorySolutionsImageLink
+  categorySolutionsImageLinkCollection(
+    limit: Int = 100
+    locale: String
+    order: [CategorySolutionsImageLinkOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: CategorySolutionsImageLinkFilter
+  ): CategorySolutionsImageLinkCollection
+  categorySolutionsImageLinkGrid(
+    id: String!
+    locale: String
+    preview: Boolean
+  ): CategorySolutionsImageLinkGrid
+  categorySolutionsImageLinkGridCollection(
+    limit: Int = 100
+    locale: String
+    order: [CategorySolutionsImageLinkGridOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: CategorySolutionsImageLinkGridFilter
+  ): CategorySolutionsImageLinkGridCollection
+  componentCardDeviceMock(
+    id: String!
+    locale: String
+    preview: Boolean
+  ): ComponentCardDeviceMock
+  componentCardDeviceMockCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentCardDeviceMockOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ComponentCardDeviceMockFilter
+  ): ComponentCardDeviceMockCollection
+  componentCategorySolutions2ColSubBody(
+    id: String!
+    locale: String
+    preview: Boolean
+  ): ComponentCategorySolutions2ColSubBody
+  componentCategorySolutions2ColSubBodyCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentCategorySolutions2ColSubBodyOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ComponentCategorySolutions2ColSubBodyFilter
+  ): ComponentCategorySolutions2ColSubBodyCollection
+  componentCategorySolutionsChapter(
+    id: String!
+    locale: String
+    preview: Boolean
+  ): ComponentCategorySolutionsChapter
+  componentCategorySolutionsChapterCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentCategorySolutionsChapterOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ComponentCategorySolutionsChapterFilter
+  ): ComponentCategorySolutionsChapterCollection
+  componentCategorySolutionsHeadline(
+    id: String!
+    locale: String
+    preview: Boolean
+  ): ComponentCategorySolutionsHeadline
+  componentCategorySolutionsHeadlineCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentCategorySolutionsHeadlineOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ComponentCategorySolutionsHeadlineFilter
+  ): ComponentCategorySolutionsHeadlineCollection
+  componentCustomerStory(
+    id: String!
+    locale: String
+    preview: Boolean
+  ): ComponentCustomerStory
+  componentCustomerStoryCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentCustomerStoryOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ComponentCustomerStoryFilter
+  ): ComponentCustomerStoryCollection
+  componentExpert(
+    id: String!
+    locale: String
+    preview: Boolean
+  ): ComponentExpert
+  componentExpertCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentExpertOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ComponentExpertFilter
+  ): ComponentExpertCollection
   componentLink(id: String!, locale: String, preview: Boolean): ComponentLink
-  componentLinkCollection(limit: Int = 100, locale: String, order: [ComponentLinkOrder], preview: Boolean, skip: Int = 0, where: ComponentLinkFilter): ComponentLinkCollection
-  componentStatistic(id: String!, locale: String, preview: Boolean): ComponentStatistic
-  componentStatisticCollection(limit: Int = 100, locale: String, order: [ComponentStatisticOrder], preview: Boolean, skip: Int = 0, where: ComponentStatisticFilter): ComponentStatisticCollection
+  componentLinkCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentLinkOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ComponentLinkFilter
+  ): ComponentLinkCollection
+  componentStatistic(
+    id: String!
+    locale: String
+    preview: Boolean
+  ): ComponentStatistic
+  componentStatisticCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentStatisticOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ComponentStatisticFilter
+  ): ComponentStatisticCollection
   constants(id: String!, locale: String, preview: Boolean): Constants
-  constantsCollection(limit: Int = 100, locale: String, order: [ConstantsOrder], preview: Boolean, skip: Int = 0, where: ConstantsFilter): ConstantsCollection
-  contentTypeRichText(id: String!, locale: String, preview: Boolean): ContentTypeRichText
-  contentTypeRichTextCollection(limit: Int = 100, locale: String, order: [ContentTypeRichTextOrder], preview: Boolean, skip: Int = 0, where: ContentTypeRichTextFilter): ContentTypeRichTextCollection
-  entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, where: EntryFilter): EntryCollection
+  constantsCollection(
+    limit: Int = 100
+    locale: String
+    order: [ConstantsOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ConstantsFilter
+  ): ConstantsCollection
+  contentTypeRichText(
+    id: String!
+    locale: String
+    preview: Boolean
+  ): ContentTypeRichText
+  contentTypeRichTextCollection(
+    limit: Int = 100
+    locale: String
+    order: [ContentTypeRichTextOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ContentTypeRichTextFilter
+  ): ContentTypeRichTextCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    order: [EntryOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: EntryFilter
+  ): EntryCollection
   footer(id: String!, locale: String, preview: Boolean): Footer
-  footerCollection(limit: Int = 100, locale: String, order: [FooterOrder], preview: Boolean, skip: Int = 0, where: FooterFilter): FooterCollection
+  footerCollection(
+    limit: Int = 100
+    locale: String
+    order: [FooterOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: FooterFilter
+  ): FooterCollection
   header(id: String!, locale: String, preview: Boolean): Header
-  headerCollection(limit: Int = 100, locale: String, order: [HeaderOrder], preview: Boolean, skip: Int = 0, where: HeaderFilter): HeaderCollection
+  headerCollection(
+    limit: Int = 100
+    locale: String
+    order: [HeaderOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: HeaderFilter
+  ): HeaderCollection
   market(id: String!, locale: String, preview: Boolean): Market
-  marketCollection(limit: Int = 100, locale: String, order: [MarketOrder], preview: Boolean, skip: Int = 0, where: MarketFilter): MarketCollection
-  moduleChapterGroup(id: String!, locale: String, preview: Boolean): ModuleChapterGroup
-  moduleChapterGroupCollection(limit: Int = 100, locale: String, order: [ModuleChapterGroupOrder], preview: Boolean, skip: Int = 0, where: ModuleChapterGroupFilter): ModuleChapterGroupCollection
-  moduleContainer(id: String!, locale: String, preview: Boolean): ModuleContainer
-  moduleContainerCollection(limit: Int = 100, locale: String, order: [ModuleContainerOrder], preview: Boolean, skip: Int = 0, where: ModuleContainerFilter): ModuleContainerCollection
-  moduleCustomerStoriesCarousel(id: String!, locale: String, preview: Boolean): ModuleCustomerStoriesCarousel
-  moduleCustomerStoriesCarouselCollection(limit: Int = 100, locale: String, order: [ModuleCustomerStoriesCarouselOrder], preview: Boolean, skip: Int = 0, where: ModuleCustomerStoriesCarouselFilter): ModuleCustomerStoriesCarouselCollection
-  moduleExpertsOverflow(id: String!, locale: String, preview: Boolean): ModuleExpertsOverflow
-  moduleExpertsOverflowCollection(limit: Int = 100, locale: String, order: [ModuleExpertsOverflowOrder], preview: Boolean, skip: Int = 0, where: ModuleExpertsOverflowFilter): ModuleExpertsOverflowCollection
+  marketCollection(
+    limit: Int = 100
+    locale: String
+    order: [MarketOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: MarketFilter
+  ): MarketCollection
+  moduleChapterGroup(
+    id: String!
+    locale: String
+    preview: Boolean
+  ): ModuleChapterGroup
+  moduleChapterGroupCollection(
+    limit: Int = 100
+    locale: String
+    order: [ModuleChapterGroupOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ModuleChapterGroupFilter
+  ): ModuleChapterGroupCollection
+  moduleContainer(
+    id: String!
+    locale: String
+    preview: Boolean
+  ): ModuleContainer
+  moduleContainerCollection(
+    limit: Int = 100
+    locale: String
+    order: [ModuleContainerOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ModuleContainerFilter
+  ): ModuleContainerCollection
+  moduleCustomerStoriesCarousel(
+    id: String!
+    locale: String
+    preview: Boolean
+  ): ModuleCustomerStoriesCarousel
+  moduleCustomerStoriesCarouselCollection(
+    limit: Int = 100
+    locale: String
+    order: [ModuleCustomerStoriesCarouselOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ModuleCustomerStoriesCarouselFilter
+  ): ModuleCustomerStoriesCarouselCollection
+  moduleExpertsOverflow(
+    id: String!
+    locale: String
+    preview: Boolean
+  ): ModuleExpertsOverflow
+  moduleExpertsOverflowCollection(
+    limit: Int = 100
+    locale: String
+    order: [ModuleExpertsOverflowOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ModuleExpertsOverflowFilter
+  ): ModuleExpertsOverflowCollection
   page(id: String!, locale: String, preview: Boolean): Page
-  pageCollection(limit: Int = 100, locale: String, order: [PageOrder], preview: Boolean, skip: Int = 0, where: PageFilter): PageCollection
+  pageCollection(
+    limit: Int = 100
+    locale: String
+    order: [PageOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: PageFilter
+  ): PageCollection
   script(id: String!, locale: String, preview: Boolean): Script
-  scriptCollection(limit: Int = 100, locale: String, order: [ScriptOrder], preview: Boolean, skip: Int = 0, where: ScriptFilter): ScriptCollection
+  scriptCollection(
+    limit: Int = 100
+    locale: String
+    order: [ScriptOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ScriptFilter
+  ): ScriptCollection
   seoMetadata(id: String!, locale: String, preview: Boolean): SeoMetadata
-  seoMetadataCollection(limit: Int = 100, locale: String, order: [SeoMetadataOrder], preview: Boolean, skip: Int = 0, where: SeoMetadataFilter): SeoMetadataCollection
+  seoMetadataCollection(
+    limit: Int = 100
+    locale: String
+    order: [SeoMetadataOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: SeoMetadataFilter
+  ): SeoMetadataCollection
   siteSettings(id: String!, locale: String, preview: Boolean): SiteSettings
-  siteSettingsCollection(limit: Int = 100, locale: String, order: [SiteSettingsOrder], preview: Boolean, skip: Int = 0, where: SiteSettingsFilter): SiteSettingsCollection
-  socialMediaLink(id: String!, locale: String, preview: Boolean): SocialMediaLink
-  socialMediaLinkCollection(limit: Int = 100, locale: String, order: [SocialMediaLinkOrder], preview: Boolean, skip: Int = 0, where: SocialMediaLinkFilter): SocialMediaLinkCollection
-  themeBackground(id: String!, locale: String, preview: Boolean): ThemeBackground
-  themeBackgroundCollection(limit: Int = 100, locale: String, order: [ThemeBackgroundOrder], preview: Boolean, skip: Int = 0, where: ThemeBackgroundFilter): ThemeBackgroundCollection
+  siteSettingsCollection(
+    limit: Int = 100
+    locale: String
+    order: [SiteSettingsOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: SiteSettingsFilter
+  ): SiteSettingsCollection
+  socialMediaLink(
+    id: String!
+    locale: String
+    preview: Boolean
+  ): SocialMediaLink
+  socialMediaLinkCollection(
+    limit: Int = 100
+    locale: String
+    order: [SocialMediaLinkOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: SocialMediaLinkFilter
+  ): SocialMediaLinkCollection
+  themeBackground(
+    id: String!
+    locale: String
+    preview: Boolean
+  ): ThemeBackground
+  themeBackgroundCollection(
+    limit: Int = 100
+    locale: String
+    order: [ThemeBackgroundOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ThemeBackgroundFilter
+  ): ThemeBackgroundCollection
   urlRedirect(id: String!, locale: String, preview: Boolean): UrlRedirect
-  urlRedirectCollection(limit: Int = 100, locale: String, order: [UrlRedirectOrder], preview: Boolean, skip: Int = 0, where: UrlRedirectFilter): UrlRedirectCollection
+  urlRedirectCollection(
+    limit: Int = 100
+    locale: String
+    order: [UrlRedirectOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: UrlRedirectFilter
+  ): UrlRedirectCollection
 }
 
 interface ResourceLink {
@@ -2449,8 +3234,19 @@ input ScriptFilter {
 }
 
 type ScriptLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  siteSettingsCollection(limit: Int = 100, locale: String, order: [ScriptLinkingCollectionsSiteSettingsCollectionOrder], preview: Boolean, skip: Int = 0): SiteSettingsCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
+  siteSettingsCollection(
+    limit: Int = 100
+    locale: String
+    order: [ScriptLinkingCollectionsSiteSettingsCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): SiteSettingsCollection
 }
 
 enum ScriptLinkingCollectionsSiteSettingsCollectionOrder {
@@ -2560,8 +3356,19 @@ input SeoMetadataFilter {
 }
 
 type SeoMetadataLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  pageCollection(limit: Int = 100, locale: String, order: [SeoMetadataLinkingCollectionsPageCollectionOrder], preview: Boolean, skip: Int = 0): PageCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
+  pageCollection(
+    limit: Int = 100
+    locale: String
+    order: [SeoMetadataLinkingCollectionsPageCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): PageCollection
 }
 
 enum SeoMetadataLinkingCollectionsPageCollectionOrder {
@@ -2613,7 +3420,14 @@ type SiteSettings implements Entry & _Node {
   googleTagManagerId(locale: String): String
   linkedFrom(allowedLocales: [String]): SiteSettingsLinkingCollections
   market(locale: String, preview: Boolean, where: MarketFilter): Market
-  scriptsCollection(limit: Int = 100, locale: String, order: [SiteSettingsScriptsCollectionOrder], preview: Boolean, skip: Int = 0, where: ScriptFilter): SiteSettingsScriptsCollection
+  scriptsCollection(
+    limit: Int = 100
+    locale: String
+    order: [SiteSettingsScriptsCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ScriptFilter
+  ): SiteSettingsScriptsCollection
   siteName(locale: String): String
   sys: Sys!
 }
@@ -2665,7 +3479,12 @@ input SiteSettingsFilter {
 }
 
 type SiteSettingsLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
 }
 
 enum SiteSettingsOrder {
@@ -2758,8 +3577,19 @@ input SocialMediaLinkFilter {
 }
 
 type SocialMediaLinkLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  marketCollection(limit: Int = 100, locale: String, order: [SocialMediaLinkLinkingCollectionsMarketCollectionOrder], preview: Boolean, skip: Int = 0): MarketCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
+  marketCollection(
+    limit: Int = 100
+    locale: String
+    order: [SocialMediaLinkLinkingCollectionsMarketCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): MarketCollection
 }
 
 enum SocialMediaLinkLinkingCollectionsMarketCollectionOrder {
@@ -2797,7 +3627,9 @@ type Sys {
   firstPublishedAt: DateTime
   id: String!
 
-  """The locale that was requested."""
+  """
+  The locale that was requested.
+  """
   locale: String
   publishedAt: DateTime
   publishedVersion: Int
@@ -2874,9 +3706,26 @@ input ThemeBackgroundFilter {
 }
 
 type ThemeBackgroundLinkingCollections {
-  componentCardDeviceMockCollection(limit: Int = 100, locale: String, order: [ThemeBackgroundLinkingCollectionsComponentCardDeviceMockCollectionOrder], preview: Boolean, skip: Int = 0): ComponentCardDeviceMockCollection
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  moduleContainerCollection(limit: Int = 100, locale: String, order: [ThemeBackgroundLinkingCollectionsModuleContainerCollectionOrder], preview: Boolean, skip: Int = 0): ModuleContainerCollection
+  componentCardDeviceMockCollection(
+    limit: Int = 100
+    locale: String
+    order: [ThemeBackgroundLinkingCollectionsComponentCardDeviceMockCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ComponentCardDeviceMockCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
+  moduleContainerCollection(
+    limit: Int = 100
+    locale: String
+    order: [ThemeBackgroundLinkingCollectionsModuleContainerCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ModuleContainerCollection
 }
 
 enum ThemeBackgroundLinkingCollectionsComponentCardDeviceMockCollectionOrder {
@@ -2993,7 +3842,12 @@ input UrlRedirectFilter {
 }
 
 type UrlRedirectLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
 }
 
 enum UrlRedirectOrder {
