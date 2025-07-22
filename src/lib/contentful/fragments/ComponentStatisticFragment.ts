@@ -12,5 +12,5 @@ export const ComponentStatisticFragment = graphql(
       suffix
     }
   `,
-  [RichTextFragment]
+  [RichTextFragment],
 );

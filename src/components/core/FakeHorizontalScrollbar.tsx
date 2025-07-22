@@ -60,12 +60,12 @@ export const FakeHorizontalScrollbar = ({
 
     const handleDrag = (e: PointerEvent) => {
       const handleDragMove = createDragMoveHandler(
-        parseInt(
+        Number.parseInt(
           (scrollThumb.style.transform ?? "translateX(0px)").slice(
             "translateX(".length,
-            0 - "px)".length
-          )
-        ) - e.clientX
+            0 - "px)".length,
+          ),
+        ) - e.clientX,
       );
       if (scrollSnapTo) {
         scrollContainer.style.scrollSnapType = "none";
@@ -82,16 +82,16 @@ export const FakeHorizontalScrollbar = ({
               scrollContainer.getBoundingClientRect().left;
             const firstInViewIndex = scrollItems.findIndex(
               (item) =>
-                item.getBoundingClientRect().right - containerLeftOffset > 0
+                item.getBoundingClientRect().right - containerLeftOffset > 0,
             );
             const snapItemIndex =
               Math.abs(
                 scrollItems[firstInViewIndex].getBoundingClientRect().left -
-                  containerLeftOffset
+                  containerLeftOffset,
               ) <
               Math.abs(
                 scrollItems[firstInViewIndex + 1].getBoundingClientRect().left -
-                  containerLeftOffset
+                  containerLeftOffset,
               )
                 ? firstInViewIndex
                 : firstInViewIndex + 1;
@@ -106,7 +106,7 @@ export const FakeHorizontalScrollbar = ({
           }
           document.body.style.cursor = "auto";
         },
-        { once: true }
+        { once: true },
       );
     };
 
@@ -143,7 +143,7 @@ export const FakeHorizontalScrollbar = ({
         ref={scrollThumbRef}
         className={cx(
           "absolute h-[4px] max-w-full cursor-grab touch-pan-y bg-neutral-200/40 transition-[height,top] active:cursor-grabbing",
-          scrollBarClassName
+          scrollBarClassName,
         )}
         style={{ userSelect: "none" }}
         aria-label={constants.scrollbarThumbLabel ?? ""}

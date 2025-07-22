@@ -11,5 +11,5 @@ export const GetConstantsQuery = graphql(
       }
     }
   `,
-  [ConstantsFragment]
+  [ConstantsFragment],
 );

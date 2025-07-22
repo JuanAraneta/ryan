@@ -1,4 +1,4 @@
-import { Children, ReactNode, JSX, ReactElement } from "react";
+import { Children, ReactNode, ReactElement } from "react";
 
 export function reactNodeIsSingleElement(
   node: ReactNode,

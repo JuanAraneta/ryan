@@ -22,5 +22,5 @@ export const ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment =
         }
       }
     `,
-    [RichTextFragment, AssetFragment]
+    [RichTextFragment, AssetFragment],
   );

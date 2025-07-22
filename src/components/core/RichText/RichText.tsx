@@ -1,7 +1,7 @@
 "use client";
 
 import { FragmentOf, readFragment } from "gql.tada";
-import { ReactNode, useMemo } from "react";
+import { useMemo } from "react";
 import {
   documentToReactComponents,
   Options,
@@ -35,22 +35,22 @@ export const RichText = ({
       options: optionsProp,
       overrides,
     }),
-    [optionsProp, overrides]
+    [optionsProp, overrides],
   );
 
   const renderOptions = useRichTextRenderOptions(
     content?.richText?.links,
     options,
-    spansOnly
+    spansOnly,
   );
 
   const render = useMemo(
     () =>
       documentToReactComponents(
         content?.richText?.json as RichTextDocument,
-        renderOptions
+        renderOptions,
       ),
-    [content, renderOptions]
+    [content, renderOptions],
   );
 
   return render;
@@ -82,21 +82,21 @@ export const RichTitleText = ({
       options: optionsProp,
       overrides: merge(richTitleTextOverrides, overrides),
     }),
-    [optionsProp, overrides]
+    [optionsProp, overrides],
   );
 
   const renderOptions = useRichTextRenderOptions(
     content?.richText?.links,
     options,
-    spansOnly
+    spansOnly,
   );
 
   return useMemo(
     () =>
       documentToReactComponents(
         content?.richText?.json as RichTextDocument,
-        renderOptions
+        renderOptions,
       ),
-    [content, renderOptions]
+    [content, renderOptions],
   );
 };

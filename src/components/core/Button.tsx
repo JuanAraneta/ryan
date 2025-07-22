@@ -19,7 +19,7 @@ const buttonClasses = cva(
     defaultVariants: {
       variant: "primary",
     },
-  }
+  },
 );
 
 type ButtonVariantProps = VariantProps<typeof buttonClasses>;
@@ -43,9 +43,9 @@ export const Button = ({
       {
         className: cx(
           (props?.children?.props as any)?.className,
-          buttonClasses({ variant })
+          buttonClasses({ variant }),
         ),
-      }
+      },
     );
   } else {
     return (
