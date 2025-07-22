@@ -45,7 +45,12 @@ export const ModuleExpertsOverflow = ({
         {!!statistic && (
           <div className="hidden dsk:flex items-center justify-center gap-10">
             {statisticFlair?.url && (
-              <Image src={statisticFlair.url} alt="Statistic flair" />
+              <Image
+                src={statisticFlair.url}
+                alt="Statistic flair"
+                width={300}
+                height={400}
+              />
             )}
             <div className="flex flex-col">
               <p className="text-content-secondary typo-body-large">

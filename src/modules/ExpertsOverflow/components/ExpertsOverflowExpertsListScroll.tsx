@@ -63,6 +63,8 @@ export const ExpertsOverflowExpertsListScroll = ({
                         className="size-full object-fill rounded-lg transition-transform group-hover:scale-105"
                         src={headshot.url}
                         alt={expert.fullName ?? ""}
+                        width={300}
+                        height={400}
                       />
                     </div>
                   )}
