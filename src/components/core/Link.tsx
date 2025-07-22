@@ -3,9 +3,9 @@
 import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
 import { ResultOf, FragmentOf } from "gql.tada";
 import { ComponentProps, forwardRef, useMemo } from "react";
-import { default as NextLink } from "next/link";
+import NextLink from "next/link";
 
-type LinkProps = { noLocalePrefix?: boolean } & (
+type LinkProps =
   | (ComponentProps<"a"> & { href: string; link?: never })
   | (ComponentProps<"a"> & {
       link:
@@ -14,19 +14,12 @@ type LinkProps = { noLocalePrefix?: boolean } & (
         | null
         | undefined;
       href?: never;
-    })
-);
+    });
 
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
   (
-    {
-      link: linkProp,
-      href: hrefProp,
-      children: childrenProp,
-      noLocalePrefix = false,
-      ...props
-    },
-    ref
+    { link: linkProp, href: hrefProp, children: childrenProp, ...props },
+    ref,
   ) => {
     const link = linkProp as ResultOf<typeof ComponentLinkFragment>;
     const href = useMemo(() => {
@@ -43,24 +36,22 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
 
     const children = childrenProp ?? link?.label;
 
-    if (isInternal) {
-      return (
-        <NextLink {...props} href={href} ref={ref}>
-          {children}
-        </NextLink>
-      );
-    } else {
-      return (
-        <a
-          {...props}
-          href={href}
-          ref={ref}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {children}
-        </a>
-      );
-    }
-  }
+    return isInternal ? (
+      <NextLink {...props} href={href} ref={ref}>
+        {children}
+      </NextLink>
+    ) : (
+      <a
+        {...props}
+        href={href}
+        ref={ref}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {children}
+      </a>
+    );
+  },
 );
+
+Link.displayName = "Link";

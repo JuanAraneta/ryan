@@ -15,7 +15,7 @@ type AnimatableNumberProps = {
         currentTime: number,
         startValue: number,
         finalValue: number,
-        duration: number
+        duration: number,
       ) => number)
     | keyof typeof easing;
 };
@@ -30,20 +30,20 @@ export const AnimatableNumber: React.FC<AnimatableNumberProps> = ({
   const easingFunction =
     typeof easingProp === "string" ? easing[easingProp] : easingProp;
   const usesCommas = finalValueStrWithCommas.includes(",");
-  const finalValueStr = finalValueStrWithCommas.replace(/,/g, "");
+  const finalValueStr = finalValueStrWithCommas.replaceAll(",", "");
   const precision = findPrecision(finalValueStr);
-  const finalValue = parseFloat(finalValueStr) * 10 ** precision;
-  const startTime = useRef(new Date().getTime());
+  const finalValue = Number.parseFloat(finalValueStr) * 10 ** precision;
+  const startTime = useRef(Date.now());
   const [value, setValue] = useState(startingValue);
 
   useLayoutEffect(() => {
     if (!onScreen) return;
-    startTime.current = new Date().getTime();
+    startTime.current = Date.now();
   }, [onScreen]);
 
   useAnimationFrame(() => {
     if (!onScreen) return;
-    const currentTime = new Date().getTime() - startTime.current;
+    const currentTime = Date.now() - startTime.current;
     setValue(easingFunction(currentTime, startingValue, finalValue, duration));
     const isDone = currentTime > duration;
     if (isDone) {
@@ -68,7 +68,7 @@ export const AnimatableNumber: React.FC<AnimatableNumberProps> = ({
         aria-hidden
         className={cx(
           "absolute right-0 transition-opacity",
-          onScreen ? "opacity-100" : "opacity-0"
+          onScreen ? "opacity-100" : "opacity-0",
         )}
       >
         {getPrintout(value, precision, usesCommas)}
@@ -80,7 +80,7 @@ export const AnimatableNumber: React.FC<AnimatableNumberProps> = ({
 const getPrintout = (
   value: number,
   precision: number,
-  commas: boolean
+  commas: boolean,
 ): string => {
   const base = (value / 10 ** precision).toFixed(precision);
   if (!commas) {
@@ -89,12 +89,9 @@ const getPrintout = (
     const parts = base.split(".");
     const whole = parts[0];
     const decimal = parts[1];
-    const wholeWithCommas = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    if (!decimal) {
-      return wholeWithCommas;
-    } else {
-      return `${wholeWithCommas}.${decimal}`;
-    }
+    const wholeWithCommas = whole.replaceAll(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+    return !decimal ? wholeWithCommas : `${wholeWithCommas}.${decimal}`;
   }
 };
 
@@ -103,7 +100,7 @@ export const easing = {
     currentTime: number,
     startValue: number,
     finalValue: number,
-    duration: number
+    duration: number,
   ): number => {
     const t = currentTime / duration - 1;
     return finalValue * (1 - t * t) + startValue;
@@ -112,7 +109,7 @@ export const easing = {
     currentTime: number,
     startValue: number,
     finalValue: number,
-    duration: number
+    duration: number,
   ): number => {
     const t = currentTime / duration - 1;
     return finalValue * (1 - t * t * t * t) + startValue;

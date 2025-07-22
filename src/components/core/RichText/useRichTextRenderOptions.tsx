@@ -39,19 +39,18 @@ export type RichTextLinks = {
 };
 
 export const buildRichTextMaps = (
-  links?: DeepPartial<RichTextLinks>
+  links?: DeepPartial<RichTextLinks>,
 ): RichTextMaps => {
   const assetMap = new Map();
   const entryMap = new Map();
 
   if (links) {
     links.assets?.block?.forEach(
-      (asset) => asset && assetMap.set(asset.sys?.id, asset)
+      (asset) => asset && assetMap.set(asset.sys?.id, asset),
     );
-
     (["block", "hyperlink", "inline"] as const).forEach((key) => {
       links.entries?.[key]?.forEach(
-        (entry) => entry && entryMap.set(entry.sys?.id, entry)
+        (entry) => entry && entryMap.set(entry.sys?.id, entry),
       );
     });
   }
@@ -67,7 +66,7 @@ type RichTextMaps = {
 type Override = (
   node: Block | Inline,
   children: ReactNode,
-  maps: RichTextMaps
+  maps: RichTextMaps,
 ) => JSX.Element | null;
 
 export type RichTextRenderOverrides = {
@@ -89,7 +88,7 @@ export const useRichTextRenderOptions = (
     options?: Options;
     overrides?: RichTextRenderOverrides;
   } = {},
-  spansOnly?: boolean
+  spansOnly?: boolean,
 ): Options =>
   useMemo(() => {
     const { assetMap, entryMap } = buildRichTextMaps(links);
@@ -156,7 +155,7 @@ export const useRichTextRenderOptions = (
 
             if (embeddedEntry?.__typename !== "Page") {
               console.error(
-                `Non-page linked in INLINES.ENTRY_HYPERLINK, id: "${node?.data?.target?.sys?.id}"`
+                `Non-page linked in INLINES.ENTRY_HYPERLINK, id: "${node?.data?.target?.sys?.id}"`,
               );
               return null;
             } else
@@ -180,7 +179,7 @@ export const useRichTextRenderOptions = (
             }
 
             const embeddedEntry = entryMap.get(
-              node.data.target.sys.id
+              node.data.target.sys.id,
             ) as LinkWithType;
 
             if (embeddedEntry?.__typename === "ComponentLink") {
@@ -199,14 +198,20 @@ export const useRichTextRenderOptions = (
             const asset = assetMap.get(node.data.target.sys.id) as ResultOf<
               typeof AssetFragment
             >;
-            return <img src={asset.url ?? ""} key={node.data.target.sys.id} />;
+            return (
+              <img
+                src={asset.url ?? ""}
+                key={node.data.target.sys.id}
+                alt="Embedded asset" // TODO: Add alt text from Contentful
+              />
+            );
           },
           ...options?.renderNode,
         },
       } satisfies Options,
       options,
-      overrides
+      overrides,
     );
 
     return mergedOptions;
-  }, [links, options, overrides]);
+  }, [links, options, overrides, spansOnly]);

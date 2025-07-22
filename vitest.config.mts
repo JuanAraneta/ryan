@@ -1,6 +1,9 @@
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
-import { resolve } from "node:path";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   plugins: [react()],
@@ -10,6 +13,6 @@ export default defineConfig({
     reporters: "verbose",
   },
   resolve: {
-    alias: [{ find: "@", replacement: resolve(__dirname, "./") }],
+    alias: [{ find: "@", replacement: path.resolve(__dirname, "./") }],
   },
 });

@@ -45,4 +45,5 @@ export const useScrollJumpOnClickEventHandler = (
     const scrollTarget = children[scrollTargetIndex];
 
     container.scrollTo({ left: scrollTarget.offsetLeft, behavior: "smooth" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [direction]);

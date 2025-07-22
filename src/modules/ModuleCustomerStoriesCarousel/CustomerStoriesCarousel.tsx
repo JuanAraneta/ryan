@@ -26,7 +26,7 @@ export const CustomerStoriesCarousel = ({
           href={`/customer-stories/${story.slug}`}
           className={cx(
             "flex w-[700px] max-w-[calc(100vw-3rem)] flex-col snap-start snap-always rounded-lg overflow-hidden gradient-container group h-full",
-            focusStyle
+            focusStyle,
           )}
         >
           <div className="relative w-full overflow-hidden">
@@ -34,12 +34,14 @@ export const CustomerStoriesCarousel = ({
               <img
                 className="h-[190px] dsk:h-[400px] w-full object-cover group-hover:scale-105 transition-transform"
                 src={heroMedia.url}
+                alt={`${story.customerName} hero media`}
               />
             )}
             {!!customerLogo?.url && (
               <img
                 className="absolute left-5 top-5 h-8"
                 src={customerLogo?.url}
+                alt={`${story.customerName} customer logo`}
               />
             )}
           </div>

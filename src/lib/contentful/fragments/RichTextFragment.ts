@@ -47,5 +47,5 @@ export const RichTextFragment = graphql(
       }
     }
   `,
-  [ComponentLinkFragment]
+  [ComponentLinkFragment],
 );

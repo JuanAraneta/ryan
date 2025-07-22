@@ -12,7 +12,10 @@ export const ModuleCustomerStoriesCarousel = ({
 }: {
   data: ResultOf<typeof GetModuleCustomerStoriesOverflowById>;
 }) => (
-  <Section className="dark py-16 dsk:py-32">
+  <Section
+    data-testid="ModuleCustomerStoriesCarousel"
+    className="dark py-16 dsk:py-32"
+  >
     <div className="flex flex-col justify-center items-center text-center">
       <h1 className="typo-display font-light">
         <RichTitleText
@@ -32,7 +35,7 @@ export const ModuleCustomerStoriesCarousel = ({
       <CustomerStoriesCarousel
         data={readFragment(
           ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment,
-          data.moduleCustomerStoriesCarousel?.customerStoriesCollection
+          data.moduleCustomerStoriesCarousel?.customerStoriesCollection,
         )}
       />
     )}
