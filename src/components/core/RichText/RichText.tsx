@@ -1,21 +1,21 @@
-'use client';
+"use client";
 
-import { FragmentOf, readFragment } from 'gql.tada';
-import { useMemo } from 'react';
+import { FragmentOf, readFragment } from "gql.tada";
+import { useMemo } from "react";
 import {
   documentToReactComponents,
   Options,
-} from '@contentful/rich-text-react-renderer';
+} from "@contentful/rich-text-react-renderer";
 import {
   MARKS,
   Document as RichTextDocument,
-} from '@contentful/rich-text-types';
+} from "@contentful/rich-text-types";
 import {
   RichTextRenderOverrides,
   useRichTextRenderOptions,
-} from './useRichTextRenderOptions';
-import { RichTextFragment } from '@/lib/contentful/fragments/RichTextFragment';
-import merge from 'lodash/merge';
+} from "./useRichTextRenderOptions";
+import { RichTextFragment } from "@/lib/contentful/fragments/RichTextFragment";
+import merge from "lodash/merge";
 
 export const RichText = ({
   content: maskedContentFragment,
@@ -35,22 +35,22 @@ export const RichText = ({
       options: optionsProp,
       overrides,
     }),
-    [optionsProp, overrides]
+    [optionsProp, overrides],
   );
 
   const renderOptions = useRichTextRenderOptions(
     content?.richText?.links,
     options,
-    spansOnly
+    spansOnly,
   );
 
   const render = useMemo(
     () =>
       documentToReactComponents(
         content?.richText?.json as RichTextDocument,
-        renderOptions
+        renderOptions,
       ),
-    [content, renderOptions]
+    [content, renderOptions],
   );
 
   return render;
@@ -82,21 +82,21 @@ export const RichTitleText = ({
       options: optionsProp,
       overrides: merge(richTitleTextOverrides, overrides),
     }),
-    [optionsProp, overrides]
+    [optionsProp, overrides],
   );
 
   const renderOptions = useRichTextRenderOptions(
     content?.richText?.links,
     options,
-    spansOnly
+    spansOnly,
   );
 
   return useMemo(
     () =>
       documentToReactComponents(
         content?.richText?.json as RichTextDocument,
-        renderOptions
+        renderOptions,
       ),
-    [content, renderOptions]
+    [content, renderOptions],
   );
 };

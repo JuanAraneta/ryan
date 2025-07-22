@@ -1,5 +1,5 @@
-import { graphql } from 'gql.tada';
-import { RichTextFragment } from './RichTextFragment';
+import { graphql } from "gql.tada";
+import { RichTextFragment } from "./RichTextFragment";
 
 export const ComponentStatisticFragment = graphql(
   `
@@ -12,5 +12,5 @@ export const ComponentStatisticFragment = graphql(
       suffix
     }
   `,
-  [RichTextFragment]
+  [RichTextFragment],
 );

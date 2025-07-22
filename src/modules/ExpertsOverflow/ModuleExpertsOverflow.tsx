@@ -1,14 +1,14 @@
-import { Link } from '@/components/core/Link';
-import { RichText, RichTitleText } from '@/components/core/RichText';
-import { ComponentStatisticFragment } from '@/lib/contentful/fragments/ComponentStatisticFragment';
-import { GetModuleExpertsOverflowById } from '@/lib/contentful/query/GetModuleExpertsOverflowById';
-import { readFragment, ResultOf } from 'gql.tada';
-import { ExpertsOverflowExpertsListScroll } from './components/ExpertsOverflowExpertsListScroll';
-import { ModuleExpertsOverflowExpertsListCollectionFragment } from '@/lib/contentful/fragments/ModuleExpertsOverflowExpertsListCollectionFragment';
-import { AnimatableNumber } from '@/components/core/AnimatableNumber';
-import { AssetFragment } from '@/lib/contentful/fragments/AssetFragment';
-import { Button } from '@/components/core/Button';
-import Image from 'next/image';
+import { Link } from "@/components/core/Link";
+import { RichText, RichTitleText } from "@/components/core/RichText";
+import { ComponentStatisticFragment } from "@/lib/contentful/fragments/ComponentStatisticFragment";
+import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleExpertsOverflowById";
+import { readFragment, ResultOf } from "gql.tada";
+import { ExpertsOverflowExpertsListScroll } from "./components/ExpertsOverflowExpertsListScroll";
+import { ModuleExpertsOverflowExpertsListCollectionFragment } from "@/lib/contentful/fragments/ModuleExpertsOverflowExpertsListCollectionFragment";
+import { AnimatableNumber } from "@/components/core/AnimatableNumber";
+import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
+import { Button } from "@/components/core/Button";
+import Image from "next/image";
 
 export const ModuleExpertsOverflow = ({
   data,
@@ -17,11 +17,11 @@ export const ModuleExpertsOverflow = ({
 }) => {
   const statistic = readFragment(
     ComponentStatisticFragment,
-    data.moduleExpertsOverflow?.statistic
+    data.moduleExpertsOverflow?.statistic,
   );
   const statisticFlair = readFragment(
     AssetFragment,
-    data.moduleExpertsOverflow?.statisticFlair
+    data.moduleExpertsOverflow?.statisticFlair,
   );
   return (
     <section className="dark px-6 py-16 dsk:px-20 dsk:py-32">
@@ -55,9 +55,9 @@ export const ModuleExpertsOverflow = ({
                 {statistic?.prefix}
                 <AnimatableNumber
                   value={
-                    new Intl.NumberFormat('en-US').format(
-                      Number(statistic?.value ?? '0')
-                    ) ?? '0'
+                    new Intl.NumberFormat("en-US").format(
+                      Number(statistic?.value ?? "0"),
+                    ) ?? "0"
                   }
                 />
                 {statistic?.suffix}
@@ -70,7 +70,7 @@ export const ModuleExpertsOverflow = ({
         <ExpertsOverflowExpertsListScroll
           data={readFragment(
             ModuleExpertsOverflowExpertsListCollectionFragment,
-            data.moduleExpertsOverflow?.expertsListCollection
+            data.moduleExpertsOverflow?.expertsListCollection,
           )}
         />
       )}

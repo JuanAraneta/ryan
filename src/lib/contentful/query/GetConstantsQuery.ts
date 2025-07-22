@@ -1,5 +1,5 @@
-import { graphql } from 'gql.tada';
-import { ConstantsFragment } from '../fragments/ConstantsFragment';
+import { graphql } from "gql.tada";
+import { ConstantsFragment } from "../fragments/ConstantsFragment";
 
 export const GetConstantsQuery = graphql(
   `
@@ -11,5 +11,5 @@ export const GetConstantsQuery = graphql(
       }
     }
   `,
-  [ConstantsFragment]
+  [ConstantsFragment],
 );

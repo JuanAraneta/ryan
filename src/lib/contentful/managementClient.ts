@@ -1,4 +1,4 @@
-import { createClient, Environment } from 'contentful-management';
+import { createClient, Environment } from "contentful-management";
 
 const {
   CONTENTFUL_MANAGEMENT_API,
@@ -11,7 +11,7 @@ if (
   !CONTENTFUL_SPACE_ID ||
   !CONTENTFUL_ENVIRONMENT
 ) {
-  throw new Error('CONTENTFUL_MANAGEMENT_API is not defined');
+  throw new Error("CONTENTFUL_MANAGEMENT_API is not defined");
 }
 
 export const managementClient: Promise<Environment> = createClient({

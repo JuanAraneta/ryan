@@ -1,23 +1,23 @@
-'use client';
+"use client";
 
-import { FakeHorizontalScrollbar } from '@/components/core/FakeHorizontalScrollbar';
-import { IconButton } from '@/components/core/IconButton';
-import { useConstants } from '@/components/providers/ConstantsContext';
-import { useRerenderOnScreenSize } from '@/hooks/useRerenderOnScreenSize';
-import { useScrollJumpOnClickEventHandler } from '@/hooks/useScrollJumpOnClickEventHandler';
-import { AssetFragment } from '@/lib/contentful/fragments/AssetFragment';
-import { ModuleExpertsOverflowExpertsListCollectionFragment } from '@/lib/contentful/fragments/ModuleExpertsOverflowExpertsListCollectionFragment';
-import { focusStyle } from '@/utils/focusStyle';
-import { cx } from 'cva';
-import { readFragment, ResultOf } from 'gql.tada';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRef } from 'react';
+import { FakeHorizontalScrollbar } from "@/components/core/FakeHorizontalScrollbar";
+import { IconButton } from "@/components/core/IconButton";
+import { useConstants } from "@/components/providers/ConstantsContext";
+import { useRerenderOnScreenSize } from "@/hooks/useRerenderOnScreenSize";
+import { useScrollJumpOnClickEventHandler } from "@/hooks/useScrollJumpOnClickEventHandler";
+import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
+import { ModuleExpertsOverflowExpertsListCollectionFragment } from "@/lib/contentful/fragments/ModuleExpertsOverflowExpertsListCollectionFragment";
+import { focusStyle } from "@/utils/focusStyle";
+import { cx } from "cva";
+import { readFragment, ResultOf } from "gql.tada";
+import Image from "next/image";
+import Link from "next/link";
+import { useRef } from "react";
 import {
   MdChevronLeft,
   MdChevronRight,
   MdOutlineArrowForward,
-} from 'react-icons/md';
+} from "react-icons/md";
 
 export const ExpertsOverflowExpertsListScroll = ({
   data,
@@ -27,13 +27,13 @@ export const ExpertsOverflowExpertsListScroll = ({
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const prevClickHandler = useScrollJumpOnClickEventHandler(
     scrollContainerRef,
-    'prev',
-    'li'
+    "prev",
+    "li",
   );
   const nextClickHandler = useScrollJumpOnClickEventHandler(
     scrollContainerRef,
-    'next',
-    'li'
+    "next",
+    "li",
   );
   const constants = useConstants();
   useRerenderOnScreenSize();
@@ -55,14 +55,14 @@ export const ExpertsOverflowExpertsListScroll = ({
               >
                 <Link
                   href={`/experts/${expert?.slug}`}
-                  className={cx(focusStyle, 'group rounded-lg')}
+                  className={cx(focusStyle, "group rounded-lg")}
                 >
                   {!!expert && !!headshot?.url && (
                     <div className="w-[300px] h-[400px] rounded-lg overflow-hidden">
                       <Image
                         className="size-full object-fill rounded-lg transition-transform group-hover:scale-105"
                         src={headshot.url}
-                        alt={expert.fullName ?? ''}
+                        alt={expert.fullName ?? ""}
                       />
                     </div>
                   )}
@@ -91,25 +91,25 @@ export const ExpertsOverflowExpertsListScroll = ({
       </div>
       <div
         className={cx(
-          'pt-6 dsk:pt-10 gap-6 items-center',
+          "pt-6 dsk:pt-10 gap-6 items-center",
           scrollContainerRef.current?.clientWidth ===
             scrollContainerRef.current?.scrollWidth
-            ? 'hidden'
-            : 'flex'
+            ? "hidden"
+            : "flex",
         )}
       >
         <div className="hidden dsk:flex gap-6">
           <IconButton
             variant="secondary"
             onClick={prevClickHandler}
-            aria-label={constants.previousButtonAriaLabel ?? ''}
+            aria-label={constants.previousButtonAriaLabel ?? ""}
           >
             <MdChevronLeft size={24} />
           </IconButton>
           <IconButton
             variant="secondary"
             onClick={nextClickHandler}
-            aria-label={constants.nextButtonAriaLabel ?? ''}
+            aria-label={constants.nextButtonAriaLabel ?? ""}
           >
             <MdChevronRight size={24} />
           </IconButton>

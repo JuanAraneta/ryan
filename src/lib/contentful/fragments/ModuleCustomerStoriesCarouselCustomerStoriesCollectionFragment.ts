@@ -1,6 +1,6 @@
-import { graphql } from 'gql.tada';
-import { RichTextFragment } from './RichTextFragment';
-import { AssetFragment } from './AssetFragment';
+import { graphql } from "gql.tada";
+import { RichTextFragment } from "./RichTextFragment";
+import { AssetFragment } from "./AssetFragment";
 
 export const ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment =
   graphql(
@@ -22,5 +22,5 @@ export const ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment =
         }
       }
     `,
-    [RichTextFragment, AssetFragment]
+    [RichTextFragment, AssetFragment],
   );

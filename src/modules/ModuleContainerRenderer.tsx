@@ -1,7 +1,7 @@
-import { contentClient } from '@/lib/contentful/contentClient';
-import { PageModulesCollectionFragment } from '@/lib/contentful/fragments/PageModulesCollectionFragment';
-import moduleRegistry from '@/modules/moduleRegistry';
-import { ResultOf } from 'gql.tada';
+import { contentClient } from "@/lib/contentful/contentClient";
+import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
+import moduleRegistry from "@/modules/moduleRegistry";
+import { ResultOf } from "gql.tada";
 
 export const ModuleContainerRenderer = async ({
   data,
@@ -16,7 +16,7 @@ export const ModuleContainerRenderer = async ({
           !moduleContainer.modulesCollection?.items ? null : (
             <div
               key={moduleContainer.sys.id}
-              className={moduleContainer.backgroundColor ?? ''}
+              className={moduleContainer.backgroundColor ?? ""}
             >
               {await Promise.allSettled(
                 moduleContainer?.modulesCollection?.items.map(
@@ -25,7 +25,7 @@ export const ModuleContainerRenderer = async ({
                     const type = module.__typename;
                     if (!moduleRegistry[type]) {
                       console.warn(
-                        `Module type of "${type}" not found in registry`
+                        `Module type of "${type}" not found in registry`,
                       );
                       return null;
                     }
@@ -34,7 +34,7 @@ export const ModuleContainerRenderer = async ({
 
                     if (!registeredModule) {
                       console.warn(
-                        `Unregistered module type "${type}" requested for page`
+                        `Unregistered module type "${type}" requested for page`,
                       );
                       return null;
                     }
@@ -49,26 +49,26 @@ export const ModuleContainerRenderer = async ({
                     if (!result || !result.data) {
                       console.error(
                         `Module request failed for id "${module.sys.id}"`,
-                        result
+                        result,
                       );
                       return null;
                     }
 
                     return <Component key={index} data={result.data} />;
-                  }
-                )
+                  },
+                ),
               ).then((result) =>
                 result
-                  .filter((render) => render.status === 'fulfilled')
-                  .map((render) => render.value)
+                  .filter((render) => render.status === "fulfilled")
+                  .map((render) => render.value),
               )}
             </div>
-          )
-        )
+          ),
+        ),
       ).then((result) =>
         result
-          .filter((render) => render.status === 'fulfilled')
-          .map((render) => render.value)
+          .filter((render) => render.status === "fulfilled")
+          .map((render) => render.value),
       )}
     </>
   );

@@ -1,9 +1,9 @@
-import { ResultOf, TadaDocumentNode } from 'gql.tada';
-import { FC } from 'react';
-import { ModuleExpertsOverflow } from './ExpertsOverflow';
-import { GetModuleExpertsOverflowById } from '@/lib/contentful/query/GetModuleExpertsOverflowById';
-import { ModuleCustomerStoriesCarousel } from './ModuleCustomerStoriesCarousel';
-import { GetModuleCustomerStoriesOverflowById } from '@/lib/contentful/query/GetModuleCustomerStoriesOverflowById';
+import { ResultOf, TadaDocumentNode } from "gql.tada";
+import { FC } from "react";
+import { ModuleExpertsOverflow } from "./ExpertsOverflow";
+import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleExpertsOverflowById";
+import { ModuleCustomerStoriesCarousel } from "./ModuleCustomerStoriesCarousel";
+import { GetModuleCustomerStoriesOverflowById } from "@/lib/contentful/query/GetModuleCustomerStoriesOverflowById";
 
 type ModuleComponent<Data = unknown> = {
   component: FC<{ data: Data }>;

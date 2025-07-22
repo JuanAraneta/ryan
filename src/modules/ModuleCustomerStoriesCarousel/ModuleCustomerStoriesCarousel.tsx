@@ -1,10 +1,10 @@
-import { Button } from '@/components/core/Button';
-import { Link } from '@/components/core/Link';
-import { RichTitleText } from '@/components/core/RichText';
-import { GetModuleCustomerStoriesOverflowById } from '@/lib/contentful/query/GetModuleCustomerStoriesOverflowById';
-import { readFragment, ResultOf } from 'gql.tada';
-import { CustomerStoriesCarousel } from './CustomerStoriesCarousel';
-import { ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment } from '@/lib/contentful/fragments/ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment';
+import { Button } from "@/components/core/Button";
+import { Link } from "@/components/core/Link";
+import { RichTitleText } from "@/components/core/RichText";
+import { GetModuleCustomerStoriesOverflowById } from "@/lib/contentful/query/GetModuleCustomerStoriesOverflowById";
+import { readFragment, ResultOf } from "gql.tada";
+import { CustomerStoriesCarousel } from "./CustomerStoriesCarousel";
+import { ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment } from "@/lib/contentful/fragments/ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment";
 
 export const ModuleCustomerStoriesCarousel = ({
   data,
@@ -31,7 +31,7 @@ export const ModuleCustomerStoriesCarousel = ({
       <CustomerStoriesCarousel
         data={readFragment(
           ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment,
-          data.moduleCustomerStoriesCarousel?.customerStoriesCollection
+          data.moduleCustomerStoriesCarousel?.customerStoriesCollection,
         )}
       />
     )}

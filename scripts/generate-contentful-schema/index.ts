@@ -1,5 +1,5 @@
-import * as dotenv from 'dotenv';
-import { $ } from 'zx';
+import * as dotenv from "dotenv";
+import { $ } from "zx";
 
 (async () => {
   dotenv.config();

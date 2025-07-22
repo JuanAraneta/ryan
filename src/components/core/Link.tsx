@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { ComponentLinkFragment } from '@/lib/contentful/fragments/ComponentLinkFragment';
-import { ResultOf, FragmentOf } from 'gql.tada';
-import { ComponentProps, forwardRef, useMemo } from 'react';
-import NextLink from 'next/link';
+import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
+import { ResultOf, FragmentOf } from "gql.tada";
+import { ComponentProps, forwardRef, useMemo } from "react";
+import NextLink from "next/link";
 
 type LinkProps =
-  | (ComponentProps<'a'> & { href: string; link?: never })
-  | (ComponentProps<'a'> & {
+  | (ComponentProps<"a"> & { href: string; link?: never })
+  | (ComponentProps<"a"> & {
       link:
         | ResultOf<typeof ComponentLinkFragment>
         | FragmentOf<typeof ComponentLinkFragment>
@@ -19,7 +19,7 @@ type LinkProps =
 export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
   (
     { link: linkProp, href: hrefProp, children: childrenProp, ...props },
-    ref
+    ref,
   ) => {
     const link = linkProp as ResultOf<typeof ComponentLinkFragment>;
     const href = useMemo(() => {
@@ -27,11 +27,11 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
         return hrefProp;
       } else if (link?.internalSource?.slug) {
         return `/${link.internalSource.slug}`;
-      } else return link?.externalSource ?? '#';
+      } else return link?.externalSource ?? "#";
     }, [hrefProp, link]);
 
     const isInternal = useMemo(() => {
-      return href.startsWith('/');
+      return href.startsWith("/");
     }, [href]);
 
     const children = childrenProp ?? link?.label;
@@ -51,7 +51,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
         {children}
       </a>
     );
-  }
+  },
 );
 
-Link.displayName = 'Link';
+Link.displayName = "Link";

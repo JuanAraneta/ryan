@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useRef, useState } from 'react';
-import { cx } from 'cva';
-import { useLayoutEffect } from '@/hooks/useLayoutEffect';
-import { useOnScreenState } from '@/hooks/useOnScreenEffect';
-import { useAnimationFrame } from '@/hooks/useAnimationFrame';
+import { useRef, useState } from "react";
+import { cx } from "cva";
+import { useLayoutEffect } from "@/hooks/useLayoutEffect";
+import { useOnScreenState } from "@/hooks/useOnScreenEffect";
+import { useAnimationFrame } from "@/hooks/useAnimationFrame";
 
 type AnimatableNumberProps = {
   value: string;
@@ -15,7 +15,7 @@ type AnimatableNumberProps = {
         currentTime: number,
         startValue: number,
         finalValue: number,
-        duration: number
+        duration: number,
       ) => number)
     | keyof typeof easing;
 };
@@ -24,13 +24,13 @@ export const AnimatableNumber: React.FC<AnimatableNumberProps> = ({
   value: finalValueStrWithCommas,
   startingValue = 0,
   duration = 3000,
-  easing: easingProp = 'quart',
+  easing: easingProp = "quart",
 }) => {
   const [onScreen, ref] = useOnScreenState<HTMLSpanElement>({ once: true });
   const easingFunction =
-    typeof easingProp === 'string' ? easing[easingProp] : easingProp;
-  const usesCommas = finalValueStrWithCommas.includes(',');
-  const finalValueStr = finalValueStrWithCommas.replaceAll(',', '');
+    typeof easingProp === "string" ? easing[easingProp] : easingProp;
+  const usesCommas = finalValueStrWithCommas.includes(",");
+  const finalValueStr = finalValueStrWithCommas.replaceAll(",", "");
   const precision = findPrecision(finalValueStr);
   const finalValue = Number.parseFloat(finalValueStr) * 10 ** precision;
   const startTime = useRef(Date.now());
@@ -67,8 +67,8 @@ export const AnimatableNumber: React.FC<AnimatableNumberProps> = ({
       <span
         aria-hidden
         className={cx(
-          'absolute right-0 transition-opacity',
-          onScreen ? 'opacity-100' : 'opacity-0'
+          "absolute right-0 transition-opacity",
+          onScreen ? "opacity-100" : "opacity-0",
         )}
       >
         {getPrintout(value, precision, usesCommas)}
@@ -80,16 +80,16 @@ export const AnimatableNumber: React.FC<AnimatableNumberProps> = ({
 const getPrintout = (
   value: number,
   precision: number,
-  commas: boolean
+  commas: boolean,
 ): string => {
   const base = (value / 10 ** precision).toFixed(precision);
   if (!commas) {
     return base;
   } else {
-    const parts = base.split('.');
+    const parts = base.split(".");
     const whole = parts[0];
     const decimal = parts[1];
-    const wholeWithCommas = whole.replaceAll(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const wholeWithCommas = whole.replaceAll(/\B(?=(\d{3})+(?!\d))/g, ",");
 
     return !decimal ? wholeWithCommas : `${wholeWithCommas}.${decimal}`;
   }
@@ -100,7 +100,7 @@ export const easing = {
     currentTime: number,
     startValue: number,
     finalValue: number,
-    duration: number
+    duration: number,
   ): number => {
     const t = currentTime / duration - 1;
     return finalValue * (1 - t * t) + startValue;
@@ -109,7 +109,7 @@ export const easing = {
     currentTime: number,
     startValue: number,
     finalValue: number,
-    duration: number
+    duration: number,
   ): number => {
     const t = currentTime / duration - 1;
     return finalValue * (1 - t * t * t * t) + startValue;
@@ -117,7 +117,7 @@ export const easing = {
 };
 
 const findPrecision = (num: string): number => {
-  const parts = num.split('.');
+  const parts = num.split(".");
   if (parts.length === 1) {
     return 0;
   }
