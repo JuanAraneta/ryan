@@ -32,10 +32,10 @@ export const ModuleChapterGroup = ({
   const contentItemsContainerRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
-    const navMarker = navMarkerRef.current,
-      navItemsContainer = navItemsContainerRef.current,
-      contentItemsContainer = contentItemsContainerRef.current,
-      stickyContainer = stickyContainerRef.current;
+    const navMarker = navMarkerRef.current;
+    const navItemsContainer = navItemsContainerRef.current;
+    const contentItemsContainer = contentItemsContainerRef.current;
+    const stickyContainer = stickyContainerRef.current;
 
     if (
       !navMarker ||
@@ -105,7 +105,7 @@ export const ModuleChapterGroup = ({
     );
 
     return () => controller.abort();
-  }, [isDesktop, isMobile]);
+  }, [isDesktop, isMobile, inViewSectionIndex]);
 
   return (
     <Section className="dsk:py-32 pb-32 flex flex-col dsk:flex-row gap-14">

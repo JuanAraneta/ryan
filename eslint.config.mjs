@@ -34,8 +34,13 @@ const config = [
     },
   }),
   {
+    languageOptions: {
+      globals: {
+        React: "writable",
+      },
+    },
     rules: {
-      "no-undef": "error",
+      "no-undef": "off", // TypeScript already checks for undefined variables and types.
       "react/react-in-jsx-scope": "off",
       "tailwindcss/no-custom-classname": "off",
       "tailwindcss/classnames-order": "off",
@@ -47,17 +52,6 @@ const config = [
           caughtErrorsIgnorePattern: "^_",
         },
       ],
-    },
-  },
-  {
-    files: ["**/*.{jsx,tsx}"],
-    languageOptions: {
-      globals: {
-        React: "writable",
-      },
-    },
-    rules: {
-      "no-undef": "off", // TypeScript already checks for undefined variables and types.
       "@next/next/no-img-element": "off",
       "no-console": ["warn", { allow: ["warn", "error"] }],
       "one-var": ["error", "never"],

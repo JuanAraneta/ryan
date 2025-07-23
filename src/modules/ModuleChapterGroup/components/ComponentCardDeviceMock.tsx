@@ -15,14 +15,14 @@ export const ComponentCardDeviceMock = ({
 }) => {
   const backgroundColor = readFragment(
     ThemeBackgroundFragment,
-    data.backgroundColor
+    data.backgroundColor,
   );
   const h2Id = useId();
   return (
     <div
       className={cx(
         "dark rounded-2xl w-full px-6 py-10 dsk:p-10 flex flex-col dsk:flex-row items-center justify-center gap-8 dsk:gap-20",
-        backgroundColor?.background
+        backgroundColor?.background,
       )}
     >
       <div className="dsk:w-1/2">
@@ -40,6 +40,7 @@ export const ComponentCardDeviceMock = ({
       </div>
       <div className="dsk:w-1/2 flex items-center justify-center">
         <img
+          alt={data.title ?? "Device mock"}
           src={readFragment(AssetFragment, data.deviceMock)?.url ?? ""}
           className="max-h-80"
         />
