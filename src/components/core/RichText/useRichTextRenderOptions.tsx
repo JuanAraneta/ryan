@@ -11,7 +11,6 @@ import { DeepPartial } from "@/types/utils/DeepPartial";
 import { Link } from "../Link";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
-import Image from "next/image";
 
 type RichTextEntry<T = object> = {
   sys: {
@@ -200,10 +199,10 @@ export const useRichTextRenderOptions = (
               typeof AssetFragment
             >;
             return (
-              <Image
+              <img
                 src={asset.url ?? ""}
                 key={node.data.target.sys.id}
-                alt="Embedded asset"
+                alt="Embedded asset" // TODO: Add alt text from Contentful
               />
             );
           },

@@ -1,7 +1,10 @@
 import { contentClient } from "@/lib/contentful/contentClient";
 import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
+import { ThemeBackgroundFragment } from "@/lib/contentful/fragments/ThemeBackgroundFragment";
 import moduleRegistry from "@/modules/moduleRegistry";
-import { ResultOf } from "gql.tada";
+import { cx } from "cva";
+import { readFragment, ResultOf } from "gql.tada";
+
 import { HeroHome } from "./HeroHome";
 
 export const ModuleContainerRenderer = async ({
@@ -17,7 +20,12 @@ export const ModuleContainerRenderer = async ({
           !moduleContainer.modulesCollection?.items ? null : (
             <div
               key={moduleContainer.sys.id}
-              className={moduleContainer.backgroundColor ?? ""}
+              className={cx(
+                readFragment(
+                  ThemeBackgroundFragment,
+                  moduleContainer.backgroundColorReference,
+                )?.background,
+              )}
             >
               {await Promise.allSettled(
                 moduleContainer?.modulesCollection?.items.map(

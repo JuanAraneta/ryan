@@ -1,33 +1,36 @@
 import { FC } from "react";
+import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
 import { ResultOf, TadaDocumentNode } from "gql.tada";
 import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleExpertsOverflowById";
 import { GetModuleCustomerStoriesOverflowById } from "@/lib/contentful/query/GetModuleCustomerStoriesOverflowById";
+import { ModuleChapterGroup } from "./ModuleChapterGroup";
+import { GetModuleChapterGroupById } from "@/lib/contentful/query/GetModuleChapterGroupById";
 
 // Modules
-import { HeroHome } from "./HeroHome";
 import { ModuleExpertsOverflow } from "./ExpertsOverflow";
 import { ModuleCustomerStoriesCarousel } from "./ModuleCustomerStoriesCarousel";
 
-type ModuleComponent<Data = unknown> = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type ModuleComponent<Data = any> = {
+  // TODO: Check if there is a better way to type this
   component: FC<{ data: Data }>;
   queryById: TadaDocumentNode<Data, { id: string }>;
 };
 
-type ModuleRegistry = {
-  ModuleExpertsOverflow: ModuleComponent<
-    ResultOf<typeof GetModuleExpertsOverflowById>
-  >;
-  ModuleCustomerStoriesCarousel: ModuleComponent<
-    ResultOf<typeof GetModuleCustomerStoriesOverflowById>
-  >;
-  HeroHome: ModuleComponent<ResultOf<typeof GetModuleHeroHomeById>>;
-};
+type ModuleRegistry = Record<
+  NonNullable<
+    NonNullable<
+      NonNullable<
+        NonNullable<
+          ResultOf<typeof PageModulesCollectionFragment>["items"][number]
+        >["modulesCollection"]
+      >["items"][number]
+    >["__typename"]
+  >,
+  ModuleComponent | null
+>;
 
 const moduleRegistry: ModuleRegistry = {
-  HeroHome: {
-    component: HeroHome,
-    queryById: GetModuleHeroHomeById,
-  },
   ModuleExpertsOverflow: {
     component: ModuleExpertsOverflow,
     queryById: GetModuleExpertsOverflowById,
@@ -35,6 +38,10 @@ const moduleRegistry: ModuleRegistry = {
   ModuleCustomerStoriesCarousel: {
     component: ModuleCustomerStoriesCarousel,
     queryById: GetModuleCustomerStoriesOverflowById,
+  },
+  ModuleChapterGroup: {
+    component: ModuleChapterGroup,
+    queryById: GetModuleChapterGroupById,
   },
 };
 

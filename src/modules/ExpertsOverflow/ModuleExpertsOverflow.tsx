@@ -8,7 +8,7 @@ import { ModuleExpertsOverflowExpertsListCollectionFragment } from "@/lib/conten
 import { AnimatableNumber } from "@/components/core/AnimatableNumber";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { Button } from "@/components/core/Button";
-import Image from "next/image";
+import { Section } from "@/components/core/Section";
 
 export const ModuleExpertsOverflow = ({
   data,
@@ -24,7 +24,10 @@ export const ModuleExpertsOverflow = ({
     data.moduleExpertsOverflow?.statisticFlair,
   );
   return (
-    <section className="dark px-6 py-16 dsk:px-20 dsk:py-32">
+    <Section
+      data-testid="ModuleExpertsOverflow"
+      className="dark py-16 dsk:py-32"
+    >
       <div className="flex flex-col dsk:flex-row justify-between items-center">
         <div className="flex flex-col justify-center dsk:justify-left">
           <h2 className="typo-heading-6 text-highlight text-center dsk:text-left">
@@ -45,11 +48,9 @@ export const ModuleExpertsOverflow = ({
         {!!statistic && (
           <div className="hidden dsk:flex items-center justify-center gap-10">
             {statisticFlair?.url && (
-              <Image
+              <img
                 src={statisticFlair.url}
-                alt="Statistic flair"
-                width={300}
-                height={400}
+                alt="Statistic flair" // TODO: Add alt text from Contentful
               />
             )}
             <div className="flex flex-col">
@@ -79,6 +80,6 @@ export const ModuleExpertsOverflow = ({
           )}
         />
       )}
-    </section>
+    </Section>
   );
 };
