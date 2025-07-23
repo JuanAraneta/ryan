@@ -56,12 +56,11 @@ export function HeroHome({
             style={{ aspectRatio: "21/9" }}
           >
             {/* Background Image */}
-            <Image
+            <img
               src={card.imageUrl}
               alt=""
-              className="absolute inset-0 w-full h-full object-cover object-center z-0"
+              className="absolute inset-0 w-full h-full object-cover object-center z-0 aspect-[21/9]"
               loading="lazy"
-              style={{ aspectRatio: "21/9" }}
             />
             {/* Overlay */}
             <div className="relative z-10 flex flex-col justify-end h-full p-6 bg-gradient-to-t from-black/60 to-transparent">

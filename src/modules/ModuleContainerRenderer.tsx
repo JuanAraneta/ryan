@@ -5,8 +5,6 @@ import moduleRegistry from "@/modules/moduleRegistry";
 import { cx } from "cva";
 import { readFragment, ResultOf } from "gql.tada";
 
-import { HeroHome } from "./HeroHome";
-
 export const ModuleContainerRenderer = async ({
   data,
 }: {
