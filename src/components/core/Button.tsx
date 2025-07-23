@@ -44,16 +44,10 @@ export const Button = ({
   )) => {
   if ("asChild" in props) {
     reactNodeIsSingleElement(props.children);
-    return cloneElement(
-      // These are fine here; the type is very specific but the check above verifies the validity
-      props.children as any,
-      {
-        className: cx(
-          (props?.children?.props as any)?.className,
-          buttonClasses({ variant }),
-        ),
-      },
-    );
+    const children = props.children as ReactElement<{ className?: string }>;
+    return cloneElement(children, {
+      className: cx(children?.props?.className, buttonClasses({ variant })),
+    });
   } else {
     return (
       <button
