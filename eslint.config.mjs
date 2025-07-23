@@ -57,6 +57,7 @@ const config = [
       },
     },
     rules: {
+      "no-undef": "off", // TypeScript already checks for undefined variables and types.
       "@next/next/no-img-element": "off",
       "no-console": ["warn", { allow: ["warn", "error"] }],
       "one-var": ["error", "never"],

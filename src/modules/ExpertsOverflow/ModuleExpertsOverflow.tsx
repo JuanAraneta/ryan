@@ -8,6 +8,7 @@ import { ModuleExpertsOverflowExpertsListCollectionFragment } from "@/lib/conten
 import { AnimatableNumber } from "@/components/core/AnimatableNumber";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { Button } from "@/components/core/Button";
+import { Section } from "@/components/core/Section";
 
 export const ModuleExpertsOverflow = ({
   data,
@@ -23,7 +24,10 @@ export const ModuleExpertsOverflow = ({
     data.moduleExpertsOverflow?.statisticFlair,
   );
   return (
-    <section className="dark px-6 py-16 dsk:px-20 dsk:py-32">
+    <Section
+      data-testid="ModuleExpertsOverflow"
+      className="dark py-16 dsk:py-32"
+    >
       <div className="flex flex-col dsk:flex-row justify-between items-center">
         <div className="flex flex-col justify-center dsk:justify-left">
           <h2 className="typo-heading-6 text-highlight text-center dsk:text-left">
@@ -76,6 +80,6 @@ export const ModuleExpertsOverflow = ({
           )}
         />
       )}
-    </section>
+    </Section>
   );
 };

@@ -13,9 +13,9 @@ const iconButtonClasses = cva(
         // TODO
         primary: [],
         secondary: [
-          "light:border-content-primary dark:border-border-primary text-content-primary",
-          "light:hover:border-brand-800 light:hover:bg-brand-800 light:hover:text-white dark:hover:border-new-gold dark:hover:bg-new-gold dark:hover:text-neutral-900",
-          "light:active:border-brand-900 light:active:bg-brand-900 light:active:text-white dark:active:border-dark-gold dark:active:bg-dark-gold dark:active:text-neutral-900",
+          "border-icon-button-secondary-border text-content-primary",
+          "hover:border-icon-button-secondary-bg-hover hover:bg-icon-button-secondary-bg-hover hover:text-icon-button-secondary-content-hover",
+          "active:border-icon-button-secondary-bg-active active:bg-icon-button-secondary-bg-active active:text-icon-button-secondary-content-hover",
           "disabled:opacity-30",
         ],
       },
