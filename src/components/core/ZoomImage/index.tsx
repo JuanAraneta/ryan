@@ -15,13 +15,13 @@ export function ZoomImage({
   ...props
 }: ZoomImageProps) {
   return (
-    <picture className={`w-full overflow-hidden ${className}`}>
+    <div className={`w-full overflow-hidden ${className}`}>
       <img
         src={src}
         alt={alt}
         className={`w-full h-full object-cover object-center transition-transform group-hover:scale-105 hover:scale-105 ${imgClassName}`}
         {...props}
       />
-    </picture>
+    </div>
   );
 }

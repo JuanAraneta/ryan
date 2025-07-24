@@ -12,8 +12,8 @@ export const AIChatPrompt = ({ prompts }: AIChatPromptProps) => {
     <div className="w-full max-w-[52rem] flex gap-4 items-center">
       <AIIcon className="hidden dsk:flex" />
 
-      <div className="w-full rounded-full bg-white/15 backdrop-blur-lg flex items-center gap-2 h-14 pl-5 dsk:pl-8 pr-8 dsk:pr-2 ">
-        <AIIcon className="flex dsk:hidden" />
+      <div className="w-full rounded-full bg-white/15 backdrop-blur-lg flex items-center gap-2 h-14 pl-3 dsk:pl-8 pr-8 dsk:pr-2 ">
+        <AIIcon className="flex dsk:hidden scale-80" />
 
         <TextLoop
           interval={5}
