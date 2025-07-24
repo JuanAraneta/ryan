@@ -1,6 +1,7 @@
 import { AIChatPrompt } from "@/components/core/AIChat";
 import { RichTitleText } from "@/components/core/RichText";
 import { Section } from "@/components/core/Section";
+import { MdKeyboardBackspace } from "react-icons/md";
 
 export interface HeroHomeProps {
   headline: string; // max 70 chars
@@ -39,27 +40,22 @@ export function HeroHome({ headline, routingCards }: HeroHomeProps) {
         </div>
 
         {/* Routing Cards */}
-        <div className="flex flex-col md:flex-row gap-6 w-full max-w-4xl">
+        <div className="flex flex-col md:flex-row">
           {routingCards.map((card, idx) => (
-            <a
-              key={idx}
-              href={card.href}
-              className="flex-1 rounded-2xl overflow-hidden shadow-lg group relative min-h-[180px] md:min-h-[240px] bg-gray-100 transition-transform hover:scale-105"
-              style={{ aspectRatio: "21/9" }}
-            >
-              {/* Background Image */}
+            <a key={idx} href={card.href} className="flex-1 group relative">
               <img
                 src={card.imageUrl}
                 alt=""
-                className="absolute inset-0 w-full h-full object-cover object-center z-0 aspect-[21/9]"
+                className="w-full h-[18.75rem] object-cover object-center"
                 loading="lazy"
               />
-              {/* Overlay */}
-              <div className="relative z-10 flex flex-col justify-end h-full p-6 bg-gradient-to-t from-black/60 to-transparent">
-                <span className="text-sm font-medium text-white/80 mb-1 truncate">
-                  {card.eyebrow}
-                </span>
-                <span className="text-2xl font-semibold text-white leading-tight truncate">
+              <div className="flex flex-col py-6 px-10 gap-3">
+                <p className="flex items-center justify-between gap-2 ">
+                  <span className="typo-eyebrow">{card.eyebrow}</span>
+                  <MdKeyboardBackspace className="w-6 h-6 rotate-180 group-hover:translate-x-2 transition-transform duration-100" />
+                </p>
+
+                <span className="typo-heading-4 font-light">
                   {card.subheading}
                 </span>
               </div>

@@ -79,13 +79,14 @@ export default async function Page(props: {
         animatedQuestions={[]}
         routingCards={[
           {
-            imageUrl: "/images/tax-optimization-meeting.webp",
+            // imageplaceholder
+            imageUrl: "https://placehold.co/720x300",
             eyebrow: "END-TO-END SERVICES",
             subheading: "Your Trusted Partner in Tax Optimization.",
             href: "/services/tax-optimization",
           },
           {
-            imageUrl: "/images/tax-technology-marketplace.webp",
+            imageUrl: "https://placehold.co/720x300",
             eyebrow: "TAX TECHNOLOGY MARKETPLACE",
             subheading: "Transforming Tax with Advanced Platforms.",
             href: "/platforms/tax-technology",
