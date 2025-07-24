@@ -1,1 +1,1 @@
-export * from "./AIChat";
+export * from "./AIChatPrompt";

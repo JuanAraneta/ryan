@@ -76,17 +76,22 @@ export default async function Page(props: {
             },
           },
         }}
-        animatedQuestions={[]}
+        prompts={[
+          "How will tariffs impact my business taxes?",
+          "How can I optimize my company’s taxes?",
+          "I need to make a property tax appeal in London.",
+        ]}
         routingCards={[
           {
             // imageplaceholder
-            imageUrl: "https://placehold.co/720x300",
+            imageUrl: "https://placehold.co/720x300?text=END-TO-END%20SERVICES",
             eyebrow: "END-TO-END SERVICES",
             subheading: "Your Trusted Partner in Tax Optimization.",
             href: "/services/tax-optimization",
           },
           {
-            imageUrl: "https://placehold.co/720x300",
+            imageUrl:
+              "https://placehold.co/720x300?text=TAX%20TECHNOLOGY%20MARKETPLACE",
             eyebrow: "TAX TECHNOLOGY MARKETPLACE",
             subheading: "Transforming Tax with Advanced Platforms.",
             href: "/platforms/tax-technology",
