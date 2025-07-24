@@ -27,7 +27,55 @@ export default async function Page(props: {
   return (
     <>
       <HeroHome
-        headline="Trusted tax experts,powered by tax technology."
+        headline={{
+          richText: {
+            json: {
+              nodeType: "document",
+              data: {},
+              content: [
+                {
+                  nodeType: "paragraph",
+                  data: {},
+                  content: [
+                    {
+                      nodeType: "text",
+                      value: "Trusted tax experts, \n",
+                      marks: [],
+                      data: {},
+                    },
+                    {
+                      nodeType: "text",
+                      value: "powered by ",
+                      marks: [
+                        {
+                          type: "italic",
+                        },
+                      ],
+                      data: {},
+                    },
+                    {
+                      nodeType: "text",
+                      value: "tax technology.",
+                      marks: [],
+                      data: {},
+                    },
+                  ],
+                },
+              ],
+            },
+            links: {
+              entries: {
+                inline: [],
+                block: [],
+                hyperlink: [],
+              },
+              assets: {
+                __typename: "ContentTypeRichTextRichTextAssets",
+                block: [],
+              },
+            },
+          },
+        }}
         animatedQuestions={[]}
         routingCards={[
           {
