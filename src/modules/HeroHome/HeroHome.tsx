@@ -20,6 +20,12 @@ export interface HeroHomeProps {
   ];
 }
 
+const prompts = [
+  "How will tariffs impact my business taxes?",
+  "How can I optimize my company’s taxes?",
+  "I need to make a property tax appeal in London.",
+];
+
 export function HeroHome({ headline, routingCards }: HeroHomeProps) {
   return (
     <div className="gradient-brand-v-light-to-dark">
@@ -29,7 +35,7 @@ export function HeroHome({ headline, routingCards }: HeroHomeProps) {
         </h1>
 
         <div className="w-full px-6 flex justify-center mb-[5.4rem]">
-          <AIChatPrompt />
+          <AIChatPrompt prompts={prompts} />
         </div>
 
         {/* Routing Cards */}
