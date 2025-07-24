@@ -23,7 +23,7 @@ export const AIIcon = ({ className = "" }: { className?: string }) => {
       <motion.span
         className="absolute inset-0 rounded-full border border-new-gold"
         initial={{ scale: 1, opacity: 1 }}
-        animate={{ scale: [1, 1.3, 1.3, 1] }}
+        animate={{ scale: [1, 1.3, 1.3] }}
         transition={transition}
       />
 
@@ -31,7 +31,7 @@ export const AIIcon = ({ className = "" }: { className?: string }) => {
       <motion.span
         className="absolute inset-0 rounded-full border border-new-gold opacity-50"
         initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: [1, 1, 1, 0.8], opacity: [1, 1, 1, 0] }}
+        animate={{ scale: [0.8, 1, 1], opacity: [0, 1, 1] }}
         transition={transition}
       />
 
