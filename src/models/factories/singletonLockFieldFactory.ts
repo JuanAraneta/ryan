@@ -4,20 +4,15 @@ export const singletonLockFieldFactory = (): ExpandedFieldDetails => ({
   id: "singletonLock",
   name: "Singleton lock",
   type: "Symbol",
-  localized: false,
   required: true,
   validations: [
-    {
-      unique: true,
-    },
+    { unique: true },
     {
       in: ["singleton-lock"],
       message:
         "Do not modify this field. It is a technical stability requirement.",
     },
   ],
-  disabled: false,
-  omitted: false,
   editorInterface: {
     settings: {
       helpText:

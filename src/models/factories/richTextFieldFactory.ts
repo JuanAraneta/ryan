@@ -52,11 +52,7 @@ export const richTextFieldFactory = ({
   id,
   name,
   type: "RichText",
-  localized: false,
-  required: false,
   validations: [enabledMarks, enabledNodeTypes, nodes],
-  disabled: false,
-  omitted: false,
   editorInterface: {
     widgetId: "entryLinkEditor",
     widgetNamespace: "builtin",
