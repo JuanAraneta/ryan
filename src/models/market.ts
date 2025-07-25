@@ -36,7 +36,7 @@ export const market: ContentModel = {
         {
           regexp: {
             pattern: "^[a-z0-9]+(-[a-z0-9]+)*$",
-            //@ts-expect-error
+            //@ts-expect-error Package type error. This is valid.
             flags: null,
           },
         },

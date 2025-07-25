@@ -40,7 +40,7 @@ export const script: ContentModel = {
           regexp: {
             pattern:
               "^(ftp|http|https):\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-/]))?$",
-            //@ts-expect-error
+            //@ts-expect-error Package type error. This is valid.
             flags: null,
           },
         },

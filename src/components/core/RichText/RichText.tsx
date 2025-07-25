@@ -38,7 +38,7 @@ export const RichText = ({
       options: optionsProp,
       overrides: merge(variant ? variants[variant] : {}, overrides),
     }),
-    [optionsProp, overrides],
+    [optionsProp, overrides, variant],
   );
 
   const renderOptions = useRichTextRenderOptions(

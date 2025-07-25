@@ -31,7 +31,7 @@ export const componentStatistic: ContentModel = {
         {
           regexp: {
             pattern: "[0-9]*.+[0-9]*",
-            //@ts-expect-error
+            //@ts-expect-error Package type error. This is valid.
             flags: null,
           },
           message: "Must be a number.",
