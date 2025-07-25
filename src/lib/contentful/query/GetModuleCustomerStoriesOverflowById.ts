@@ -35,5 +35,5 @@ export const GetModuleCustomerStoriesOverflowById = graphql(
     RichTextFragments.ModuleCustomerStoriesCarousel_richTextTitle,
     ComponentLinkFragment,
     ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment,
-  ]
+  ],
 );

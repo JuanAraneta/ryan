@@ -20,6 +20,7 @@ export const CategorySolutionsImageLinkGrid = ({
           className="dark block relative size-full aspect-square overflow-hidden rounded-lg"
         >
           <img
+            alt="Category solution image"
             src={readFragment(AssetFragment, item?.image)?.url ?? ""}
             className="object-cover size-full"
           />

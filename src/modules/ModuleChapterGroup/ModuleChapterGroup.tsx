@@ -15,7 +15,7 @@ import { ComponentCategorySolutions2ColSubBody } from "./components/ComponentCat
 import { ComponentCategorySolutions2ColSubBodyFragment } from "@/lib/contentful/query/GetModuleChapterGroupById/fragments/ComponentCategorySolutions2ColSubBodyFragment";
 import { CategorySolutionsImageLinkGrid } from "./components/CategorySolutionsImageLinkGrid";
 import { CategorySolutionsImageLinkGridFragment } from "@/lib/contentful/query/GetModuleChapterGroupById/fragments/CategorySolutionsImageLinkGridFragment";
-import { useIsDesktop } from "@/hooks/useIsDesktop";
+import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { createIntersectionObserver } from "@/utils/createIntersectionObserver";
 
 export const ModuleChapterGroup = ({
@@ -23,8 +23,7 @@ export const ModuleChapterGroup = ({
 }: {
   data: ResultOf<typeof GetModuleChapterGroupById>;
 }) => {
-  const isDesktop = useIsDesktop(),
-    isMobile = !isDesktop;
+  const { isDesktop, isMobile } = useBreakpoint();
   const [mobileHeaderIsStuck, setMobileHeaderIsStuck] = useState(false);
   const [inViewSectionIndex, setInViewSectionIndex] = useState(0);
   const stickyContainerRef = useRef<HTMLDivElement>(null);
@@ -33,10 +32,10 @@ export const ModuleChapterGroup = ({
   const contentItemsContainerRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
-    const navMarker = navMarkerRef.current,
-      navItemsContainer = navItemsContainerRef.current,
-      contentItemsContainer = contentItemsContainerRef.current,
-      stickyContainer = stickyContainerRef.current;
+    const navMarker = navMarkerRef.current;
+    const navItemsContainer = navItemsContainerRef.current;
+    const contentItemsContainer = contentItemsContainerRef.current;
+    const stickyContainer = stickyContainerRef.current;
 
     if (
       !navMarker ||
@@ -81,7 +80,7 @@ export const ModuleChapterGroup = ({
           signal: controller.signal,
           observe: stickyContainer,
           cleanup: () => setMobileHeaderIsStuck(false),
-        }
+        },
       );
     }
 
@@ -94,19 +93,19 @@ export const ModuleChapterGroup = ({
       "scroll",
       () => {
         const bottoms = [...contentItemsContainer.children].map(
-          (link) => link.getBoundingClientRect().bottom
+          (link) => link.getBoundingClientRect().bottom,
         );
         const lastIndexWhoseBottomIsAboveAThirdWindow = bottoms.findIndex(
-          (bottom) => bottom > window.innerHeight / 3
+          (bottom) => bottom > window.innerHeight / 3,
         );
         if (selectedIndex === lastIndexWhoseBottomIsAboveAThirdWindow) return;
         setSelectedIndex(lastIndexWhoseBottomIsAboveAThirdWindow);
       },
-      { signal: controller.signal }
+      { signal: controller.signal },
     );
 
     return () => controller.abort();
-  }, [isDesktop, isMobile]);
+  }, [isDesktop, isMobile, inViewSectionIndex]);
 
   return (
     <Section className="dsk:py-32 pb-32 flex flex-col dsk:flex-row gap-14">
@@ -116,7 +115,7 @@ export const ModuleChapterGroup = ({
           "sticky transition-[background-color,box-shadow] top-[-1px] max-dsk:m-[1px] dsk:top-10 h-min max-dsk:-mx-(--x-section-padding) z-10 max-dsk:overflow-auto no-scrollbar",
           isMobile && mobileHeaderIsStuck
             ? "bg-white shadow-md"
-            : "bg-transparent shadow-none"
+            : "bg-transparent shadow-none",
         )}
       >
         <div
@@ -126,7 +125,7 @@ export const ModuleChapterGroup = ({
             "absolute left-0 top-0 dsk:!w-1 max-dsk:!h-0.5 transition-[transform,width,height]",
             // The gradient classes aren't actually Tailwind utilities because they are used dynamically
             // So we can't use Tailwind variant prefixes on them, e.g. dsk: or max-dsk:
-            isDesktop ? "bg-new-gold" : "gradient-gold-h-dark-to-light"
+            isDesktop ? "bg-new-gold" : "gradient-gold-h-dark-to-light",
           )}
         />
         <nav
@@ -151,7 +150,7 @@ export const ModuleChapterGroup = ({
                   >{`${index < 9 ? 0 : ""}${index + 1}`}</span>
                   <span
                     className={cx(
-                      "block dsk:typo-heading-5 transition-colors text-neutral-600 group-aria-[current]:text-neutral-900 whitespace-nowrap"
+                      "block dsk:typo-heading-5 transition-colors text-neutral-600 group-aria-[current]:text-neutral-900 whitespace-nowrap",
                     )}
                   >
                     {chapter.title ?? ""}
@@ -178,7 +177,7 @@ export const ModuleChapterGroup = ({
                         key={index}
                         data={readFragment(
                           ComponentCardDeviceMockFragment,
-                          item
+                          item,
                         )}
                       />
                     );
@@ -188,7 +187,7 @@ export const ModuleChapterGroup = ({
                         key={index}
                         data={readFragment(
                           ComponentCategorySolutionsHeadlineFragment,
-                          item
+                          item,
                         )}
                       />
                     );
@@ -198,7 +197,7 @@ export const ModuleChapterGroup = ({
                         key={index}
                         data={readFragment(
                           ComponentCategorySolutions2ColSubBodyFragment,
-                          item
+                          item,
                         )}
                       />
                     );
@@ -208,7 +207,7 @@ export const ModuleChapterGroup = ({
                         key={index}
                         data={readFragment(
                           CategorySolutionsImageLinkGridFragment,
-                          item
+                          item,
                         )}
                       />
                     );

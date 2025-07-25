@@ -2,8 +2,6 @@ import globals from "globals";
 import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
-import eslintPluginUnicorn from "eslint-plugin-unicorn";
-import tailwind from "eslint-plugin-tailwindcss";
 import { FlatCompat } from "@eslint/eslintrc";
 
 const compat = new FlatCompat({
@@ -13,14 +11,20 @@ const compat = new FlatCompat({
 
 /** @type {import('eslint').Linter.Config[]} */
 const config = [
-  { ignores: [".next/**", "public/**", "next.config.js", "postcss.config.js"] },
+  {
+    ignores: [
+      ".next/**",
+      "public/**",
+      "next.config.js",
+      "postcss.config.js",
+      "src/graphql-env.d.ts",
+    ],
+  },
   { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
   { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
-  eslintPluginUnicorn.configs["flat/recommended"],
-  ...tailwind.configs["flat/recommended"],
   ...compat.config({
     extends: ["next"],
     settings: {
@@ -29,14 +33,17 @@ const config = [
       },
     },
   }),
-  ...compat.config({
-    extends: ["plugin:drizzle/all"],
-  }),
   {
+    languageOptions: {
+      globals: {
+        React: "writable",
+      },
+    },
     rules: {
-      "no-undef": "error",
+      "no-undef": "off", // TypeScript already checks for undefined variables and types.
       "react/react-in-jsx-scope": "off",
       "tailwindcss/no-custom-classname": "off",
+      "tailwindcss/classnames-order": "off",
       "@typescript-eslint/no-unused-vars": [
         "error", // or "error"
         {
@@ -45,13 +52,9 @@ const config = [
           caughtErrorsIgnorePattern: "^_",
         },
       ],
-      "unicorn/prevent-abbreviations": "off",
-    },
-  },
-  {
-    files: ["**/*.{jsx,tsx}"],
-    rules: {
-      "no-console": "warn",
+      "@next/next/no-img-element": "off",
+      "no-console": ["warn", { allow: ["warn", "error"] }],
+      "one-var": ["error", "never"],
     },
   },
 ];

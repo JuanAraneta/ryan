@@ -23,8 +23,9 @@
         "shouldCheckForColocatedFragments": false
       }
     ],
+    "baseUrl": "src",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["*"]
     },
     "target": "ES2017",
     "allowJs": true

@@ -22,5 +22,5 @@ export const ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment =
         }
       }
     `,
-    [RichTextFragments.ComponentCustomerStory_richTextHeadline, AssetFragment]
+    [RichTextFragments.ComponentCustomerStory_richTextHeadline, AssetFragment],
   );

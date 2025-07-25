@@ -38,22 +38,22 @@ export const RichText = ({
       options: optionsProp,
       overrides: merge(variant ? variants[variant] : {}, overrides),
     }),
-    [optionsProp, overrides]
+    [optionsProp, overrides],
   );
 
   const renderOptions = useRichTextRenderOptions(
     content?.links,
     options,
-    spansOnly
+    spansOnly,
   );
 
   const render = useMemo(
     () =>
       documentToReactComponents(
         content?.json as RichTextDocument,
-        renderOptions
+        renderOptions,
       ),
-    [content, renderOptions]
+    [content, renderOptions],
   );
 
   return render;

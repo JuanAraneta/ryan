@@ -24,7 +24,7 @@ export default async function RootLayout(
   props: Readonly<{
     children: React.ReactNode;
     params: Promise<{ slug: string[] }>;
-  }>
+  }>,
 ) {
   const params = await props.params;
   const slugs = Array.isArray(params.slug) ? params.slug : [params.slug];
