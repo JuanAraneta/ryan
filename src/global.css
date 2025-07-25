@@ -56,9 +56,13 @@
   --color-button-primary-border-active: var(--color-brand-800);
   --color-button-primary-border-disabled: var(--color-content-primary);
   --color-button-primary-content-hover: var(--color-white);
-  --border-button-primary-border-active: var(--color-brand-800);
+  --color-button-secondary-bg: var(--color-brand-700);
+  --color-button-secondary-content: var(--color-white);
+  --color-button-secondary-bg-active: var(--color-brand-500);
+  --color-button-secondary-bg-focus: var(--color-brand-700);
+  --color-button-secondary-border-focus: var(--color-brand-700);
   /* transition-duration */
-  --default-transition-duration: 0.25s;
+  --default-transition-duration: 0.2s;
   --default-transition-timing-function: ease-in;
 }
 
@@ -81,6 +85,11 @@
   --color-button-primary-border-active: var(--color-brand-800);
   --color-button-primary-border-disabled: var(--color-content-primary);
   --color-button-primary-content-hover: var(--color-white);
+  --color-button-secondary-bg: var(--color-brand-700);
+  --color-button-secondary-content: var(--color-white);
+  --color-button-secondary-bg-active: var(--color-brand-500);
+  --color-button-secondary-bg-focus: var(--color-brand-700);
+  --color-button-secondary-border-focus: var(--color-brand-700);
 }
 @utility dark {
   @apply text-white;
@@ -101,7 +110,7 @@
     var(--color-white) 8%,
     transparent
   );
-  --color-content-secondary: var(--color-neutral-400);
+  --color-content-secondary: var(--color-neutral-300);
   --color-icon-button-secondary-border: var(--color-border-primary);
   --color-icon-button-secondary-bg-hover: var(--color-new-gold);
   --color-icon-button-secondary-content-hover: var(--color-neutral-900);
@@ -120,6 +129,11 @@
   );
   --color-button-primary-border-disabled: var(--color-border-primary);
   --color-button-primary-content-hover: var(--color-content-primary);
+  --color-button-secondary-bg: var(--color-white);
+  --color-button-secondary-content: var(--color-brand-700);
+  --color-button-secondary-bg-active: var(--color-brand-500);
+  --color-button-secondary-bg-focus: var(--color-brand-800);
+  --color-button-secondary-border-focus: var(--color-white);
 }
 
 /* gradients */
@@ -220,6 +234,7 @@
 }
 
 /* base styles */
+html,
 body {
-  @apply font-sans font-normal tracking-normal typo-body-base antialiased bg-white text-content-primary;
+  @apply font-sans font-normal tracking-normal typo-body-base antialiased bg-white text-content-primary scroll-smooth;
 }

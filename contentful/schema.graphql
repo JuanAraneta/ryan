@@ -191,6 +191,7 @@ enum AssetOrder {
 """
 type CategorySolutionsImageLink implements Entry & _Node {
   _id: ID!
+  contentfulLabel(locale: String): String
   contentfulMetadata: ContentfulMetadata!
   image(locale: String, preview: Boolean): Asset
   link(
@@ -214,6 +215,13 @@ type CategorySolutionsImageLinkCollection {
 input CategorySolutionsImageLinkFilter {
   AND: [CategorySolutionsImageLinkFilter]
   OR: [CategorySolutionsImageLinkFilter]
+  contentfulLabel: String
+  contentfulLabel_contains: String
+  contentfulLabel_exists: Boolean
+  contentfulLabel_in: [String]
+  contentfulLabel_not: String
+  contentfulLabel_not_contains: String
+  contentfulLabel_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
   image_exists: Boolean
   link: cfComponentLinkNestedFilter
@@ -226,6 +234,7 @@ input CategorySolutionsImageLinkFilter {
 """
 type CategorySolutionsImageLinkGrid implements Entry & _Node {
   _id: ID!
+  contentfulLabel(locale: String): String
   contentfulMetadata: ContentfulMetadata!
   itemsCollection(
     limit: Int = 100
@@ -251,6 +260,13 @@ type CategorySolutionsImageLinkGridCollection {
 input CategorySolutionsImageLinkGridFilter {
   AND: [CategorySolutionsImageLinkGridFilter]
   OR: [CategorySolutionsImageLinkGridFilter]
+  contentfulLabel: String
+  contentfulLabel_contains: String
+  contentfulLabel_exists: Boolean
+  contentfulLabel_in: [String]
+  contentfulLabel_not: String
+  contentfulLabel_not_contains: String
+  contentfulLabel_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
   items: cfCategorySolutionsImageLinkNestedFilter
   itemsCollection_exists: Boolean
@@ -265,6 +281,8 @@ type CategorySolutionsImageLinkGridItemsCollection {
 }
 
 enum CategorySolutionsImageLinkGridItemsCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -305,6 +323,8 @@ enum CategorySolutionsImageLinkGridLinkingCollectionsComponentCategorySolutionsC
 }
 
 enum CategorySolutionsImageLinkGridOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -332,6 +352,8 @@ type CategorySolutionsImageLinkLinkingCollections {
 }
 
 enum CategorySolutionsImageLinkLinkingCollectionsCategorySolutionsImageLinkGridCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -343,6 +365,8 @@ enum CategorySolutionsImageLinkLinkingCollectionsCategorySolutionsImageLinkGridC
 }
 
 enum CategorySolutionsImageLinkOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -468,6 +492,14 @@ type ComponentCategorySolutions2ColSubBody implements Entry & _Node {
   ): ComponentCategorySolutions2ColSubBodyLinkingCollections
   subhead(locale: String): String
   sys: Sys!
+  titleAndBodyReferencesCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentCategorySolutions2ColSubBodyTitleAndBodyReferencesCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+    where: ComponentTitleAndBodyFilter
+  ): ComponentCategorySolutions2ColSubBodyTitleAndBodyReferencesCollection
 }
 
 type ComponentCategorySolutions2ColSubBodyCollection {
@@ -480,17 +512,17 @@ type ComponentCategorySolutions2ColSubBodyCollection {
 input ComponentCategorySolutions2ColSubBodyFilter {
   AND: [ComponentCategorySolutions2ColSubBodyFilter]
   OR: [ComponentCategorySolutions2ColSubBodyFilter]
-  body: cfContentTypeRichTextNestedFilter
-  body_exists: Boolean
+  contentfulLabel: String
+  contentfulLabel_contains: String
+  contentfulLabel_exists: Boolean
+  contentfulLabel_in: [String]
+  contentfulLabel_not: String
+  contentfulLabel_not_contains: String
+  contentfulLabel_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
-  subhead: String
-  subhead_contains: String
-  subhead_exists: Boolean
-  subhead_in: [String]
-  subhead_not: String
-  subhead_not_contains: String
-  subhead_not_in: [String]
   sys: SysFilter
+  titleAndBodyReferences: cfComponentTitleAndBodyNestedFilter
+  titleAndBodyReferencesCollection_exists: Boolean
 }
 
 type ComponentCategorySolutions2ColSubBodyLinkingCollections {
@@ -523,8 +555,28 @@ enum ComponentCategorySolutions2ColSubBodyLinkingCollectionsComponentCategorySol
 }
 
 enum ComponentCategorySolutions2ColSubBodyOrder {
-  subhead_ASC
-  subhead_DESC
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+type ComponentCategorySolutions2ColSubBodyTitleAndBodyReferencesCollection {
+  items: [ComponentTitleAndBody]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+enum ComponentCategorySolutions2ColSubBodyTitleAndBodyReferencesCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -680,28 +732,8 @@ input ComponentCategorySolutionsHeadlineFilter {
   contentfulLabel_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
   headline: cfContentTypeRichTextNestedFilter
-  headlineCollection_exists: Boolean
+  headline_exists: Boolean
   sys: SysFilter
-}
-
-type ComponentCategorySolutionsHeadlineHeadlineCollection {
-  items: [ContentTypeRichText]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-enum ComponentCategorySolutionsHeadlineHeadlineCollectionOrder {
-  contentfulLabel_ASC
-  contentfulLabel_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
 }
 
 type ComponentCategorySolutionsHeadlineLinkingCollections {
@@ -1038,6 +1070,8 @@ type ComponentLinkLinkingCollections {
 }
 
 enum ComponentLinkLinkingCollectionsCategorySolutionsImageLinkCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -1211,6 +1245,94 @@ enum ComponentStatisticOrder {
   sys_publishedVersion_DESC
   value_ASC
   value_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/componentTitleAndBody)
+"""
+type ComponentTitleAndBody implements Entry & _Node {
+  _id: ID!
+  body(
+    locale: String
+    preview: Boolean
+    where: ContentTypeRichTextFilter
+  ): ContentTypeRichText
+  contentfulLabel(locale: String): String
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): ComponentTitleAndBodyLinkingCollections
+  sys: Sys!
+  title(
+    locale: String
+    preview: Boolean
+    where: ContentTypeRichTextFilter
+  ): ContentTypeRichText
+}
+
+type ComponentTitleAndBodyCollection {
+  items: [ComponentTitleAndBody]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input ComponentTitleAndBodyFilter {
+  AND: [ComponentTitleAndBodyFilter]
+  OR: [ComponentTitleAndBodyFilter]
+  body: cfContentTypeRichTextNestedFilter
+  body_exists: Boolean
+  contentfulLabel: String
+  contentfulLabel_contains: String
+  contentfulLabel_exists: Boolean
+  contentfulLabel_in: [String]
+  contentfulLabel_not: String
+  contentfulLabel_not_contains: String
+  contentfulLabel_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  sys: SysFilter
+  title: cfContentTypeRichTextNestedFilter
+  title_exists: Boolean
+}
+
+type ComponentTitleAndBodyLinkingCollections {
+  componentCategorySolutions2ColSubBodyCollection(
+    limit: Int = 100
+    locale: String
+    order: [ComponentTitleAndBodyLinkingCollectionsComponentCategorySolutions2ColSubBodyCollectionOrder]
+    preview: Boolean
+    skip: Int = 0
+  ): ComponentCategorySolutions2ColSubBodyCollection
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+  ): EntryCollection
+}
+
+enum ComponentTitleAndBodyLinkingCollectionsComponentCategorySolutions2ColSubBodyCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum ComponentTitleAndBodyOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 """
@@ -1424,19 +1546,6 @@ enum ContentTypeRichTextLinkingCollectionsComponentCardDeviceMockCollectionOrder
   title_DESC
 }
 
-enum ContentTypeRichTextLinkingCollectionsComponentCategorySolutions2ColSubBodyCollectionOrder {
-  subhead_ASC
-  subhead_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
 enum ContentTypeRichTextLinkingCollectionsComponentCategorySolutionsHeadlineCollectionOrder {
   contentfulLabel_ASC
   contentfulLabel_DESC
@@ -1484,6 +1593,19 @@ enum ContentTypeRichTextLinkingCollectionsComponentStatisticCollectionOrder {
   sys_publishedVersion_DESC
   value_ASC
   value_DESC
+}
+
+enum ContentTypeRichTextLinkingCollectionsComponentTitleAndBodyCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 enum ContentTypeRichTextLinkingCollectionsModuleCustomerStoriesCarouselCollectionOrder {
@@ -3880,6 +4002,13 @@ interface _Node {
 input cfCategorySolutionsImageLinkNestedFilter {
   AND: [cfCategorySolutionsImageLinkNestedFilter]
   OR: [cfCategorySolutionsImageLinkNestedFilter]
+  contentfulLabel: String
+  contentfulLabel_contains: String
+  contentfulLabel_exists: Boolean
+  contentfulLabel_in: [String]
+  contentfulLabel_not: String
+  contentfulLabel_not_contains: String
+  contentfulLabel_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
   image_exists: Boolean
   link_exists: Boolean
@@ -4024,6 +4153,22 @@ input cfComponentStatisticNestedFilter {
   value_not: String
   value_not_contains: String
   value_not_in: [String]
+}
+
+input cfComponentTitleAndBodyNestedFilter {
+  AND: [cfComponentTitleAndBodyNestedFilter]
+  OR: [cfComponentTitleAndBodyNestedFilter]
+  body_exists: Boolean
+  contentfulLabel: String
+  contentfulLabel_contains: String
+  contentfulLabel_exists: Boolean
+  contentfulLabel_in: [String]
+  contentfulLabel_not: String
+  contentfulLabel_not_contains: String
+  contentfulLabel_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  sys: SysFilter
+  title_exists: Boolean
 }
 
 input cfContentTypeRichTextNestedFilter {
