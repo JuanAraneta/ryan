@@ -1,4 +1,3 @@
-// scripts/sync.ts
 import "dotenv/config";
 import { syncToLocal } from "contentful-code-models";
 

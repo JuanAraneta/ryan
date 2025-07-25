@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { migrateConfig } from "contentful-code-models";
-import { models } from "../../src/models";
+import { models } from "@/models";
 
 const options = {
   spaceId: process.env.CONTENTFUL_SPACE_ID!,
