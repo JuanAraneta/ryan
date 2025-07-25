@@ -10,14 +10,19 @@
     "lint": "next lint",
     "prepare": "husky",
     "format": "pnpm exec prettier --write src/**/*.{ts,tsx,css}",
-    "generate-contentful-schema": "tsx ./scripts/generate-contentful-schema"
+    "generate-contentful-schema": "tsx ./scripts/generate-contentful-schema",
+    "contentful-code-models-sync": "tsx ./scripts/contentful-code-models/sync.ts",
+    "contentful-code-models-migrate": "tsx ./scripts/contentful-code-models/migrate.ts",
+    "postcontentful-code-models-migrate": "pnpm run generate-contentful-schema"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.0.2",
     "@contentful/rich-text-types": "^17.0.1",
+    "@react-hookz/web": "^25.1.1",
     "@urql/core": "^5.2.0",
     "@urql/exchange-auth": "^2.2.1",
     "contentful": "^11.1.4",
+    "contentful-code-models": "^2.1.6",
     "contentful-management": "^11.35.1",
     "cva": "npm:class-variance-authority@^0.7.1",
     "eslint-plugin-react": "^7.37.5",
@@ -35,6 +40,8 @@
     "urql": "^4.2.2"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.31.0",
     "@tailwindcss/postcss": "^4.0.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -51,6 +58,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-tailwindcss": "4.0.0-beta.0",
+    "graphql": "^16.11.0",
     "globals": "^16.3.0",
     "husky": "^9.1.7",
     "jsdom": "^26.0.0",
