@@ -1,5 +1,9 @@
 import { ContentModel } from "contentful-code-models";
 import { ExpandedContentModel } from "../types/ExpandedContentModel";
+import {
+  BaseFieldDetails,
+  ExpandedFieldDetailsOptionalFields,
+} from "../types/ExpandedFieldDetails";
 
 export const contentModelComposer = (contentModel: ExpandedContentModel) => {
   const clone = structuredClone(contentModel);
@@ -38,12 +42,14 @@ export const contentModelComposer = (contentModel: ExpandedContentModel) => {
       delete field.displayField;
     }
 
+    const optionalFieldsDefaultValues: Pick<
+      BaseFieldDetails,
+      ExpandedFieldDetailsOptionalFields
+    > = { localized: false, required: false, disabled: false, omitted: false };
+
     // Fulfill defaults
     clone.fields[index] = {
-      localized: false,
-      required: false,
-      disabled: false,
-      omitted: false,
+      ...optionalFieldsDefaultValues,
       // Override with existing values
       ...field,
     };

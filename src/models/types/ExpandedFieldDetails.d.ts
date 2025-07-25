@@ -1,15 +1,18 @@
 import { ContentFields, Control, KeyValueMap } from "contentful-management";
 
+export type ExpandedFieldDetailsOptionalFields =
+  | "localized"
+  | "required"
+  | "disabled"
+  | "omitted";
+
+export type BaseFieldDetails = ContentFields<KeyValueMap>;
+
 export type ExpandedFieldDetails = Omit<
-  ContentFields<KeyValueMap>,
-  "localized" | "required" | "disabled" | "omitted"
+  BaseFieldDetails,
+  ExpandedFieldDetailsOptionalFields
 > &
-  Partial<
-    Pick<
-      ContentFields<KeyValueMap>,
-      "localized" | "required" | "disabled" | "omitted"
-    >
-  > & {
+  Partial<Pick<BaseFieldDetails, ExpandedFieldDetailsOptionalFields>> & {
     editorInterface?: Omit<Control, "fieldId">;
     displayField?: boolean;
   };
