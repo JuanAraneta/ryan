@@ -26,6 +26,9 @@ importers:
       contentful:
         specifier: ^11.1.4
         version: 11.5.11
+      contentful-code-models:
+        specifier: ^2.1.6
+        version: 2.1.6
       contentful-management:
         specifier: ^11.35.1
         version: 11.49.0
@@ -120,6 +123,9 @@ importers:
       eslint-plugin-tailwindcss:
         specifier: ^3.17.4
         version: 3.18.0(tailwindcss@4.0.0)
+      graphql:
+        specifier: ^16.11.0
+        version: 16.11.0
       husky:
         specifier: ^9.1.7
         version: 9.1.7
@@ -1480,11 +1486,23 @@ packages:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
     engines: {node: '>= 0.8'}
 
+  commander@14.0.0:
+    resolution: {integrity: sha512-2uM9rYjPvyq39NwLRqaiLtWHyDC1FvryJDa2ATTVims5YAS4PupsEQsDvP14FqhFr0P49CYDugi59xaxJlTXRA==}
+    engines: {node: '>=20'}
+
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
 
+  contentful-code-models@2.1.6:
+    resolution: {integrity: sha512-wteFp/qjIOvhMOq7AVX9DqVo4gV7ZyrBzqW+dFcMxkeVAR2QWgUvikNDzdsDGI/g7QFetxGriYr/oGkES1LrPw==}
+    hasBin: true
+
   contentful-management@11.49.0:
     resolution: {integrity: sha512-YAoZGL3yM79OG011ZZEdZnnVwnv2oX/VYSk4836Bi2I+DiFk9S3EuNYoDvYJqkC+wSgwbMnc+25Ppp7qKDQmPw==}
+    engines: {node: '>=18'}
+
+  contentful-management@11.54.3:
+    resolution: {integrity: sha512-/2aGKLBW5pUytB4Q3mpza80wgs5rf9Rg+q/ps0txrWgWQBbE1ZSeX5Yg6e+ogVIKvV28JgfBKRndAVZE4LFdaw==}
     engines: {node: '>=18'}
 
   contentful-resolve-response@1.9.2:
@@ -1608,6 +1626,10 @@ packages:
 
   dotenv@16.4.7:
     resolution: {integrity: sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==}
+    engines: {node: '>=12'}
+
+  dotenv@16.6.1:
+    resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
     engines: {node: '>=12'}
 
   dunder-proto@1.0.1:
@@ -4503,9 +4525,30 @@ snapshots:
     dependencies:
       delayed-stream: 1.0.0
 
+  commander@14.0.0: {}
+
   concat-map@0.0.1: {}
 
+  contentful-code-models@2.1.6:
+    dependencies:
+      commander: 14.0.0
+      contentful-management: 11.54.3
+      dotenv: 16.6.1
+      lodash: 4.17.21
+    transitivePeerDependencies:
+      - debug
+
   contentful-management@11.49.0:
+    dependencies:
+      '@contentful/rich-text-types': 16.8.5
+      axios: 1.8.4
+      contentful-sdk-core: 9.2.0
+      fast-copy: 3.0.2
+      globals: 15.15.0
+    transitivePeerDependencies:
+      - debug
+
+  contentful-management@11.54.3:
     dependencies:
       '@contentful/rich-text-types': 16.8.5
       axios: 1.8.4
@@ -4636,6 +4679,8 @@ snapshots:
   dom-accessibility-api@0.6.3: {}
 
   dotenv@16.4.7: {}
+
+  dotenv@16.6.1: {}
 
   dunder-proto@1.0.1:
     dependencies:

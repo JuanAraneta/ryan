@@ -1,5 +1,5 @@
 import { Link } from "@/components/core/Link";
-import { RichText, RichTitleText } from "@/components/core/RichText";
+import { RichText } from "@/components/core/RichText";
 import { ComponentStatisticFragment } from "@/lib/contentful/fragments/ComponentStatisticFragment";
 import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleExpertsOverflowById";
 import { readFragment, ResultOf } from "gql.tada";
@@ -28,11 +28,15 @@ export const ModuleExpertsOverflow = ({
       <div className="flex flex-col dsk:flex-row justify-between items-center">
         <div className="flex flex-col justify-center dsk:justify-left">
           <h2 className="typo-heading-6 text-highlight text-center dsk:text-left">
-            <RichText content={data.moduleExpertsOverflow?.eyebrow} spansOnly />
+            <RichText
+              content={data.moduleExpertsOverflow?.richTextEyebrow}
+              spansOnly
+            />
           </h2>
           <p className="typo-heading-1 pt-4 font-light text-center dsk:text-left">
-            <RichTitleText
-              content={data.moduleExpertsOverflow?.title}
+            <RichText
+              content={data.moduleExpertsOverflow?.richTextTitle}
+              variant="title"
               spansOnly
             />
           </p>
@@ -47,7 +51,7 @@ export const ModuleExpertsOverflow = ({
             {statisticFlair?.url && <img src={statisticFlair.url} />}
             <div className="flex flex-col">
               <p className="text-content-secondary typo-body-large">
-                <RichText content={statistic.label} spansOnly />
+                <RichText content={statistic.richTextLabel} spansOnly />
               </p>
               <p className="typo-display font-light text-highlight pt-3">
                 {statistic?.prefix}

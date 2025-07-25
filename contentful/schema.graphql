@@ -296,11 +296,11 @@ enum CategorySolutionsImageLinkOrder {
 type ComponentCardDeviceMock implements Entry & _Node {
   _id: ID!
   backgroundColor(locale: String, preview: Boolean, where: ThemeBackgroundFilter): ThemeBackground
-  body(locale: String, preview: Boolean, where: ContentTypeRichTextFilter): ContentTypeRichText
   callToAction(locale: String, preview: Boolean, where: ComponentLinkFilter): ComponentLink
   contentfulMetadata: ContentfulMetadata!
   deviceMock(locale: String, preview: Boolean): Asset
   linkedFrom(allowedLocales: [String]): ComponentCardDeviceMockLinkingCollections
+  richTextBody(locale: String): ComponentCardDeviceMockRichTextBody
   sys: Sys!
   title(locale: String): String
 }
@@ -317,12 +317,13 @@ input ComponentCardDeviceMockFilter {
   OR: [ComponentCardDeviceMockFilter]
   backgroundColor: cfThemeBackgroundNestedFilter
   backgroundColor_exists: Boolean
-  body: cfContentTypeRichTextNestedFilter
-  body_exists: Boolean
   callToAction: cfComponentLinkNestedFilter
   callToAction_exists: Boolean
   contentfulMetadata: ContentfulMetadataFilter
   deviceMock_exists: Boolean
+  richTextBody_contains: String
+  richTextBody_exists: Boolean
+  richTextBody_not_contains: String
   sys: SysFilter
   title: String
   title_contains: String
@@ -362,6 +363,46 @@ enum ComponentCardDeviceMockOrder {
   sys_publishedVersion_DESC
   title_ASC
   title_DESC
+}
+
+type ComponentCardDeviceMockRichTextBody {
+  json: JSON!
+  links: ComponentCardDeviceMockRichTextBodyLinks!
+}
+
+type ComponentCardDeviceMockRichTextBodyAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type ComponentCardDeviceMockRichTextBodyEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type ComponentCardDeviceMockRichTextBodyLinks {
+  assets: ComponentCardDeviceMockRichTextBodyAssets!
+  entries: ComponentCardDeviceMockRichTextBodyEntries!
+  resources: ComponentCardDeviceMockRichTextBodyResources!
+}
+
+type ComponentCardDeviceMockRichTextBodyResources {
+  block: [ComponentCardDeviceMockRichTextBodyResourcesBlock!]!
+  hyperlink: [ComponentCardDeviceMockRichTextBodyResourcesHyperlink!]!
+  inline: [ComponentCardDeviceMockRichTextBodyResourcesInline!]!
+}
+
+type ComponentCardDeviceMockRichTextBodyResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ComponentCardDeviceMockRichTextBodyResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ComponentCardDeviceMockRichTextBodyResourcesInline implements ResourceLink {
+  sys: ResourceSys!
 }
 
 """
@@ -539,8 +580,8 @@ type ComponentCategorySolutionsHeadline implements Entry & _Node {
   _id: ID!
   contentfulLabel(locale: String): String
   contentfulMetadata: ContentfulMetadata!
-  headline(locale: String, preview: Boolean, where: ContentTypeRichTextFilter): ContentTypeRichText
   linkedFrom(allowedLocales: [String]): ComponentCategorySolutionsHeadlineLinkingCollections
+  richTextHeadline(locale: String): ComponentCategorySolutionsHeadlineRichTextHeadline
   sys: Sys!
 }
 
@@ -562,8 +603,9 @@ input ComponentCategorySolutionsHeadlineFilter {
   contentfulLabel_not_contains: String
   contentfulLabel_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
-  headline: cfContentTypeRichTextNestedFilter
-  headline_exists: Boolean
+  richTextHeadline_contains: String
+  richTextHeadline_exists: Boolean
+  richTextHeadline_not_contains: String
   sys: SysFilter
 }
 
@@ -598,6 +640,46 @@ enum ComponentCategorySolutionsHeadlineOrder {
   sys_publishedVersion_DESC
 }
 
+type ComponentCategorySolutionsHeadlineRichTextHeadline {
+  json: JSON!
+  links: ComponentCategorySolutionsHeadlineRichTextHeadlineLinks!
+}
+
+type ComponentCategorySolutionsHeadlineRichTextHeadlineAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type ComponentCategorySolutionsHeadlineRichTextHeadlineEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type ComponentCategorySolutionsHeadlineRichTextHeadlineLinks {
+  assets: ComponentCategorySolutionsHeadlineRichTextHeadlineAssets!
+  entries: ComponentCategorySolutionsHeadlineRichTextHeadlineEntries!
+  resources: ComponentCategorySolutionsHeadlineRichTextHeadlineResources!
+}
+
+type ComponentCategorySolutionsHeadlineRichTextHeadlineResources {
+  block: [ComponentCategorySolutionsHeadlineRichTextHeadlineResourcesBlock!]!
+  hyperlink: [ComponentCategorySolutionsHeadlineRichTextHeadlineResourcesHyperlink!]!
+  inline: [ComponentCategorySolutionsHeadlineRichTextHeadlineResourcesInline!]!
+}
+
+type ComponentCategorySolutionsHeadlineRichTextHeadlineResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ComponentCategorySolutionsHeadlineRichTextHeadlineResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ComponentCategorySolutionsHeadlineRichTextHeadlineResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
 """
 [See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/componentCustomerStory)
 """
@@ -606,10 +688,10 @@ type ComponentCustomerStory implements Entry & _Node {
   contentfulMetadata: ContentfulMetadata!
   customerLogo(locale: String, preview: Boolean): Asset
   customerName(locale: String): String
-  headline(locale: String, preview: Boolean, where: ContentTypeRichTextFilter): ContentTypeRichText
   heroMedia(locale: String, preview: Boolean): Asset
   linkedFrom(allowedLocales: [String]): ComponentCustomerStoryLinkingCollections
   quoteSource(locale: String): String
+  richTextHeadline(locale: String): ComponentCustomerStoryRichTextHeadline
   slug(locale: String): String
   sys: Sys!
 }
@@ -633,8 +715,6 @@ input ComponentCustomerStoryFilter {
   customerName_not: String
   customerName_not_contains: String
   customerName_not_in: [String]
-  headline: cfContentTypeRichTextNestedFilter
-  headline_exists: Boolean
   heroMedia_exists: Boolean
   quoteSource: String
   quoteSource_contains: String
@@ -643,6 +723,9 @@ input ComponentCustomerStoryFilter {
   quoteSource_not: String
   quoteSource_not_contains: String
   quoteSource_not_in: [String]
+  richTextHeadline_contains: String
+  richTextHeadline_exists: Boolean
+  richTextHeadline_not_contains: String
   slug: String
   slug_contains: String
   slug_exists: Boolean
@@ -686,6 +769,46 @@ enum ComponentCustomerStoryOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+}
+
+type ComponentCustomerStoryRichTextHeadline {
+  json: JSON!
+  links: ComponentCustomerStoryRichTextHeadlineLinks!
+}
+
+type ComponentCustomerStoryRichTextHeadlineAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type ComponentCustomerStoryRichTextHeadlineEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type ComponentCustomerStoryRichTextHeadlineLinks {
+  assets: ComponentCustomerStoryRichTextHeadlineAssets!
+  entries: ComponentCustomerStoryRichTextHeadlineEntries!
+  resources: ComponentCustomerStoryRichTextHeadlineResources!
+}
+
+type ComponentCustomerStoryRichTextHeadlineResources {
+  block: [ComponentCustomerStoryRichTextHeadlineResourcesBlock!]!
+  hyperlink: [ComponentCustomerStoryRichTextHeadlineResourcesHyperlink!]!
+  inline: [ComponentCustomerStoryRichTextHeadlineResourcesInline!]!
+}
+
+type ComponentCustomerStoryRichTextHeadlineResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ComponentCustomerStoryRichTextHeadlineResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ComponentCustomerStoryRichTextHeadlineResourcesInline implements ResourceLink {
+  sys: ResourceSys!
 }
 
 """
@@ -908,9 +1031,9 @@ type ComponentStatistic implements Entry & _Node {
   _id: ID!
   contentfulLabel(locale: String): String
   contentfulMetadata: ContentfulMetadata!
-  label(locale: String, preview: Boolean, where: ContentTypeRichTextFilter): ContentTypeRichText
   linkedFrom(allowedLocales: [String]): ComponentStatisticLinkingCollections
   prefix(locale: String): String
+  richTextLabel(locale: String): ComponentStatisticRichTextLabel
   suffix(locale: String): String
   sys: Sys!
   value(locale: String): String
@@ -934,8 +1057,6 @@ input ComponentStatisticFilter {
   contentfulLabel_not_contains: String
   contentfulLabel_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
-  label: cfContentTypeRichTextNestedFilter
-  label_exists: Boolean
   prefix: String
   prefix_contains: String
   prefix_exists: Boolean
@@ -943,6 +1064,9 @@ input ComponentStatisticFilter {
   prefix_not: String
   prefix_not_contains: String
   prefix_not_in: [String]
+  richTextLabel_contains: String
+  richTextLabel_exists: Boolean
+  richTextLabel_not_contains: String
   suffix: String
   suffix_contains: String
   suffix_exists: Boolean
@@ -997,17 +1121,57 @@ enum ComponentStatisticOrder {
   value_DESC
 }
 
+type ComponentStatisticRichTextLabel {
+  json: JSON!
+  links: ComponentStatisticRichTextLabelLinks!
+}
+
+type ComponentStatisticRichTextLabelAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type ComponentStatisticRichTextLabelEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type ComponentStatisticRichTextLabelLinks {
+  assets: ComponentStatisticRichTextLabelAssets!
+  entries: ComponentStatisticRichTextLabelEntries!
+  resources: ComponentStatisticRichTextLabelResources!
+}
+
+type ComponentStatisticRichTextLabelResources {
+  block: [ComponentStatisticRichTextLabelResourcesBlock!]!
+  hyperlink: [ComponentStatisticRichTextLabelResourcesHyperlink!]!
+  inline: [ComponentStatisticRichTextLabelResourcesInline!]!
+}
+
+type ComponentStatisticRichTextLabelResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ComponentStatisticRichTextLabelResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ComponentStatisticRichTextLabelResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
 """
 [See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/componentTitleAndBody)
 """
 type ComponentTitleAndBody implements Entry & _Node {
   _id: ID!
-  body(locale: String, preview: Boolean, where: ContentTypeRichTextFilter): ContentTypeRichText
   contentfulLabel(locale: String): String
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): ComponentTitleAndBodyLinkingCollections
+  richTextBody(locale: String): ComponentTitleAndBodyRichTextBody
+  richTextTitle(locale: String): ComponentTitleAndBodyRichTextTitle
   sys: Sys!
-  title(locale: String, preview: Boolean, where: ContentTypeRichTextFilter): ContentTypeRichText
 }
 
 type ComponentTitleAndBodyCollection {
@@ -1020,8 +1184,6 @@ type ComponentTitleAndBodyCollection {
 input ComponentTitleAndBodyFilter {
   AND: [ComponentTitleAndBodyFilter]
   OR: [ComponentTitleAndBodyFilter]
-  body: cfContentTypeRichTextNestedFilter
-  body_exists: Boolean
   contentfulLabel: String
   contentfulLabel_contains: String
   contentfulLabel_exists: Boolean
@@ -1030,9 +1192,13 @@ input ComponentTitleAndBodyFilter {
   contentfulLabel_not_contains: String
   contentfulLabel_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
+  richTextBody_contains: String
+  richTextBody_exists: Boolean
+  richTextBody_not_contains: String
+  richTextTitle_contains: String
+  richTextTitle_exists: Boolean
+  richTextTitle_not_contains: String
   sys: SysFilter
-  title: cfContentTypeRichTextNestedFilter
-  title_exists: Boolean
 }
 
 type ComponentTitleAndBodyLinkingCollections {
@@ -1064,6 +1230,86 @@ enum ComponentTitleAndBodyOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+}
+
+type ComponentTitleAndBodyRichTextBody {
+  json: JSON!
+  links: ComponentTitleAndBodyRichTextBodyLinks!
+}
+
+type ComponentTitleAndBodyRichTextBodyAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type ComponentTitleAndBodyRichTextBodyEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type ComponentTitleAndBodyRichTextBodyLinks {
+  assets: ComponentTitleAndBodyRichTextBodyAssets!
+  entries: ComponentTitleAndBodyRichTextBodyEntries!
+  resources: ComponentTitleAndBodyRichTextBodyResources!
+}
+
+type ComponentTitleAndBodyRichTextBodyResources {
+  block: [ComponentTitleAndBodyRichTextBodyResourcesBlock!]!
+  hyperlink: [ComponentTitleAndBodyRichTextBodyResourcesHyperlink!]!
+  inline: [ComponentTitleAndBodyRichTextBodyResourcesInline!]!
+}
+
+type ComponentTitleAndBodyRichTextBodyResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ComponentTitleAndBodyRichTextBodyResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ComponentTitleAndBodyRichTextBodyResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ComponentTitleAndBodyRichTextTitle {
+  json: JSON!
+  links: ComponentTitleAndBodyRichTextTitleLinks!
+}
+
+type ComponentTitleAndBodyRichTextTitleAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type ComponentTitleAndBodyRichTextTitleEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type ComponentTitleAndBodyRichTextTitleLinks {
+  assets: ComponentTitleAndBodyRichTextTitleAssets!
+  entries: ComponentTitleAndBodyRichTextTitleEntries!
+  resources: ComponentTitleAndBodyRichTextTitleResources!
+}
+
+type ComponentTitleAndBodyRichTextTitleResources {
+  block: [ComponentTitleAndBodyRichTextTitleResourcesBlock!]!
+  hyperlink: [ComponentTitleAndBodyRichTextTitleResourcesHyperlink!]!
+  inline: [ComponentTitleAndBodyRichTextTitleResourcesInline!]!
+}
+
+type ComponentTitleAndBodyRichTextTitleResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ComponentTitleAndBodyRichTextTitleResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ComponentTitleAndBodyRichTextTitleResourcesInline implements ResourceLink {
+  sys: ResourceSys!
 }
 
 """
@@ -1202,115 +1448,7 @@ input ContentTypeRichTextFilter {
 }
 
 type ContentTypeRichTextLinkingCollections {
-  componentCardDeviceMockCollection(limit: Int = 100, locale: String, order: [ContentTypeRichTextLinkingCollectionsComponentCardDeviceMockCollectionOrder], preview: Boolean, skip: Int = 0): ComponentCardDeviceMockCollection
-  componentCategorySolutionsHeadlineCollection(limit: Int = 100, locale: String, order: [ContentTypeRichTextLinkingCollectionsComponentCategorySolutionsHeadlineCollectionOrder], preview: Boolean, skip: Int = 0): ComponentCategorySolutionsHeadlineCollection
-  componentCustomerStoryCollection(limit: Int = 100, locale: String, order: [ContentTypeRichTextLinkingCollectionsComponentCustomerStoryCollectionOrder], preview: Boolean, skip: Int = 0): ComponentCustomerStoryCollection
-  componentStatisticCollection(limit: Int = 100, locale: String, order: [ContentTypeRichTextLinkingCollectionsComponentStatisticCollectionOrder], preview: Boolean, skip: Int = 0): ComponentStatisticCollection
-  componentTitleAndBodyCollection(limit: Int = 100, locale: String, order: [ContentTypeRichTextLinkingCollectionsComponentTitleAndBodyCollectionOrder], preview: Boolean, skip: Int = 0): ComponentTitleAndBodyCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  moduleCustomerStoriesCarouselCollection(limit: Int = 100, locale: String, order: [ContentTypeRichTextLinkingCollectionsModuleCustomerStoriesCarouselCollectionOrder], preview: Boolean, skip: Int = 0): ModuleCustomerStoriesCarouselCollection
-  moduleExpertsOverflowCollection(limit: Int = 100, locale: String, order: [ContentTypeRichTextLinkingCollectionsModuleExpertsOverflowCollectionOrder], preview: Boolean, skip: Int = 0): ModuleExpertsOverflowCollection
-}
-
-enum ContentTypeRichTextLinkingCollectionsComponentCardDeviceMockCollectionOrder {
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-  title_ASC
-  title_DESC
-}
-
-enum ContentTypeRichTextLinkingCollectionsComponentCategorySolutionsHeadlineCollectionOrder {
-  contentfulLabel_ASC
-  contentfulLabel_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-enum ContentTypeRichTextLinkingCollectionsComponentCustomerStoryCollectionOrder {
-  customerName_ASC
-  customerName_DESC
-  quoteSource_ASC
-  quoteSource_DESC
-  slug_ASC
-  slug_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-enum ContentTypeRichTextLinkingCollectionsComponentStatisticCollectionOrder {
-  contentfulLabel_ASC
-  contentfulLabel_DESC
-  prefix_ASC
-  prefix_DESC
-  suffix_ASC
-  suffix_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-  value_ASC
-  value_DESC
-}
-
-enum ContentTypeRichTextLinkingCollectionsComponentTitleAndBodyCollectionOrder {
-  contentfulLabel_ASC
-  contentfulLabel_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-enum ContentTypeRichTextLinkingCollectionsModuleCustomerStoriesCarouselCollectionOrder {
-  contentfulLabel_ASC
-  contentfulLabel_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-enum ContentTypeRichTextLinkingCollectionsModuleExpertsOverflowCollectionOrder {
-  contentfulLabel_ASC
-  contentfulLabel_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
 }
 
 enum ContentTypeRichTextOrder {
@@ -2048,8 +2186,8 @@ type ModuleCustomerStoriesCarousel implements Entry & _Node {
   contentfulMetadata: ContentfulMetadata!
   customerStoriesCollection(limit: Int = 100, locale: String, order: [ModuleCustomerStoriesCarouselCustomerStoriesCollectionOrder], preview: Boolean, skip: Int = 0, where: ComponentCustomerStoryFilter): ModuleCustomerStoriesCarouselCustomerStoriesCollection
   linkedFrom(allowedLocales: [String]): ModuleCustomerStoriesCarouselLinkingCollections
+  richTextTitle(locale: String): ModuleCustomerStoriesCarouselRichTextTitle
   sys: Sys!
-  title(locale: String, preview: Boolean, where: ContentTypeRichTextFilter): ContentTypeRichText
 }
 
 type ModuleCustomerStoriesCarouselCollection {
@@ -2098,9 +2236,10 @@ input ModuleCustomerStoriesCarouselFilter {
   contentfulMetadata: ContentfulMetadataFilter
   customerStories: cfComponentCustomerStoryNestedFilter
   customerStoriesCollection_exists: Boolean
+  richTextTitle_contains: String
+  richTextTitle_exists: Boolean
+  richTextTitle_not_contains: String
   sys: SysFilter
-  title: cfContentTypeRichTextNestedFilter
-  title_exists: Boolean
 }
 
 type ModuleCustomerStoriesCarouselLinkingCollections {
@@ -2136,6 +2275,46 @@ enum ModuleCustomerStoriesCarouselOrder {
   sys_publishedVersion_DESC
 }
 
+type ModuleCustomerStoriesCarouselRichTextTitle {
+  json: JSON!
+  links: ModuleCustomerStoriesCarouselRichTextTitleLinks!
+}
+
+type ModuleCustomerStoriesCarouselRichTextTitleAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type ModuleCustomerStoriesCarouselRichTextTitleEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type ModuleCustomerStoriesCarouselRichTextTitleLinks {
+  assets: ModuleCustomerStoriesCarouselRichTextTitleAssets!
+  entries: ModuleCustomerStoriesCarouselRichTextTitleEntries!
+  resources: ModuleCustomerStoriesCarouselRichTextTitleResources!
+}
+
+type ModuleCustomerStoriesCarouselRichTextTitleResources {
+  block: [ModuleCustomerStoriesCarouselRichTextTitleResourcesBlock!]!
+  hyperlink: [ModuleCustomerStoriesCarouselRichTextTitleResourcesHyperlink!]!
+  inline: [ModuleCustomerStoriesCarouselRichTextTitleResourcesInline!]!
+}
+
+type ModuleCustomerStoriesCarouselRichTextTitleResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ModuleCustomerStoriesCarouselRichTextTitleResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ModuleCustomerStoriesCarouselRichTextTitleResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
 """
 [See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/moduleExpertsOverflow)
 """
@@ -2145,12 +2324,12 @@ type ModuleExpertsOverflow implements Entry & _Node {
   contentfulLabel(locale: String): String
   contentfulMetadata: ContentfulMetadata!
   expertsListCollection(limit: Int = 100, locale: String, order: [ModuleExpertsOverflowExpertsListCollectionOrder], preview: Boolean, skip: Int = 0, where: ComponentExpertFilter): ModuleExpertsOverflowExpertsListCollection
-  eyebrow(locale: String, preview: Boolean, where: ContentTypeRichTextFilter): ContentTypeRichText
   linkedFrom(allowedLocales: [String]): ModuleExpertsOverflowLinkingCollections
+  richTextEyebrow(locale: String): ModuleExpertsOverflowRichTextEyebrow
+  richTextTitle(locale: String): ModuleExpertsOverflowRichTextTitle
   statistic(locale: String, preview: Boolean, where: ComponentStatisticFilter): ComponentStatistic
   statisticFlair(locale: String, preview: Boolean): Asset
   sys: Sys!
-  title(locale: String, preview: Boolean, where: ContentTypeRichTextFilter): ContentTypeRichText
 }
 
 type ModuleExpertsOverflowCollection {
@@ -2201,14 +2380,16 @@ input ModuleExpertsOverflowFilter {
   contentfulMetadata: ContentfulMetadataFilter
   expertsList: cfComponentExpertNestedFilter
   expertsListCollection_exists: Boolean
-  eyebrow: cfContentTypeRichTextNestedFilter
-  eyebrow_exists: Boolean
+  richTextEyebrow_contains: String
+  richTextEyebrow_exists: Boolean
+  richTextEyebrow_not_contains: String
+  richTextTitle_contains: String
+  richTextTitle_exists: Boolean
+  richTextTitle_not_contains: String
   statistic: cfComponentStatisticNestedFilter
   statisticFlair_exists: Boolean
   statistic_exists: Boolean
   sys: SysFilter
-  title: cfContentTypeRichTextNestedFilter
-  title_exists: Boolean
 }
 
 type ModuleExpertsOverflowLinkingCollections {
@@ -2242,6 +2423,160 @@ enum ModuleExpertsOverflowOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+}
+
+type ModuleExpertsOverflowRichTextEyebrow {
+  json: JSON!
+  links: ModuleExpertsOverflowRichTextEyebrowLinks!
+}
+
+type ModuleExpertsOverflowRichTextEyebrowAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type ModuleExpertsOverflowRichTextEyebrowEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type ModuleExpertsOverflowRichTextEyebrowLinks {
+  assets: ModuleExpertsOverflowRichTextEyebrowAssets!
+  entries: ModuleExpertsOverflowRichTextEyebrowEntries!
+  resources: ModuleExpertsOverflowRichTextEyebrowResources!
+}
+
+type ModuleExpertsOverflowRichTextEyebrowResources {
+  block: [ModuleExpertsOverflowRichTextEyebrowResourcesBlock!]!
+  hyperlink: [ModuleExpertsOverflowRichTextEyebrowResourcesHyperlink!]!
+  inline: [ModuleExpertsOverflowRichTextEyebrowResourcesInline!]!
+}
+
+type ModuleExpertsOverflowRichTextEyebrowResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ModuleExpertsOverflowRichTextEyebrowResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ModuleExpertsOverflowRichTextEyebrowResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ModuleExpertsOverflowRichTextTitle {
+  json: JSON!
+  links: ModuleExpertsOverflowRichTextTitleLinks!
+}
+
+type ModuleExpertsOverflowRichTextTitleAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type ModuleExpertsOverflowRichTextTitleEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type ModuleExpertsOverflowRichTextTitleLinks {
+  assets: ModuleExpertsOverflowRichTextTitleAssets!
+  entries: ModuleExpertsOverflowRichTextTitleEntries!
+  resources: ModuleExpertsOverflowRichTextTitleResources!
+}
+
+type ModuleExpertsOverflowRichTextTitleResources {
+  block: [ModuleExpertsOverflowRichTextTitleResourcesBlock!]!
+  hyperlink: [ModuleExpertsOverflowRichTextTitleResourcesHyperlink!]!
+  inline: [ModuleExpertsOverflowRichTextTitleResourcesInline!]!
+}
+
+type ModuleExpertsOverflowRichTextTitleResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ModuleExpertsOverflowRichTextTitleResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ModuleExpertsOverflowRichTextTitleResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/moduleHeroHome)
+"""
+type ModuleHeroHome implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  headline(locale: String): String
+  linkedFrom(allowedLocales: [String]): ModuleHeroHomeLinkingCollections
+  routingCardsCollection(limit: Int = 100, locale: String, order: [ModuleHeroHomeRoutingCardsCollectionOrder], preview: Boolean, skip: Int = 0, where: PageFilter): ModuleHeroHomeRoutingCardsCollection
+  sys: Sys!
+}
+
+type ModuleHeroHomeCollection {
+  items: [ModuleHeroHome]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input ModuleHeroHomeFilter {
+  AND: [ModuleHeroHomeFilter]
+  OR: [ModuleHeroHomeFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  headline: String
+  headline_contains: String
+  headline_exists: Boolean
+  headline_in: [String]
+  headline_not: String
+  headline_not_contains: String
+  headline_not_in: [String]
+  routingCards: cfPageNestedFilter
+  routingCardsCollection_exists: Boolean
+  sys: SysFilter
+}
+
+type ModuleHeroHomeLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum ModuleHeroHomeOrder {
+  headline_ASC
+  headline_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+type ModuleHeroHomeRoutingCardsCollection {
+  items: [Page]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+enum ModuleHeroHomeRoutingCardsCollectionOrder {
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
 }
 
 """
@@ -2305,6 +2640,7 @@ input PageFilter {
 type PageLinkingCollections {
   componentLinkCollection(limit: Int = 100, locale: String, order: [PageLinkingCollectionsComponentLinkCollectionOrder], preview: Boolean, skip: Int = 0): ComponentLinkCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  moduleHeroHomeCollection(limit: Int = 100, locale: String, order: [PageLinkingCollectionsModuleHeroHomeCollectionOrder], preview: Boolean, skip: Int = 0): ModuleHeroHomeCollection
   pageCollection(limit: Int = 100, locale: String, order: [PageLinkingCollectionsPageCollectionOrder], preview: Boolean, skip: Int = 0): PageCollection
 }
 
@@ -2313,6 +2649,19 @@ enum PageLinkingCollectionsComponentLinkCollectionOrder {
   externalSource_DESC
   label_ASC
   label_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum PageLinkingCollectionsModuleHeroHomeCollectionOrder {
+  headline_ASC
+  headline_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -2448,6 +2797,8 @@ type Query {
   moduleCustomerStoriesCarouselCollection(limit: Int = 100, locale: String, order: [ModuleCustomerStoriesCarouselOrder], preview: Boolean, skip: Int = 0, where: ModuleCustomerStoriesCarouselFilter): ModuleCustomerStoriesCarouselCollection
   moduleExpertsOverflow(id: String!, locale: String, preview: Boolean): ModuleExpertsOverflow
   moduleExpertsOverflowCollection(limit: Int = 100, locale: String, order: [ModuleExpertsOverflowOrder], preview: Boolean, skip: Int = 0, where: ModuleExpertsOverflowFilter): ModuleExpertsOverflowCollection
+  moduleHeroHome(id: String!, locale: String, preview: Boolean): ModuleHeroHome
+  moduleHeroHomeCollection(limit: Int = 100, locale: String, order: [ModuleHeroHomeOrder], preview: Boolean, skip: Int = 0, where: ModuleHeroHomeFilter): ModuleHeroHomeCollection
   page(id: String!, locale: String, preview: Boolean): Page
   pageCollection(limit: Int = 100, locale: String, order: [PageOrder], preview: Boolean, skip: Int = 0, where: PageFilter): PageCollection
   script(id: String!, locale: String, preview: Boolean): Script
@@ -3163,7 +3514,6 @@ input cfComponentCustomerStoryNestedFilter {
   customerName_not: String
   customerName_not_contains: String
   customerName_not_in: [String]
-  headline_exists: Boolean
   heroMedia_exists: Boolean
   quoteSource: String
   quoteSource_contains: String
@@ -3172,6 +3522,9 @@ input cfComponentCustomerStoryNestedFilter {
   quoteSource_not: String
   quoteSource_not_contains: String
   quoteSource_not_in: [String]
+  richTextHeadline_contains: String
+  richTextHeadline_exists: Boolean
+  richTextHeadline_not_contains: String
   slug: String
   slug_contains: String
   slug_exists: Boolean
@@ -3251,7 +3604,6 @@ input cfComponentStatisticNestedFilter {
   contentfulLabel_not_contains: String
   contentfulLabel_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
-  label_exists: Boolean
   prefix: String
   prefix_contains: String
   prefix_exists: Boolean
@@ -3259,6 +3611,9 @@ input cfComponentStatisticNestedFilter {
   prefix_not: String
   prefix_not_contains: String
   prefix_not_in: [String]
+  richTextLabel_contains: String
+  richTextLabel_exists: Boolean
+  richTextLabel_not_contains: String
   suffix: String
   suffix_contains: String
   suffix_exists: Boolean
@@ -3279,7 +3634,6 @@ input cfComponentStatisticNestedFilter {
 input cfComponentTitleAndBodyNestedFilter {
   AND: [cfComponentTitleAndBodyNestedFilter]
   OR: [cfComponentTitleAndBodyNestedFilter]
-  body_exists: Boolean
   contentfulLabel: String
   contentfulLabel_contains: String
   contentfulLabel_exists: Boolean
@@ -3288,24 +3642,12 @@ input cfComponentTitleAndBodyNestedFilter {
   contentfulLabel_not_contains: String
   contentfulLabel_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
-  sys: SysFilter
-  title_exists: Boolean
-}
-
-input cfContentTypeRichTextNestedFilter {
-  AND: [cfContentTypeRichTextNestedFilter]
-  OR: [cfContentTypeRichTextNestedFilter]
-  contentfulLabel: String
-  contentfulLabel_contains: String
-  contentfulLabel_exists: Boolean
-  contentfulLabel_in: [String]
-  contentfulLabel_not: String
-  contentfulLabel_not_contains: String
-  contentfulLabel_not_in: [String]
-  contentfulMetadata: ContentfulMetadataFilter
-  richText_contains: String
-  richText_exists: Boolean
-  richText_not_contains: String
+  richTextBody_contains: String
+  richTextBody_exists: Boolean
+  richTextBody_not_contains: String
+  richTextTitle_contains: String
+  richTextTitle_exists: Boolean
+  richTextTitle_not_contains: String
   sys: SysFilter
 }
 

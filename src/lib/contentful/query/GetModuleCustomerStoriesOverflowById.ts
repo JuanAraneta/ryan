@@ -1,7 +1,7 @@
 import { graphql } from "gql.tada";
-import { RichTextFragment } from "../fragments/RichTextFragment";
 import { ComponentLinkFragment } from "../fragments/ComponentLinkFragment";
 import { ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment } from "../fragments/ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment";
+import { RichTextFragments } from "../fragments/RichTextFragments.generated";
 
 export const GetModuleCustomerStoriesOverflowById = graphql(
   `
@@ -20,8 +20,8 @@ export const GetModuleCustomerStoriesOverflowById = graphql(
     }
 
     fragment ModuleCustomerStoriesOverflowFragment on ModuleCustomerStoriesCarousel {
-      title {
-        ...RichTextFragment
+      richTextTitle {
+        ...ModuleCustomerStoriesCarousel_richTextTitleFragment
       }
       callToAction {
         ...ComponentLinkFragment
@@ -32,7 +32,7 @@ export const GetModuleCustomerStoriesOverflowById = graphql(
     }
   `,
   [
-    RichTextFragment,
+    RichTextFragments.ModuleCustomerStoriesCarousel_richTextTitle,
     ComponentLinkFragment,
     ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment,
   ]

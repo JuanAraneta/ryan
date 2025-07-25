@@ -1,6 +1,6 @@
 import { graphql } from "gql.tada";
-import { RichTextFragment } from "./RichTextFragment";
 import { AssetFragment } from "./AssetFragment";
+import { RichTextFragments } from "./RichTextFragments.generated";
 
 export const ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment =
   graphql(
@@ -9,8 +9,8 @@ export const ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment =
         items {
           customerName
           slug
-          headline {
-            ...RichTextFragment
+          richTextHeadline {
+            ...ComponentCustomerStory_richTextHeadlineFragment
           }
           quoteSource
           customerLogo {
@@ -22,5 +22,5 @@ export const ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment =
         }
       }
     `,
-    [RichTextFragment, AssetFragment]
+    [RichTextFragments.ComponentCustomerStory_richTextHeadline, AssetFragment]
   );
