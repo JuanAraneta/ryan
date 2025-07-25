@@ -1,4 +1,4 @@
-import { RichTextFragment } from "@/lib/contentful/fragments/RichTextFragment";
+import { RichTextFragments } from "@/lib/contentful/fragments/RichTextFragments.generated";
 import { graphql } from "gql.tada";
 
 export const ComponentCategorySolutions2ColSubBodyFragment = graphql(
@@ -6,15 +6,18 @@ export const ComponentCategorySolutions2ColSubBodyFragment = graphql(
     fragment ComponentCategorySolutions2ColSubBodyFragment on ComponentCategorySolutions2ColSubBody {
       titleAndBodyReferencesCollection {
         items {
-          title {
-            ...RichTextFragment
+          richTextTitle {
+            ...ComponentTitleAndBody_richTextTitleFragment
           }
-          body {
-            ...RichTextFragment
+          richTextBody {
+            ...ComponentTitleAndBody_richTextBodyFragment
           }
         }
       }
     }
   `,
-  [RichTextFragment]
+  [
+    RichTextFragments.ComponentTitleAndBody_richTextBody,
+    RichTextFragments.ComponentTitleAndBody_richTextTitle,
+  ]
 );

@@ -1,5 +1,6 @@
 import * as dotenv from "dotenv";
 import { $ } from "zx";
+import { generateContentfulRichTextFragments } from "./generateContentfulRichTextFragments";
 
 (async () => {
   dotenv.config();
@@ -9,4 +10,5 @@ import { $ } from "zx";
 
   await $`npx gql-tada generate-schema ${gqlUrl} --header ${header}`;
   await $`gql.tada generate-output`;
+  await generateContentfulRichTextFragments();
 })();

@@ -30,7 +30,7 @@ export const ComponentCardDeviceMock = ({
           {data.title}
         </h2>
         <p className="typo-body-large pt-6 dsk:pt-8 text-neutral-100">
-          <RichText content={data.body} spansOnly />
+          <RichText content={data.richTextBody} spansOnly />
         </p>
         <div className="pt-8 dsk:pt-14">
           <Button asChild variant="secondary" aria-describedby={h2Id}>

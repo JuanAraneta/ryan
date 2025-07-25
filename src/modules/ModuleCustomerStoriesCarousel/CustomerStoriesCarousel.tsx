@@ -51,7 +51,7 @@ export const CustomerStoriesCarousel = ({
               <p className="typo-eyebrow">{story.customerName}</p>
             </div>
             <p className="typo-heading-5 font-light pt-3">
-              <RichText content={story.headline} spansOnly />
+              <RichText content={story.richTextHeadline} spansOnly />
             </p>
             {!!story.quoteSource && (
               <p className="typo-caption pt-3">{story.quoteSource}</p>

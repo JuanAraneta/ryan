@@ -1,13 +1,13 @@
-import { RichTextFragment } from "@/lib/contentful/fragments/RichTextFragment";
+import { RichTextFragments } from "@/lib/contentful/fragments/RichTextFragments.generated";
 import { graphql } from "gql.tada";
 
 export const ComponentCategorySolutionsHeadlineFragment = graphql(
   `
     fragment ComponentCategorySolutionsHeadlineFragment on ComponentCategorySolutionsHeadline {
-      headline {
-        ...RichTextFragment
+      richTextHeadline {
+        ...ComponentCategorySolutionsHeadline_richTextHeadlineFragment
       }
     }
   `,
-  [RichTextFragment]
+  [RichTextFragments.ComponentCategorySolutionsHeadline_richTextHeadline]
 );

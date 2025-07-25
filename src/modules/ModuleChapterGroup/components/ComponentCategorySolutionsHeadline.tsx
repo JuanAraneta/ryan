@@ -8,6 +8,6 @@ export const ComponentCategorySolutionsHeadline = ({
   data: ResultOf<typeof ComponentCategorySolutionsHeadlineFragment>;
 }) => (
   <p className="typo-heading-3 text-brand-700 font-light max-w-3xl text-balance">
-    <RichText content={data.headline} spansOnly />
+    <RichText content={data.richTextHeadline} spansOnly />
   </p>
 );

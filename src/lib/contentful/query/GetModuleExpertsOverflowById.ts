@@ -1,9 +1,9 @@
 import { graphql } from "gql.tada";
-import { RichTextFragment } from "../fragments/RichTextFragment";
 import { ComponentLinkFragment } from "../fragments/ComponentLinkFragment";
 import { ComponentStatisticFragment } from "../fragments/ComponentStatisticFragment";
 import { ModuleExpertsOverflowExpertsListCollectionFragment } from "../fragments/ModuleExpertsOverflowExpertsListCollectionFragment";
 import { AssetFragment } from "../fragments/AssetFragment";
+import { RichTextFragments } from "../fragments/RichTextFragments.generated";
 
 export const GetModuleExpertsOverflowById = graphql(
   `
@@ -18,11 +18,11 @@ export const GetModuleExpertsOverflowById = graphql(
     }
 
     fragment ModuleExpertsOverflowFragment on ModuleExpertsOverflow {
-      eyebrow {
-        ...RichTextFragment
+      richTextEyebrow {
+        ...ModuleExpertsOverflow_richTextEyebrowFragment
       }
-      title {
-        ...RichTextFragment
+      richTextTitle {
+        ...ModuleExpertsOverflow_richTextTitleFragment
       }
       callToAction {
         ...ComponentLinkFragment
@@ -39,7 +39,8 @@ export const GetModuleExpertsOverflowById = graphql(
     }
   `,
   [
-    RichTextFragment,
+    RichTextFragments.ModuleExpertsOverflow_richTextEyebrow,
+    RichTextFragments.ModuleExpertsOverflow_richTextTitle,
     ComponentLinkFragment,
     ComponentStatisticFragment,
     ModuleExpertsOverflowExpertsListCollectionFragment,

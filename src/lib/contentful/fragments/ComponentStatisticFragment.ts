@@ -1,16 +1,16 @@
 import { graphql } from "gql.tada";
-import { RichTextFragment } from "./RichTextFragment";
+import { RichTextFragments } from "./RichTextFragments.generated";
 
 export const ComponentStatisticFragment = graphql(
   `
     fragment ComponentStatisticFragment on ComponentStatistic {
-      label {
-        ...RichTextFragment
+      richTextLabel {
+        ...ComponentStatistic_richTextLabelFragment
       }
       value
       prefix
       suffix
     }
   `,
-  [RichTextFragment],
+  [RichTextFragments.ComponentStatistic_richTextLabel],
 );

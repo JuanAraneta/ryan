@@ -1,6 +1,6 @@
 "use client";
 
-import { FragmentOf, readFragment } from "gql.tada";
+import { ResultOf } from "gql.tada";
 import { useMemo } from "react";
 import {
   documentToReactComponents,
@@ -14,32 +14,35 @@ import {
   RichTextRenderOverrides,
   useRichTextRenderOptions,
 } from "./useRichTextRenderOptions";
-import { RichTextFragment } from "@/lib/contentful/fragments/RichTextFragment";
+import { RichTextFragments } from "@/lib/contentful/fragments/RichTextFragments.generated";
 import merge from "lodash/merge";
 
 export const RichText = ({
-  content: maskedContentFragment,
+  content,
   options: optionsProp,
   overrides,
   spansOnly = false,
+  variant,
 }: {
-  content?: FragmentOf<typeof RichTextFragment> | null;
+  content?: ResultOf<
+    // Arbitrary non-specific fragment; they're all the same
+    typeof RichTextFragments.ComponentCardDeviceMock_richTextBody
+  > | null;
   options?: Options;
   overrides?: RichTextRenderOverrides;
   spansOnly?: boolean;
+  variant?: keyof typeof variants;
 }) => {
-  const content = readFragment(RichTextFragment, maskedContentFragment);
-
   const options = useMemo(
     () => ({
       options: optionsProp,
-      overrides,
+      overrides: merge(variant ? variants[variant] : {}, overrides),
     }),
-    [optionsProp, overrides],
+    [optionsProp, overrides, variant],
   );
 
   const renderOptions = useRichTextRenderOptions(
-    content?.richText?.links,
+    content?.links,
     options,
     spansOnly,
   );
@@ -47,7 +50,7 @@ export const RichText = ({
   const render = useMemo(
     () =>
       documentToReactComponents(
-        content?.richText?.json as RichTextDocument,
+        content?.json as RichTextDocument,
         renderOptions,
       ),
     [content, renderOptions],
@@ -56,47 +59,12 @@ export const RichText = ({
   return render;
 };
 
-const richTitleTextOverrides: RichTextRenderOverrides = {
-  renderMark: {
-    [MARKS.ITALIC]: (text) => (
-      <em className="italic font-normal text-highlight">{text}</em>
-    ),
-  },
-};
-
-export const RichTitleText = ({
-  content: maskedContentFragment,
-  options: optionsProp,
-  overrides,
-  spansOnly = false,
-}: {
-  content?: FragmentOf<typeof RichTextFragment> | null;
-  options?: Options;
-  overrides?: RichTextRenderOverrides;
-  spansOnly?: boolean;
-}) => {
-  const content = readFragment(RichTextFragment, maskedContentFragment);
-
-  const options = useMemo(
-    () => ({
-      options: optionsProp,
-      overrides: merge(richTitleTextOverrides, overrides),
-    }),
-    [optionsProp, overrides],
-  );
-
-  const renderOptions = useRichTextRenderOptions(
-    content?.richText?.links,
-    options,
-    spansOnly,
-  );
-
-  return useMemo(
-    () =>
-      documentToReactComponents(
-        content?.richText?.json as RichTextDocument,
-        renderOptions,
+const variants = {
+  title: {
+    renderMark: {
+      [MARKS.ITALIC]: (text) => (
+        <em className="italic font-normal text-highlight">{text}</em>
       ),
-    [content, renderOptions],
-  );
-};
+    },
+  },
+} satisfies Record<string, RichTextRenderOverrides>;
