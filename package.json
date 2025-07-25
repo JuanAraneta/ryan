@@ -10,13 +10,10 @@
     "lint": "next lint",
     "prepare": "husky",
     "format": "pnpm exec prettier --write src/**/*.{ts,tsx,css}",
-    "generate-contentful-schema": "tsx ./scripts/generate-contentful-schema.ts",
-    "postgenerate-contentful-schema": "pnpm run generate-contentful-rich-text-fragments",
+    "generate-contentful-schema": "tsx ./scripts/generate-contentful-schema",
     "contentful-code-models-sync": "tsx ./scripts/contentful-code-models/sync.ts",
-    "postcontentful-code-models-sync": "pnpm run generate-contentful-schema",
     "contentful-code-models-migrate": "tsx ./scripts/contentful-code-models/migrate.ts",
-    "postcontentful-code-models-migrate": "pnpm run generate-contentful-schema",
-    "generate-contentful-rich-text-fragments": "tsx ./scripts/generate-contentful-rich-text-fragments.ts"
+    "postcontentful-code-models-migrate": "pnpm run generate-contentful-schema"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.0.2",

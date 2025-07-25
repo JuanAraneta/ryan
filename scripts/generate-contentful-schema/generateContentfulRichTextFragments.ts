@@ -3,7 +3,7 @@ import { promises as fs } from "fs";
 import path from "path";
 import { $ } from "zx";
 
-(async () => {
+export const generateContentfulRichTextFragments = async () => {
   const SCHEMA_PATH = "./contentful/schema.graphql";
   const OUTPUT_PATH =
     "./src/lib/contentful/fragments/RichTextFragments.generated.ts";
@@ -12,7 +12,7 @@ import { $ } from "zx";
   // They must all remain unmasked so that they identify as the same type
   const fragmentGenerator = (
     fragmentName: string,
-    typeName: string
+    typeName: string,
   ) => /* GraphQL */ `
   fragment ${fragmentName}Fragment on ${typeName} @_unmask {
     json
@@ -37,7 +37,7 @@ import { $ } from "zx";
       containerType: string;
       fieldName: string;
       richTextType: string;
-    }>
+    }>,
   ) => `
   /* eslint-disable */
   // DO NOT MODIFY
@@ -50,7 +50,7 @@ import { $ } from "zx";
         const fragmentName = `${containerType}_${fieldName}`;
         return (acc += `${fragmentName}: graphql(\`${fragmentGenerator(fragmentName, richTextType)}\`),`);
       },
-      ""
+      "",
     )}
   };
 `;
@@ -61,7 +61,7 @@ import { $ } from "zx";
     const typeMap = schema.getTypeMap();
     const allObjectTypes = Object.entries(typeMap).filter(
       ([__typename, type]) =>
-        !__typename.startsWith("__") && type instanceof GraphQLObjectType
+        !__typename.startsWith("__") && type instanceof GraphQLObjectType,
     ) as Array<[string, GraphQLObjectType]>;
 
     const allRichTextTypes = allObjectTypes
@@ -80,7 +80,7 @@ import { $ } from "zx";
           .map(([fieldName, field]) => {
             const matchingRichTextTypeIndex = allRichTextTypes.findIndex(
               (richTextType) =>
-                "name" in field.type && field.type.name === richTextType
+                "name" in field.type && field.type.name === richTextType,
             );
             if (matchingRichTextTypeIndex === -1) return null;
             return {
@@ -89,7 +89,7 @@ import { $ } from "zx";
               richTextType: allRichTextTypes[matchingRichTextTypeIndex],
             };
           })
-          .filter(Boolean)
+          .filter(Boolean),
     );
 
     await fs.mkdir(path.dirname(OUTPUT_PATH), { recursive: true });
@@ -97,10 +97,10 @@ import { $ } from "zx";
     await fs.writeFile(
       OUTPUT_PATH,
       finalOutputGenerator(allRichTextTypeRelationships),
-      "utf-8"
+      "utf-8",
     );
-    $`prettier ${OUTPUT_PATH} --write`;
+    await $`prettier ${OUTPUT_PATH} --write`;
   } catch (e) {
     console.error(e);
   }
-})();
+};
