@@ -1,7 +1,7 @@
-import type { ContentModel } from "contentful-code-models";
 import { richTextFieldFactory } from "./factories/richTextFieldFactory";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
 
-export const componentCustomerStory: ContentModel = {
+export const componentCustomerStory: ExpandedContentModel = {
   sys: {
     id: "componentCustomerStory",
   },
@@ -14,88 +14,54 @@ export const componentCustomerStory: ContentModel = {
       id: "customerName",
       name: "Customer name",
       type: "Symbol",
-      localized: false,
-      required: false,
       validations: [],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "slug",
       name: "Slug",
       type: "Symbol",
-      localized: false,
-      required: false,
       validations: [],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "slugEditor",
+        widgetNamespace: "builtin",
+      },
     },
     richTextFieldFactory({ id: "richTextHeadline", name: "Headline" }),
     {
       id: "quoteSource",
       name: "Quote source",
       type: "Symbol",
-      localized: false,
-      required: false,
       validations: [],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "customerLogo",
       name: "Customer logo",
       type: "Link",
-      localized: false,
-      required: false,
       validations: [],
-      disabled: false,
-      omitted: false,
       linkType: "Asset",
+      editorInterface: {
+        widgetId: "assetLinkEditor",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "heroMedia",
       name: "Hero media",
       type: "Link",
-      localized: false,
-      required: false,
       validations: [],
-      disabled: false,
-      omitted: false,
       linkType: "Asset",
+      editorInterface: {
+        widgetId: "assetLinkEditor",
+        widgetNamespace: "builtin",
+      },
     },
   ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "customerName",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "slug",
-        widgetId: "slugEditor",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "headline",
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "quoteSource",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "customerLogo",
-        widgetId: "assetLinkEditor",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "heroMedia",
-        widgetId: "assetLinkEditor",
-        widgetNamespace: "builtin",
-      },
-    ],
-  },
 };

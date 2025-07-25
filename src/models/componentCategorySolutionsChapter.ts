@@ -1,6 +1,6 @@
-import type { ContentModel } from "contentful-code-models";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
 
-export const componentCategorySolutionsChapter: ContentModel = {
+export const componentCategorySolutionsChapter: ExpandedContentModel = {
   sys: {
     id: "componentCategorySolutionsChapter",
   },
@@ -12,18 +12,16 @@ export const componentCategorySolutionsChapter: ContentModel = {
       id: "title",
       name: "Title",
       type: "Symbol",
-      localized: false,
-      required: false,
       validations: [],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "contents",
       name: "Contents",
       type: "Array",
-      localized: false,
-      required: false,
       validations: [
         {
           size: {
@@ -31,8 +29,6 @@ export const componentCategorySolutionsChapter: ContentModel = {
           },
         },
       ],
-      disabled: false,
-      omitted: false,
       items: {
         type: "Link",
         validations: [
@@ -47,20 +43,10 @@ export const componentCategorySolutionsChapter: ContentModel = {
         ],
         linkType: "Entry",
       },
-    },
-  ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "title",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "contents",
+      editorInterface: {
         widgetId: "entryLinksEditor",
         widgetNamespace: "builtin",
       },
-    ],
-  },
+    },
+  ],
 };

@@ -1,29 +1,18 @@
-import type { ContentModel } from "contentful-code-models";
+import { contentfulLabelFieldFactory } from "./factories/contentfulLabelFieldFactory";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
 
-export const categorySolutionsImageLinkGrid: ContentModel = {
+export const categorySolutionsImageLinkGrid: ExpandedContentModel = {
   sys: {
     id: "categorySolutionsImageLinkGrid",
   },
   name: "Category solutions / Image link grid",
   description: "",
-  displayField: "contentfulLabel",
   fields: [
-    {
-      id: "contentfulLabel",
-      name: "Contentful label",
-      type: "Symbol",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
+    contentfulLabelFieldFactory(),
     {
       id: "items",
       name: "Items",
       type: "Array",
-      localized: false,
-      required: false,
       validations: [
         {
           size: {
@@ -32,8 +21,6 @@ export const categorySolutionsImageLinkGrid: ContentModel = {
           },
         },
       ],
-      disabled: false,
-      omitted: false,
       items: {
         type: "Link",
         validations: [
@@ -43,20 +30,10 @@ export const categorySolutionsImageLinkGrid: ContentModel = {
         ],
         linkType: "Entry",
       },
-    },
-  ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "contentfulLabel",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "items",
+      editorInterface: {
         widgetId: "entryLinksEditor",
         widgetNamespace: "builtin",
       },
-    ],
-  },
+    },
+  ],
 };

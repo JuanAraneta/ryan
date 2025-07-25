@@ -1,4 +1,3 @@
-import type { ContentModel } from "contentful-code-models";
 import { componentCategorySolutionsHeadline } from "./componentCategorySolutionsHeadline";
 import { componentCategorySolutionsChapter } from "./componentCategorySolutionsChapter";
 import { moduleChapterGroup } from "./moduleChapterGroup";
@@ -25,35 +24,39 @@ import { siteSettings } from "./siteSettings";
 import { socialMediaLink } from "./socialMediaLink";
 import { urlRedirect } from "./urlRedirect";
 import { script } from "./script";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { contentModelComposer } from "./utils/contentModelComposer";
 
-export const models: ContentModel[] = [
-  componentCategorySolutionsHeadline,
-  componentCategorySolutionsChapter,
-  moduleChapterGroup,
-  categorySolutionsImageLink,
-  categorySolutionsImageLinkGrid,
-  componentTitleAndBody,
-  componentCategorySolutions2ColSubBody,
-  componentCardDeviceMock,
-  moduleContainer,
-  themeBackground,
-  componentExpert,
-  componentCustomerStory,
-  moduleExpertsOverflow,
-  moduleCustomerStoriesCarousel,
-  page,
-  constants,
-  componentLink,
-  componentStatistic,
-  header,
-  footer,
-  seoMetadata,
-  market,
-  siteSettings,
-  socialMediaLink,
-  urlRedirect,
-  script,
-];
+export const models = (
+  [
+    componentCategorySolutionsHeadline,
+    componentCategorySolutionsChapter,
+    moduleChapterGroup,
+    categorySolutionsImageLink,
+    categorySolutionsImageLinkGrid,
+    componentTitleAndBody,
+    componentCategorySolutions2ColSubBody,
+    componentCardDeviceMock,
+    moduleContainer,
+    themeBackground,
+    componentExpert,
+    componentCustomerStory,
+    moduleExpertsOverflow,
+    moduleCustomerStoriesCarousel,
+    page,
+    constants,
+    componentLink,
+    componentStatistic,
+    header,
+    footer,
+    seoMetadata,
+    market,
+    siteSettings,
+    socialMediaLink,
+    urlRedirect,
+    script,
+  ] satisfies Array<ExpandedContentModel>
+).map(contentModelComposer);
 
 export const locales = [
   {

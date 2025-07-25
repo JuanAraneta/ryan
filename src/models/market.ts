@@ -1,6 +1,6 @@
-import type { ContentModel } from "contentful-code-models";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
 
-export const market: ContentModel = {
+export const market: ExpandedContentModel = {
   sys: {
     id: "market",
   },
@@ -13,21 +13,25 @@ export const market: ContentModel = {
       id: "name",
       name: "Name",
       type: "Symbol",
-      localized: false,
       required: true,
       validations: [
         {
           unique: true,
         },
       ],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        settings: {
+          helpText:
+            'A human-friendly name of the market, like "United States" or "Argentina". Used for internal clarity.',
+        },
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "slug",
       name: "Slug",
       type: "Symbol",
-      localized: false,
       required: true,
       validations: [
         {
@@ -41,18 +45,16 @@ export const market: ContentModel = {
           },
         },
       ],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "socialMediaLinks",
       name: "Social Media Links",
       type: "Array",
-      localized: false,
-      required: false,
       validations: [],
-      disabled: false,
-      omitted: false,
       items: {
         type: "Link",
         validations: [
@@ -62,29 +64,13 @@ export const market: ContentModel = {
         ],
         linkType: "Entry",
       },
-    },
-  ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "name",
-        settings: {
-          helpText:
-            'A human-friendly name of the market, like "United States" or "Argentina". Used for internal clarity.',
-        },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "slug",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "socialMediaLinks",
+      editorInterface: {
         widgetId: "entryCardsEditor",
         widgetNamespace: "builtin",
       },
-    ],
+    },
+  ],
+  editorInterface: {
+    controls: [],
   },
 };

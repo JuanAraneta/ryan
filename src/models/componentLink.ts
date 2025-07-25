@@ -1,6 +1,6 @@
-import type { ContentModel } from "contentful-code-models";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
 
-export const componentLink: ContentModel = {
+export const componentLink: ExpandedContentModel = {
   sys: {
     id: "componentLink",
   },
@@ -13,55 +13,36 @@ export const componentLink: ContentModel = {
       id: "label",
       name: "Label",
       type: "Symbol",
-      localized: false,
-      required: false,
       validations: [],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "internalSource",
       name: "Internal Source",
       type: "Link",
-      localized: false,
-      required: false,
       validations: [
         {
           linkContentType: ["page"],
         },
       ],
-      disabled: false,
-      omitted: false,
       linkType: "Entry",
+      editorInterface: {
+        widgetId: "entryLinkEditor",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "externalSource",
       name: "External Source",
       type: "Symbol",
-      localized: false,
-      required: false,
       validations: [],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
   ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "label",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "internalSource",
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "externalSource",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    ],
-  },
 };

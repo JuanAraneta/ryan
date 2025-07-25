@@ -1,6 +1,6 @@
-import type { ContentModel } from "contentful-code-models";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
 
-export const urlRedirect: ContentModel = {
+export const urlRedirect: ExpandedContentModel = {
   sys: {
     id: "urlRedirect",
   },
@@ -13,7 +13,6 @@ export const urlRedirect: ContentModel = {
       id: "slug",
       name: "Slug",
       type: "Symbol",
-      localized: false,
       required: true,
       validations: [
         {
@@ -25,14 +24,15 @@ export const urlRedirect: ContentModel = {
             "Invalid slug format. Only lowercase letters, numbers, and hyphens are allowed. Use forward slashes (/) to separate nested paths. Example: about-us or us/es-ar/contact",
         },
       ],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "destination",
       name: "Destination",
       type: "Symbol",
-      localized: false,
       required: true,
       validations: [
         {
@@ -44,71 +44,22 @@ export const urlRedirect: ContentModel = {
             "Invalid slug format. Only lowercase letters, numbers, and hyphens are allowed. Use forward slashes (/) to separate nested paths. Example: about-us or us/es-ar/contact",
         },
       ],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "redirectType",
       name: "Redirect type\t",
       type: "Symbol",
-      localized: false,
       required: true,
       validations: [
         {
           in: ["temporary", "permanent"],
         },
       ],
-      disabled: false,
-      omitted: false,
-    },
-    {
-      id: "active",
-      name: "Active",
-      type: "Boolean",
-      localized: false,
-      required: true,
-      validations: [],
-      defaultValue: {
-        "en-US": false,
-      },
-      disabled: false,
-      omitted: false,
-    },
-    {
-      id: "startDate",
-      name: "Start date",
-      type: "Date",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
-    {
-      id: "endDate",
-      name: "End date",
-      type: "Date",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
-  ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "slug",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "destination",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "redirectType",
+      editorInterface: {
         settings: {
           helpText:
             "Please select either Permanent (301) or Temporary (302) to define how this redirect should behave.",
@@ -116,8 +67,17 @@ export const urlRedirect: ContentModel = {
         widgetId: "dropdown",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "active",
+    },
+    {
+      id: "active",
+      name: "Active",
+      type: "Boolean",
+      required: true,
+      validations: [],
+      defaultValue: {
+        "en-US": false,
+      },
+      editorInterface: {
         settings: {
           helpText:
             "Please specify whether this redirect is currently active. Only active redirects will be applied on the site.",
@@ -127,8 +87,13 @@ export const urlRedirect: ContentModel = {
         widgetId: "boolean",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "startDate",
+    },
+    {
+      id: "startDate",
+      name: "Start date",
+      type: "Date",
+      validations: [],
+      editorInterface: {
         settings: {
           ampm: "24",
           format: "timeZ",
@@ -138,8 +103,13 @@ export const urlRedirect: ContentModel = {
         widgetId: "datePicker",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "endDate",
+    },
+    {
+      id: "endDate",
+      name: "End date",
+      type: "Date",
+      validations: [],
+      editorInterface: {
         settings: {
           ampm: "24",
           format: "timeZ",
@@ -149,6 +119,6 @@ export const urlRedirect: ContentModel = {
         widgetId: "datePicker",
         widgetNamespace: "builtin",
       },
-    ],
-  },
+    },
+  ],
 };

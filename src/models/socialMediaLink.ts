@@ -1,6 +1,6 @@
-import type { ContentModel } from "contentful-code-models";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
 
-export const socialMediaLink: ContentModel = {
+export const socialMediaLink: ExpandedContentModel = {
   sys: {
     id: "socialMediaLink",
   },
@@ -13,17 +13,21 @@ export const socialMediaLink: ContentModel = {
       id: "platformName",
       name: "Platform name",
       type: "Symbol",
-      localized: false,
       required: true,
       validations: [],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        settings: {
+          helpText:
+            "The name of the social media platform (e.g., Facebook, LinkedIn, X/Twitter, YouTube, Instagram). You can use a dropdown to enforce consistency.",
+        },
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "url",
       name: "URL",
       type: "Symbol",
-      localized: false,
       required: true,
       validations: [
         {
@@ -35,14 +39,19 @@ export const socialMediaLink: ContentModel = {
           },
         },
       ],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        settings: {
+          helpText:
+            "The full link to the social media profile (e.g., https://linkedin.com/company/ryan-tax). Must be a valid URL.",
+        },
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "icon",
       name: "Icon",
       type: "Link",
-      localized: false,
       required: true,
       validations: [
         {
@@ -54,33 +63,8 @@ export const socialMediaLink: ContentModel = {
           },
         },
       ],
-      disabled: false,
-      omitted: false,
       linkType: "Asset",
-    },
-  ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "platformName",
-        settings: {
-          helpText:
-            "The name of the social media platform (e.g., Facebook, LinkedIn, X/Twitter, YouTube, Instagram). You can use a dropdown to enforce consistency.",
-        },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "url",
-        settings: {
-          helpText:
-            "The full link to the social media profile (e.g., https://linkedin.com/company/ryan-tax). Must be a valid URL.",
-        },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "icon",
+      editorInterface: {
         settings: {
           helpText:
             "Upload the icon for this social platform. SVG is recommended for better rendering and accessibility.",
@@ -90,6 +74,6 @@ export const socialMediaLink: ContentModel = {
         widgetId: "assetLinkEditor",
         widgetNamespace: "builtin",
       },
-    ],
-  },
+    },
+  ],
 };

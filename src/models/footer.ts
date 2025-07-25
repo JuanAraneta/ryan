@@ -1,6 +1,6 @@
-import type { ContentModel } from "contentful-code-models";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
 
-export const footer: ContentModel = {
+export const footer: ExpandedContentModel = {
   sys: {
     id: "footer",
   },
@@ -16,17 +16,10 @@ export const footer: ContentModel = {
       localized: true,
       required: true,
       validations: [],
-      disabled: false,
-      omitted: false,
-    },
-  ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "title",
+      editorInterface: {
         widgetId: "singleLine",
         widgetNamespace: "builtin",
       },
-    ],
-  },
+    },
+  ],
 };

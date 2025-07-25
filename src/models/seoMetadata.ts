@@ -1,6 +1,6 @@
-import type { ContentModel } from "contentful-code-models";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
 
-export const seoMetadata: ContentModel = {
+export const seoMetadata: ExpandedContentModel = {
   sys: {
     id: "seoMetadata",
   },
@@ -13,45 +13,59 @@ export const seoMetadata: ContentModel = {
       id: "pageTitle",
       name: "Page title",
       type: "Symbol",
-      localized: false,
       required: true,
       validations: [
         {
           unique: true,
         },
       ],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        settings: {
+          helpText:
+            "The main title of the page as it appears in the browser tab. Helps users understand what the page is about. Keep it concise and relevant.",
+        },
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "seoTitle",
       name: "SEO title",
       type: "Symbol",
-      localized: false,
       required: true,
       validations: [
         {
           unique: true,
         },
       ],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        settings: {
+          helpText:
+            "The title shown in search engine results. Should include keywords and be under 60 characters for best visibility.",
+        },
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "seoDescription",
       name: "SEO Description",
       type: "Symbol",
-      localized: false,
       required: true,
       validations: [],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        settings: {
+          helpText:
+            "A short summary of the page content shown in search engine results. Aim for 150–160 characters and include relevant keywords naturally.",
+        },
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "featuredImage",
       name: "Featured image",
       type: "Link",
-      localized: false,
       required: true,
       validations: [
         {
@@ -75,72 +89,8 @@ export const seoMetadata: ContentModel = {
           },
         },
       ],
-      disabled: false,
-      omitted: false,
       linkType: "Asset",
-    },
-    {
-      id: "canonicalUrl",
-      name: "Canonical URL",
-      type: "Symbol",
-      localized: false,
-      required: true,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
-    {
-      id: "noIndex",
-      name: "No index",
-      type: "Boolean",
-      localized: false,
-      required: true,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
-    {
-      id: "noFollow",
-      name: "No follow",
-      type: "Boolean",
-      localized: false,
-      required: true,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
-  ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "pageTitle",
-        settings: {
-          helpText:
-            "The main title of the page as it appears in the browser tab. Helps users understand what the page is about. Keep it concise and relevant.",
-        },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "seoTitle",
-        settings: {
-          helpText:
-            "The title shown in search engine results. Should include keywords and be under 60 characters for best visibility.",
-        },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "seoDescription",
-        settings: {
-          helpText:
-            "A short summary of the page content shown in search engine results. Aim for 150–160 characters and include relevant keywords naturally.",
-        },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "featuredImage",
+      editorInterface: {
         settings: {
           helpText:
             "Recommended: JPG or PNG, 1200x630px, under 500KB. This image is used for social sharing and should visually represent the page.",
@@ -150,8 +100,14 @@ export const seoMetadata: ContentModel = {
         widgetId: "assetLinkEditor",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "canonicalUrl",
+    },
+    {
+      id: "canonicalUrl",
+      name: "Canonical URL",
+      type: "Symbol",
+      required: true,
+      validations: [],
+      editorInterface: {
         settings: {
           helpText:
             "The preferred URL for this page to avoid duplicate content issues. Use only if this content appears in multiple places or URLs.",
@@ -159,8 +115,14 @@ export const seoMetadata: ContentModel = {
         widgetId: "singleLine",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "noIndex",
+    },
+    {
+      id: "noIndex",
+      name: "No index",
+      type: "Boolean",
+      required: true,
+      validations: [],
+      editorInterface: {
         settings: {
           helpText:
             "If enabled, search engines will not index this page. Use for thank-you pages, gated content, or internal-only pages.",
@@ -170,8 +132,14 @@ export const seoMetadata: ContentModel = {
         widgetId: "boolean",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "noFollow",
+    },
+    {
+      id: "noFollow",
+      name: "No follow",
+      type: "Boolean",
+      required: true,
+      validations: [],
+      editorInterface: {
         settings: {
           helpText:
             "If enabled, tells search engines not to follow links on this page. Use only when you don’t want to pass SEO value to outbound links.",
@@ -181,6 +149,6 @@ export const seoMetadata: ContentModel = {
         widgetId: "boolean",
         widgetNamespace: "builtin",
       },
-    ],
-  },
+    },
+  ],
 };

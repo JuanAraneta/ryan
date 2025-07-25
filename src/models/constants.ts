@@ -1,123 +1,56 @@
-import type { ContentModel } from "contentful-code-models";
+import { contentfulLabelFieldFactory } from "./factories/contentfulLabelFieldFactory";
+import { singletonLockFieldFactory } from "./factories/singletonLockFieldFactory";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
 
-export const constants: ContentModel = {
+export const constants: ExpandedContentModel = {
   sys: {
     id: "constants",
   },
   name: "Constants",
   description:
     "All constant strings that get used in multiple places throughout the application.",
-  displayField: "contentfulLabel",
   fields: [
-    {
-      id: "contentfulLabel",
-      name: "Contentful label",
-      type: "Symbol",
-      localized: false,
-      required: false,
-      validations: [],
-      defaultValue: {
-        "en-US": "Constants",
-      },
-      disabled: false,
-      omitted: false,
-    },
+    contentfulLabelFieldFactory(),
     {
       id: "previousButtonAriaLabel",
       name: "Previous button ARIA label",
       type: "Symbol",
-      localized: false,
-      required: false,
       validations: [],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "nextButtonAriaLabel",
       name: "Next button ARIA label",
       type: "Symbol",
-      localized: false,
-      required: false,
       validations: [],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "scrollbarThumbLabel",
       name: "Scrollbar thumb ARIA label",
       type: "Symbol",
-      localized: false,
-      required: false,
       validations: [],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "scrollbarTrackAriaLabel",
       name: "Scrollbar track ARIA label",
       type: "Symbol",
-      localized: false,
-      required: false,
       validations: [],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
-    {
-      id: "singletonLock",
-      name: "Singleton lock",
-      type: "Symbol",
-      localized: false,
-      required: true,
-      validations: [
-        {
-          unique: true,
-        },
-        {
-          in: ["singleton-lock"],
-          message:
-            "Do not modify this field. It is a technical stability requirement.",
-        },
-      ],
-      disabled: false,
-      omitted: false,
-    },
+    singletonLockFieldFactory(),
   ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "contentfulLabel",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "previousButtonAriaLabel",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "nextButtonAriaLabel",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "scrollbarThumbLabel",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "scrollbarTrackAriaLabel",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "singletonLock",
-        settings: {
-          helpText:
-            "Do not modify this field. It is only here to prevent the creation of new instances of this type as it should remain a singleton.",
-        },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    ],
-  },
 };

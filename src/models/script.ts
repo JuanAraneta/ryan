@@ -1,6 +1,6 @@
-import type { ContentModel } from "contentful-code-models";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
 
-export const script: ContentModel = {
+export const script: ExpandedContentModel = {
   sys: {
     id: "script",
   },
@@ -13,7 +13,6 @@ export const script: ContentModel = {
       id: "id",
       name: "Id",
       type: "Symbol",
-      localized: false,
       required: true,
       validations: [
         {
@@ -23,14 +22,18 @@ export const script: ContentModel = {
       defaultValue: {
         "en-US": "A unique identifier for this script",
       },
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        settings: {
+          helpText: "A unique identifier for this script",
+        },
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "source",
       name: "Source",
       type: "Symbol",
-      localized: false,
       required: true,
       validations: [
         {
@@ -45,14 +48,15 @@ export const script: ContentModel = {
           },
         },
       ],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "urlEditor",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "strategy",
       name: "Strategy",
       type: "Symbol",
-      localized: false,
       required: true,
       validations: [
         {
@@ -62,86 +66,51 @@ export const script: ContentModel = {
       defaultValue: {
         "en-US": "beforeInteractive",
       },
-      disabled: false,
-      omitted: false,
-    },
-    {
-      id: "inlineScript",
-      name: "Inline script",
-      type: "Text",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
-    {
-      id: "executionStrategy",
-      name: "Execution strategy",
-      type: "Symbol",
-      localized: false,
-      required: false,
-      validations: [
-        {
-          in: ["async", "defer"],
-        },
-      ],
-      disabled: false,
-      omitted: false,
-    },
-    {
-      id: "crossOrigin",
-      name: "Cross origin",
-      type: "Symbol",
-      localized: false,
-      required: false,
-      validations: [
-        {
-          in: ["anonymous", "use-credentials"],
-        },
-      ],
-      disabled: false,
-      omitted: false,
-    },
-  ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "id",
-        settings: {
-          helpText: "A unique identifier for this script",
-        },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "source",
-        widgetId: "urlEditor",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "strategy",
+      editorInterface: {
         settings: {
           helpText: "Determines when and how the script should load",
         },
         widgetId: "dropdown",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "inlineScript",
+    },
+    {
+      id: "inlineScript",
+      name: "Inline script",
+      type: "Text",
+      validations: [],
+      editorInterface: {
         widgetId: "markdown",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "executionStrategy",
+    },
+    {
+      id: "executionStrategy",
+      name: "Execution strategy",
+      type: "Symbol",
+      validations: [
+        {
+          in: ["async", "defer"],
+        },
+      ],
+      editorInterface: {
         settings: {
           helpText: "Controls how and when the script runs",
         },
         widgetId: "dropdown",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "crossOrigin",
+    },
+    {
+      id: "crossOrigin",
+      name: "Cross origin",
+      type: "Symbol",
+      validations: [
+        {
+          in: ["anonymous", "use-credentials"],
+        },
+      ],
+      editorInterface: {
         settings: {
           helpText:
             "Controls how the browser handles cross-origin requests for this script",
@@ -149,6 +118,6 @@ export const script: ContentModel = {
         widgetId: "singleLine",
         widgetNamespace: "builtin",
       },
-    ],
-  },
+    },
+  ],
 };

@@ -1,6 +1,6 @@
-import type { ContentModel } from "contentful-code-models";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
 
-export const themeBackground: ContentModel = {
+export const themeBackground: ExpandedContentModel = {
   sys: {
     id: "themeBackground",
   },
@@ -12,7 +12,6 @@ export const themeBackground: ContentModel = {
       id: "background",
       name: "Background",
       type: "Symbol",
-      localized: false,
       required: true,
       validations: [
         {
@@ -41,17 +40,10 @@ export const themeBackground: ContentModel = {
           ],
         },
       ],
-      disabled: false,
-      omitted: false,
-    },
-  ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "background",
+      editorInterface: {
         widgetId: "dropdown",
         widgetNamespace: "builtin",
       },
-    ],
-  },
+    },
+  ],
 };

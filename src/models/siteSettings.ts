@@ -1,6 +1,6 @@
-import type { ContentModel } from "contentful-code-models";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
 
-export const siteSettings: ContentModel = {
+export const siteSettings: ExpandedContentModel = {
   sys: {
     id: "siteSettings",
   },
@@ -13,55 +13,52 @@ export const siteSettings: ContentModel = {
       id: "siteName",
       name: "Site name",
       type: "Symbol",
-      localized: false,
       required: true,
       validations: [
         {
           unique: true,
         },
       ],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "facebookPixelId",
       name: "Facebook pixel ID",
       type: "Symbol",
-      localized: false,
-      required: false,
       validations: [],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "googleTagManagerId",
       name: "Google tag manager ID",
       type: "Symbol",
-      localized: false,
-      required: false,
       validations: [],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "googleAnalyticsId",
       name: "Google analytics ID",
       type: "Symbol",
-      localized: false,
-      required: false,
       validations: [],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "scripts",
       name: "Scripts",
       type: "Array",
-      localized: false,
-      required: false,
       validations: [],
-      disabled: false,
-      omitted: false,
       items: {
         type: "Link",
         validations: [
@@ -71,88 +68,26 @@ export const siteSettings: ContentModel = {
         ],
         linkType: "Entry",
       },
+      editorInterface: {
+        widgetId: "entryLinksEditor",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "market",
       name: "Default market",
       type: "Link",
-      localized: false,
       required: true,
       validations: [
         {
           linkContentType: ["market"],
         },
       ],
-      disabled: false,
-      omitted: false,
       linkType: "Entry",
-    },
-  ],
-  editorInterface: {
-    sidebar: [
-      {
-        settings: {},
-        widgetId: "publication-widget",
-        widgetNamespace: "sidebar-builtin",
-      },
-      {
-        settings: {},
-        widgetId: "content-preview-widget",
-        widgetNamespace: "sidebar-builtin",
-      },
-      {
-        settings: {},
-        widgetId: "incoming-links-widget",
-        widgetNamespace: "sidebar-builtin",
-      },
-      {
-        settings: {},
-        widgetId: "translation-widget",
-        widgetNamespace: "sidebar-builtin",
-      },
-      {
-        settings: {},
-        widgetId: "versions-widget",
-        widgetNamespace: "sidebar-builtin",
-      },
-      {
-        disabled: true,
-        settings: {},
-        widgetId: "releases-widget",
-        widgetNamespace: "sidebar-builtin",
-      },
-    ],
-    controls: [
-      {
-        fieldId: "siteName",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "facebookPixelId",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "googleTagManagerId",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "googleAnalyticsId",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "scripts",
-        widgetId: "entryLinksEditor",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "market",
+      editorInterface: {
         widgetId: "entryLinkEditor",
         widgetNamespace: "builtin",
       },
-    ],
-  },
+    },
+  ],
 };

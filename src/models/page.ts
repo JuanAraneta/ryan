@@ -1,6 +1,6 @@
-import type { ContentModel } from "contentful-code-models";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
 
-export const page: ContentModel = {
+export const page: ExpandedContentModel = {
   sys: {
     id: "page",
   },
@@ -13,135 +13,13 @@ export const page: ContentModel = {
       id: "title",
       name: "Titile",
       type: "Symbol",
-      localized: false,
       required: true,
       validations: [
         {
           unique: true,
         },
       ],
-      disabled: false,
-      omitted: false,
-    },
-    {
-      id: "slug",
-      name: "Slug",
-      type: "Symbol",
-      localized: false,
-      required: true,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
-    {
-      id: "market",
-      name: "Market",
-      type: "Link",
-      localized: false,
-      required: true,
-      validations: [
-        {
-          linkContentType: ["market"],
-        },
-      ],
-      disabled: false,
-      omitted: false,
-      linkType: "Entry",
-    },
-    {
-      id: "seoMetadata",
-      name: "SEO metadata",
-      type: "Link",
-      localized: false,
-      required: true,
-      validations: [
-        {
-          linkContentType: ["seoMetadata"],
-        },
-      ],
-      disabled: false,
-      omitted: false,
-      linkType: "Entry",
-    },
-    {
-      id: "header",
-      name: "Header",
-      type: "Link",
-      localized: false,
-      required: true,
-      validations: [
-        {
-          linkContentType: ["header"],
-        },
-      ],
-      disabled: false,
-      omitted: false,
-      linkType: "Entry",
-    },
-    {
-      id: "footer",
-      name: "Footer",
-      type: "Link",
-      localized: false,
-      required: true,
-      validations: [
-        {
-          linkContentType: ["footer"],
-        },
-      ],
-      disabled: false,
-      omitted: false,
-      linkType: "Entry",
-    },
-    {
-      id: "modules",
-      name: "Modules",
-      type: "Array",
-      localized: false,
-      required: false,
-      validations: [
-        {
-          size: {
-            max: 20,
-          },
-        },
-      ],
-      disabled: false,
-      omitted: false,
-      items: {
-        type: "Link",
-        validations: [
-          {
-            linkContentType: ["moduleContainer"],
-          },
-        ],
-        linkType: "Entry",
-      },
-    },
-    {
-      id: "pages",
-      name: "Pages",
-      type: "Array",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-      items: {
-        type: "Link",
-        validations: [
-          {
-            linkContentType: ["page"],
-          },
-        ],
-        linkType: "Entry",
-      },
-    },
-  ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "title",
+      editorInterface: {
         settings: {
           helpText:
             "Internal title for content editors. Will be used as the visible H1 on the page.",
@@ -149,8 +27,14 @@ export const page: ContentModel = {
         widgetId: "singleLine",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "slug",
+    },
+    {
+      id: "slug",
+      name: "Slug",
+      type: "Symbol",
+      required: true,
+      validations: [],
+      editorInterface: {
         settings: {
           helpText:
             "The URL-friendly identifier for this page (e.g., about-us). Should be lowercase, with hyphens instead of spaces. No slashes.",
@@ -158,8 +42,19 @@ export const page: ContentModel = {
         widgetId: "singleLine",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "market",
+    },
+    {
+      id: "market",
+      name: "Market",
+      type: "Link",
+      required: true,
+      validations: [
+        {
+          linkContentType: ["market"],
+        },
+      ],
+      linkType: "Entry",
+      editorInterface: {
         settings: {
           helpText:
             "The regional market this page belongs to (e.g., United States, Brazil). Required for routing and market-specific content.",
@@ -169,8 +64,19 @@ export const page: ContentModel = {
         widgetId: "entryLinkEditor",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "seoMetadata",
+    },
+    {
+      id: "seoMetadata",
+      name: "SEO metadata",
+      type: "Link",
+      required: true,
+      validations: [
+        {
+          linkContentType: ["seoMetadata"],
+        },
+      ],
+      linkType: "Entry",
+      editorInterface: {
         settings: {
           helpText:
             "Optional override for SEO settings. If not set, the market’s default SEO settings will apply.",
@@ -180,8 +86,19 @@ export const page: ContentModel = {
         widgetId: "entryLinkEditor",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "header",
+    },
+    {
+      id: "header",
+      name: "Header",
+      type: "Link",
+      required: true,
+      validations: [
+        {
+          linkContentType: ["header"],
+        },
+      ],
+      linkType: "Entry",
+      editorInterface: {
         settings: {
           helpText: "Header that will be used on the page",
           showLinkEntityAction: true,
@@ -190,8 +107,19 @@ export const page: ContentModel = {
         widgetId: "entryLinkEditor",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "footer",
+    },
+    {
+      id: "footer",
+      name: "Footer",
+      type: "Link",
+      required: true,
+      validations: [
+        {
+          linkContentType: ["footer"],
+        },
+      ],
+      linkType: "Entry",
+      editorInterface: {
         settings: {
           helpText: "Footer that will be used on the page",
           showLinkEntityAction: true,
@@ -200,8 +128,28 @@ export const page: ContentModel = {
         widgetId: "entryLinkEditor",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "modules",
+    },
+    {
+      id: "modules",
+      name: "Modules",
+      type: "Array",
+      validations: [
+        {
+          size: {
+            max: 20,
+          },
+        },
+      ],
+      items: {
+        type: "Link",
+        validations: [
+          {
+            linkContentType: ["moduleContainer"],
+          },
+        ],
+        linkType: "Entry",
+      },
+      editorInterface: {
         settings: {
           helpText: "Modules that will compose a page layout",
           bulkEditing: false,
@@ -211,8 +159,22 @@ export const page: ContentModel = {
         widgetId: "entryLinksEditor",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "pages",
+    },
+    {
+      id: "pages",
+      name: "Pages",
+      type: "Array",
+      validations: [],
+      items: {
+        type: "Link",
+        validations: [
+          {
+            linkContentType: ["page"],
+          },
+        ],
+        linkType: "Entry",
+      },
+      editorInterface: {
         settings: {
           helpText:
             "Pages that will be child of the current page, e.g.: services/consulting, services/advisement",
@@ -223,6 +185,6 @@ export const page: ContentModel = {
         widgetId: "entryLinksEditor",
         widgetNamespace: "builtin",
       },
-    ],
-  },
+    },
+  ],
 };

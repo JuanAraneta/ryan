@@ -1,6 +1,6 @@
-import type { ContentModel } from "contentful-code-models";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
 
-export const componentExpert: ContentModel = {
+export const componentExpert: ExpandedContentModel = {
   sys: {
     id: "componentExpert",
   },
@@ -13,85 +13,56 @@ export const componentExpert: ContentModel = {
       id: "fullName",
       name: "Full name",
       type: "Symbol",
-      localized: false,
-      required: false,
       validations: [],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "slug",
       name: "Slug",
       type: "Symbol",
-      localized: false,
-      required: false,
       validations: [],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "slugEditor",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "title",
       name: "Title",
       type: "Symbol",
-      localized: false,
-      required: false,
       validations: [],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "serviceLabel",
       name: "Service label",
       type: "Symbol",
-      localized: false,
-      required: false,
       validations: [],
-      disabled: false,
-      omitted: false,
+      editorInterface: {
+        widgetId: "singleLine",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "headshot",
       name: "Headshot",
       type: "Link",
-      localized: false,
-      required: false,
       validations: [
         {
           linkMimetypeGroup: ["image"],
         },
       ],
-      disabled: false,
-      omitted: false,
       linkType: "Asset",
-    },
-  ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "fullName",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "slug",
-        widgetId: "slugEditor",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "title",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "serviceLabel",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "headshot",
+      editorInterface: {
         widgetId: "assetLinkEditor",
         widgetNamespace: "builtin",
       },
-    ],
-  },
+    },
+  ],
 };

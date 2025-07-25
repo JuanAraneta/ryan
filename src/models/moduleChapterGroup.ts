@@ -1,29 +1,18 @@
-import type { ContentModel } from "contentful-code-models";
+import { contentfulLabelFieldFactory } from "./factories/contentfulLabelFieldFactory";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
 
-export const moduleChapterGroup: ContentModel = {
+export const moduleChapterGroup: ExpandedContentModel = {
   sys: {
     id: "moduleChapterGroup",
   },
   name: "Module / Chapter group",
   description: "A group of chapter items.",
-  displayField: "contentfulLabel",
   fields: [
-    {
-      id: "contentfulLabel",
-      name: "Contentful label",
-      type: "Symbol",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
+    contentfulLabelFieldFactory(),
     {
       id: "chapters",
       name: "Chapters",
       type: "Array",
-      localized: false,
-      required: false,
       validations: [
         {
           size: {
@@ -31,8 +20,6 @@ export const moduleChapterGroup: ContentModel = {
           },
         },
       ],
-      disabled: false,
-      omitted: false,
       items: {
         type: "Link",
         validations: [
@@ -42,23 +29,10 @@ export const moduleChapterGroup: ContentModel = {
         ],
         linkType: "Entry",
       },
-    },
-  ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "contentfulLabel",
-        settings: {
-          helpText: "A label for viewing on the Contentful UI.",
-        },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "chapters",
+      editorInterface: {
         widgetId: "entryLinksEditor",
         widgetNamespace: "builtin",
       },
-    ],
-  },
+    },
+  ],
 };

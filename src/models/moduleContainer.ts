@@ -1,45 +1,34 @@
-import type { ContentModel } from "contentful-code-models";
+import { contentfulLabelFieldFactory } from "./factories/contentfulLabelFieldFactory";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
 
-export const moduleContainer: ContentModel = {
+export const moduleContainer: ExpandedContentModel = {
   sys: {
     id: "moduleContainer",
   },
   name: "Module / Container",
   description:
     "A container which owns groups of modules but supplies them with a theme & background color.",
-  displayField: "contentfulLabel",
   fields: [
-    {
-      id: "contentfulLabel",
-      name: "Contentful label",
-      type: "Symbol",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
+    contentfulLabelFieldFactory(),
     {
       id: "backgroundColorReference",
       name: "Background color",
       type: "Link",
-      localized: false,
-      required: false,
       validations: [
         {
           linkContentType: ["themeBackground"],
         },
       ],
-      disabled: false,
-      omitted: false,
       linkType: "Entry",
+      editorInterface: {
+        widgetId: "entryLinkEditor",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "backgroundColor",
       name: "Background color (deprecated)",
       type: "Symbol",
-      localized: false,
-      required: false,
       validations: [
         {
           in: [
@@ -65,14 +54,19 @@ export const moduleContainer: ContentModel = {
         },
       ],
       disabled: true,
-      omitted: false,
+      editorInterface: {
+        settings: {
+          helpText:
+            'The background color for this group of modules. Generally, if the Theme value is "dark," then brand-800 is a safe choice, and if the Theme value is "light" then white is a safe choice.',
+        },
+        widgetId: "dropdown",
+        widgetNamespace: "builtin",
+      },
     },
     {
       id: "modules",
       name: "Modules",
       type: "Array",
-      localized: false,
-      required: false,
       validations: [
         {
           size: {
@@ -80,8 +74,6 @@ export const moduleContainer: ContentModel = {
           },
         },
       ],
-      disabled: false,
-      omitted: false,
       items: {
         type: "Link",
         validations: [
@@ -95,34 +87,10 @@ export const moduleContainer: ContentModel = {
         ],
         linkType: "Entry",
       },
-    },
-  ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "contentfulLabel",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "backgroundColorReference",
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "backgroundColor",
-        settings: {
-          helpText:
-            'The background color for this group of modules. Generally, if the Theme value is "dark," then brand-800 is a safe choice, and if the Theme value is "light" then white is a safe choice.',
-        },
-        widgetId: "dropdown",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "modules",
+      editorInterface: {
         widgetId: "entryLinksEditor",
         widgetNamespace: "builtin",
       },
-    ],
-  },
+    },
+  ],
 };
