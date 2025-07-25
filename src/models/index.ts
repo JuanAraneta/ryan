@@ -1,22 +1,23 @@
 import type { ContentModel } from "contentful-code-models";
 import { componentCategorySolutionsHeadline } from "./componentCategorySolutionsHeadline";
 import { componentCategorySolutionsChapter } from "./componentCategorySolutionsChapter";
-import { moduleChapterGroup } from "./moduleChapterGroup";
-import { categorySolutionsImageLink } from "./categorySolutionsImageLink";
-import { categorySolutionsImageLinkGrid } from "./categorySolutionsImageLinkGrid";
 import { componentTitleAndBody } from "./componentTitleAndBody";
 import { componentCategorySolutions2ColSubBody } from "./componentCategorySolutions2ColSubBody";
 import { componentCardDeviceMock } from "./componentCardDeviceMock";
-import { moduleContainer } from "./moduleContainer";
-import { themeBackground } from "./themeBackground";
 import { componentExpert } from "./componentExpert";
 import { componentCustomerStory } from "./componentCustomerStory";
-import { moduleExpertsOverflow } from "./moduleExpertsOverflow";
-import { moduleCustomerStoriesCarousel } from "./moduleCustomerStoriesCarousel";
-import { page } from "./page";
-import { constants } from "./constants";
 import { componentLink } from "./componentLink";
 import { componentStatistic } from "./componentStatistic";
+import { moduleChapterGroup } from "./moduleChapterGroup";
+import { moduleContainer } from "./moduleContainer";
+import { moduleExpertsOverflow } from "./moduleExpertsOverflow";
+import { moduleCustomerStoriesCarousel } from "./moduleCustomerStoriesCarousel";
+import { moduleHeroHome } from "./moduleHeroHome";
+import { categorySolutionsImageLink } from "./categorySolutionsImageLink";
+import { categorySolutionsImageLinkGrid } from "./categorySolutionsImageLinkGrid";
+import { themeBackground } from "./themeBackground";
+import { page } from "./page";
+import { constants } from "./constants";
 import { header } from "./header";
 import { footer } from "./footer";
 import { seoMetadata } from "./seoMetadata";
@@ -26,25 +27,35 @@ import { socialMediaLink } from "./socialMediaLink";
 import { urlRedirect } from "./urlRedirect";
 import { script } from "./script";
 
-export const models: ContentModel[] = [
+// Components
+const components: ContentModel[] = [
   componentCategorySolutionsHeadline,
   componentCategorySolutionsChapter,
-  moduleChapterGroup,
-  categorySolutionsImageLink,
-  categorySolutionsImageLinkGrid,
   componentTitleAndBody,
   componentCategorySolutions2ColSubBody,
   componentCardDeviceMock,
-  moduleContainer,
-  themeBackground,
   componentExpert,
   componentCustomerStory,
-  moduleExpertsOverflow,
-  moduleCustomerStoriesCarousel,
-  page,
-  constants,
   componentLink,
   componentStatistic,
+];
+
+// Modules
+const modules: ContentModel[] = [
+  moduleChapterGroup,
+  moduleContainer,
+  moduleExpertsOverflow,
+  moduleCustomerStoriesCarousel,
+  moduleHeroHome,
+];
+
+// Other content types
+const other: ContentModel[] = [
+  categorySolutionsImageLink,
+  categorySolutionsImageLinkGrid,
+  themeBackground,
+  page,
+  constants,
   header,
   footer,
   seoMetadata,
@@ -54,6 +65,8 @@ export const models: ContentModel[] = [
   urlRedirect,
   script,
 ];
+
+export const models: ContentModel[] = [...components, ...modules, ...other];
 
 export const locales = [
   {
