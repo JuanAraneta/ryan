@@ -11,6 +11,7 @@
     "prepare": "husky",
     "format": "pnpm exec prettier --write src/**/*.{ts,tsx,css}",
     "generate-contentful-schema": "tsx ./scripts/generate-contentful-schema.ts",
+    "postgenerate-contentful-schema": "pnpm run generate-contentful-rich-text-fragments",
     "contentful-code-models-sync": "tsx ./scripts/contentful-code-models/sync.ts",
     "postcontentful-code-models-sync": "pnpm run generate-contentful-schema",
     "contentful-code-models-migrate": "tsx ./scripts/contentful-code-models/migrate.ts",
