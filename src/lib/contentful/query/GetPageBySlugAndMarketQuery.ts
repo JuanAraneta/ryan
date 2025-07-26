@@ -1,6 +1,6 @@
 import { graphql } from "gql.tada";
 import { SEOMetadataFragment } from "../fragments/SEOMetadataFragment";
-import { HeaderFragment } from "../fragments/HeaderFragment";
+import { HeroFragment } from "../fragments/HeroFragment";
 import { FooterFragment } from "../fragments/FooterFragment";
 import { PageModulesCollectionFragment } from "../fragments/PageModulesCollectionFragment";
 
@@ -22,8 +22,8 @@ export const GetPageBySlugAndMarketQuery = graphql(
           modulesCollection {
             ...PageModulesCollectionFragment
           }
-          header {
-            ...HeaderFragment
+          hero {
+            ...HeroFragment
           }
           footer {
             ...FooterFragment
@@ -36,7 +36,7 @@ export const GetPageBySlugAndMarketQuery = graphql(
     }
   `,
   [
-    HeaderFragment,
+    HeroFragment,
     FooterFragment,
     SEOMetadataFragment,
     PageModulesCollectionFragment,

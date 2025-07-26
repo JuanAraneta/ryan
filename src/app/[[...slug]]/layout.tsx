@@ -1,4 +1,4 @@
-import { Header } from "@/modules/Header/Header";
+import { Hero } from "@/modules/Hero/Hero";
 import { Footer } from "@/modules/Footer/Footer";
 import { SEOMetadata } from "@/components/SEOMetadata/SEOMetadata";
 import { contentClient } from "@/lib/contentful/contentClient";
@@ -7,7 +7,7 @@ import { notFound } from "next/navigation";
 import { readFragment } from "gql.tada";
 import { SEOMetadataFragment } from "@/lib/contentful/fragments/SEOMetadataFragment";
 import { FooterFragment } from "@/lib/contentful/fragments/FooterFragment";
-import { HeaderFragment } from "@/lib/contentful/fragments/HeaderFragment";
+import { HeroFragment } from "@/lib/contentful/fragments/HeroFragment";
 import { Lato } from "next/font/google";
 import { ConstantsProvider } from "@/components/providers/ConstantsContext";
 import { GetConstantsQuery } from "@/lib/contentful/query/GetConstantsQuery";
@@ -40,6 +40,7 @@ export default async function RootLayout(
   ]);
 
   const page = pageResult.data?.pageCollection?.items[0];
+
   const constants = constantsResult.data?.constantsCollection?.items[0];
 
   if (!page || !constants) notFound();
@@ -55,9 +56,8 @@ export default async function RootLayout(
       </head>
       <body className={latoSans.variable}>
         <main className="min-h-screen">
-          {page.header && (
-            <Header data={readFragment(HeaderFragment, page.header)} />
-          )}
+          {page.hero && <Hero data={readFragment(HeroFragment, page.hero)} />}
+
           {props.children}
           {page.footer && (
             <Footer data={readFragment(FooterFragment, page.footer)} />

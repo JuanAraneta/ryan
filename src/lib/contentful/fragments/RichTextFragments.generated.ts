@@ -118,25 +118,6 @@ export const RichTextFragments = {
       }
     }
   `),
-  ContentTypeRichText_richText: graphql(`
-    fragment ContentTypeRichText_richTextFragment on ContentTypeRichTextRichText
-    @_unmask {
-      json
-      links {
-        entries {
-          hyperlink {
-            sys {
-              id
-            }
-            __typename
-            ... on Page {
-              slug
-            }
-          }
-        }
-      }
-    }
-  `),
   ModuleCustomerStoriesCarousel_richTextTitle: graphql(`
     fragment ModuleCustomerStoriesCarousel_richTextTitleFragment on ModuleCustomerStoriesCarouselRichTextTitle
     @_unmask {
@@ -177,6 +158,25 @@ export const RichTextFragments = {
   `),
   ModuleExpertsOverflow_richTextTitle: graphql(`
     fragment ModuleExpertsOverflow_richTextTitleFragment on ModuleExpertsOverflowRichTextTitle
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `),
+  ModuleHeroHome_headline: graphql(`
+    fragment ModuleHeroHome_headlineFragment on ModuleHeroHomeHeadline
     @_unmask {
       json
       links {

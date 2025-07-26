@@ -1411,99 +1411,6 @@ enum ConstantsOrder {
   sys_publishedVersion_DESC
 }
 
-"""
-[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/richText)
-"""
-type ContentTypeRichText implements Entry & _Node {
-  _id: ID!
-  contentfulLabel(locale: String): String
-  contentfulMetadata: ContentfulMetadata!
-  linkedFrom(allowedLocales: [String]): ContentTypeRichTextLinkingCollections
-  richText(locale: String): ContentTypeRichTextRichText
-  sys: Sys!
-}
-
-type ContentTypeRichTextCollection {
-  items: [ContentTypeRichText]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-input ContentTypeRichTextFilter {
-  AND: [ContentTypeRichTextFilter]
-  OR: [ContentTypeRichTextFilter]
-  contentfulLabel: String
-  contentfulLabel_contains: String
-  contentfulLabel_exists: Boolean
-  contentfulLabel_in: [String]
-  contentfulLabel_not: String
-  contentfulLabel_not_contains: String
-  contentfulLabel_not_in: [String]
-  contentfulMetadata: ContentfulMetadataFilter
-  richText_contains: String
-  richText_exists: Boolean
-  richText_not_contains: String
-  sys: SysFilter
-}
-
-type ContentTypeRichTextLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-}
-
-enum ContentTypeRichTextOrder {
-  contentfulLabel_ASC
-  contentfulLabel_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-type ContentTypeRichTextRichText {
-  json: JSON!
-  links: ContentTypeRichTextRichTextLinks!
-}
-
-type ContentTypeRichTextRichTextAssets {
-  block: [Asset]!
-  hyperlink: [Asset]!
-}
-
-type ContentTypeRichTextRichTextEntries {
-  block: [Entry]!
-  hyperlink: [Entry]!
-  inline: [Entry]!
-}
-
-type ContentTypeRichTextRichTextLinks {
-  assets: ContentTypeRichTextRichTextAssets!
-  entries: ContentTypeRichTextRichTextEntries!
-  resources: ContentTypeRichTextRichTextResources!
-}
-
-type ContentTypeRichTextRichTextResources {
-  block: [ContentTypeRichTextRichTextResourcesBlock!]!
-  hyperlink: [ContentTypeRichTextRichTextResourcesHyperlink!]!
-  inline: [ContentTypeRichTextRichTextResourcesInline!]!
-}
-
-type ContentTypeRichTextRichTextResourcesBlock implements ResourceLink {
-  sys: ResourceSys!
-}
-
-type ContentTypeRichTextRichTextResourcesHyperlink implements ResourceLink {
-  sys: ResourceSys!
-}
-
-type ContentTypeRichTextRichTextResourcesInline implements ResourceLink {
-  sys: ResourceSys!
-}
-
 type ContentfulMetadata {
   tags: [ContentfulTag]!
   concepts: [TaxonomyConcept]!
@@ -1696,22 +1603,6 @@ input HeaderFilter {
 
 type HeaderLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  pageCollection(limit: Int = 100, locale: String, order: [HeaderLinkingCollectionsPageCollectionOrder], preview: Boolean, skip: Int = 0): PageCollection
-}
-
-enum HeaderLinkingCollectionsPageCollectionOrder {
-  slug_ASC
-  slug_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-  title_ASC
-  title_DESC
 }
 
 enum HeaderOrder {
@@ -1725,6 +1616,68 @@ enum HeaderOrder {
   sys_publishedVersion_DESC
   title_ASC
   title_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/hero)
+"""
+type Hero implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): HeroLinkingCollections
+  sys: Sys!
+  variantCollection(limit: Int = 100, locale: String, order: [HeroVariantCollectionOrder], preview: Boolean, skip: Int = 0, where: ModuleHeroHomeFilter): HeroVariantCollection
+}
+
+type HeroCollection {
+  items: [Hero]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input HeroFilter {
+  AND: [HeroFilter]
+  OR: [HeroFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  sys: SysFilter
+  variant: cfModuleHeroHomeNestedFilter
+  variantCollection_exists: Boolean
+}
+
+type HeroLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum HeroOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+type HeroVariantCollection {
+  items: [ModuleHeroHome]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+enum HeroVariantCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 """The 'HexColor' type represents color in `rgb:ffffff` string format."""
@@ -2510,9 +2463,11 @@ type ModuleExpertsOverflowRichTextTitleResourcesInline implements ResourceLink {
 """
 type ModuleHeroHome implements Entry & _Node {
   _id: ID!
+  contentfulLabel(locale: String): String
   contentfulMetadata: ContentfulMetadata!
-  headline(locale: String): String
+  headline(locale: String): ModuleHeroHomeHeadline
   linkedFrom(allowedLocales: [String]): ModuleHeroHomeLinkingCollections
+  prompts(locale: String): [String]
   routingCardsCollection(limit: Int = 100, locale: String, order: [ModuleHeroHomeRoutingCardsCollectionOrder], preview: Boolean, skip: Int = 0, where: PageFilter): ModuleHeroHomeRoutingCardsCollection
   sys: Sys!
 }
@@ -2527,26 +2482,101 @@ type ModuleHeroHomeCollection {
 input ModuleHeroHomeFilter {
   AND: [ModuleHeroHomeFilter]
   OR: [ModuleHeroHomeFilter]
+  contentfulLabel: String
+  contentfulLabel_contains: String
+  contentfulLabel_exists: Boolean
+  contentfulLabel_in: [String]
+  contentfulLabel_not: String
+  contentfulLabel_not_contains: String
+  contentfulLabel_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
-  headline: String
   headline_contains: String
   headline_exists: Boolean
-  headline_in: [String]
-  headline_not: String
   headline_not_contains: String
-  headline_not_in: [String]
+  prompts_contains_all: [String]
+  prompts_contains_none: [String]
+  prompts_contains_some: [String]
+  prompts_exists: Boolean
   routingCards: cfPageNestedFilter
   routingCardsCollection_exists: Boolean
   sys: SysFilter
 }
 
+type ModuleHeroHomeHeadline {
+  json: JSON!
+  links: ModuleHeroHomeHeadlineLinks!
+}
+
+type ModuleHeroHomeHeadlineAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type ModuleHeroHomeHeadlineEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type ModuleHeroHomeHeadlineLinks {
+  assets: ModuleHeroHomeHeadlineAssets!
+  entries: ModuleHeroHomeHeadlineEntries!
+  resources: ModuleHeroHomeHeadlineResources!
+}
+
+type ModuleHeroHomeHeadlineResources {
+  block: [ModuleHeroHomeHeadlineResourcesBlock!]!
+  hyperlink: [ModuleHeroHomeHeadlineResourcesHyperlink!]!
+  inline: [ModuleHeroHomeHeadlineResourcesInline!]!
+}
+
+type ModuleHeroHomeHeadlineResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ModuleHeroHomeHeadlineResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ModuleHeroHomeHeadlineResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
 type ModuleHeroHomeLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  heroCollection(limit: Int = 100, locale: String, order: [ModuleHeroHomeLinkingCollectionsHeroCollectionOrder], preview: Boolean, skip: Int = 0): HeroCollection
+  pageCollection(limit: Int = 100, locale: String, order: [ModuleHeroHomeLinkingCollectionsPageCollectionOrder], preview: Boolean, skip: Int = 0): PageCollection
+}
+
+enum ModuleHeroHomeLinkingCollectionsHeroCollectionOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum ModuleHeroHomeLinkingCollectionsPageCollectionOrder {
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
 }
 
 enum ModuleHeroHomeOrder {
-  headline_ASC
-  headline_DESC
+  contentfulLabel_ASC
+  contentfulLabel_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -2586,7 +2616,7 @@ type Page implements Entry & _Node {
   _id: ID!
   contentfulMetadata: ContentfulMetadata!
   footer(locale: String, preview: Boolean, where: FooterFilter): Footer
-  header(locale: String, preview: Boolean, where: HeaderFilter): Header
+  hero(locale: String, preview: Boolean, where: ModuleHeroHomeFilter): ModuleHeroHome
   linkedFrom(allowedLocales: [String]): PageLinkingCollections
   market(locale: String, preview: Boolean, where: MarketFilter): Market
   modulesCollection(limit: Int = 100, locale: String, order: [PageModulesCollectionOrder], preview: Boolean, skip: Int = 0, where: ModuleContainerFilter): PageModulesCollection
@@ -2610,8 +2640,8 @@ input PageFilter {
   contentfulMetadata: ContentfulMetadataFilter
   footer: cfFooterNestedFilter
   footer_exists: Boolean
-  header: cfHeaderNestedFilter
-  header_exists: Boolean
+  hero: cfModuleHeroHomeNestedFilter
+  hero_exists: Boolean
   market: cfMarketNestedFilter
   market_exists: Boolean
   modules: cfModuleContainerNestedFilter
@@ -2660,8 +2690,8 @@ enum PageLinkingCollectionsComponentLinkCollectionOrder {
 }
 
 enum PageLinkingCollectionsModuleHeroHomeCollectionOrder {
-  headline_ASC
-  headline_DESC
+  contentfulLabel_ASC
+  contentfulLabel_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -2780,13 +2810,13 @@ type Query {
   componentTitleAndBodyCollection(limit: Int = 100, locale: String, order: [ComponentTitleAndBodyOrder], preview: Boolean, skip: Int = 0, where: ComponentTitleAndBodyFilter): ComponentTitleAndBodyCollection
   constants(id: String!, locale: String, preview: Boolean): Constants
   constantsCollection(limit: Int = 100, locale: String, order: [ConstantsOrder], preview: Boolean, skip: Int = 0, where: ConstantsFilter): ConstantsCollection
-  contentTypeRichText(id: String!, locale: String, preview: Boolean): ContentTypeRichText
-  contentTypeRichTextCollection(limit: Int = 100, locale: String, order: [ContentTypeRichTextOrder], preview: Boolean, skip: Int = 0, where: ContentTypeRichTextFilter): ContentTypeRichTextCollection
   entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, where: EntryFilter): EntryCollection
   footer(id: String!, locale: String, preview: Boolean): Footer
   footerCollection(limit: Int = 100, locale: String, order: [FooterOrder], preview: Boolean, skip: Int = 0, where: FooterFilter): FooterCollection
   header(id: String!, locale: String, preview: Boolean): Header
   headerCollection(limit: Int = 100, locale: String, order: [HeaderOrder], preview: Boolean, skip: Int = 0, where: HeaderFilter): HeaderCollection
+  hero(id: String!, locale: String, preview: Boolean): Hero
+  heroCollection(limit: Int = 100, locale: String, order: [HeroOrder], preview: Boolean, skip: Int = 0, where: HeroFilter): HeroCollection
   market(id: String!, locale: String, preview: Boolean): Market
   marketCollection(limit: Int = 100, locale: String, order: [MarketOrder], preview: Boolean, skip: Int = 0, where: MarketFilter): MarketCollection
   moduleChapterGroup(id: String!, locale: String, preview: Boolean): ModuleChapterGroup
@@ -2809,6 +2839,8 @@ type Query {
   siteSettingsCollection(limit: Int = 100, locale: String, order: [SiteSettingsOrder], preview: Boolean, skip: Int = 0, where: SiteSettingsFilter): SiteSettingsCollection
   socialMediaLink(id: String!, locale: String, preview: Boolean): SocialMediaLink
   socialMediaLinkCollection(limit: Int = 100, locale: String, order: [SocialMediaLinkOrder], preview: Boolean, skip: Int = 0, where: SocialMediaLinkFilter): SocialMediaLinkCollection
+  tags(id: String!, locale: String, preview: Boolean): Tags
+  tagsCollection(limit: Int = 100, locale: String, order: [TagsOrder], preview: Boolean, skip: Int = 0, where: TagsFilter): TagsCollection
   themeBackground(id: String!, locale: String, preview: Boolean): ThemeBackground
   themeBackgroundCollection(limit: Int = 100, locale: String, order: [ThemeBackgroundOrder], preview: Boolean, skip: Int = 0, where: ThemeBackgroundFilter): ThemeBackgroundCollection
   urlRedirect(id: String!, locale: String, preview: Boolean): UrlRedirect
@@ -3290,6 +3322,55 @@ input SysFilter {
 }
 
 """
+[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/tags)
+"""
+type Tags implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): TagsLinkingCollections
+  name(locale: String): String
+  sys: Sys!
+}
+
+type TagsCollection {
+  items: [Tags]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input TagsFilter {
+  AND: [TagsFilter]
+  OR: [TagsFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  sys: SysFilter
+}
+
+type TagsLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum TagsOrder {
+  name_ASC
+  name_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+"""
 [See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/themeBackground)
 """
 type ThemeBackground implements Entry & _Node {
@@ -3665,21 +3746,6 @@ input cfFooterNestedFilter {
   title_not_in: [String]
 }
 
-input cfHeaderNestedFilter {
-  AND: [cfHeaderNestedFilter]
-  OR: [cfHeaderNestedFilter]
-  contentfulMetadata: ContentfulMetadataFilter
-  image_exists: Boolean
-  sys: SysFilter
-  title: String
-  title_contains: String
-  title_exists: Boolean
-  title_in: [String]
-  title_not: String
-  title_not_contains: String
-  title_not_in: [String]
-}
-
 input cfMarketNestedFilter {
   AND: [cfMarketNestedFilter]
   OR: [cfMarketNestedFilter]
@@ -3725,12 +3791,34 @@ input cfModuleContainerNestedFilter {
   sys: SysFilter
 }
 
+input cfModuleHeroHomeNestedFilter {
+  AND: [cfModuleHeroHomeNestedFilter]
+  OR: [cfModuleHeroHomeNestedFilter]
+  contentfulLabel: String
+  contentfulLabel_contains: String
+  contentfulLabel_exists: Boolean
+  contentfulLabel_in: [String]
+  contentfulLabel_not: String
+  contentfulLabel_not_contains: String
+  contentfulLabel_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  headline_contains: String
+  headline_exists: Boolean
+  headline_not_contains: String
+  prompts_contains_all: [String]
+  prompts_contains_none: [String]
+  prompts_contains_some: [String]
+  prompts_exists: Boolean
+  routingCardsCollection_exists: Boolean
+  sys: SysFilter
+}
+
 input cfPageNestedFilter {
   AND: [cfPageNestedFilter]
   OR: [cfPageNestedFilter]
   contentfulMetadata: ContentfulMetadataFilter
   footer_exists: Boolean
-  header_exists: Boolean
+  hero_exists: Boolean
   market_exists: Boolean
   modulesCollection_exists: Boolean
   pagesCollection_exists: Boolean

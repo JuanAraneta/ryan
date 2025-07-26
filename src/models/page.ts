@@ -64,14 +64,14 @@ export const page: ContentModel = {
       linkType: "Entry",
     },
     {
-      id: "header",
-      name: "Header",
+      id: "hero",
+      name: "Hero",
       type: "Link",
       localized: false,
       required: true,
       validations: [
         {
-          linkContentType: ["header"],
+          linkContentType: ["moduleHeroHome"],
         },
       ],
       disabled: false,
@@ -174,16 +174,6 @@ export const page: ContentModel = {
         settings: {
           helpText:
             "Optional override for SEO settings. If not set, the market’s default SEO settings will apply.",
-          showLinkEntityAction: true,
-          showCreateEntityAction: true,
-        },
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "header",
-        settings: {
-          helpText: "Header that will be used on the page",
           showLinkEntityAction: true,
           showCreateEntityAction: true,
         },
