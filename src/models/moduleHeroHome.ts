@@ -6,7 +6,8 @@ export const moduleHeroHome: ContentModel = {
     id: "moduleHeroHome",
   },
   name: "Module / Hero home",
-  description: "A hero home module",
+  description:
+    "Homepage Hero 50/50, which serves as the primary, top-of-the-fold content for the main homepage.",
   displayField: "contentfulLabel",
   fields: [
     {

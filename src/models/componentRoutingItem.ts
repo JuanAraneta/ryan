@@ -7,18 +7,8 @@ export const componentRoutingItem: ContentModel = {
   name: "Component / Routing Item",
   description:
     "A generic routing item component that can be used in various navigation contexts with configurable content.",
-  displayField: "contentfulLabel",
+  displayField: "heading",
   fields: [
-    {
-      id: "contentfulLabel",
-      name: "Contentful label",
-      type: "Symbol",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
     {
       id: "heading",
       name: "Heading",
