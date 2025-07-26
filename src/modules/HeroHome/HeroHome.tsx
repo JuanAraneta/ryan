@@ -16,17 +16,17 @@ export function HeroHome({
 
   const cards =
     routingCardsCollection?.items?.filter(
-      (card): card is NonNullable<typeof card> => card !== null,
+      (card): card is NonNullable<typeof card> => card !== null, // TODO: check a way to avoid nulls
     ) ?? [];
 
   const filteredPrompts =
-    prompts?.filter((prompt): prompt is string => prompt !== null) ?? [];
+    prompts?.filter((prompt): prompt is string => prompt !== null) ?? []; // TODO: check a way to avoid nulls
 
   return (
     <div className="gradient-brand-v-dark-to-darker">
       <Section data-testid="HeroHome" className="dark px-0 pt-16 dsk:pt-32">
         <h1 className="typo-display pt-4 mb-10 font-light text-center">
-          <RichText content={headline} spansOnly />
+          <RichText content={headline} variant="title" spansOnly />
         </h1>
 
         <div className="w-full px-6 flex justify-center mb-[3.75rem] dsk:mb-[5.4rem]">
