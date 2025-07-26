@@ -1,4 +1,5 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
 export const page: ExpandedContentModel = {
   sys: {
@@ -9,40 +10,29 @@ export const page: ExpandedContentModel = {
     "Represents a single webpage on the site, such as a homepage, service page, landing page, or contact page. Supports flexible layouts through modular content, SEO metadata, market scoping, and localization.",
   displayField: "title",
   fields: [
-    {
+    createField("shortText", {
       id: "title",
-      name: "Titile",
-      type: "Symbol",
+      name: "Title",
       required: true,
-      validations: [
-        {
-          unique: true,
-        },
-      ],
+      validations: [{ unique: true }],
       editorInterface: {
         settings: {
           helpText:
             "Internal title for content editors. Will be used as the visible H1 on the page.",
         },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
       },
-    },
-    {
+    }),
+    createField("shortText", {
       id: "slug",
       name: "Slug",
-      type: "Symbol",
       required: true,
-      validations: [],
       editorInterface: {
         settings: {
           helpText:
             "The URL-friendly identifier for this page (e.g., about-us). Should be lowercase, with hyphens instead of spaces. No slashes.",
         },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
       },
-    },
+    }),
     {
       id: "market",
       name: "Market",
@@ -164,7 +154,6 @@ export const page: ExpandedContentModel = {
       id: "pages",
       name: "Pages",
       type: "Array",
-      validations: [],
       items: {
         type: "Link",
         validations: [

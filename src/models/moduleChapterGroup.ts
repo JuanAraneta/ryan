@@ -1,5 +1,5 @@
-import { contentfulLabelFieldFactory } from "./factories/contentfulLabelFieldFactory";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
 export const moduleChapterGroup: ExpandedContentModel = {
   sys: {
@@ -8,7 +8,7 @@ export const moduleChapterGroup: ExpandedContentModel = {
   name: "Module / Chapter group",
   description: "A group of chapter items.",
   fields: [
-    contentfulLabelFieldFactory(),
+    createField("contentfulLabel"),
     {
       id: "chapters",
       name: "Chapters",

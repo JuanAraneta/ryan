@@ -1,5 +1,5 @@
-import { richTextFieldFactory } from "./factories/richTextFieldFactory";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
 export const componentCustomerStory: ExpandedContentModel = {
   sys: {
@@ -10,42 +10,24 @@ export const componentCustomerStory: ExpandedContentModel = {
     "An article or link to an article describing a customer's experience with Ryan.",
   displayField: "customerName",
   fields: [
-    {
+    createField("shortText", {
       id: "customerName",
       name: "Customer name",
-      type: "Symbol",
-      validations: [],
-      editorInterface: {
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    },
-    {
+      displayField: true,
+    }),
+    createField("shortText", {
       id: "slug",
       name: "Slug",
-      type: "Symbol",
-      validations: [],
-      editorInterface: {
-        widgetId: "slugEditor",
-        widgetNamespace: "builtin",
-      },
-    },
-    richTextFieldFactory({ id: "richTextHeadline", name: "Headline" }),
-    {
+    }),
+    createField("richText", { id: "richTextHeadline", name: "Headline" }),
+    createField("shortText", {
       id: "quoteSource",
       name: "Quote source",
-      type: "Symbol",
-      validations: [],
-      editorInterface: {
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    },
+    }),
     {
       id: "customerLogo",
       name: "Customer logo",
       type: "Link",
-      validations: [],
       linkType: "Asset",
       editorInterface: {
         widgetId: "assetLinkEditor",
@@ -56,7 +38,6 @@ export const componentCustomerStory: ExpandedContentModel = {
       id: "heroMedia",
       name: "Hero media",
       type: "Link",
-      validations: [],
       linkType: "Asset",
       editorInterface: {
         widgetId: "assetLinkEditor",

@@ -1,5 +1,5 @@
-import { contentfulLabelFieldFactory } from "./factories/contentfulLabelFieldFactory";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
 export const moduleContainer: ExpandedContentModel = {
   sys: {
@@ -9,7 +9,7 @@ export const moduleContainer: ExpandedContentModel = {
   description:
     "A container which owns groups of modules but supplies them with a theme & background color.",
   fields: [
-    contentfulLabelFieldFactory(),
+    createField("contentfulLabel"),
     {
       id: "backgroundColorReference",
       name: "Background color",
@@ -25,10 +25,9 @@ export const moduleContainer: ExpandedContentModel = {
         widgetNamespace: "builtin",
       },
     },
-    {
+    createField("shortText", {
       id: "backgroundColor",
       name: "Background color (deprecated)",
-      type: "Symbol",
       validations: [
         {
           in: [
@@ -59,21 +58,14 @@ export const moduleContainer: ExpandedContentModel = {
           helpText:
             'The background color for this group of modules. Generally, if the Theme value is "dark," then brand-800 is a safe choice, and if the Theme value is "light" then white is a safe choice.',
         },
-        widgetId: "dropdown",
-        widgetNamespace: "builtin",
       },
-    },
+    }),
+
     {
       id: "modules",
       name: "Modules",
       type: "Array",
-      validations: [
-        {
-          size: {
-            max: 5,
-          },
-        },
-      ],
+      validations: [{ size: { max: 5 } }],
       items: {
         type: "Link",
         validations: [

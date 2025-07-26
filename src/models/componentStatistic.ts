@@ -1,6 +1,5 @@
-import { richTextFieldFactory } from "./factories/richTextFieldFactory";
-import { contentfulLabelFieldFactory } from "./factories/contentfulLabelFieldFactory";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
 export const componentStatistic: ExpandedContentModel = {
   sys: {
@@ -10,12 +9,11 @@ export const componentStatistic: ExpandedContentModel = {
   description:
     "A representation of a particular statistic to be shared and updated from a single source.",
   fields: [
-    contentfulLabelFieldFactory(),
-    richTextFieldFactory({ id: "richTextLabel", name: "Label" }),
-    {
+    createField("contentfulLabel"),
+    createField("richText", { id: "richTextLabel", name: "Label" }),
+    createField("shortText", {
       id: "value",
       name: "Value",
-      type: "Symbol",
       validations: [
         {
           regexp: {
@@ -31,36 +29,26 @@ export const componentStatistic: ExpandedContentModel = {
           helpText:
             "Should be a number. If visually represented as a scaled value, just give the scaled value (e.g. if representing 1,000,000 as 1M, just put 1 in this field).",
         },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
       },
-    },
-    {
+    }),
+    createField("shortText", {
       id: "prefix",
       name: "Prefix",
-      type: "Symbol",
-      validations: [],
       editorInterface: {
         settings: {
           helpText: "Any necessary prefix for the value, e.g. $",
         },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
       },
-    },
-    {
+    }),
+    createField("shortText", {
       id: "suffix",
       name: "Suffix",
-      type: "Symbol",
-      validations: [],
       editorInterface: {
         settings: {
           helpText:
             'Any necessary suffix for this value (e.g. if representing $1,000,000+ as $1M+, just put "M+" in this field).',
         },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
       },
-    },
+    }),
   ],
 };

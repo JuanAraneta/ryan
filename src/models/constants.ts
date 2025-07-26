@@ -1,6 +1,5 @@
-import { contentfulLabelFieldFactory } from "./factories/contentfulLabelFieldFactory";
-import { singletonLockFieldFactory } from "./factories/singletonLockFieldFactory";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
 export const constants: ExpandedContentModel = {
   sys: {
@@ -10,47 +9,23 @@ export const constants: ExpandedContentModel = {
   description:
     "All constant strings that get used in multiple places throughout the application.",
   fields: [
-    contentfulLabelFieldFactory(),
-    {
+    createField("contentfulLabel"),
+    createField("shortText", {
       id: "previousButtonAriaLabel",
       name: "Previous button ARIA label",
-      type: "Symbol",
-      validations: [],
-      editorInterface: {
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    },
-    {
+    }),
+    createField("shortText", {
       id: "nextButtonAriaLabel",
       name: "Next button ARIA label",
-      type: "Symbol",
-      validations: [],
-      editorInterface: {
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    },
-    {
+    }),
+    createField("shortText", {
       id: "scrollbarThumbLabel",
       name: "Scrollbar thumb ARIA label",
-      type: "Symbol",
-      validations: [],
-      editorInterface: {
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    },
-    {
+    }),
+    createField("shortText", {
       id: "scrollbarTrackAriaLabel",
       name: "Scrollbar track ARIA label",
-      type: "Symbol",
-      validations: [],
-      editorInterface: {
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    },
-    singletonLockFieldFactory(),
+    }),
+    createField("singletonLock"),
   ],
 };

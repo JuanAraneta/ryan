@@ -1,4 +1,5 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
 export const socialMediaLink: ExpandedContentModel = {
   sys: {
@@ -9,25 +10,20 @@ export const socialMediaLink: ExpandedContentModel = {
     "Stores information for individual social media profiles per region/market. This allows localized branding and targeting by associating links with specific markets (e.g., US Facebook page, UK LinkedIn page).",
   displayField: "platformName",
   fields: [
-    {
+    createField("shortText", {
       id: "platformName",
       name: "Platform name",
-      type: "Symbol",
       required: true,
-      validations: [],
       editorInterface: {
         settings: {
           helpText:
             "The name of the social media platform (e.g., Facebook, LinkedIn, X/Twitter, YouTube, Instagram). You can use a dropdown to enforce consistency.",
         },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
       },
-    },
-    {
+    }),
+    createField("shortText", {
       id: "url",
       name: "URL",
-      type: "Symbol",
       required: true,
       validations: [
         {
@@ -44,10 +40,8 @@ export const socialMediaLink: ExpandedContentModel = {
           helpText:
             "The full link to the social media profile (e.g., https://linkedin.com/company/ryan-tax). Must be a valid URL.",
         },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
       },
-    },
+    }),
     {
       id: "icon",
       name: "Icon",

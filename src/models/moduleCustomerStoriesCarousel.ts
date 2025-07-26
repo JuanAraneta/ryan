@@ -1,6 +1,5 @@
-import { richTextFieldFactory } from "./factories/richTextFieldFactory";
-import { contentfulLabelFieldFactory } from "./factories/contentfulLabelFieldFactory";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
 export const moduleCustomerStoriesCarousel: ExpandedContentModel = {
   sys: {
@@ -10,8 +9,8 @@ export const moduleCustomerStoriesCarousel: ExpandedContentModel = {
   description:
     "A module for the homepage giving a carousel of articles describing customer stories.",
   fields: [
-    contentfulLabelFieldFactory(),
-    richTextFieldFactory({ id: "richTextTitle", name: "Title" }),
+    createField("contentfulLabel"),
+    createField("richText", { id: "richTextTitle", name: "Title" }),
     {
       id: "callToAction",
       name: "Call to action",

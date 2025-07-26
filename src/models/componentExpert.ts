@@ -1,4 +1,5 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
 export const componentExpert: ExpandedContentModel = {
   sys: {
@@ -9,46 +10,26 @@ export const componentExpert: ExpandedContentModel = {
     "The simple representation of a Ryan Tax Expert. Will have associated bio-pages, and other section references.",
   displayField: "fullName",
   fields: [
-    {
+    createField("shortText", {
       id: "fullName",
       name: "Full name",
-      type: "Symbol",
-      validations: [],
-      editorInterface: {
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    },
-    {
+    }),
+    createField("shortText", {
       id: "slug",
       name: "Slug",
-      type: "Symbol",
-      validations: [],
       editorInterface: {
         widgetId: "slugEditor",
         widgetNamespace: "builtin",
       },
-    },
-    {
+    }),
+    createField("shortText", {
       id: "title",
       name: "Title",
-      type: "Symbol",
-      validations: [],
-      editorInterface: {
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    },
-    {
+    }),
+    createField("shortText", {
       id: "serviceLabel",
       name: "Service label",
-      type: "Symbol",
-      validations: [],
-      editorInterface: {
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    },
+    }),
     {
       id: "headshot",
       name: "Headshot",

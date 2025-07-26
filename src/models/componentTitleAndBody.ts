@@ -1,6 +1,5 @@
-import { richTextFieldFactory } from "./factories/richTextFieldFactory";
-import { contentfulLabelFieldFactory } from "./factories/contentfulLabelFieldFactory";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
 export const componentTitleAndBody: ExpandedContentModel = {
   sys: {
@@ -9,8 +8,8 @@ export const componentTitleAndBody: ExpandedContentModel = {
   name: "Component / Title and body",
   description: "",
   fields: [
-    contentfulLabelFieldFactory(),
-    richTextFieldFactory({ id: "richTextTitle", name: "Title" }),
-    richTextFieldFactory({ id: "richTextBody", name: "Body" }),
+    createField("contentfulLabel"),
+    createField("richText", { id: "richTextTitle", name: "Title" }),
+    createField("richText", { id: "richTextBody", name: "Body" }),
   ],
 };

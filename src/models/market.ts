@@ -1,4 +1,5 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
 export const market: ExpandedContentModel = {
   sys: {
@@ -9,34 +10,24 @@ export const market: ExpandedContentModel = {
     "Represents a geographical market or country (e.g., United States, Brazil, Canada) used to associate region-specific content like pages, social links, site settings, and SEO metadata. Language variations are handled separately through Contentful localization.",
   displayField: "name",
   fields: [
-    {
+    createField("shortText", {
       id: "name",
       name: "Name",
-      type: "Symbol",
       required: true,
-      validations: [
-        {
-          unique: true,
-        },
-      ],
+      validations: [{ unique: true }],
       editorInterface: {
         settings: {
           helpText:
             'A human-friendly name of the market, like "United States" or "Argentina". Used for internal clarity.',
         },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
       },
-    },
-    {
+    }),
+    createField("shortText", {
       id: "slug",
       name: "Slug",
-      type: "Symbol",
       required: true,
       validations: [
-        {
-          unique: true,
-        },
+        { unique: true },
         {
           regexp: {
             pattern: "^[a-z0-9]+(-[a-z0-9]+)*$",
@@ -45,23 +36,15 @@ export const market: ExpandedContentModel = {
           },
         },
       ],
-      editorInterface: {
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    },
+    }),
+
     {
       id: "socialMediaLinks",
       name: "Social Media Links",
       type: "Array",
-      validations: [],
       items: {
         type: "Link",
-        validations: [
-          {
-            linkContentType: ["socialMediaLink"],
-          },
-        ],
+        validations: [{ linkContentType: ["socialMediaLink"] }],
         linkType: "Entry",
       },
       editorInterface: {
@@ -70,7 +53,4 @@ export const market: ExpandedContentModel = {
       },
     },
   ],
-  editorInterface: {
-    controls: [],
-  },
 };

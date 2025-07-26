@@ -1,4 +1,5 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
 export const componentLink: ExpandedContentModel = {
   sys: {
@@ -9,16 +10,10 @@ export const componentLink: ExpandedContentModel = {
     "The standard type for representing links both internal to the application and to external URLs. Only fulfill either an external or internal source.",
   displayField: "label",
   fields: [
-    {
+    createField("shortText", {
       id: "label",
       name: "Label",
-      type: "Symbol",
-      validations: [],
-      editorInterface: {
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    },
+    }),
     {
       id: "internalSource",
       name: "Internal Source",
@@ -34,15 +29,6 @@ export const componentLink: ExpandedContentModel = {
         widgetNamespace: "builtin",
       },
     },
-    {
-      id: "externalSource",
-      name: "External Source",
-      type: "Symbol",
-      validations: [],
-      editorInterface: {
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    },
+    createField("shortText", { id: "externalSource", name: "External Source" }),
   ],
 };

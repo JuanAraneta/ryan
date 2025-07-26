@@ -1,4 +1,5 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
 export const urlRedirect: ExpandedContentModel = {
   sys: {
@@ -9,30 +10,21 @@ export const urlRedirect: ExpandedContentModel = {
     "Defines a redirect rule to guide users and search engines from one URL to another. Useful for maintaining SEO when content is moved, renamed, or removed. Supports permanent (301) and temporary (302) redirects, as well as region- and language-specific use cases.",
   displayField: "slug",
   fields: [
-    {
+    createField("shortText", {
       id: "slug",
       name: "Slug",
-      type: "Symbol",
       required: true,
       validations: [
         {
-          regexp: {
-            pattern: "^([a-z0-9\\-]+\\/)*[a-z0-9\\-]+$",
-            flags: "s",
-          },
+          regexp: { pattern: "^([a-z0-9\\-]+\\/)*[a-z0-9\\-]+$", flags: "s" },
           message:
             "Invalid slug format. Only lowercase letters, numbers, and hyphens are allowed. Use forward slashes (/) to separate nested paths. Example: about-us or us/es-ar/contact",
         },
       ],
-      editorInterface: {
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    },
-    {
+    }),
+    createField("shortText", {
       id: "destination",
       name: "Destination",
-      type: "Symbol",
       required: true,
       validations: [
         {
@@ -44,36 +36,25 @@ export const urlRedirect: ExpandedContentModel = {
             "Invalid slug format. Only lowercase letters, numbers, and hyphens are allowed. Use forward slashes (/) to separate nested paths. Example: about-us or us/es-ar/contact",
         },
       ],
-      editorInterface: {
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    },
-    {
+    }),
+    createField("shortText", {
       id: "redirectType",
-      name: "Redirect type\t",
-      type: "Symbol",
+      name: "Redirect type",
       required: true,
-      validations: [
-        {
-          in: ["temporary", "permanent"],
-        },
-      ],
+      validations: [{ in: ["temporary", "permanent"] }],
       editorInterface: {
         settings: {
           helpText:
             "Please select either Permanent (301) or Temporary (302) to define how this redirect should behave.",
         },
         widgetId: "dropdown",
-        widgetNamespace: "builtin",
       },
-    },
+    }),
     {
       id: "active",
       name: "Active",
       type: "Boolean",
       required: true,
-      validations: [],
       defaultValue: {
         "en-US": false,
       },
@@ -92,7 +73,6 @@ export const urlRedirect: ExpandedContentModel = {
       id: "startDate",
       name: "Start date",
       type: "Date",
-      validations: [],
       editorInterface: {
         settings: {
           ampm: "24",
@@ -108,7 +88,6 @@ export const urlRedirect: ExpandedContentModel = {
       id: "endDate",
       name: "End date",
       type: "Date",
-      validations: [],
       editorInterface: {
         settings: {
           ampm: "24",

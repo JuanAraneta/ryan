@@ -1,4 +1,5 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
 export const siteSettings: ExpandedContentModel = {
   sys: {
@@ -9,56 +10,28 @@ export const siteSettings: ExpandedContentModel = {
     "Stores global configuration and shared settings for the site, including confirmation IDs for external tools (like analytics), social media links and other site-wide defaults. This content type ensures consistent configuration across all pages and regions.",
   displayField: "siteName",
   fields: [
-    {
+    createField("shortText", {
       id: "siteName",
       name: "Site name",
-      type: "Symbol",
       required: true,
-      validations: [
-        {
-          unique: true,
-        },
-      ],
-      editorInterface: {
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    },
-    {
+      validations: [{ unique: true }],
+    }),
+    createField("shortText", {
       id: "facebookPixelId",
       name: "Facebook pixel ID",
-      type: "Symbol",
-      validations: [],
-      editorInterface: {
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    },
-    {
+    }),
+    createField("shortText", {
       id: "googleTagManagerId",
       name: "Google tag manager ID",
-      type: "Symbol",
-      validations: [],
-      editorInterface: {
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    },
-    {
+    }),
+    createField("shortText", {
       id: "googleAnalyticsId",
       name: "Google analytics ID",
-      type: "Symbol",
-      validations: [],
-      editorInterface: {
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    },
+    }),
     {
       id: "scripts",
       name: "Scripts",
       type: "Array",
-      validations: [],
       items: {
         type: "Link",
         validations: [

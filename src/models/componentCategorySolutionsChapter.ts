@@ -1,4 +1,5 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
 export const componentCategorySolutionsChapter: ExpandedContentModel = {
   sys: {
@@ -8,16 +9,11 @@ export const componentCategorySolutionsChapter: ExpandedContentModel = {
   description: "",
   displayField: "title",
   fields: [
-    {
+    createField("shortText", {
       id: "title",
       name: "Title",
-      type: "Symbol",
-      validations: [],
-      editorInterface: {
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    },
+      displayField: true,
+    }),
     {
       id: "contents",
       name: "Contents",

@@ -1,4 +1,5 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
 export const themeBackground: ExpandedContentModel = {
   sys: {
@@ -8,15 +9,12 @@ export const themeBackground: ExpandedContentModel = {
   description: "",
   displayField: "background",
   fields: [
-    {
+    createField("shortText", {
       id: "background",
       name: "Background",
-      type: "Symbol",
       required: true,
       validations: [
-        {
-          unique: true,
-        },
+        { unique: true },
         {
           in: [
             "brand-700",
@@ -40,10 +38,7 @@ export const themeBackground: ExpandedContentModel = {
           ],
         },
       ],
-      editorInterface: {
-        widgetId: "dropdown",
-        widgetNamespace: "builtin",
-      },
-    },
+      editorInterface: { widgetId: "dropdown" },
+    }),
   ],
 };

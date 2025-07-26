@@ -1,5 +1,5 @@
-import { contentfulLabelFieldFactory } from "./factories/contentfulLabelFieldFactory";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
 export const categorySolutionsImageLink: ExpandedContentModel = {
   sys: {
@@ -8,7 +8,7 @@ export const categorySolutionsImageLink: ExpandedContentModel = {
   name: "Category solutions / Image link grid / Item",
   description: "",
   fields: [
-    contentfulLabelFieldFactory(),
+    createField("contentfulLabel"),
     {
       id: "image",
       name: "Image",

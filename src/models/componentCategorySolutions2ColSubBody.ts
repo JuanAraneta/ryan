@@ -1,5 +1,5 @@
-import { contentfulLabelFieldFactory } from "./factories/contentfulLabelFieldFactory";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
 export const componentCategorySolutions2ColSubBody: ExpandedContentModel = {
   sys: {
@@ -8,7 +8,7 @@ export const componentCategorySolutions2ColSubBody: ExpandedContentModel = {
   name: "Category Solutions / 2 col sub + body",
   description: "",
   fields: [
-    contentfulLabelFieldFactory(),
+    createField("contentfulLabel"),
     {
       id: "titleAndBodyReferences",
       name: "Title and body references",

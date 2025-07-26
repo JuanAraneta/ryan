@@ -1,5 +1,5 @@
-import { richTextFieldFactory } from "./factories/richTextFieldFactory";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
 export const componentCardDeviceMock: ExpandedContentModel = {
   sys: {
@@ -7,18 +7,12 @@ export const componentCardDeviceMock: ExpandedContentModel = {
   },
   name: "Category solutions / Card & device mock",
   description: "Often the card that is the headline container for a chapter.",
-  displayField: "title",
   fields: [
-    {
+    createField("shortText", {
       id: "title",
       name: "Title",
-      type: "Symbol",
-      validations: [],
-      editorInterface: {
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    },
+      displayField: true,
+    }),
     {
       id: "backgroundColor",
       name: "Background color",
@@ -34,7 +28,7 @@ export const componentCardDeviceMock: ExpandedContentModel = {
         widgetNamespace: "builtin",
       },
     },
-    richTextFieldFactory({ id: "richTextBody", name: "Body" }),
+    createField("richText", { id: "richTextBody", name: "Body" }),
     {
       id: "callToAction",
       name: "Call to action",

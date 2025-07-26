@@ -1,4 +1,5 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
 export const seoMetadata: ExpandedContentModel = {
   sys: {
@@ -9,59 +10,41 @@ export const seoMetadata: ExpandedContentModel = {
     "Stores SEO-related information such as meta titles, descriptions, canonical URLs, and Open Graph / social sharing data. This content type helps optimize how pages appear in search engines and social platforms, improving visibility and click-through rates.",
   displayField: "pageTitle",
   fields: [
-    {
+    createField("shortText", {
       id: "pageTitle",
       name: "Page title",
-      type: "Symbol",
       required: true,
-      validations: [
-        {
-          unique: true,
-        },
-      ],
+      validations: [{ unique: true }],
       editorInterface: {
         settings: {
           helpText:
             "The main title of the page as it appears in the browser tab. Helps users understand what the page is about. Keep it concise and relevant.",
         },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
       },
-    },
-    {
+    }),
+    createField("shortText", {
       id: "seoTitle",
       name: "SEO title",
-      type: "Symbol",
       required: true,
-      validations: [
-        {
-          unique: true,
-        },
-      ],
+      validations: [{ unique: true }],
       editorInterface: {
         settings: {
           helpText:
             "The title shown in search engine results. Should include keywords and be under 60 characters for best visibility.",
         },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
       },
-    },
-    {
+    }),
+    createField("shortText", {
       id: "seoDescription",
       name: "SEO Description",
-      type: "Symbol",
       required: true,
-      validations: [],
       editorInterface: {
         settings: {
           helpText:
             "A short summary of the page content shown in search engine results. Aim for 150–160 characters and include relevant keywords naturally.",
         },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
       },
-    },
+    }),
     {
       id: "featuredImage",
       name: "Featured image",
@@ -101,27 +84,22 @@ export const seoMetadata: ExpandedContentModel = {
         widgetNamespace: "builtin",
       },
     },
-    {
+    createField("shortText", {
       id: "canonicalUrl",
       name: "Canonical URL",
-      type: "Symbol",
       required: true,
-      validations: [],
       editorInterface: {
         settings: {
           helpText:
             "The preferred URL for this page to avoid duplicate content issues. Use only if this content appears in multiple places or URLs.",
         },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
       },
-    },
+    }),
     {
       id: "noIndex",
       name: "No index",
       type: "Boolean",
       required: true,
-      validations: [],
       editorInterface: {
         settings: {
           helpText:
@@ -138,7 +116,6 @@ export const seoMetadata: ExpandedContentModel = {
       name: "No follow",
       type: "Boolean",
       required: true,
-      validations: [],
       editorInterface: {
         settings: {
           helpText:
