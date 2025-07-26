@@ -8,11 +8,11 @@ export const componentLink = {
   name: "Component / Link",
   description:
     "The standard type for representing links both internal to the application and to external URLs. Only fulfill either an external or internal source.",
-  displayField: "label",
   fields: [
     createField("shortText", {
       id: "label",
       name: "Label",
+      displayField: true,
     }),
     {
       id: "internalSource",

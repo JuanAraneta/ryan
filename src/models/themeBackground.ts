@@ -7,11 +7,11 @@ export const themeBackground = {
   },
   name: "Theme / Background",
   description: "",
-  displayField: "background",
   fields: [
     createField("shortText", {
       id: "background",
       name: "Background",
+      displayField: true,
       required: true,
       validations: [
         { unique: true },

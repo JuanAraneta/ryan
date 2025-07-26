@@ -8,11 +8,11 @@ export const script = {
   name: "Script",
   description:
     "Manages custom scripts (e.g., analytics, cookie consent, marketing tags) that should be injected into the website. Supports external sources and inline code. Use with caution to ensure performance and security best practices.",
-  displayField: "id",
   fields: [
     createField("shortText", {
       id: "id",
       name: "Id",
+      displayField: true,
       required: true,
       validations: [{ unique: true }],
       defaultValue: { "en-US": "A unique identifier for this script" },
@@ -54,6 +54,7 @@ export const script = {
         widgetId: "dropdown",
       },
     }),
+    // No factory for this because in 99% of cases, we should be using RichText in place of this type
     {
       id: "inlineScript",
       name: "Inline script",

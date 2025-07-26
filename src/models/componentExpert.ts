@@ -8,11 +8,11 @@ export const componentExpert = {
   name: "Expert",
   description:
     "The simple representation of a Ryan Tax Expert. Will have associated bio-pages, and other section references.",
-  displayField: "fullName",
   fields: [
     createField("shortText", {
       id: "fullName",
       name: "Full name",
+      displayField: true,
     }),
     createField("shortText", {
       id: "slug",

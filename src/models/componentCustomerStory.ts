@@ -8,7 +8,6 @@ export const componentCustomerStory = {
   name: "Customer story",
   description:
     "An article or link to an article describing a customer's experience with Ryan.",
-  displayField: "customerName",
   fields: [
     createField("shortText", {
       id: "customerName",

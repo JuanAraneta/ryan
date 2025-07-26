@@ -8,13 +8,13 @@ export const header = {
   name: "[LAYOUT] Header",
   description:
     "Defines the top section of a page, typically including branding, navigation, and optional call-to-action elements. This module is reusable and configurable, allowing variations per market, language, or page type.",
-  displayField: "title",
   fields: [
     createField("shortText", {
       id: "title",
       name: "title",
       localized: true,
       required: true,
+      displayField: true,
     }),
     {
       id: "image",

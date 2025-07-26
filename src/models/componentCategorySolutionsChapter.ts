@@ -11,7 +11,6 @@ export const componentCategorySolutionsChapter = {
   },
   name: "Category solutions / Chapter",
   description: "",
-  displayField: "title",
   fields: [
     createField("shortText", {
       id: "title",

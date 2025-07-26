@@ -9,11 +9,11 @@ export const market = {
   name: "Market",
   description:
     "Represents a geographical market or country (e.g., United States, Brazil, Canada) used to associate region-specific content like pages, social links, site settings, and SEO metadata. Language variations are handled separately through Contentful localization.",
-  displayField: "name",
   fields: [
     createField("shortText", {
       id: "name",
       name: "Name",
+      displayField: true,
       required: true,
       validations: [{ unique: true }],
       editorInterface: {

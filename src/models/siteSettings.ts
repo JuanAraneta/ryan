@@ -9,12 +9,12 @@ export const siteSettings = {
   name: "Site settings",
   description:
     "Stores global configuration and shared settings for the site, including confirmation IDs for external tools (like analytics), social media links and other site-wide defaults. This content type ensures consistent configuration across all pages and regions.",
-  displayField: "siteName",
   fields: [
     createField("shortText", {
       id: "siteName",
       name: "Site name",
       required: true,
+      displayField: true,
       validations: [{ unique: true }],
     }),
     createField("shortText", {

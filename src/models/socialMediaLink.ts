@@ -8,11 +8,11 @@ export const socialMediaLink = {
   name: "Social media link",
   description:
     "Stores information for individual social media profiles per region/market. This allows localized branding and targeting by associating links with specific markets (e.g., US Facebook page, UK LinkedIn page).",
-  displayField: "platformName",
   fields: [
     createField("shortText", {
       id: "platformName",
       name: "Platform name",
+      displayField: true,
       required: true,
       editorInterface: {
         settings: {

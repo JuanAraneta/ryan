@@ -9,12 +9,12 @@ export const page = {
   name: "Page",
   description:
     "Represents a single webpage on the site, such as a homepage, service page, landing page, or contact page. Supports flexible layouts through modular content, SEO metadata, market scoping, and localization.",
-  displayField: "title",
   fields: [
     createField("shortText", {
       id: "title",
       name: "Title",
       required: true,
+      displayField: true,
       validations: [{ unique: true }],
       editorInterface: {
         settings: {

@@ -8,12 +8,12 @@ export const seoMetadata = {
   name: "SEO Metadata",
   description:
     "Stores SEO-related information such as meta titles, descriptions, canonical URLs, and Open Graph / social sharing data. This content type helps optimize how pages appear in search engines and social platforms, improving visibility and click-through rates.",
-  displayField: "pageTitle",
   fields: [
     createField("shortText", {
       id: "pageTitle",
       name: "Page title",
       required: true,
+      displayField: true,
       validations: [{ unique: true }],
       editorInterface: {
         settings: {
