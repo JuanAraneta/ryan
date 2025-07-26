@@ -1,4 +1,8 @@
+import { footer } from "./footer";
+import { header } from "./header";
+import { market } from "./market";
 import { moduleContainer } from "./moduleContainer";
+import { seoMetadata } from "./seoMetadata";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
@@ -34,92 +38,52 @@ export const page = {
         },
       },
     }),
-    {
+    createField("entryReference", {
       id: "market",
       name: "Market",
-      type: "Link",
       required: true,
-      validations: [
-        {
-          linkContentType: ["market"],
-        },
-      ],
-      linkType: "Entry",
+      linkContentType: [market],
       editorInterface: {
         settings: {
           helpText:
             "The regional market this page belongs to (e.g., United States, Brazil). Required for routing and market-specific content.",
-          showLinkEntityAction: true,
-          showCreateEntityAction: true,
         },
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
       },
-    },
-    {
+    }),
+    createField("entryReference", {
       id: "seoMetadata",
       name: "SEO metadata",
-      type: "Link",
       required: true,
-      validations: [
-        {
-          linkContentType: ["seoMetadata"],
-        },
-      ],
-      linkType: "Entry",
+      linkContentType: [seoMetadata],
       editorInterface: {
         settings: {
           helpText:
             "Optional override for SEO settings. If not set, the market’s default SEO settings will apply.",
-          showLinkEntityAction: true,
-          showCreateEntityAction: true,
         },
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
       },
-    },
-    {
+    }),
+    createField("entryReference", {
       id: "header",
       name: "Header",
-      type: "Link",
       required: true,
-      validations: [
-        {
-          linkContentType: ["header"],
-        },
-      ],
-      linkType: "Entry",
+      linkContentType: [header],
       editorInterface: {
         settings: {
           helpText: "Header that will be used on the page",
-          showLinkEntityAction: true,
-          showCreateEntityAction: true,
         },
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
       },
-    },
-    {
+    }),
+    createField("entryReference", {
       id: "footer",
       name: "Footer",
-      type: "Link",
       required: true,
-      validations: [
-        {
-          linkContentType: ["footer"],
-        },
-      ],
-      linkType: "Entry",
+      linkContentType: [footer],
       editorInterface: {
         settings: {
           helpText: "Footer that will be used on the page",
-          showLinkEntityAction: true,
-          showCreateEntityAction: true,
         },
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
       },
-    },
+    }),
     createField("entryReference", {
       array: true,
       id: "modules",

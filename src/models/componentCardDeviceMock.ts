@@ -1,3 +1,5 @@
+import { componentLink } from "./componentLink";
+import { themeBackground } from "./themeBackground";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
@@ -13,51 +15,21 @@ export const componentCardDeviceMock = {
       name: "Title",
       displayField: true,
     }),
-    {
+    createField("entryReference", {
       id: "backgroundColor",
       name: "Background color",
-      type: "Link",
-      validations: [
-        {
-          linkContentType: ["themeBackground"],
-        },
-      ],
-      linkType: "Entry",
-      editorInterface: {
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
-      },
-    },
+      linkContentType: [themeBackground],
+    }),
     createField("richText", { id: "richTextBody", name: "Body" }),
-    {
+    createField("entryReference", {
       id: "callToAction",
       name: "Call to action",
-      type: "Link",
-      validations: [
-        {
-          linkContentType: ["componentLink"],
-        },
-      ],
-      linkType: "Entry",
-      editorInterface: {
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
-      },
-    },
-    {
+      linkContentType: [componentLink],
+    }),
+    createField("assetReference", {
       id: "deviceMock",
       name: "Device mock",
-      type: "Link",
-      validations: [
-        {
-          linkMimetypeGroup: ["image"],
-        },
-      ],
-      linkType: "Asset",
-      editorInterface: {
-        widgetId: "assetLinkEditor",
-        widgetNamespace: "builtin",
-      },
-    },
+      imagesOnly: true,
+    }),
   ],
 } as const satisfies ExpandedContentModel;

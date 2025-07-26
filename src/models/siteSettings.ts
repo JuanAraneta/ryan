@@ -1,3 +1,4 @@
+import { market } from "./market";
 import { script } from "./script";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
@@ -36,21 +37,11 @@ export const siteSettings = {
       size: { max: 100 },
       linkContentType: [script],
     }),
-    {
+    createField("entryReference", {
       id: "market",
       name: "Default market",
-      type: "Link",
       required: true,
-      validations: [
-        {
-          linkContentType: ["market"],
-        },
-      ],
-      linkType: "Entry",
-      editorInterface: {
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
-      },
-    },
+      linkContentType: [market],
+    }),
   ],
 } as const satisfies ExpandedContentModel;

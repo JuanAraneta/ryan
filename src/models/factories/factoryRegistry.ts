@@ -1,3 +1,4 @@
+import { assetReferenceFieldFactory } from "./assetReferenceFieldFactory";
 import { contentfulLabelFieldFactory } from "./contentfulLabelFieldFactory";
 import { entryReferenceFieldFactory } from "./entryReferenceFieldFactory";
 import { richTextFieldFactory } from "./richTextFieldFactory";
@@ -10,4 +11,5 @@ export const factoryRegistry = {
   singletonLock: singletonLockFieldFactory,
   shortText: shortTextFieldFactory,
   entryReference: entryReferenceFieldFactory,
+  assetReference: assetReferenceFieldFactory,
 };

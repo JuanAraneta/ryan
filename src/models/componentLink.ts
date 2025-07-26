@@ -14,21 +14,11 @@ export const componentLink = {
       name: "Label",
       displayField: true,
     }),
-    {
+    createField("entryReference", {
       id: "internalSource",
       name: "Internal Source",
-      type: "Link",
-      validations: [
-        {
-          linkContentType: ["page"],
-        },
-      ],
-      linkType: "Entry",
-      editorInterface: {
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
-      },
-    },
+      linkContentType: ["page"],
+    }),
     createField("shortText", { id: "externalSource", name: "External Source" }),
   ],
 } as const satisfies ExpandedContentModel;

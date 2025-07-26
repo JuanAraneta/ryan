@@ -16,16 +16,11 @@ export const header = {
       required: true,
       displayField: true,
     }),
-    {
+    createField("assetReference", {
       id: "image",
       name: "image",
-      type: "Link",
-      linkType: "Asset",
-      editorInterface: {
-        widgetId: "assetLinkEditor",
-        widgetNamespace: "builtin",
-      },
-    },
+      imagesOnly: true,
+    }),
   ],
   editorInterface: {},
 } as const satisfies ExpandedContentModel;

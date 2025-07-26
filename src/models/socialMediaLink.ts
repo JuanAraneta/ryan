@@ -42,32 +42,18 @@ export const socialMediaLink = {
         },
       },
     }),
-    {
+    createField("assetReference", {
       id: "icon",
       name: "Icon",
-      type: "Link",
       required: true,
-      validations: [
-        {
-          linkMimetypeGroup: ["image"],
-        },
-        {
-          assetFileSize: {
-            max: 51200,
-          },
-        },
-      ],
-      linkType: "Asset",
+      imagesOnly: true,
+      validations: [{ assetFileSize: { max: 51200 } }],
       editorInterface: {
         settings: {
           helpText:
             "Upload the icon for this social platform. SVG is recommended for better rendering and accessibility.",
-          showLinkEntityAction: true,
-          showCreateEntityAction: true,
         },
-        widgetId: "assetLinkEditor",
-        widgetNamespace: "builtin",
       },
-    },
+    }),
   ],
 } as const satisfies ExpandedContentModel;

@@ -1,3 +1,4 @@
+import { componentLink } from "./componentLink";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
@@ -9,35 +10,15 @@ export const categorySolutionsImageLink = {
   description: "",
   fields: [
     createField("contentfulLabel"),
-    {
+    createField("assetReference", {
       id: "image",
       name: "Image",
-      type: "Link",
-      validations: [
-        {
-          linkMimetypeGroup: ["image"],
-        },
-      ],
-      linkType: "Asset",
-      editorInterface: {
-        widgetId: "assetLinkEditor",
-        widgetNamespace: "builtin",
-      },
-    },
-    {
+      imagesOnly: true,
+    }),
+    createField("entryReference", {
       id: "link",
       name: "Link",
-      type: "Link",
-      validations: [
-        {
-          linkContentType: ["componentLink"],
-        },
-      ],
-      linkType: "Entry",
-      editorInterface: {
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
-      },
-    },
+      linkContentType: [componentLink],
+    }),
   ],
 } as const satisfies ExpandedContentModel;

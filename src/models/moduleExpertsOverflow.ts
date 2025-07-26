@@ -1,4 +1,6 @@
 import { componentExpert } from "./componentExpert";
+import { componentLink } from "./componentLink";
+import { componentStatistic } from "./componentStatistic";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
@@ -13,51 +15,21 @@ export const moduleExpertsOverflow = {
     createField("contentfulLabel"),
     createField("richText", { id: "richTextEyebrow", name: "Eyebrow" }),
     createField("richText", { id: "richTextTitle", name: "Title" }),
-    {
+    createField("entryReference", {
       id: "callToAction",
       name: "Call to action",
-      type: "Link",
-      validations: [
-        {
-          linkContentType: ["componentLink"],
-        },
-      ],
-      linkType: "Entry",
-      editorInterface: {
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
-      },
-    },
-    {
+      linkContentType: [componentLink],
+    }),
+    createField("entryReference", {
       id: "statistic",
       name: "Statistic",
-      type: "Link",
-      validations: [
-        {
-          linkContentType: ["componentStatistic"],
-        },
-      ],
-      linkType: "Entry",
-      editorInterface: {
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
-      },
-    },
-    {
+      linkContentType: [componentStatistic],
+    }),
+    createField("assetReference", {
       id: "statisticFlair",
       name: "Statistic flair",
-      type: "Link",
-      validations: [
-        {
-          linkMimetypeGroup: ["image"],
-        },
-      ],
-      linkType: "Asset",
-      editorInterface: {
-        widgetId: "assetLinkEditor",
-        widgetNamespace: "builtin",
-      },
-    },
+      imagesOnly: true,
+    }),
     createField("entryReference", {
       array: true,
       id: "expertsList",

@@ -23,25 +23,13 @@ export const componentCustomerStory = {
       id: "quoteSource",
       name: "Quote source",
     }),
-    {
+    createField("assetReference", {
       id: "customerLogo",
       name: "Customer logo",
-      type: "Link",
-      linkType: "Asset",
-      editorInterface: {
-        widgetId: "assetLinkEditor",
-        widgetNamespace: "builtin",
-      },
-    },
-    {
+    }),
+    createField("assetReference", {
       id: "heroMedia",
       name: "Hero media",
-      type: "Link",
-      linkType: "Asset",
-      editorInterface: {
-        widgetId: "assetLinkEditor",
-        widgetNamespace: "builtin",
-      },
-    },
+    }),
   ],
 } as const satisfies ExpandedContentModel;

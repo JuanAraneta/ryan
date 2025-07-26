@@ -45,45 +45,28 @@ export const seoMetadata = {
         },
       },
     }),
-    {
+    createField("assetReference", {
       id: "featuredImage",
       name: "Featured image",
-      type: "Link",
       required: true,
+      imagesOnly: true,
       validations: [
         {
-          linkMimetypeGroup: ["image"],
-          message: "Please use an image type",
-        },
-        {
           assetImageDimensions: {
-            width: {
-              max: 1260,
-            },
-            height: {
-              max: 630,
-            },
+            width: { max: 1260 },
+            height: { max: 630 },
           },
           message: "Image cannot be bigger than 1260x630 pixels",
         },
-        {
-          assetFileSize: {
-            max: 512000,
-          },
-        },
+        { assetFileSize: { max: 512000 } },
       ],
-      linkType: "Asset",
       editorInterface: {
         settings: {
           helpText:
             "Recommended: JPG or PNG, 1200x630px, under 500KB. This image is used for social sharing and should visually represent the page.",
-          showLinkEntityAction: true,
-          showCreateEntityAction: true,
         },
-        widgetId: "assetLinkEditor",
-        widgetNamespace: "builtin",
       },
-    },
+    }),
     createField("shortText", {
       id: "canonicalUrl",
       name: "Canonical URL",

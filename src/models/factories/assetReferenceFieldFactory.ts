@@ -1,18 +1,19 @@
 import { DeepPartial } from "@/types/utils/DeepPartial";
 import { ExpandedFieldDetails } from "../types/ExpandedFieldDetails";
 import merge from "lodash/merge";
-import { ExpandedContentModel } from "../types/ExpandedContentModel";
 
-export const entryReferenceFieldFactory = ({
+export const assetReferenceFieldFactory = ({
   array = false,
-  linkContentType,
+  imagesOnly = false,
+  linkMimetypeGroup = imagesOnly ? ["image"] : undefined,
   size,
+  validations = [],
   ...props
 }: {
-  // Only provide a string for self or circularly referencing types
-  linkContentType: Array<string | ExpandedContentModel>;
+  linkMimetypeGroup?: Array<string>;
   id: string;
   name: string;
+  imagesOnly?: boolean;
 } & (
   | { array?: false; size?: undefined }
   | { array: true; size: { min?: number; max: number } }
@@ -36,22 +37,20 @@ export const entryReferenceFieldFactory = ({
           validations: [{ size }],
           items: {
             type: "Link",
-            validations: [
-              {
-                linkContentType: linkContentType.map((type) =>
-                  typeof type === "string" ? type : type.sys.id,
-                ),
-              },
-            ],
-            linkType: "Entry",
+            validations: [{ linkMimetypeGroup }, ...validations],
+            linkType: "Asset",
           },
-          editorInterface: { widgetId: "entryLinksEditor" },
+          editorInterface: {
+            widgetId: "assetLinksEditor",
+          },
         }
       : {
           type: "Link",
-          validations: [{ linkContentType }],
-          linkType: "Entry",
-          editorInterface: { widgetId: "entryLinkEditor" },
+          validations: [{ linkMimetypeGroup }, ...validations],
+          linkType: "Asset",
+          editorInterface: {
+            widgetId: "assetLinkEditor",
+          },
         },
     props,
   );

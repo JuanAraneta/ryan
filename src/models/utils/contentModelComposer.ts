@@ -34,7 +34,7 @@ export const contentModelComposer = (contentModel: ExpandedContentModel) => {
       if (field.displayField) {
         if (clone.displayField && clone.displayField !== field.id) {
           throw new Error(
-            `Type ${clone.sys.id} has two multiple fields trying to identify as the entryTitle.`,
+            `Type ${clone.sys.id} has multiple fields trying to identify as the entryTitle. Exactly one is required.`,
           );
         }
         clone.displayField = field.id;
@@ -54,6 +54,12 @@ export const contentModelComposer = (contentModel: ExpandedContentModel) => {
       ...field,
     };
   });
+
+  if (!clone.displayField) {
+    throw new Error(
+      `Type ${clone.sys.id} has no fields trying to identify as the entryTitle. Exactly one is required.`,
+    );
+  }
 
   return clone as ContentModel;
 };

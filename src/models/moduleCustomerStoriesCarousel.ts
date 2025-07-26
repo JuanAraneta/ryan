@@ -1,4 +1,5 @@
 import { componentCustomerStory } from "./componentCustomerStory";
+import { componentLink } from "./componentLink";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
@@ -12,21 +13,11 @@ export const moduleCustomerStoriesCarousel = {
   fields: [
     createField("contentfulLabel"),
     createField("richText", { id: "richTextTitle", name: "Title" }),
-    {
+    createField("entryReference", {
       id: "callToAction",
       name: "Call to action",
-      type: "Link",
-      validations: [
-        {
-          linkContentType: ["componentLink"],
-        },
-      ],
-      linkType: "Entry",
-      editorInterface: {
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
-      },
-    },
+      linkContentType: [componentLink],
+    }),
     createField("entryReference", {
       array: true,
       id: "customerStories",

@@ -30,20 +30,10 @@ export const componentExpert = {
       id: "serviceLabel",
       name: "Service label",
     }),
-    {
+    createField("assetReference", {
       id: "headshot",
       name: "Headshot",
-      type: "Link",
-      validations: [
-        {
-          linkMimetypeGroup: ["image"],
-        },
-      ],
-      linkType: "Asset",
-      editorInterface: {
-        widgetId: "assetLinkEditor",
-        widgetNamespace: "builtin",
-      },
-    },
+      imagesOnly: true,
+    }),
   ],
 } as const satisfies ExpandedContentModel;
