@@ -1411,99 +1411,6 @@ enum ConstantsOrder {
   sys_publishedVersion_DESC
 }
 
-"""
-[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/richText)
-"""
-type ContentTypeRichText implements Entry & _Node {
-  _id: ID!
-  contentfulLabel(locale: String): String
-  contentfulMetadata: ContentfulMetadata!
-  linkedFrom(allowedLocales: [String]): ContentTypeRichTextLinkingCollections
-  richText(locale: String): ContentTypeRichTextRichText
-  sys: Sys!
-}
-
-type ContentTypeRichTextCollection {
-  items: [ContentTypeRichText]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-input ContentTypeRichTextFilter {
-  AND: [ContentTypeRichTextFilter]
-  OR: [ContentTypeRichTextFilter]
-  contentfulLabel: String
-  contentfulLabel_contains: String
-  contentfulLabel_exists: Boolean
-  contentfulLabel_in: [String]
-  contentfulLabel_not: String
-  contentfulLabel_not_contains: String
-  contentfulLabel_not_in: [String]
-  contentfulMetadata: ContentfulMetadataFilter
-  richText_contains: String
-  richText_exists: Boolean
-  richText_not_contains: String
-  sys: SysFilter
-}
-
-type ContentTypeRichTextLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-}
-
-enum ContentTypeRichTextOrder {
-  contentfulLabel_ASC
-  contentfulLabel_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-type ContentTypeRichTextRichText {
-  json: JSON!
-  links: ContentTypeRichTextRichTextLinks!
-}
-
-type ContentTypeRichTextRichTextAssets {
-  block: [Asset]!
-  hyperlink: [Asset]!
-}
-
-type ContentTypeRichTextRichTextEntries {
-  block: [Entry]!
-  hyperlink: [Entry]!
-  inline: [Entry]!
-}
-
-type ContentTypeRichTextRichTextLinks {
-  assets: ContentTypeRichTextRichTextAssets!
-  entries: ContentTypeRichTextRichTextEntries!
-  resources: ContentTypeRichTextRichTextResources!
-}
-
-type ContentTypeRichTextRichTextResources {
-  block: [ContentTypeRichTextRichTextResourcesBlock!]!
-  hyperlink: [ContentTypeRichTextRichTextResourcesHyperlink!]!
-  inline: [ContentTypeRichTextRichTextResourcesInline!]!
-}
-
-type ContentTypeRichTextRichTextResourcesBlock implements ResourceLink {
-  sys: ResourceSys!
-}
-
-type ContentTypeRichTextRichTextResourcesHyperlink implements ResourceLink {
-  sys: ResourceSys!
-}
-
-type ContentTypeRichTextRichTextResourcesInline implements ResourceLink {
-  sys: ResourceSys!
-}
-
 type ContentfulMetadata {
   tags: [ContentfulTag]!
   concepts: [TaxonomyConcept]!
@@ -2780,8 +2687,6 @@ type Query {
   componentTitleAndBodyCollection(limit: Int = 100, locale: String, order: [ComponentTitleAndBodyOrder], preview: Boolean, skip: Int = 0, where: ComponentTitleAndBodyFilter): ComponentTitleAndBodyCollection
   constants(id: String!, locale: String, preview: Boolean): Constants
   constantsCollection(limit: Int = 100, locale: String, order: [ConstantsOrder], preview: Boolean, skip: Int = 0, where: ConstantsFilter): ConstantsCollection
-  contentTypeRichText(id: String!, locale: String, preview: Boolean): ContentTypeRichText
-  contentTypeRichTextCollection(limit: Int = 100, locale: String, order: [ContentTypeRichTextOrder], preview: Boolean, skip: Int = 0, where: ContentTypeRichTextFilter): ContentTypeRichTextCollection
   entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, where: EntryFilter): EntryCollection
   footer(id: String!, locale: String, preview: Boolean): Footer
   footerCollection(limit: Int = 100, locale: String, order: [FooterOrder], preview: Boolean, skip: Int = 0, where: FooterFilter): FooterCollection
@@ -2809,6 +2714,8 @@ type Query {
   siteSettingsCollection(limit: Int = 100, locale: String, order: [SiteSettingsOrder], preview: Boolean, skip: Int = 0, where: SiteSettingsFilter): SiteSettingsCollection
   socialMediaLink(id: String!, locale: String, preview: Boolean): SocialMediaLink
   socialMediaLinkCollection(limit: Int = 100, locale: String, order: [SocialMediaLinkOrder], preview: Boolean, skip: Int = 0, where: SocialMediaLinkFilter): SocialMediaLinkCollection
+  tags(id: String!, locale: String, preview: Boolean): Tags
+  tagsCollection(limit: Int = 100, locale: String, order: [TagsOrder], preview: Boolean, skip: Int = 0, where: TagsFilter): TagsCollection
   themeBackground(id: String!, locale: String, preview: Boolean): ThemeBackground
   themeBackgroundCollection(limit: Int = 100, locale: String, order: [ThemeBackgroundOrder], preview: Boolean, skip: Int = 0, where: ThemeBackgroundFilter): ThemeBackgroundCollection
   urlRedirect(id: String!, locale: String, preview: Boolean): UrlRedirect
@@ -3287,6 +3194,55 @@ input SysFilter {
   publishedVersion_lte: Float
   publishedVersion_not: Float
   publishedVersion_not_in: [Float]
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/tags)
+"""
+type Tags implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): TagsLinkingCollections
+  name(locale: String): String
+  sys: Sys!
+}
+
+type TagsCollection {
+  items: [Tags]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input TagsFilter {
+  AND: [TagsFilter]
+  OR: [TagsFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  sys: SysFilter
+}
+
+type TagsLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum TagsOrder {
+  name_ASC
+  name_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 """

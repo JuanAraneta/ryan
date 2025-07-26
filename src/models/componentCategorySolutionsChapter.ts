@@ -1,6 +1,11 @@
-import type { ContentModel } from "contentful-code-models";
+import { categorySolutionsImageLinkGrid } from "./categorySolutionsImageLinkGrid";
+import { componentCardDeviceMock } from "./componentCardDeviceMock";
+import { componentCategorySolutions2ColSubBody } from "./componentCategorySolutions2ColSubBody";
+import { componentCategorySolutionsHeadline } from "./componentCategorySolutionsHeadline";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
-export const componentCategorySolutionsChapter: ContentModel = {
+export const componentCategorySolutionsChapter = {
   sys: {
     id: "componentCategorySolutionsChapter",
   },
@@ -8,59 +13,22 @@ export const componentCategorySolutionsChapter: ContentModel = {
   description: "",
   displayField: "title",
   fields: [
-    {
+    createField("shortText", {
       id: "title",
       name: "Title",
-      type: "Symbol",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
-    {
+      displayField: true,
+    }),
+    createField("entryReference", {
+      array: true,
       id: "contents",
       name: "Contents",
-      type: "Array",
-      localized: false,
-      required: false,
-      validations: [
-        {
-          size: {
-            max: 5,
-          },
-        },
+      size: { max: 5 },
+      linkContentType: [
+        componentCardDeviceMock,
+        componentCategorySolutions2ColSubBody,
+        componentCategorySolutionsHeadline,
+        categorySolutionsImageLinkGrid,
       ],
-      disabled: false,
-      omitted: false,
-      items: {
-        type: "Link",
-        validations: [
-          {
-            linkContentType: [
-              "componentCardDeviceMock",
-              "componentCategorySolutions2ColSubBody",
-              "componentCategorySolutionsHeadline",
-              "categorySolutionsImageLinkGrid",
-            ],
-          },
-        ],
-        linkType: "Entry",
-      },
-    },
+    }),
   ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "title",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "contents",
-        widgetId: "entryLinksEditor",
-        widgetNamespace: "builtin",
-      },
-    ],
-  },
-};
+} as const satisfies ExpandedContentModel;

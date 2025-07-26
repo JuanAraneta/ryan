@@ -1,6 +1,7 @@
-import type { ContentModel } from "contentful-code-models";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
-export const themeBackground: ContentModel = {
+export const themeBackground = {
   sys: {
     id: "themeBackground",
   },
@@ -8,16 +9,12 @@ export const themeBackground: ContentModel = {
   description: "",
   displayField: "background",
   fields: [
-    {
+    createField("shortText", {
       id: "background",
       name: "Background",
-      type: "Symbol",
-      localized: false,
       required: true,
       validations: [
-        {
-          unique: true,
-        },
+        { unique: true },
         {
           in: [
             "brand-700",
@@ -41,17 +38,7 @@ export const themeBackground: ContentModel = {
           ],
         },
       ],
-      disabled: false,
-      omitted: false,
-    },
+      editorInterface: { widgetId: "dropdown" },
+    }),
   ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "background",
-        widgetId: "dropdown",
-        widgetNamespace: "builtin",
-      },
-    ],
-  },
-};
+} as const satisfies ExpandedContentModel;

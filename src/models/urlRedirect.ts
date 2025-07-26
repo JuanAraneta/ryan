@@ -1,6 +1,7 @@
-import type { ContentModel } from "contentful-code-models";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
-export const urlRedirect: ContentModel = {
+export const urlRedirect = {
   sys: {
     id: "urlRedirect",
   },
@@ -9,30 +10,21 @@ export const urlRedirect: ContentModel = {
     "Defines a redirect rule to guide users and search engines from one URL to another. Useful for maintaining SEO when content is moved, renamed, or removed. Supports permanent (301) and temporary (302) redirects, as well as region- and language-specific use cases.",
   displayField: "slug",
   fields: [
-    {
+    createField("shortText", {
       id: "slug",
       name: "Slug",
-      type: "Symbol",
-      localized: false,
       required: true,
       validations: [
         {
-          regexp: {
-            pattern: "^([a-z0-9\\-]+\\/)*[a-z0-9\\-]+$",
-            flags: "s",
-          },
+          regexp: { pattern: "^([a-z0-9\\-]+\\/)*[a-z0-9\\-]+$", flags: "s" },
           message:
             "Invalid slug format. Only lowercase letters, numbers, and hyphens are allowed. Use forward slashes (/) to separate nested paths. Example: about-us or us/es-ar/contact",
         },
       ],
-      disabled: false,
-      omitted: false,
-    },
-    {
+    }),
+    createField("shortText", {
       id: "destination",
       name: "Destination",
-      type: "Symbol",
-      localized: false,
       required: true,
       validations: [
         {
@@ -44,80 +36,29 @@ export const urlRedirect: ContentModel = {
             "Invalid slug format. Only lowercase letters, numbers, and hyphens are allowed. Use forward slashes (/) to separate nested paths. Example: about-us or us/es-ar/contact",
         },
       ],
-      disabled: false,
-      omitted: false,
-    },
-    {
+    }),
+    createField("shortText", {
       id: "redirectType",
-      name: "Redirect type\t",
-      type: "Symbol",
-      localized: false,
+      name: "Redirect type",
       required: true,
-      validations: [
-        {
-          in: ["temporary", "permanent"],
-        },
-      ],
-      disabled: false,
-      omitted: false,
-    },
-    {
-      id: "active",
-      name: "Active",
-      type: "Boolean",
-      localized: false,
-      required: true,
-      validations: [],
-      defaultValue: {
-        "en-US": false,
-      },
-      disabled: false,
-      omitted: false,
-    },
-    {
-      id: "startDate",
-      name: "Start date",
-      type: "Date",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
-    {
-      id: "endDate",
-      name: "End date",
-      type: "Date",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
-  ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "slug",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "destination",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "redirectType",
+      validations: [{ in: ["temporary", "permanent"] }],
+      editorInterface: {
         settings: {
           helpText:
             "Please select either Permanent (301) or Temporary (302) to define how this redirect should behave.",
         },
         widgetId: "dropdown",
-        widgetNamespace: "builtin",
       },
-      {
-        fieldId: "active",
+    }),
+    {
+      id: "active",
+      name: "Active",
+      type: "Boolean",
+      required: true,
+      defaultValue: {
+        "en-US": false,
+      },
+      editorInterface: {
         settings: {
           helpText:
             "Please specify whether this redirect is currently active. Only active redirects will be applied on the site.",
@@ -127,8 +68,12 @@ export const urlRedirect: ContentModel = {
         widgetId: "boolean",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "startDate",
+    },
+    {
+      id: "startDate",
+      name: "Start date",
+      type: "Date",
+      editorInterface: {
         settings: {
           ampm: "24",
           format: "timeZ",
@@ -138,8 +83,12 @@ export const urlRedirect: ContentModel = {
         widgetId: "datePicker",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "endDate",
+    },
+    {
+      id: "endDate",
+      name: "End date",
+      type: "Date",
+      editorInterface: {
         settings: {
           ampm: "24",
           format: "timeZ",
@@ -149,6 +98,6 @@ export const urlRedirect: ContentModel = {
         widgetId: "datePicker",
         widgetNamespace: "builtin",
       },
-    ],
-  },
-};
+    },
+  ],
+} as const satisfies ExpandedContentModel;

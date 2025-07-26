@@ -1,4 +1,4 @@
-import type { ContentModel } from "contentful-code-models";
+// models
 import { componentCategorySolutionsHeadline } from "./componentCategorySolutionsHeadline";
 import { componentCategorySolutionsChapter } from "./componentCategorySolutionsChapter";
 import { moduleChapterGroup } from "./moduleChapterGroup";
@@ -25,8 +25,10 @@ import { siteSettings } from "./siteSettings";
 import { socialMediaLink } from "./socialMediaLink";
 import { urlRedirect } from "./urlRedirect";
 import { script } from "./script";
+// utils
+import { contentModelComposer } from "./utils/contentModelComposer";
 
-export const models: ContentModel[] = [
+export const models = [
   componentCategorySolutionsHeadline,
   componentCategorySolutionsChapter,
   moduleChapterGroup,
@@ -53,7 +55,7 @@ export const models: ContentModel[] = [
   socialMediaLink,
   urlRedirect,
   script,
-];
+].map(contentModelComposer);
 
 export const locales = [
   {

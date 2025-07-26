@@ -1,62 +1,24 @@
-import type { ContentModel } from "contentful-code-models";
+import { componentTitleAndBody } from "./componentTitleAndBody";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
-export const componentCategorySolutions2ColSubBody: ContentModel = {
+export const componentCategorySolutions2ColSubBody = {
   sys: {
     id: "componentCategorySolutions2ColSubBody",
   },
   name: "Category Solutions / 2 col sub + body",
   description: "",
-  displayField: "contentfulLabel",
   fields: [
-    {
-      id: "contentfulLabel",
-      name: "Contentful label",
-      type: "Symbol",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
-    {
+    createField("contentfulLabel"),
+    createField("entryReference", {
+      array: true,
       id: "titleAndBodyReferences",
       name: "Title and body references",
-      type: "Array",
-      localized: false,
-      required: false,
-      validations: [
-        {
-          size: {
-            min: 2,
-            max: 2,
-          },
-        },
-      ],
-      disabled: false,
-      omitted: false,
-      items: {
-        type: "Link",
-        validations: [
-          {
-            linkContentType: ["componentTitleAndBody"],
-          },
-        ],
-        linkType: "Entry",
+      size: {
+        min: 2,
+        max: 2,
       },
-    },
+      linkContentType: [componentTitleAndBody],
+    }),
   ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "contentfulLabel",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "titleAndBodyReferences",
-        widgetId: "entryLinksEditor",
-        widgetNamespace: "builtin",
-      },
-    ],
-  },
-};
+} as const satisfies ExpandedContentModel;

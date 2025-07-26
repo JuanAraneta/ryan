@@ -1,41 +1,14 @@
-import type { ContentModel } from "contentful-code-models";
-import { richTextFieldFactory } from "./factories/richTextFieldFactory";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
-export const componentCategorySolutionsHeadline: ContentModel = {
+export const componentCategorySolutionsHeadline = {
   sys: {
     id: "componentCategorySolutionsHeadline",
   },
   name: "Category solutions / Headline",
   description: "",
-  displayField: "contentfulLabel",
   fields: [
-    {
-      id: "contentfulLabel",
-      name: "Contentful label",
-      type: "Symbol",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
-    richTextFieldFactory({ id: "richTextHeadline", name: "Headline" }),
+    createField("contentfulLabel"),
+    createField("richText", { id: "richTextHeadline", name: "Headline" }),
   ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "contentfulLabel",
-        settings: {
-          helpText: "A label for viewing on the Contentful UI.",
-        },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "headline",
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
-      },
-    ],
-  },
-};
+} as const satisfies ExpandedContentModel;

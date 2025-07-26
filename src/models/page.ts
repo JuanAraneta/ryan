@@ -1,6 +1,8 @@
-import type { ContentModel } from "contentful-code-models";
+import { moduleContainer } from "./moduleContainer";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
-export const page: ContentModel = {
+export const page = {
   sys: {
     id: "page",
   },
@@ -9,157 +11,41 @@ export const page: ContentModel = {
     "Represents a single webpage on the site, such as a homepage, service page, landing page, or contact page. Supports flexible layouts through modular content, SEO metadata, market scoping, and localization.",
   displayField: "title",
   fields: [
-    {
+    createField("shortText", {
       id: "title",
-      name: "Titile",
-      type: "Symbol",
-      localized: false,
+      name: "Title",
       required: true,
-      validations: [
-        {
-          unique: true,
+      validations: [{ unique: true }],
+      editorInterface: {
+        settings: {
+          helpText:
+            "Internal title for content editors. Will be used as the visible H1 on the page.",
         },
-      ],
-      disabled: false,
-      omitted: false,
-    },
-    {
+      },
+    }),
+    createField("shortText", {
       id: "slug",
       name: "Slug",
-      type: "Symbol",
-      localized: false,
       required: true,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
+      editorInterface: {
+        settings: {
+          helpText:
+            "The URL-friendly identifier for this page (e.g., about-us). Should be lowercase, with hyphens instead of spaces. No slashes.",
+        },
+      },
+    }),
     {
       id: "market",
       name: "Market",
       type: "Link",
-      localized: false,
       required: true,
       validations: [
         {
           linkContentType: ["market"],
         },
       ],
-      disabled: false,
-      omitted: false,
       linkType: "Entry",
-    },
-    {
-      id: "seoMetadata",
-      name: "SEO metadata",
-      type: "Link",
-      localized: false,
-      required: true,
-      validations: [
-        {
-          linkContentType: ["seoMetadata"],
-        },
-      ],
-      disabled: false,
-      omitted: false,
-      linkType: "Entry",
-    },
-    {
-      id: "header",
-      name: "Header",
-      type: "Link",
-      localized: false,
-      required: true,
-      validations: [
-        {
-          linkContentType: ["header"],
-        },
-      ],
-      disabled: false,
-      omitted: false,
-      linkType: "Entry",
-    },
-    {
-      id: "footer",
-      name: "Footer",
-      type: "Link",
-      localized: false,
-      required: true,
-      validations: [
-        {
-          linkContentType: ["footer"],
-        },
-      ],
-      disabled: false,
-      omitted: false,
-      linkType: "Entry",
-    },
-    {
-      id: "modules",
-      name: "Modules",
-      type: "Array",
-      localized: false,
-      required: false,
-      validations: [
-        {
-          size: {
-            max: 20,
-          },
-        },
-      ],
-      disabled: false,
-      omitted: false,
-      items: {
-        type: "Link",
-        validations: [
-          {
-            linkContentType: ["moduleContainer"],
-          },
-        ],
-        linkType: "Entry",
-      },
-    },
-    {
-      id: "pages",
-      name: "Pages",
-      type: "Array",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-      items: {
-        type: "Link",
-        validations: [
-          {
-            linkContentType: ["page"],
-          },
-        ],
-        linkType: "Entry",
-      },
-    },
-  ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "title",
-        settings: {
-          helpText:
-            "Internal title for content editors. Will be used as the visible H1 on the page.",
-        },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "slug",
-        settings: {
-          helpText:
-            "The URL-friendly identifier for this page (e.g., about-us). Should be lowercase, with hyphens instead of spaces. No slashes.",
-        },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "market",
+      editorInterface: {
         settings: {
           helpText:
             "The regional market this page belongs to (e.g., United States, Brazil). Required for routing and market-specific content.",
@@ -169,8 +55,19 @@ export const page: ContentModel = {
         widgetId: "entryLinkEditor",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "seoMetadata",
+    },
+    {
+      id: "seoMetadata",
+      name: "SEO metadata",
+      type: "Link",
+      required: true,
+      validations: [
+        {
+          linkContentType: ["seoMetadata"],
+        },
+      ],
+      linkType: "Entry",
+      editorInterface: {
         settings: {
           helpText:
             "Optional override for SEO settings. If not set, the market’s default SEO settings will apply.",
@@ -180,8 +77,19 @@ export const page: ContentModel = {
         widgetId: "entryLinkEditor",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "header",
+    },
+    {
+      id: "header",
+      name: "Header",
+      type: "Link",
+      required: true,
+      validations: [
+        {
+          linkContentType: ["header"],
+        },
+      ],
+      linkType: "Entry",
+      editorInterface: {
         settings: {
           helpText: "Header that will be used on the page",
           showLinkEntityAction: true,
@@ -190,8 +98,19 @@ export const page: ContentModel = {
         widgetId: "entryLinkEditor",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "footer",
+    },
+    {
+      id: "footer",
+      name: "Footer",
+      type: "Link",
+      required: true,
+      validations: [
+        {
+          linkContentType: ["footer"],
+        },
+      ],
+      linkType: "Entry",
+      editorInterface: {
         settings: {
           helpText: "Footer that will be used on the page",
           showLinkEntityAction: true,
@@ -200,29 +119,29 @@ export const page: ContentModel = {
         widgetId: "entryLinkEditor",
         widgetNamespace: "builtin",
       },
-      {
-        fieldId: "modules",
-        settings: {
-          helpText: "Modules that will compose a page layout",
-          bulkEditing: false,
-          showLinkEntityAction: true,
-          showCreateEntityAction: true,
-        },
-        widgetId: "entryLinksEditor",
-        widgetNamespace: "builtin",
+    },
+    createField("entryReference", {
+      array: true,
+      id: "modules",
+      name: "Modules",
+      size: { max: 20 },
+      linkContentType: [moduleContainer],
+      editorInterface: {
+        settings: { helpText: "Modules that will compose a page layout" },
       },
-      {
-        fieldId: "pages",
+    }),
+    createField("entryReference", {
+      array: true,
+      id: "pages",
+      name: "Pages",
+      size: { max: 100 },
+      linkContentType: ["page"],
+      editorInterface: {
         settings: {
           helpText:
             "Pages that will be child of the current page, e.g.: services/consulting, services/advisement",
-          bulkEditing: false,
-          showLinkEntityAction: true,
-          showCreateEntityAction: true,
         },
-        widgetId: "entryLinksEditor",
-        widgetNamespace: "builtin",
       },
-    ],
-  },
-};
+    }),
+  ],
+} as const satisfies ExpandedContentModel;
