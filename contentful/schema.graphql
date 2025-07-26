@@ -106,6 +106,7 @@ type AssetLinkingCollections {
   componentCardDeviceMockCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentCardDeviceMockCollection
   componentCustomerStoryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentCustomerStoryCollection
   componentExpertCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentExpertCollection
+  componentRoutingItemCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentRoutingItemCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   headerCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): HeaderCollection
   moduleExpertsOverflowCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ModuleExpertsOverflowCollection
@@ -952,6 +953,7 @@ input ComponentLinkFilter {
 type ComponentLinkLinkingCollections {
   categorySolutionsImageLinkCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsCategorySolutionsImageLinkCollectionOrder], preview: Boolean, skip: Int = 0): CategorySolutionsImageLinkCollection
   componentCardDeviceMockCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsComponentCardDeviceMockCollectionOrder], preview: Boolean, skip: Int = 0): ComponentCardDeviceMockCollection
+  componentRoutingItemCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsComponentRoutingItemCollectionOrder], preview: Boolean, skip: Int = 0): ComponentRoutingItemCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   moduleCustomerStoriesCarouselCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsModuleCustomerStoriesCarouselCollectionOrder], preview: Boolean, skip: Int = 0): ModuleCustomerStoriesCarouselCollection
   moduleExpertsOverflowCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsModuleExpertsOverflowCollectionOrder], preview: Boolean, skip: Int = 0): ModuleExpertsOverflowCollection
@@ -981,6 +983,25 @@ enum ComponentLinkLinkingCollectionsComponentCardDeviceMockCollectionOrder {
   sys_publishedVersion_DESC
   title_ASC
   title_DESC
+}
+
+enum ComponentLinkLinkingCollectionsComponentRoutingItemCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  eyebrowText_ASC
+  eyebrowText_DESC
+  heading_ASC
+  heading_DESC
+  subheadingText_ASC
+  subheadingText_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 enum ComponentLinkLinkingCollectionsModuleCustomerStoriesCarouselCollectionOrder {
@@ -1014,6 +1035,112 @@ enum ComponentLinkOrder {
   externalSource_DESC
   label_ASC
   label_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/componentRoutingItem)
+"""
+type ComponentRoutingItem implements Entry & _Node {
+  _id: ID!
+  contentfulLabel(locale: String): String
+  contentfulMetadata: ContentfulMetadata!
+  description(locale: String): String
+  eyebrowText(locale: String): String
+  heading(locale: String): String
+  image(locale: String, preview: Boolean): Asset
+  link(locale: String, preview: Boolean, where: ComponentLinkFilter): ComponentLink
+  linkedFrom(allowedLocales: [String]): ComponentRoutingItemLinkingCollections
+  subheadingText(locale: String): String
+  sys: Sys!
+}
+
+type ComponentRoutingItemCollection {
+  items: [ComponentRoutingItem]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input ComponentRoutingItemFilter {
+  AND: [ComponentRoutingItemFilter]
+  OR: [ComponentRoutingItemFilter]
+  contentfulLabel: String
+  contentfulLabel_contains: String
+  contentfulLabel_exists: Boolean
+  contentfulLabel_in: [String]
+  contentfulLabel_not: String
+  contentfulLabel_not_contains: String
+  contentfulLabel_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  description: String
+  description_contains: String
+  description_exists: Boolean
+  description_in: [String]
+  description_not: String
+  description_not_contains: String
+  description_not_in: [String]
+  eyebrowText: String
+  eyebrowText_contains: String
+  eyebrowText_exists: Boolean
+  eyebrowText_in: [String]
+  eyebrowText_not: String
+  eyebrowText_not_contains: String
+  eyebrowText_not_in: [String]
+  heading: String
+  heading_contains: String
+  heading_exists: Boolean
+  heading_in: [String]
+  heading_not: String
+  heading_not_contains: String
+  heading_not_in: [String]
+  image_exists: Boolean
+  link: cfComponentLinkNestedFilter
+  link_exists: Boolean
+  subheadingText: String
+  subheadingText_contains: String
+  subheadingText_exists: Boolean
+  subheadingText_in: [String]
+  subheadingText_not: String
+  subheadingText_not_contains: String
+  subheadingText_not_in: [String]
+  sys: SysFilter
+}
+
+type ComponentRoutingItemLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  moduleHeroHomeCollection(limit: Int = 100, locale: String, order: [ComponentRoutingItemLinkingCollectionsModuleHeroHomeCollectionOrder], preview: Boolean, skip: Int = 0): ModuleHeroHomeCollection
+}
+
+enum ComponentRoutingItemLinkingCollectionsModuleHeroHomeCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum ComponentRoutingItemOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  eyebrowText_ASC
+  eyebrowText_DESC
+  heading_ASC
+  heading_DESC
+  subheadingText_ASC
+  subheadingText_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -2468,7 +2595,7 @@ type ModuleHeroHome implements Entry & _Node {
   headline(locale: String): ModuleHeroHomeHeadline
   linkedFrom(allowedLocales: [String]): ModuleHeroHomeLinkingCollections
   prompts(locale: String): [String]
-  routingCardsCollection(limit: Int = 100, locale: String, order: [ModuleHeroHomeRoutingCardsCollectionOrder], preview: Boolean, skip: Int = 0, where: PageFilter): ModuleHeroHomeRoutingCardsCollection
+  routingCardsCollection(limit: Int = 100, locale: String, order: [ModuleHeroHomeRoutingCardsCollectionOrder], preview: Boolean, skip: Int = 0, where: ComponentRoutingItemFilter): ModuleHeroHomeRoutingCardsCollection
   sys: Sys!
 }
 
@@ -2497,7 +2624,7 @@ input ModuleHeroHomeFilter {
   prompts_contains_none: [String]
   prompts_contains_some: [String]
   prompts_exists: Boolean
-  routingCards: cfPageNestedFilter
+  routingCards: cfComponentRoutingItemNestedFilter
   routingCardsCollection_exists: Boolean
   sys: SysFilter
 }
@@ -2588,15 +2715,21 @@ enum ModuleHeroHomeOrder {
 }
 
 type ModuleHeroHomeRoutingCardsCollection {
-  items: [Page]!
+  items: [ComponentRoutingItem]!
   limit: Int!
   skip: Int!
   total: Int!
 }
 
 enum ModuleHeroHomeRoutingCardsCollectionOrder {
-  slug_ASC
-  slug_DESC
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  eyebrowText_ASC
+  eyebrowText_DESC
+  heading_ASC
+  heading_DESC
+  subheadingText_ASC
+  subheadingText_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -2605,8 +2738,6 @@ enum ModuleHeroHomeRoutingCardsCollectionOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
-  title_ASC
-  title_DESC
 }
 
 """
@@ -2670,7 +2801,6 @@ input PageFilter {
 type PageLinkingCollections {
   componentLinkCollection(limit: Int = 100, locale: String, order: [PageLinkingCollectionsComponentLinkCollectionOrder], preview: Boolean, skip: Int = 0): ComponentLinkCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  moduleHeroHomeCollection(limit: Int = 100, locale: String, order: [PageLinkingCollectionsModuleHeroHomeCollectionOrder], preview: Boolean, skip: Int = 0): ModuleHeroHomeCollection
   pageCollection(limit: Int = 100, locale: String, order: [PageLinkingCollectionsPageCollectionOrder], preview: Boolean, skip: Int = 0): PageCollection
 }
 
@@ -2679,19 +2809,6 @@ enum PageLinkingCollectionsComponentLinkCollectionOrder {
   externalSource_DESC
   label_ASC
   label_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-enum PageLinkingCollectionsModuleHeroHomeCollectionOrder {
-  contentfulLabel_ASC
-  contentfulLabel_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -2804,6 +2921,8 @@ type Query {
   componentExpertCollection(limit: Int = 100, locale: String, order: [ComponentExpertOrder], preview: Boolean, skip: Int = 0, where: ComponentExpertFilter): ComponentExpertCollection
   componentLink(id: String!, locale: String, preview: Boolean): ComponentLink
   componentLinkCollection(limit: Int = 100, locale: String, order: [ComponentLinkOrder], preview: Boolean, skip: Int = 0, where: ComponentLinkFilter): ComponentLinkCollection
+  componentRoutingItem(id: String!, locale: String, preview: Boolean): ComponentRoutingItem
+  componentRoutingItemCollection(limit: Int = 100, locale: String, order: [ComponentRoutingItemOrder], preview: Boolean, skip: Int = 0, where: ComponentRoutingItemFilter): ComponentRoutingItemCollection
   componentStatistic(id: String!, locale: String, preview: Boolean): ComponentStatistic
   componentStatisticCollection(limit: Int = 100, locale: String, order: [ComponentStatisticOrder], preview: Boolean, skip: Int = 0, where: ComponentStatisticFilter): ComponentStatisticCollection
   componentTitleAndBody(id: String!, locale: String, preview: Boolean): ComponentTitleAndBody
@@ -3671,6 +3790,50 @@ input cfComponentLinkNestedFilter {
   label_not: String
   label_not_contains: String
   label_not_in: [String]
+  sys: SysFilter
+}
+
+input cfComponentRoutingItemNestedFilter {
+  AND: [cfComponentRoutingItemNestedFilter]
+  OR: [cfComponentRoutingItemNestedFilter]
+  contentfulLabel: String
+  contentfulLabel_contains: String
+  contentfulLabel_exists: Boolean
+  contentfulLabel_in: [String]
+  contentfulLabel_not: String
+  contentfulLabel_not_contains: String
+  contentfulLabel_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  description: String
+  description_contains: String
+  description_exists: Boolean
+  description_in: [String]
+  description_not: String
+  description_not_contains: String
+  description_not_in: [String]
+  eyebrowText: String
+  eyebrowText_contains: String
+  eyebrowText_exists: Boolean
+  eyebrowText_in: [String]
+  eyebrowText_not: String
+  eyebrowText_not_contains: String
+  eyebrowText_not_in: [String]
+  heading: String
+  heading_contains: String
+  heading_exists: Boolean
+  heading_in: [String]
+  heading_not: String
+  heading_not_contains: String
+  heading_not_in: [String]
+  image_exists: Boolean
+  link_exists: Boolean
+  subheadingText: String
+  subheadingText_contains: String
+  subheadingText_exists: Boolean
+  subheadingText_in: [String]
+  subheadingText_not: String
+  subheadingText_not_contains: String
+  subheadingText_not_in: [String]
   sys: SysFilter
 }
 

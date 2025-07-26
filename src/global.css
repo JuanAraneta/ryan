@@ -182,6 +182,9 @@
 .gradient-tertiary-gray {
   @apply bg-gradient-to-b from-neutral-100 to-neutral-50;
 }
+.gradient-gold-dark-to-light {
+  @apply bg-gradient-to-r from-dark-gold to-new-gold;
+}
 
 /* typography */
 @utility typo-display {

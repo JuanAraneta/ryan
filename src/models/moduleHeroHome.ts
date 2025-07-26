@@ -46,7 +46,7 @@ export const moduleHeroHome: ContentModel = {
       items: {
         type: "Link",
         linkType: "Entry",
-        validations: [{ linkContentType: ["page"] }],
+        validations: [{ linkContentType: ["componentRoutingItem"] }],
       },
     },
   ],

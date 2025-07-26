@@ -19,7 +19,7 @@ export function ZoomImage({
       <img
         src={src}
         alt={alt}
-        className={`w-full h-full object-cover object-center transition-transform group-hover:scale-105 hover:scale-105 ${imgClassName}`}
+        className={`w-full h-full object-cover object-center transition-transform group-hover:scale-[1.02] hover:scale-[1.02] ${imgClassName}`}
         {...props}
       />
     </div>

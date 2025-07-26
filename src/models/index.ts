@@ -8,6 +8,7 @@ import { componentExpert } from "./componentExpert";
 import { componentCustomerStory } from "./componentCustomerStory";
 import { componentLink } from "./componentLink";
 import { componentStatistic } from "./componentStatistic";
+import { componentRoutingItem } from "./componentRoutingItem";
 import { moduleChapterGroup } from "./moduleChapterGroup";
 import { moduleContainer } from "./moduleContainer";
 import { moduleExpertsOverflow } from "./moduleExpertsOverflow";
@@ -38,6 +39,7 @@ const components: ContentModel[] = [
   componentCustomerStory,
   componentLink,
   componentStatistic,
+  componentRoutingItem,
 ];
 
 // Modules
