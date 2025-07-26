@@ -1,3 +1,4 @@
+import { componentTitleAndBody } from "./componentTitleAndBody";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
@@ -9,31 +10,15 @@ export const componentCategorySolutions2ColSubBody = {
   description: "",
   fields: [
     createField("contentfulLabel"),
-    {
+    createField("entryReference", {
+      array: true,
       id: "titleAndBodyReferences",
       name: "Title and body references",
-      type: "Array",
-      validations: [
-        {
-          size: {
-            min: 2,
-            max: 2,
-          },
-        },
-      ],
-      items: {
-        type: "Link",
-        validations: [
-          {
-            linkContentType: ["componentTitleAndBody"],
-          },
-        ],
-        linkType: "Entry",
+      size: {
+        min: 2,
+        max: 2,
       },
-      editorInterface: {
-        widgetId: "entryLinksEditor",
-        widgetNamespace: "builtin",
-      },
-    },
+      linkContentType: [componentTitleAndBody],
+    }),
   ],
 } as const satisfies ExpandedContentModel;

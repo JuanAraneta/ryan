@@ -26,10 +26,9 @@ import { socialMediaLink } from "./socialMediaLink";
 import { urlRedirect } from "./urlRedirect";
 import { script } from "./script";
 // utils
-import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { contentModelComposer } from "./utils/contentModelComposer";
 
-export const unprocessedModels = [
+export const models = [
   componentCategorySolutionsHeadline,
   componentCategorySolutionsChapter,
   moduleChapterGroup,
@@ -56,10 +55,7 @@ export const unprocessedModels = [
   socialMediaLink,
   urlRedirect,
   script,
-] satisfies Array<ExpandedContentModel>;
-
-export const models =
-  Object.values(unprocessedModels).map(contentModelComposer);
+].map(contentModelComposer);
 
 export const locales = [
   {

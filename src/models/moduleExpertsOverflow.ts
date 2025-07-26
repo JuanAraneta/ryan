@@ -1,3 +1,4 @@
+import { componentExpert } from "./componentExpert";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
@@ -57,30 +58,12 @@ export const moduleExpertsOverflow = {
         widgetNamespace: "builtin",
       },
     },
-    {
+    createField("entryReference", {
+      array: true,
       id: "expertsList",
       name: "Experts List",
-      type: "Array",
-      validations: [
-        {
-          size: {
-            max: 10,
-          },
-        },
-      ],
-      items: {
-        type: "Link",
-        validations: [
-          {
-            linkContentType: ["componentExpert"],
-          },
-        ],
-        linkType: "Entry",
-      },
-      editorInterface: {
-        widgetId: "entryLinksEditor",
-        widgetNamespace: "builtin",
-      },
-    },
+      size: { max: 10 },
+      linkContentType: [componentExpert],
+    }),
   ],
 } as const satisfies ExpandedContentModel;

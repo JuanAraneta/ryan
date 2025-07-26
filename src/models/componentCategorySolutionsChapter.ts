@@ -1,3 +1,7 @@
+import { categorySolutionsImageLinkGrid } from "./categorySolutionsImageLinkGrid";
+import { componentCardDeviceMock } from "./componentCardDeviceMock";
+import { componentCategorySolutions2ColSubBody } from "./componentCategorySolutions2ColSubBody";
+import { componentCategorySolutionsHeadline } from "./componentCategorySolutionsHeadline";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
@@ -14,35 +18,17 @@ export const componentCategorySolutionsChapter = {
       name: "Title",
       displayField: true,
     }),
-    {
+    createField("entryReference", {
+      array: true,
       id: "contents",
       name: "Contents",
-      type: "Array",
-      validations: [
-        {
-          size: {
-            max: 5,
-          },
-        },
+      size: { max: 5 },
+      linkContentType: [
+        componentCardDeviceMock,
+        componentCategorySolutions2ColSubBody,
+        componentCategorySolutionsHeadline,
+        categorySolutionsImageLinkGrid,
       ],
-      items: {
-        type: "Link",
-        validations: [
-          {
-            linkContentType: [
-              "componentCardDeviceMock",
-              "componentCategorySolutions2ColSubBody",
-              "componentCategorySolutionsHeadline",
-              "categorySolutionsImageLinkGrid",
-            ],
-          },
-        ],
-        linkType: "Entry",
-      },
-      editorInterface: {
-        widgetId: "entryLinksEditor",
-        widgetNamespace: "builtin",
-      },
-    },
+    }),
   ],
 } as const satisfies ExpandedContentModel;

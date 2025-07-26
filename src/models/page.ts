@@ -1,3 +1,4 @@
+import { moduleContainer } from "./moduleContainer";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
@@ -119,61 +120,28 @@ export const page = {
         widgetNamespace: "builtin",
       },
     },
-    {
+    createField("entryReference", {
+      array: true,
       id: "modules",
       name: "Modules",
-      type: "Array",
-      validations: [
-        {
-          size: {
-            max: 20,
-          },
-        },
-      ],
-      items: {
-        type: "Link",
-        validations: [
-          {
-            linkContentType: ["moduleContainer"],
-          },
-        ],
-        linkType: "Entry",
-      },
+      size: { max: 20 },
+      linkContentType: [moduleContainer],
       editorInterface: {
-        settings: {
-          helpText: "Modules that will compose a page layout",
-          bulkEditing: false,
-          showLinkEntityAction: true,
-          showCreateEntityAction: true,
-        },
-        widgetId: "entryLinksEditor",
-        widgetNamespace: "builtin",
+        settings: { helpText: "Modules that will compose a page layout" },
       },
-    },
-    {
+    }),
+    createField("entryReference", {
+      array: true,
       id: "pages",
       name: "Pages",
-      type: "Array",
-      items: {
-        type: "Link",
-        validations: [
-          {
-            linkContentType: ["page"],
-          },
-        ],
-        linkType: "Entry",
-      },
+      size: { max: 100 },
+      linkContentType: ["page"],
       editorInterface: {
         settings: {
           helpText:
             "Pages that will be child of the current page, e.g.: services/consulting, services/advisement",
-          bulkEditing: false,
-          showLinkEntityAction: true,
-          showCreateEntityAction: true,
         },
-        widgetId: "entryLinksEditor",
-        widgetNamespace: "builtin",
       },
-    },
+    }),
   ],
 } as const satisfies ExpandedContentModel;

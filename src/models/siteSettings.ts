@@ -1,3 +1,4 @@
+import { script } from "./script";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
@@ -28,24 +29,13 @@ export const siteSettings = {
       id: "googleAnalyticsId",
       name: "Google analytics ID",
     }),
-    {
+    createField("entryReference", {
+      array: true,
       id: "scripts",
       name: "Scripts",
-      type: "Array",
-      items: {
-        type: "Link",
-        validations: [
-          {
-            linkContentType: ["script"],
-          },
-        ],
-        linkType: "Entry",
-      },
-      editorInterface: {
-        widgetId: "entryLinksEditor",
-        widgetNamespace: "builtin",
-      },
-    },
+      size: { max: 100 },
+      linkContentType: [script],
+    }),
     {
       id: "market",
       name: "Default market",

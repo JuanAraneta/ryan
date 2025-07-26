@@ -1,3 +1,4 @@
+import { componentCustomerStory } from "./componentCustomerStory";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
@@ -26,30 +27,12 @@ export const moduleCustomerStoriesCarousel = {
         widgetNamespace: "builtin",
       },
     },
-    {
+    createField("entryReference", {
+      array: true,
       id: "customerStories",
       name: "Customer stories",
-      type: "Array",
-      validations: [
-        {
-          size: {
-            max: 10,
-          },
-        },
-      ],
-      items: {
-        type: "Link",
-        validations: [
-          {
-            linkContentType: ["componentCustomerStory"],
-          },
-        ],
-        linkType: "Entry",
-      },
-      editorInterface: {
-        widgetId: "entryLinksEditor",
-        widgetNamespace: "builtin",
-      },
-    },
+      size: { max: 10 },
+      linkContentType: [componentCustomerStory],
+    }),
   ],
 } as const satisfies ExpandedContentModel;

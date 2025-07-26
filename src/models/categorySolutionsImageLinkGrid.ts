@@ -1,3 +1,4 @@
+import { categorySolutionsImageLink } from "./categorySolutionsImageLink";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
@@ -9,31 +10,15 @@ export const categorySolutionsImageLinkGrid = {
   description: "",
   fields: [
     createField("contentfulLabel"),
-    {
+    createField("entryReference", {
       id: "items",
       name: "Items",
-      type: "Array",
-      validations: [
-        {
-          size: {
-            min: 3,
-            max: 3,
-          },
-        },
-      ],
-      items: {
-        type: "Link",
-        validations: [
-          {
-            linkContentType: ["categorySolutionsImageLink"],
-          },
-        ],
-        linkType: "Entry",
+      array: true,
+      size: {
+        min: 3,
+        max: 3,
       },
-      editorInterface: {
-        widgetId: "entryLinksEditor",
-        widgetNamespace: "builtin",
-      },
-    },
+      linkContentType: [categorySolutionsImageLink],
+    }),
   ],
 } as const satisfies ExpandedContentModel;
