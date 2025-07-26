@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const componentCardDeviceMock: ExpandedContentModel = {
+export const componentCardDeviceMock = {
   sys: {
     id: "componentCardDeviceMock",
   },
@@ -60,4 +60,4 @@ export const componentCardDeviceMock: ExpandedContentModel = {
       },
     },
   ],
-};
+} as const satisfies ExpandedContentModel;

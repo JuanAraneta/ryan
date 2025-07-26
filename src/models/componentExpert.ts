@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const componentExpert: ExpandedContentModel = {
+export const componentExpert = {
   sys: {
     id: "componentExpert",
   },
@@ -46,4 +46,4 @@ export const componentExpert: ExpandedContentModel = {
       },
     },
   ],
-};
+} as const satisfies ExpandedContentModel;

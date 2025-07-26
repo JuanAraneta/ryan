@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const urlRedirect: ExpandedContentModel = {
+export const urlRedirect = {
   sys: {
     id: "urlRedirect",
   },
@@ -100,4 +100,4 @@ export const urlRedirect: ExpandedContentModel = {
       },
     },
   ],
-};
+} as const satisfies ExpandedContentModel;

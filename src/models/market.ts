@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const market: ExpandedContentModel = {
+export const market = {
   sys: {
     id: "market",
   },
@@ -53,4 +53,4 @@ export const market: ExpandedContentModel = {
       },
     },
   ],
-};
+} as const satisfies ExpandedContentModel;

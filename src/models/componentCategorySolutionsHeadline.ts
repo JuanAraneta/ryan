@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const componentCategorySolutionsHeadline: ExpandedContentModel = {
+export const componentCategorySolutionsHeadline = {
   sys: {
     id: "componentCategorySolutionsHeadline",
   },
@@ -11,4 +11,4 @@ export const componentCategorySolutionsHeadline: ExpandedContentModel = {
     createField("contentfulLabel"),
     createField("richText", { id: "richTextHeadline", name: "Headline" }),
   ],
-};
+} as const satisfies ExpandedContentModel;

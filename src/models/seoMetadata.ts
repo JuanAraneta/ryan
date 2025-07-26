@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const seoMetadata: ExpandedContentModel = {
+export const seoMetadata = {
   sys: {
     id: "seoMetadata",
   },
@@ -128,4 +128,4 @@ export const seoMetadata: ExpandedContentModel = {
       },
     },
   ],
-};
+} as const satisfies ExpandedContentModel;

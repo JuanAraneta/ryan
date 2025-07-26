@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const header: ExpandedContentModel = {
+export const header = {
   sys: {
     id: "header",
   },
@@ -28,4 +28,4 @@ export const header: ExpandedContentModel = {
     },
   ],
   editorInterface: {},
-};
+} as const satisfies ExpandedContentModel;

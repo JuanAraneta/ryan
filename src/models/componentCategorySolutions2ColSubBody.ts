@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const componentCategorySolutions2ColSubBody: ExpandedContentModel = {
+export const componentCategorySolutions2ColSubBody = {
   sys: {
     id: "componentCategorySolutions2ColSubBody",
   },
@@ -36,4 +36,4 @@ export const componentCategorySolutions2ColSubBody: ExpandedContentModel = {
       },
     },
   ],
-};
+} as const satisfies ExpandedContentModel;

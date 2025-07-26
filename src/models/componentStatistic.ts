@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const componentStatistic: ExpandedContentModel = {
+export const componentStatistic = {
   sys: {
     id: "componentStatistic",
   },
@@ -51,4 +51,4 @@ export const componentStatistic: ExpandedContentModel = {
       },
     }),
   ],
-};
+} as const satisfies ExpandedContentModel;

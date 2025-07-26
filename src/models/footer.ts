@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const footer: ExpandedContentModel = {
+export const footer = {
   sys: {
     id: "footer",
   },
@@ -17,4 +17,4 @@ export const footer: ExpandedContentModel = {
       required: true,
     }),
   ],
-};
+} as const satisfies ExpandedContentModel;

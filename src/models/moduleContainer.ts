@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const moduleContainer: ExpandedContentModel = {
+export const moduleContainer = {
   sys: {
     id: "moduleContainer",
   },
@@ -85,4 +85,4 @@ export const moduleContainer: ExpandedContentModel = {
       },
     },
   ],
-};
+} as const satisfies ExpandedContentModel;

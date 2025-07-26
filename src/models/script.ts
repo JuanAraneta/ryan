@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const script: ExpandedContentModel = {
+export const script = {
   sys: {
     id: "script",
   },
@@ -84,4 +84,4 @@ export const script: ExpandedContentModel = {
       },
     }),
   ],
-};
+} as const satisfies ExpandedContentModel;

@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const siteSettings: ExpandedContentModel = {
+export const siteSettings = {
   sys: {
     id: "siteSettings",
   },
@@ -63,4 +63,4 @@ export const siteSettings: ExpandedContentModel = {
       },
     },
   ],
-};
+} as const satisfies ExpandedContentModel;

@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const themeBackground: ExpandedContentModel = {
+export const themeBackground = {
   sys: {
     id: "themeBackground",
   },
@@ -41,4 +41,4 @@ export const themeBackground: ExpandedContentModel = {
       editorInterface: { widgetId: "dropdown" },
     }),
   ],
-};
+} as const satisfies ExpandedContentModel;

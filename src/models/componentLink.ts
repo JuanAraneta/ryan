@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const componentLink: ExpandedContentModel = {
+export const componentLink = {
   sys: {
     id: "componentLink",
   },
@@ -31,4 +31,4 @@ export const componentLink: ExpandedContentModel = {
     },
     createField("shortText", { id: "externalSource", name: "External Source" }),
   ],
-};
+} as const satisfies ExpandedContentModel;

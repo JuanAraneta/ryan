@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const socialMediaLink: ExpandedContentModel = {
+export const socialMediaLink = {
   sys: {
     id: "socialMediaLink",
   },
@@ -70,4 +70,4 @@ export const socialMediaLink: ExpandedContentModel = {
       },
     },
   ],
-};
+} as const satisfies ExpandedContentModel;

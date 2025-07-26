@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const moduleExpertsOverflow: ExpandedContentModel = {
+export const moduleExpertsOverflow = {
   sys: {
     id: "moduleExpertsOverflow",
   },
@@ -83,4 +83,4 @@ export const moduleExpertsOverflow: ExpandedContentModel = {
       },
     },
   ],
-};
+} as const satisfies ExpandedContentModel;

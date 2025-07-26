@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const constants: ExpandedContentModel = {
+export const constants = {
   sys: {
     id: "constants",
   },
@@ -28,4 +28,4 @@ export const constants: ExpandedContentModel = {
     }),
     createField("singletonLock"),
   ],
-};
+} as const satisfies ExpandedContentModel;

@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const page: ExpandedContentModel = {
+export const page = {
   sys: {
     id: "page",
   },
@@ -176,4 +176,4 @@ export const page: ExpandedContentModel = {
       },
     },
   ],
-};
+} as const satisfies ExpandedContentModel;

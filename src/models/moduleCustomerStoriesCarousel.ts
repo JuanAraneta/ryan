@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const moduleCustomerStoriesCarousel: ExpandedContentModel = {
+export const moduleCustomerStoriesCarousel = {
   sys: {
     id: "moduleCustomerStoriesCarousel",
   },
@@ -52,4 +52,4 @@ export const moduleCustomerStoriesCarousel: ExpandedContentModel = {
       },
     },
   ],
-};
+} as const satisfies ExpandedContentModel;

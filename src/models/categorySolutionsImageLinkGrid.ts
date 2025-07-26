@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const categorySolutionsImageLinkGrid: ExpandedContentModel = {
+export const categorySolutionsImageLinkGrid = {
   sys: {
     id: "categorySolutionsImageLinkGrid",
   },
@@ -36,4 +36,4 @@ export const categorySolutionsImageLinkGrid: ExpandedContentModel = {
       },
     },
   ],
-};
+} as const satisfies ExpandedContentModel;
