@@ -37,7 +37,10 @@ export const assetReferenceFieldFactory = ({
           validations: [{ size }],
           items: {
             type: "Link",
-            validations: [{ linkMimetypeGroup }, ...validations],
+            validations: [
+              ...(linkMimetypeGroup ? [{ linkMimetypeGroup }] : []),
+              ...validations,
+            ],
             linkType: "Asset",
           },
           editorInterface: {
@@ -46,7 +49,10 @@ export const assetReferenceFieldFactory = ({
         }
       : {
           type: "Link",
-          validations: [{ linkMimetypeGroup }, ...validations],
+          validations: [
+            ...(linkMimetypeGroup ? [{ linkMimetypeGroup }] : []),
+            ...validations,
+          ],
           linkType: "Asset",
           editorInterface: {
             widgetId: "assetLinkEditor",

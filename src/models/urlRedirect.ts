@@ -64,7 +64,7 @@ export const urlRedirect = {
         },
       },
     }),
-    createField("boolean", {
+    createField("date", {
       id: "startDate",
       name: "Start date",
       editorInterface: {
@@ -74,7 +74,7 @@ export const urlRedirect = {
         },
       },
     }),
-    createField("boolean", {
+    createField("date", {
       id: "endDate",
       name: "End date",
       editorInterface: {

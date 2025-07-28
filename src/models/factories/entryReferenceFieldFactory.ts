@@ -5,7 +5,7 @@ import { ExpandedContentModel } from "../types/ExpandedContentModel";
 
 export const entryReferenceFieldFactory = ({
   array = false,
-  linkContentType,
+  linkContentType: linkContentTypeProp,
   size,
   ...props
 }: {
@@ -19,8 +19,12 @@ export const entryReferenceFieldFactory = ({
 ) &
   DeepPartial<
     Omit<ExpandedFieldDetails, "type" | "id" | "name">
-  >): ExpandedFieldDetails =>
-  merge(
+  >): ExpandedFieldDetails => {
+  const linkContentType = linkContentTypeProp.map((type) =>
+    typeof type === "string" ? type : type.sys.id,
+  );
+
+  return merge(
     {
       editorInterface: {
         settings: {
@@ -36,13 +40,7 @@ export const entryReferenceFieldFactory = ({
           validations: [{ size }],
           items: {
             type: "Link",
-            validations: [
-              {
-                linkContentType: linkContentType.map((type) =>
-                  typeof type === "string" ? type : type.sys.id,
-                ),
-              },
-            ],
+            validations: [{ linkContentType }],
             linkType: "Entry",
           },
           editorInterface: { widgetId: "entryLinksEditor" },
@@ -55,3 +53,4 @@ export const entryReferenceFieldFactory = ({
         },
     props,
   );
+};

@@ -23,10 +23,20 @@ export const contentModelComposer = (contentModel: ExpandedContentModel) => {
   clone.fields.forEach((field, index) => {
     // Place the editorInterface where it needs to go for each field
     if ("editorInterface" in field) {
+      clone.editorInterface = {};
       clone.editorInterface?.controls?.push({
         fieldId: field.id,
         ...field.editorInterface,
       });
+      if (field.editorInterface?.widgetId) {
+        clone.editorInterface.editor = {
+          settings: {
+            fieldId: field.id,
+          },
+          widgetNamespace: "editor-builtin",
+          widgetId: field.editorInterface.widgetId,
+        };
+      }
       delete field.editorInterface;
     }
     // Mark the displayField if this field identifies as such
