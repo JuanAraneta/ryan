@@ -2,8 +2,10 @@
 import { componentCategorySolutionsHeadline } from "./componentCategorySolutionsHeadline";
 import { componentCategorySolutionsChapter } from "./componentCategorySolutionsChapter";
 import { moduleChapterGroup } from "./moduleChapterGroup";
-import { categorySolutionsImageLink } from "./categorySolutionsImageLink";
-import { categorySolutionsImageLinkGrid } from "./categorySolutionsImageLinkGrid";
+import {
+  categorySolutionsImageLinkGrid,
+  categorySolutionsImageLink,
+} from "./categorySolutionsImageLinkGrid";
 import { componentTitleAndBody } from "./componentTitleAndBody";
 import { componentCategorySolutions2ColSubBody } from "./componentCategorySolutions2ColSubBody";
 import { componentCardDeviceMock } from "./componentCardDeviceMock";
@@ -31,8 +33,8 @@ export const models = [
   componentCategorySolutionsHeadline,
   componentCategorySolutionsChapter,
   moduleChapterGroup,
-  categorySolutionsImageLink,
   categorySolutionsImageLinkGrid,
+  categorySolutionsImageLink,
   componentTitleAndBody,
   componentCategorySolutions2ColSubBody,
   componentCardDeviceMock,
