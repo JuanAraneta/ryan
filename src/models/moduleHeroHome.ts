@@ -69,7 +69,7 @@ export const moduleHeroHome: ContentModel = {
         fieldId: "prompts",
         widgetId: "tagEditor",
         settings: {
-          helpText: "AI chat prompts. Each prompt should be complete.",
+          helpText: "Animated AI chat prompts.",
         },
       },
       {
