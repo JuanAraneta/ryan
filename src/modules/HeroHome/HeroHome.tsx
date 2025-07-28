@@ -7,20 +7,12 @@ import { ModuleHeroHomeFragment } from "@/lib/contentful/fragments/ModuleHeroHom
 import { readFragment } from "gql.tada";
 import { ComponentRoutingItemFragment } from "@/lib/contentful/fragments/ComponentRoutingItemFragment";
 
-// Utility function to filter out null values from arrays
-function filterNulls<T>(array: (T | null)[] | null | undefined): T[] {
-  return array?.filter((item): item is T => item !== null) ?? [];
-}
-
 export function HeroHome({
   data,
 }: {
   data: ResultOf<typeof ModuleHeroHomeFragment>;
 }) {
   const { headline, prompts, routingCardsCollection } = data;
-
-  const cards = filterNulls(routingCardsCollection?.items);
-  const filteredPrompts = filterNulls(prompts);
 
   return (
     <div className="gradient-brand-v-dark-to-darker">
@@ -30,11 +22,11 @@ export function HeroHome({
         </h1>
 
         <div className="w-full px-6 flex justify-center mb-[3.75rem] dsk:mb-[5.4rem]">
-          <AIChatPrompt prompts={filteredPrompts} />
+          <AIChatPrompt prompts={prompts?.filter(Boolean)} />
         </div>
 
         <div className="flex flex-col dsk:flex-row">
-          {cards.map((card) => {
+          {routingCardsCollection?.items?.filter(Boolean).map((card) => {
             const data = readFragment(ComponentRoutingItemFragment, card);
             return <HeroRoutingCard key={data.sys.id} data={data} />;
           })}
