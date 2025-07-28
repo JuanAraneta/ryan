@@ -66,30 +66,18 @@ export const moduleHeroHome: ContentModel = {
         widgetNamespace: "builtin",
       },
       {
-        fieldId: "headline",
-        settings: {
-          helpText: "Main headline text for the hero section.",
-        },
-        widgetId: "richTextEditor",
-        widgetNamespace: "builtin",
-      },
-      {
         fieldId: "prompts",
-        settings: {
-          helpText:
-            "AI chat prompts. Each prompt should be a complete, meaningful question or instruction.",
-        },
         widgetId: "tagEditor",
-        widgetNamespace: "builtin",
+        settings: {
+          helpText: "AI chat prompts. Each prompt should be complete.",
+        },
       },
       {
         fieldId: "routingCards",
-        settings: {
-          helpText:
-            "Exactly 2 routing cards for the hero section. Each card should link to a different section or page.",
-        },
         widgetId: "entryCardsEditor",
-        widgetNamespace: "builtin",
+        settings: {
+          helpText: "Exactly 2 routing cards for the hero section.",
+        },
       },
     ],
   },

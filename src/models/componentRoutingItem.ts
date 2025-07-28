@@ -18,6 +18,7 @@ export const componentRoutingItem: ContentModel = {
       validations: [
         {
           size: {
+            min: 1,
             max: 100,
           },
         },
@@ -30,7 +31,7 @@ export const componentRoutingItem: ContentModel = {
       name: "Subheading Text",
       type: "Symbol",
       localized: false,
-      required: true,
+      required: false,
       validations: [
         {
           size: {
@@ -50,6 +51,7 @@ export const componentRoutingItem: ContentModel = {
       validations: [
         {
           size: {
+            min: 1,
             max: 60,
           },
         },
@@ -67,7 +69,6 @@ export const componentRoutingItem: ContentModel = {
       disabled: false,
       omitted: false,
     },
-
     {
       id: "link",
       name: "Link",
@@ -102,60 +103,33 @@ export const componentRoutingItem: ContentModel = {
   editorInterface: {
     controls: [
       {
-        fieldId: "contentfulLabel",
-        settings: {
-          helpText: "A label for viewing on the Contentful UI.",
-        },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "image",
-        settings: {
-          helpText:
-            "Image for the routing item (21:9 aspect ratio recommended for cards).",
-        },
-        widgetId: "assetLinkEditor",
-        widgetNamespace: "builtin",
-      },
-      {
         fieldId: "eyebrowText",
-        settings: {
-          helpText: "Small eyebrow text (max 60 characters).",
-        },
         widgetId: "singleLine",
         widgetNamespace: "builtin",
       },
       {
         fieldId: "heading",
-        settings: {
-          helpText: "Main heading text (max 100 characters).",
-        },
         widgetId: "singleLine",
         widgetNamespace: "builtin",
       },
       {
         fieldId: "subheadingText",
-        settings: {
-          helpText: "Larger heading text (max 80 characters).",
-        },
         widgetId: "singleLine",
         widgetNamespace: "builtin",
       },
       {
         fieldId: "description",
-        settings: {
-          helpText: "Optional description text for the routing item.",
-        },
         widgetId: "multipleLine",
         widgetNamespace: "builtin",
       },
       {
+        fieldId: "image",
+        settings: { helpText: "21:9 aspect ratio recommended for cards" },
+        widgetId: "assetLinkEditor",
+        widgetNamespace: "builtin",
+      },
+      {
         fieldId: "link",
-        settings: {
-          helpText:
-            "Link component with internal or external URL configuration.",
-        },
         widgetId: "entryLinkEditor",
         widgetNamespace: "builtin",
       },
