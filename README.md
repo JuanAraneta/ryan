@@ -12,12 +12,12 @@ This project uses Contentful Code Models to keep content models synchronized bet
 
 ### Scripts
 
-- `contentful-code-models-migrate` - Runs content migrations for breaking changes
-- `generate-contentful-schema` - Generates GraphQL schema from Contentful
-- `postcontentful-code-models-migrate` - Hook that regenerates schema after migrations
+- `contentful-code-models-migrate` - Pushes changes from the `src/models/` folder to Contentful
+- `generate-contentful-schema` - Generates GraphQL schema from Contentful into `contentful/schema.graphql`
 
 ### Workflow
 
 1. Modify models in `src/models/`
-2. Run `contentful-code-models-migrate` for breaking changes
-3. Schema regenerates automatically
+2. Run `contentful-code-models-migrate` to push changes to Contentful
+   - The GraphQL schema is automatically regenerated after migration
+   - No need to run `generate-contentful-schema` manually
