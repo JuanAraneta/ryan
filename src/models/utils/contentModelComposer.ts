@@ -28,15 +28,6 @@ export const contentModelComposer = (contentModel: ExpandedContentModel) => {
         fieldId: field.id,
         ...field.editorInterface,
       });
-      if (field.editorInterface?.widgetId) {
-        clone.editorInterface.editor = {
-          settings: {
-            fieldId: field.id,
-          },
-          widgetNamespace: "editor-builtin",
-          widgetId: field.editorInterface.widgetId,
-        };
-      }
       delete field.editorInterface;
     }
     // Mark the displayField if this field identifies as such
@@ -70,6 +61,8 @@ export const contentModelComposer = (contentModel: ExpandedContentModel) => {
       `Type ${clone.sys.id} has no fields trying to identify as the entryTitle. Exactly one is required.`,
     );
   }
+
+  if (clone.sys.id === "page") console.log();
 
   return clone as ContentModel;
 };
