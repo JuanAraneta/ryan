@@ -8,7 +8,6 @@ import { componentTitleAndBody } from "./componentTitleAndBody";
 import { componentCategorySolutions2ColSubBody } from "./componentCategorySolutions2ColSubBody";
 import { componentCardDeviceMock } from "./componentCardDeviceMock";
 import { moduleContainer } from "./moduleContainer";
-import { themeBackground } from "./themeBackground";
 import { componentExpert } from "./componentExpert";
 import { componentCustomerStory } from "./componentCustomerStory";
 import { moduleExpertsOverflow } from "./moduleExpertsOverflow";
@@ -38,7 +37,6 @@ export const models = [
   componentCategorySolutions2ColSubBody,
   componentCardDeviceMock,
   moduleContainer,
-  themeBackground,
   componentExpert,
   componentCustomerStory,
   moduleExpertsOverflow,

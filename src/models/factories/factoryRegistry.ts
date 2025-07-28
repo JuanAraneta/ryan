@@ -1,4 +1,5 @@
 import { assetReferenceFieldFactory } from "./assetReferenceFieldFactory";
+import { moduleBackgroundFieldFactory } from "./moduleBackgroundFieldFactory";
 import { booleanFieldFactory } from "./booleanFieldFactory";
 import { contentfulLabelFieldFactory } from "./contentfulLabelFieldFactory";
 import { dateFieldFactory } from "./dateFieldFactory";
@@ -16,4 +17,5 @@ export const factoryRegistry = {
   assetReference: assetReferenceFieldFactory,
   boolean: booleanFieldFactory,
   date: dateFieldFactory,
+  moduleBackground: moduleBackgroundFieldFactory,
 };

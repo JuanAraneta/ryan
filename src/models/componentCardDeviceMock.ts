@@ -1,5 +1,4 @@
 import { componentLink } from "./componentLink";
-import { themeBackground } from "./themeBackground";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
@@ -15,11 +14,7 @@ export const componentCardDeviceMock = {
       name: "Title",
       displayField: true,
     }),
-    createField("entryReference", {
-      id: "backgroundColor",
-      name: "Background color",
-      linkContentType: [themeBackground],
-    }),
+    createField("moduleBackground", { variant: "dark" }),
     createField("richText", { id: "richTextBody", name: "Body" }),
     createField("entryReference", {
       id: "callToAction",
