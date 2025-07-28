@@ -90,6 +90,7 @@ export const moduleContainer: ContentModel = {
               "moduleExpertsOverflow",
               "moduleCustomerStoriesCarousel",
               "moduleChapterGroup",
+              "moduleInsightsBento",
             ],
           },
         ],

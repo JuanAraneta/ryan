@@ -194,4 +194,23 @@ export const RichTextFragments = {
       }
     }
   `),
+  ModuleInsightsBento_headline: graphql(`
+    fragment ModuleInsightsBento_headlineFragment on ModuleInsightsBentoHeadline
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `),
 };

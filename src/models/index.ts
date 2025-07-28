@@ -6,7 +6,9 @@ import { componentCategorySolutions2ColSubBody } from "./componentCategorySoluti
 import { componentCardDeviceMock } from "./componentCardDeviceMock";
 import { componentExpert } from "./componentExpert";
 import { componentCustomerStory } from "./componentCustomerStory";
+import { componentInsight } from "./componentInsight";
 import { componentLink } from "./componentLink";
+import { componentNewsletterSignup } from "./componentNewsletterSignup";
 import { componentStatistic } from "./componentStatistic";
 import { componentRoutingItem } from "./componentRoutingItem";
 import { moduleChapterGroup } from "./moduleChapterGroup";
@@ -14,6 +16,7 @@ import { moduleContainer } from "./moduleContainer";
 import { moduleExpertsOverflow } from "./moduleExpertsOverflow";
 import { moduleCustomerStoriesCarousel } from "./moduleCustomerStoriesCarousel";
 import { moduleHeroHome } from "./moduleHeroHome";
+import { moduleInsightsBento } from "./moduleInsightsBento";
 import { categorySolutionsImageLink } from "./categorySolutionsImageLink";
 import { categorySolutionsImageLinkGrid } from "./categorySolutionsImageLinkGrid";
 import { themeBackground } from "./themeBackground";
@@ -37,7 +40,9 @@ const components: ContentModel[] = [
   componentCardDeviceMock,
   componentExpert,
   componentCustomerStory,
+  componentInsight,
   componentLink,
+  componentNewsletterSignup,
   componentStatistic,
   componentRoutingItem,
 ];
@@ -49,6 +54,7 @@ const modules: ContentModel[] = [
   moduleExpertsOverflow,
   moduleCustomerStoriesCarousel,
   moduleHeroHome,
+  moduleInsightsBento,
 ];
 
 // Other content types
