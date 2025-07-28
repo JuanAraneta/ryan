@@ -40,7 +40,6 @@ export default async function RootLayout(
   ]);
 
   const page = pageResult.data?.pageCollection?.items[0];
-
   const constants = constantsResult.data?.constantsCollection?.items[0];
 
   if (!page || !constants) notFound();
@@ -57,7 +56,6 @@ export default async function RootLayout(
       <body className={latoSans.variable}>
         <main className="min-h-screen">
           {page.hero && <Hero data={readFragment(HeroFragment, page.hero)} />}
-
           {props.children}
           {page.footer && (
             <Footer data={readFragment(FooterFragment, page.footer)} />
