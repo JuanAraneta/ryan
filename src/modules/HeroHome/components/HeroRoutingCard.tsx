@@ -18,7 +18,7 @@ export const HeroRoutingCard = ({
         <ZoomImage
           src={image?.url}
           alt={eyebrowText || `${heading} image`}
-          className="aspect-21/9 gradient-gold-dark-to-light"
+          className="aspect-21/9 gradient-gold-h-dark-to-light"
         />
       )}
       <div className="flex-col py-6 px-10 gap-3 contents dsk:flex">
