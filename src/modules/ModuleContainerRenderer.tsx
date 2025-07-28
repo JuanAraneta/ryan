@@ -1,9 +1,9 @@
 import { contentClient } from "@/lib/contentful/contentClient";
 import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
-import { ThemeBackgroundFragment } from "@/lib/contentful/fragments/ThemeBackgroundFragment";
 import moduleRegistry from "@/modules/moduleRegistry";
+import { backgroundDescriptionMapToClass } from "@/utils/backgroundDescriptionMapToClass";
 import { cx } from "cva";
-import { readFragment, ResultOf } from "gql.tada";
+import { ResultOf } from "gql.tada";
 
 export const ModuleContainerRenderer = async ({
   data,
@@ -19,10 +19,9 @@ export const ModuleContainerRenderer = async ({
             <div
               key={moduleContainer.sys.id}
               className={cx(
-                readFragment(
-                  ThemeBackgroundFragment,
-                  moduleContainer.backgroundColorReference,
-                )?.background,
+                backgroundDescriptionMapToClass.resolveClass(
+                  moduleContainer.moduleBackground,
+                ),
               )}
             >
               {await Promise.allSettled(

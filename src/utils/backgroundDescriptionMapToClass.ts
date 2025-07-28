@@ -1,5 +1,5 @@
 // Dark backgrounds for light content
-const dark = {
+const dark: Record<string, string> = {
   "Solid brand-blue 700 (#0E247E)": "bg-brand-700",
   "Solid brand-blue 800 (#061157)": "bg-brand-800",
   "Solid brand-blue 900 (#010533)": "bg-brand-900",
@@ -19,7 +19,7 @@ const dark = {
     "gradient-gold-h-dark-to-light",
 };
 // Light backgrounds for dark content
-const light = {
+const light: Record<string, string> = {
   "Solid white (#FFFFFF)": "bg-white",
   "Diagonal gradient from neutral 100 (#EFEFF3) to white (#FFFFF)":
     "gradient-primary-gray",
@@ -39,4 +39,8 @@ export const backgroundDescriptionMapToClass = {
   dark,
   light,
   all: { ...dark, ...light },
+  resolveClass(moduleBackground: string | null): string | null {
+    if (!moduleBackground) return null;
+    return this.all[moduleBackground] ?? null;
+  },
 } as const;
