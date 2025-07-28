@@ -1,6 +1,7 @@
 import { assetReferenceFieldFactory } from "./assetReferenceFieldFactory";
 import { booleanFieldFactory } from "./booleanFieldFactory";
 import { contentfulLabelFieldFactory } from "./contentfulLabelFieldFactory";
+import { dateFieldFactory } from "./dateFieldFactory";
 import { entryReferenceFieldFactory } from "./entryReferenceFieldFactory";
 import { richTextFieldFactory } from "./richTextFieldFactory";
 import { shortTextFieldFactory } from "./shortTextFieldFactory";
@@ -14,4 +15,5 @@ export const factoryRegistry = {
   entryReference: entryReferenceFieldFactory,
   assetReference: assetReferenceFieldFactory,
   boolean: booleanFieldFactory,
+  date: dateFieldFactory,
 };

@@ -64,35 +64,25 @@ export const urlRedirect = {
         },
       },
     }),
-    {
+    createField("boolean", {
       id: "startDate",
       name: "Start date",
-      type: "Date",
       editorInterface: {
         settings: {
-          ampm: "24",
-          format: "timeZ",
           helpText:
             'The date and time when this redirect should begin working. Leave empty to activate immediately (if "Active" is enabled).',
         },
-        widgetId: "datePicker",
-        widgetNamespace: "builtin",
       },
-    },
-    {
+    }),
+    createField("boolean", {
       id: "endDate",
       name: "End date",
-      type: "Date",
       editorInterface: {
         settings: {
-          ampm: "24",
-          format: "timeZ",
           helpText:
             "The date and time when this redirect should stop working. Leave empty for the redirect to remain active indefinitely.",
         },
-        widgetId: "datePicker",
-        widgetNamespace: "builtin",
       },
-    },
+    }),
   ],
 } as const satisfies ExpandedContentModel;
