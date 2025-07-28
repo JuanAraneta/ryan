@@ -78,37 +78,27 @@ export const seoMetadata = {
         },
       },
     }),
-    {
+    createField("boolean", {
       id: "noIndex",
       name: "No index",
-      type: "Boolean",
       required: true,
       editorInterface: {
         settings: {
           helpText:
             "If enabled, search engines will not index this page. Use for thank-you pages, gated content, or internal-only pages.",
-          trueLabel: "Yes",
-          falseLabel: "No",
         },
-        widgetId: "boolean",
-        widgetNamespace: "builtin",
       },
-    },
-    {
+    }),
+    createField("boolean", {
       id: "noFollow",
       name: "No follow",
-      type: "Boolean",
       required: true,
       editorInterface: {
         settings: {
           helpText:
             "If enabled, tells search engines not to follow links on this page. Use only when you don’t want to pass SEO value to outbound links.",
-          trueLabel: "Yes",
-          falseLabel: "No",
         },
-        widgetId: "boolean",
-        widgetNamespace: "builtin",
       },
-    },
+    }),
   ],
 } as const satisfies ExpandedContentModel;

@@ -50,10 +50,9 @@ export const urlRedirect = {
         widgetId: "dropdown",
       },
     }),
-    {
+    createField("boolean", {
       id: "active",
       name: "Active",
-      type: "Boolean",
       required: true,
       defaultValue: {
         "en-US": false,
@@ -62,13 +61,9 @@ export const urlRedirect = {
         settings: {
           helpText:
             "Please specify whether this redirect is currently active. Only active redirects will be applied on the site.",
-          trueLabel: "Yes",
-          falseLabel: "No",
         },
-        widgetId: "boolean",
-        widgetNamespace: "builtin",
       },
-    },
+    }),
     {
       id: "startDate",
       name: "Start date",
