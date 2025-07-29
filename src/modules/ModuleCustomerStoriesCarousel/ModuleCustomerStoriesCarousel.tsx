@@ -17,13 +17,13 @@ export const ModuleCustomerStoriesCarousel = ({
     className="dark py-16 dsk:py-32"
   >
     <div className="flex flex-col justify-center items-center text-center">
-      <h1 className="typo-display font-light">
+      <h2 className="typo-display font-light">
         <RichText
           content={data.moduleCustomerStoriesCarousel?.richTextTitle}
           variant="title"
           spansOnly
         />
-      </h1>
+      </h2>
       {data.moduleCustomerStoriesCarousel?.callToAction && (
         <div className="py-10">
           <Button asChild>
