@@ -6,7 +6,6 @@ export const ComponentRoutingItemFragment = graphql(`
     sys {
       id
     }
-    contentfulLabel
     heading
     eyebrowText
     subheadingText
