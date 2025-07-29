@@ -21,7 +21,7 @@ const dark: Record<string, string> = {
 // Light backgrounds for dark content
 const light: Record<string, string> = {
   "Solid white (#FFFFFF)": "bg-white",
-  "Diagonal gradient from neutral 100 (#EFEFF3) to white (#FFFFF)":
+  "Diagonal gradient from neutral 100 (#EFEFF3) to white (#FFFFFF)":
     "gradient-primary-gray",
   "Horizontal gradient from white (#FFFFFF) to neutral 50 (#F7F7F8)":
     "gradient-secondary-gray-h-light-to-dark",
