@@ -1,8 +1,5 @@
-import {
-  ContentFields,
-  ContentTypeFieldValidation,
-  KeyValueMap,
-} from "contentful-management";
+import { ContentTypeFieldValidation } from "contentful-management";
+import { ExpandedFieldDetails } from "../types/ExpandedFieldDetails";
 
 export const richTextFieldFactory = ({
   name,
@@ -51,13 +48,13 @@ export const richTextFieldFactory = ({
   nodes?: {
     nodes: ContentTypeFieldValidation["nodes"];
   };
-}): ContentFields<KeyValueMap> => ({
+}): ExpandedFieldDetails => ({
   id,
   name,
   type: "RichText",
-  localized: false,
-  required: false,
   validations: [enabledMarks, enabledNodeTypes, nodes],
-  disabled: false,
-  omitted: false,
+  editorInterface: {
+    widgetId: "entryLinkEditor",
+    widgetNamespace: "builtin",
+  },
 });

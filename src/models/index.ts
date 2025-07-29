@@ -1,14 +1,15 @@
-import type { ContentModel } from "contentful-code-models";
+// models
 import { componentCategorySolutionsHeadline } from "./componentCategorySolutionsHeadline";
 import { componentCategorySolutionsChapter } from "./componentCategorySolutionsChapter";
 import { moduleChapterGroup } from "./moduleChapterGroup";
-import { categorySolutionsImageLink } from "./categorySolutionsImageLink";
-import { categorySolutionsImageLinkGrid } from "./categorySolutionsImageLinkGrid";
+import {
+  categorySolutionsImageLinkGrid,
+  categorySolutionsImageLink,
+} from "./categorySolutionsImageLinkGrid";
 import { componentTitleAndBody } from "./componentTitleAndBody";
 import { componentCategorySolutions2ColSubBody } from "./componentCategorySolutions2ColSubBody";
 import { componentCardDeviceMock } from "./componentCardDeviceMock";
 import { moduleContainer } from "./moduleContainer";
-import { themeBackground } from "./themeBackground";
 import { componentExpert } from "./componentExpert";
 import { componentCustomerStory } from "./componentCustomerStory";
 import { moduleExpertsOverflow } from "./moduleExpertsOverflow";
@@ -25,18 +26,19 @@ import { siteSettings } from "./siteSettings";
 import { socialMediaLink } from "./socialMediaLink";
 import { urlRedirect } from "./urlRedirect";
 import { script } from "./script";
+// utils
+import { contentModelComposer } from "./utils/contentModelComposer";
 
-export const models: ContentModel[] = [
+export const models = [
   componentCategorySolutionsHeadline,
   componentCategorySolutionsChapter,
   moduleChapterGroup,
-  categorySolutionsImageLink,
   categorySolutionsImageLinkGrid,
+  categorySolutionsImageLink,
   componentTitleAndBody,
   componentCategorySolutions2ColSubBody,
   componentCardDeviceMock,
   moduleContainer,
-  themeBackground,
   componentExpert,
   componentCustomerStory,
   moduleExpertsOverflow,
@@ -53,7 +55,7 @@ export const models: ContentModel[] = [
   socialMediaLink,
   urlRedirect,
   script,
-];
+].map(contentModelComposer);
 
 export const locales = [
   {

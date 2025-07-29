@@ -1,67 +1,24 @@
-import type { ContentModel } from "contentful-code-models";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
-export const componentLink: ContentModel = {
+export const componentLink = {
   sys: {
     id: "componentLink",
   },
   name: "Component / Link",
   description:
     "The standard type for representing links both internal to the application and to external URLs. Only fulfill either an external or internal source.",
-  displayField: "label",
   fields: [
-    {
+    createField("shortText", {
       id: "label",
       name: "Label",
-      type: "Symbol",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
-    {
+      displayField: true,
+    }),
+    createField("entryReference", {
       id: "internalSource",
       name: "Internal Source",
-      type: "Link",
-      localized: false,
-      required: false,
-      validations: [
-        {
-          linkContentType: ["page"],
-        },
-      ],
-      disabled: false,
-      omitted: false,
-      linkType: "Entry",
-    },
-    {
-      id: "externalSource",
-      name: "External Source",
-      type: "Symbol",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
+      linkContentType: ["page"],
+    }),
+    createField("shortText", { id: "externalSource", name: "External Source" }),
   ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "label",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "internalSource",
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "externalSource",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-    ],
-  },
-};
+} as const satisfies ExpandedContentModel;

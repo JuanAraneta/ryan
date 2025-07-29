@@ -1,38 +1,34 @@
-import type { ContentModel } from "contentful-code-models";
+import { socialMediaLink } from "./socialMediaLink";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
-export const market: ContentModel = {
+export const market = {
   sys: {
     id: "market",
   },
   name: "Market",
   description:
     "Represents a geographical market or country (e.g., United States, Brazil, Canada) used to associate region-specific content like pages, social links, site settings, and SEO metadata. Language variations are handled separately through Contentful localization.",
-  displayField: "name",
   fields: [
-    {
+    createField("shortText", {
       id: "name",
       name: "Name",
-      type: "Symbol",
-      localized: false,
+      displayField: true,
       required: true,
-      validations: [
-        {
-          unique: true,
+      validations: [{ unique: true }],
+      editorInterface: {
+        settings: {
+          helpText:
+            'A human-friendly name of the market, like "United States" or "Argentina". Used for internal clarity.',
         },
-      ],
-      disabled: false,
-      omitted: false,
-    },
-    {
+      },
+    }),
+    createField("shortText", {
       id: "slug",
       name: "Slug",
-      type: "Symbol",
-      localized: false,
       required: true,
       validations: [
-        {
-          unique: true,
-        },
+        { unique: true },
         {
           regexp: {
             pattern: "^[a-z0-9]+(-[a-z0-9]+)*$",
@@ -41,50 +37,13 @@ export const market: ContentModel = {
           },
         },
       ],
-      disabled: false,
-      omitted: false,
-    },
-    {
+    }),
+    createField("entryReference", {
+      array: true,
       id: "socialMediaLinks",
       name: "Social Media Links",
-      type: "Array",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-      items: {
-        type: "Link",
-        validations: [
-          {
-            linkContentType: ["socialMediaLink"],
-          },
-        ],
-        linkType: "Entry",
-      },
-    },
+      size: { max: 10 },
+      linkContentType: [socialMediaLink],
+    }),
   ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "name",
-        settings: {
-          helpText:
-            'A human-friendly name of the market, like "United States" or "Argentina". Used for internal clarity.',
-        },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "slug",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "socialMediaLinks",
-        widgetId: "entryCardsEditor",
-        widgetNamespace: "builtin",
-      },
-    ],
-  },
-};
+} as const satisfies ExpandedContentModel;

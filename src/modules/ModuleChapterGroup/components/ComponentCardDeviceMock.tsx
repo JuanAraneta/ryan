@@ -2,8 +2,8 @@ import { Button } from "@/components/core/Button";
 import { Link } from "@/components/core/Link";
 import { RichText } from "@/components/core/RichText";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
-import { ThemeBackgroundFragment } from "@/lib/contentful/fragments/ThemeBackgroundFragment";
 import { ComponentCardDeviceMockFragment } from "@/lib/contentful/query/GetModuleChapterGroupById/fragments/CardDeviceMockFragment";
+import { backgroundDescriptionMapToClass } from "@/utils/backgroundDescriptionMapToClass";
 import { cx } from "cva";
 import { readFragment, ResultOf } from "gql.tada";
 import { useId } from "react";
@@ -13,16 +13,12 @@ export const ComponentCardDeviceMock = ({
 }: {
   data: ResultOf<typeof ComponentCardDeviceMockFragment>;
 }) => {
-  const backgroundColor = readFragment(
-    ThemeBackgroundFragment,
-    data.backgroundColor,
-  );
   const h2Id = useId();
   return (
     <div
       className={cx(
         "dark rounded-2xl w-full px-6 py-10 dsk:p-10 flex flex-col dsk:flex-row items-center justify-center gap-8 dsk:gap-20",
-        backgroundColor?.background,
+        backgroundDescriptionMapToClass.resolveClass(data.moduleBackground),
       )}
     >
       <div className="dsk:w-1/2">

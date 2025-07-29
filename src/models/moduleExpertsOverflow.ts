@@ -1,138 +1,41 @@
-import type { ContentModel } from "contentful-code-models";
-import { richTextFieldFactory } from "./factories/richTextFieldFactory";
+import { componentExpert } from "./componentExpert";
+import { componentLink } from "./componentLink";
+import { componentStatistic } from "./componentStatistic";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
-export const moduleExpertsOverflow: ContentModel = {
+export const moduleExpertsOverflow = {
   sys: {
     id: "moduleExpertsOverflow",
   },
   name: "Module / Experts overflow",
   description:
     "A page-module for displaying a select list of tax experts with links to their individual bio-pages.",
-  displayField: "contentfulLabel",
   fields: [
-    {
-      id: "contentfulLabel",
-      name: "Contentful label",
-      type: "Symbol",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
-    richTextFieldFactory({ id: "richTextEyebrow", name: "Eyebrow" }),
-    richTextFieldFactory({ id: "richTextTitle", name: "Title" }),
-    {
+    createField("contentfulLabel"),
+    createField("richText", { id: "richTextEyebrow", name: "Eyebrow" }),
+    createField("richText", { id: "richTextTitle", name: "Title" }),
+    createField("entryReference", {
       id: "callToAction",
       name: "Call to action",
-      type: "Link",
-      localized: false,
-      required: false,
-      validations: [
-        {
-          linkContentType: ["componentLink"],
-        },
-      ],
-      disabled: false,
-      omitted: false,
-      linkType: "Entry",
-    },
-    {
+      linkContentType: [componentLink],
+    }),
+    createField("entryReference", {
       id: "statistic",
       name: "Statistic",
-      type: "Link",
-      localized: false,
-      required: false,
-      validations: [
-        {
-          linkContentType: ["componentStatistic"],
-        },
-      ],
-      disabled: false,
-      omitted: false,
-      linkType: "Entry",
-    },
-    {
+      linkContentType: [componentStatistic],
+    }),
+    createField("assetReference", {
       id: "statisticFlair",
       name: "Statistic flair",
-      type: "Link",
-      localized: false,
-      required: false,
-      validations: [
-        {
-          linkMimetypeGroup: ["image"],
-        },
-      ],
-      disabled: false,
-      omitted: false,
-      linkType: "Asset",
-    },
-    {
+      imagesOnly: true,
+    }),
+    createField("entryReference", {
+      array: true,
       id: "expertsList",
       name: "Experts List",
-      type: "Array",
-      localized: false,
-      required: false,
-      validations: [
-        {
-          size: {
-            max: 10,
-          },
-        },
-      ],
-      disabled: false,
-      omitted: false,
-      items: {
-        type: "Link",
-        validations: [
-          {
-            linkContentType: ["componentExpert"],
-          },
-        ],
-        linkType: "Entry",
-      },
-    },
+      size: { max: 10 },
+      linkContentType: [componentExpert],
+    }),
   ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "contentfulLabel",
-        settings: {
-          helpText: "A label for viewing on the Contentful UI.",
-        },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "eyebrow",
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "title",
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "callToAction",
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "statistic",
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "statisticFlair",
-        widgetId: "assetLinkEditor",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "expertsList",
-        widgetId: "entryLinksEditor",
-        widgetNamespace: "builtin",
-      },
-    ],
-  },
-};
+} as const satisfies ExpandedContentModel;
