@@ -5,10 +5,7 @@ import merge from "lodash/merge";
 type ShortTextFieldFactoryProps = {
   id: string;
   name: string;
-} & (
-  | { array?: false; size?: undefined }
-  | { array: true; size: { min?: number; max: number } }
-);
+} & { array?: boolean; size?: { min?: number; max?: number } };
 
 type PartialFieldDetails = Omit<ExpandedFieldDetails, "id" | "name" | "type">;
 
@@ -18,16 +15,26 @@ export const shortTextFieldFactory = ({
   ...props
 }: ShortTextFieldFactoryProps &
   DeepPartial<PartialFieldDetails>): ExpandedFieldDetails => {
+  const baseOptions = {
+    editorInterface: { widgetNamespace: "builtin" },
+  } as PartialFieldDetails;
+
+  const validations = size ? [{ size }] : [];
+
   return merge(
-    { editorInterface: { widgetNamespace: "builtin" } } as PartialFieldDetails,
+    baseOptions,
     array
       ? {
           type: "Array",
-          validations: [{ size }],
+          validations,
           items: { type: "Symbol" },
           editorInterface: { widgetId: "tagEditor" },
         }
-      : { type: "Symbol", editorInterface: { widgetId: "singleLine" } },
+      : {
+          type: "Symbol",
+          editorInterface: { widgetId: "singleLine" },
+          validations,
+        },
     props,
   );
 };

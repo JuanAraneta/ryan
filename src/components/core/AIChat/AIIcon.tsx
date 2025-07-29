@@ -6,7 +6,7 @@ import { Icons } from "@/components/icons";
 
 export const AIIcon = ({ className = "" }: { className?: string }) => {
   const transition: MotionProps["transition"] = {
-    duration: 4,
+    duration: 3,
     repeat: Infinity,
     ease: "easeInOut",
     repeatType: "mirror",

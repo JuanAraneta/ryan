@@ -1,7 +1,7 @@
 import { footer } from "./footer";
-import { header } from "./header";
 import { market } from "./market";
 import { moduleContainer } from "./moduleContainer";
+import { moduleHeroHome } from "./moduleHeroHome";
 import { seoMetadata } from "./seoMetadata";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
@@ -63,10 +63,10 @@ export const page = {
       },
     }),
     createField("entryReference", {
-      id: "header",
-      name: "Header",
+      id: "hero",
+      name: "Hero",
       required: true,
-      linkContentType: [header],
+      linkContentType: [moduleHeroHome],
       editorInterface: {
         settings: {
           helpText: "Header that will be used on the page",

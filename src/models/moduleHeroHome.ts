@@ -1,84 +1,38 @@
-import type { ContentModel } from "contentful-code-models";
-import { richTextFieldFactory } from "./factories/richTextFieldFactory";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
-export const moduleHeroHome: ContentModel = {
+export const moduleHeroHome = {
   sys: {
     id: "moduleHeroHome",
   },
   name: "Module / Hero home",
   description:
     "Homepage Hero 50/50, which serves as the primary, top-of-the-fold content for the main homepage.",
-  displayField: "contentfulLabel",
   fields: [
-    {
-      id: "contentfulLabel",
-      name: "Contentful label",
-      type: "Symbol",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
-    richTextFieldFactory({ id: "headline", name: "Headline" }),
-    {
+    createField("contentfulLabel"),
+    createField("richText", { id: "headline", name: "Headline" }),
+    createField("shortText", {
       id: "prompts",
       name: "Prompts",
-      type: "Array",
-      localized: false,
-      required: true,
-      validations: [
-        {
-          size: { min: 1 },
-        },
-      ],
-      disabled: false,
-      omitted: false,
-      items: {
-        type: "Symbol",
-        validations: [],
-      },
-    },
-    {
-      id: "routingCards",
-      name: "Routing Cards",
-      type: "Array",
-      localized: false,
-      required: true,
-      validations: [{ size: { min: 2, max: 2 } }],
-      disabled: false,
-      omitted: false,
-      items: {
-        type: "Link",
-        linkType: "Entry",
-        validations: [{ linkContentType: ["componentRoutingItem"] }],
-      },
-    },
-  ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "contentfulLabel",
-        settings: {
-          helpText: "A label for viewing on the Contentful UI.",
-        },
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "prompts",
-        widgetId: "tagEditor",
+      array: true,
+      size: { min: 1, max: 3 },
+      editorInterface: {
         settings: {
           helpText: "Animated AI chat prompts.",
         },
       },
-      {
-        fieldId: "routingCards",
-        widgetId: "entryCardsEditor",
+    }),
+    createField("entryReference", {
+      array: true,
+      id: "routingCards",
+      name: "Routing Cards",
+      linkContentType: ["componentRoutingItem"],
+      size: { min: 2, max: 2 },
+      editorInterface: {
         settings: {
           helpText: "Exactly 2 routing cards for the hero section.",
         },
       },
-    ],
-  },
-};
+    }),
+  ],
+} as const satisfies ExpandedContentModel;

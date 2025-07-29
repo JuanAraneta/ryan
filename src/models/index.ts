@@ -20,7 +20,6 @@ import {
 } from "./categorySolutionsImageLinkGrid";
 import { page } from "./page";
 import { constants } from "./constants";
-import { header } from "./header";
 import { footer } from "./footer";
 import { seoMetadata } from "./seoMetadata";
 import { market } from "./market";
@@ -62,7 +61,6 @@ const other: ExpandedContentModel[] = [
   categorySolutionsImageLinkGrid,
   page,
   constants,
-  header,
   footer,
   seoMetadata,
   market,
