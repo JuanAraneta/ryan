@@ -1,4 +1,4 @@
-import type { ContentModel } from "contentful-code-models";
+// models
 import { componentCategorySolutionsHeadline } from "./componentCategorySolutionsHeadline";
 import { componentCategorySolutionsChapter } from "./componentCategorySolutionsChapter";
 import { componentTitleAndBody } from "./componentTitleAndBody";
@@ -14,9 +14,10 @@ import { moduleContainer } from "./moduleContainer";
 import { moduleExpertsOverflow } from "./moduleExpertsOverflow";
 import { moduleCustomerStoriesCarousel } from "./moduleCustomerStoriesCarousel";
 import { moduleHeroHome } from "./moduleHeroHome";
-import { categorySolutionsImageLink } from "./categorySolutionsImageLink";
-import { categorySolutionsImageLinkGrid } from "./categorySolutionsImageLinkGrid";
-import { themeBackground } from "./themeBackground";
+import {
+  categorySolutionsImageLinkGrid,
+  categorySolutionsImageLink,
+} from "./categorySolutionsImageLinkGrid";
 import { page } from "./page";
 import { constants } from "./constants";
 import { header } from "./header";
@@ -28,8 +29,12 @@ import { socialMediaLink } from "./socialMediaLink";
 import { urlRedirect } from "./urlRedirect";
 import { script } from "./script";
 
+// utils
+import { contentModelComposer } from "./utils/contentModelComposer";
+import type { ExpandedContentModel } from "./types/ExpandedContentModel";
+
 // Components
-const components: ContentModel[] = [
+const components: ExpandedContentModel[] = [
   componentCategorySolutionsHeadline,
   componentCategorySolutionsChapter,
   componentTitleAndBody,
@@ -43,7 +48,7 @@ const components: ContentModel[] = [
 ];
 
 // Modules
-const modules: ContentModel[] = [
+const modules: ExpandedContentModel[] = [
   moduleChapterGroup,
   moduleContainer,
   moduleExpertsOverflow,
@@ -52,10 +57,9 @@ const modules: ContentModel[] = [
 ];
 
 // Other content types
-const other: ContentModel[] = [
+const other: ExpandedContentModel[] = [
   categorySolutionsImageLink,
   categorySolutionsImageLinkGrid,
-  themeBackground,
   page,
   constants,
   header,
@@ -68,7 +72,9 @@ const other: ContentModel[] = [
   script,
 ];
 
-export const models: ContentModel[] = [...components, ...modules, ...other];
+export const models = [...components, ...modules, ...other].map(
+  contentModelComposer,
+);
 
 export const locales = [
   {

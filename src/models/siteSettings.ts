@@ -1,158 +1,47 @@
-import type { ContentModel } from "contentful-code-models";
+import { market } from "./market";
+import { script } from "./script";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 
-export const siteSettings: ContentModel = {
+export const siteSettings = {
   sys: {
     id: "siteSettings",
   },
   name: "Site settings",
   description:
     "Stores global configuration and shared settings for the site, including confirmation IDs for external tools (like analytics), social media links and other site-wide defaults. This content type ensures consistent configuration across all pages and regions.",
-  displayField: "siteName",
   fields: [
-    {
+    createField("shortText", {
       id: "siteName",
       name: "Site name",
-      type: "Symbol",
-      localized: false,
       required: true,
-      validations: [
-        {
-          unique: true,
-        },
-      ],
-      disabled: false,
-      omitted: false,
-    },
-    {
+      displayField: true,
+      validations: [{ unique: true }],
+    }),
+    createField("shortText", {
       id: "facebookPixelId",
       name: "Facebook pixel ID",
-      type: "Symbol",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
-    {
+    }),
+    createField("shortText", {
       id: "googleTagManagerId",
       name: "Google tag manager ID",
-      type: "Symbol",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
-    {
+    }),
+    createField("shortText", {
       id: "googleAnalyticsId",
       name: "Google analytics ID",
-      type: "Symbol",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
-    {
+    }),
+    createField("entryReference", {
+      array: true,
       id: "scripts",
       name: "Scripts",
-      type: "Array",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-      items: {
-        type: "Link",
-        validations: [
-          {
-            linkContentType: ["script"],
-          },
-        ],
-        linkType: "Entry",
-      },
-    },
-    {
+      size: { max: 100 },
+      linkContentType: [script],
+    }),
+    createField("entryReference", {
       id: "market",
       name: "Default market",
-      type: "Link",
-      localized: false,
       required: true,
-      validations: [
-        {
-          linkContentType: ["market"],
-        },
-      ],
-      disabled: false,
-      omitted: false,
-      linkType: "Entry",
-    },
+      linkContentType: [market],
+    }),
   ],
-  editorInterface: {
-    sidebar: [
-      {
-        settings: {},
-        widgetId: "publication-widget",
-        widgetNamespace: "sidebar-builtin",
-      },
-      {
-        settings: {},
-        widgetId: "content-preview-widget",
-        widgetNamespace: "sidebar-builtin",
-      },
-      {
-        settings: {},
-        widgetId: "incoming-links-widget",
-        widgetNamespace: "sidebar-builtin",
-      },
-      {
-        settings: {},
-        widgetId: "translation-widget",
-        widgetNamespace: "sidebar-builtin",
-      },
-      {
-        settings: {},
-        widgetId: "versions-widget",
-        widgetNamespace: "sidebar-builtin",
-      },
-      {
-        disabled: true,
-        settings: {},
-        widgetId: "releases-widget",
-        widgetNamespace: "sidebar-builtin",
-      },
-    ],
-    controls: [
-      {
-        fieldId: "siteName",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "facebookPixelId",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "googleTagManagerId",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "googleAnalyticsId",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "scripts",
-        widgetId: "entryLinksEditor",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "market",
-        widgetId: "entryLinkEditor",
-        widgetNamespace: "builtin",
-      },
-    ],
-  },
-};
+} as const satisfies ExpandedContentModel;

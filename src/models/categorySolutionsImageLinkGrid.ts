@@ -1,62 +1,45 @@
-import type { ContentModel } from "contentful-code-models";
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
+import { componentLink } from "./componentLink";
 
-export const categorySolutionsImageLinkGrid: ContentModel = {
+export const categorySolutionsImageLink = {
+  sys: {
+    id: "categorySolutionsImageLink",
+  },
+  name: "Category solutions / Image link grid / Item",
+  description: "",
+  fields: [
+    createField("contentfulLabel"),
+    createField("assetReference", {
+      id: "image",
+      name: "Image",
+      imagesOnly: true,
+    }),
+    createField("entryReference", {
+      id: "link",
+      name: "Link",
+      linkContentType: [componentLink],
+    }),
+  ],
+} as const satisfies ExpandedContentModel;
+
+export const categorySolutionsImageLinkGrid = {
   sys: {
     id: "categorySolutionsImageLinkGrid",
   },
   name: "Category solutions / Image link grid",
   description: "",
-  displayField: "contentfulLabel",
   fields: [
-    {
-      id: "contentfulLabel",
-      name: "Contentful label",
-      type: "Symbol",
-      localized: false,
-      required: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
-    },
-    {
+    createField("contentfulLabel"),
+    createField("entryReference", {
       id: "items",
       name: "Items",
-      type: "Array",
-      localized: false,
-      required: false,
-      validations: [
-        {
-          size: {
-            min: 3,
-            max: 3,
-          },
-        },
-      ],
-      disabled: false,
-      omitted: false,
-      items: {
-        type: "Link",
-        validations: [
-          {
-            linkContentType: ["categorySolutionsImageLink"],
-          },
-        ],
-        linkType: "Entry",
+      array: true,
+      size: {
+        min: 3,
+        max: 3,
       },
-    },
+      linkContentType: [categorySolutionsImageLink],
+    }),
   ],
-  editorInterface: {
-    controls: [
-      {
-        fieldId: "contentfulLabel",
-        widgetId: "singleLine",
-        widgetNamespace: "builtin",
-      },
-      {
-        fieldId: "items",
-        widgetId: "entryLinksEditor",
-        widgetNamespace: "builtin",
-      },
-    ],
-  },
-};
+} as const satisfies ExpandedContentModel;
