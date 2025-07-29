@@ -4,14 +4,14 @@ import { cx } from "cva";
 import { motion, MotionProps } from "motion/react";
 import { Icons } from "@/components/icons";
 
-export const AIIcon = ({ className = "" }: { className?: string }) => {
-  const transition: MotionProps["transition"] = {
-    duration: 3,
-    repeat: Infinity,
-    ease: "easeInOut",
-    repeatType: "mirror",
-  } as const;
+const transition: MotionProps["transition"] = {
+  duration: 3,
+  repeat: Infinity,
+  ease: "easeInOut",
+  repeatType: "mirror",
+} as const;
 
+export const AIIcon = ({ className = "" }: { className?: string }) => {
   return (
     <div
       className={cx(

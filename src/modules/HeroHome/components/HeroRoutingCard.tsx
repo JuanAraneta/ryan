@@ -17,7 +17,7 @@ export const HeroRoutingCard = ({
       {image?.url && (
         <ZoomImage
           src={image?.url}
-          alt={eyebrowText || `${heading} image`}
+          alt={eyebrowText || heading}
           className="aspect-21/9 gradient-gold-h-dark-to-light"
         />
       )}
