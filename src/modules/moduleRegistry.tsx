@@ -1,14 +1,18 @@
 import { FC } from "react";
 import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
 import { ResultOf, TadaDocumentNode } from "gql.tada";
+
+// Queries
 import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleExpertsOverflowById";
 import { GetModuleCustomerStoriesOverflowById } from "@/lib/contentful/query/GetModuleCustomerStoriesOverflowById";
-import { ModuleChapterGroup } from "./ModuleChapterGroup";
 import { GetModuleChapterGroupById } from "@/lib/contentful/query/GetModuleChapterGroupById";
+import { GetModuleInsightsBentoById } from "@/lib/contentful/query/GetModuleInsightsBentoById";
 
 // Modules
 import { ModuleExpertsOverflow } from "./ExpertsOverflow";
 import { ModuleCustomerStoriesCarousel } from "./ModuleCustomerStoriesCarousel";
+import { ModuleChapterGroup } from "./ModuleChapterGroup";
+import { ModuleInsightsBento } from "./ModuleInsightsBento";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ModuleComponent<Data = any> = {
@@ -31,6 +35,10 @@ type ModuleRegistry = Record<
 >;
 
 const moduleRegistry: ModuleRegistry = {
+  ModuleInsightsBento: {
+    component: ModuleInsightsBento,
+    queryById: GetModuleInsightsBentoById,
+  },
   ModuleExpertsOverflow: {
     component: ModuleExpertsOverflow,
     queryById: GetModuleExpertsOverflowById,
