@@ -62,7 +62,5 @@ export const contentModelComposer = (contentModel: ExpandedContentModel) => {
     );
   }
 
-  if (clone.sys.id === "page") console.log();
-
   return clone as ContentModel;
 };
