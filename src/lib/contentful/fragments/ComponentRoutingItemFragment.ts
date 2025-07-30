@@ -1,6 +1,6 @@
 import { graphql } from "gql.tada";
-import { AssetFragment } from "./AssetFragment";
 import { ComponentLinkFragment } from "./ComponentLinkFragment";
+import { AssetFragment } from "./AssetFragment";
 
 export const ComponentRoutingItemFragment = graphql(
   `
@@ -21,5 +21,5 @@ export const ComponentRoutingItemFragment = graphql(
       }
     }
   `,
-  [AssetFragment, ComponentLinkFragment],
+  [ComponentLinkFragment, AssetFragment],
 );

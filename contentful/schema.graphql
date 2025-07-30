@@ -1937,22 +1937,6 @@ input HeaderFilter {
 
 type HeaderLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  pageCollection(limit: Int = 100, locale: String, order: [HeaderLinkingCollectionsPageCollectionOrder], preview: Boolean, skip: Int = 0): PageCollection
-}
-
-enum HeaderLinkingCollectionsPageCollectionOrder {
-  slug_ASC
-  slug_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-  title_ASC
-  title_DESC
 }
 
 enum HeaderOrder {
@@ -2892,6 +2876,7 @@ type ModuleHeroHomeHeadlineResourcesInline implements ResourceLink {
 type ModuleHeroHomeLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   heroCollection(limit: Int = 100, locale: String, order: [ModuleHeroHomeLinkingCollectionsHeroCollectionOrder], preview: Boolean, skip: Int = 0): HeroCollection
+  pageCollection(limit: Int = 100, locale: String, order: [ModuleHeroHomeLinkingCollectionsPageCollectionOrder], preview: Boolean, skip: Int = 0): PageCollection
 }
 
 enum ModuleHeroHomeLinkingCollectionsHeroCollectionOrder {
@@ -2903,6 +2888,21 @@ enum ModuleHeroHomeLinkingCollectionsHeroCollectionOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+}
+
+enum ModuleHeroHomeLinkingCollectionsPageCollectionOrder {
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
 }
 
 enum ModuleHeroHomeOrder {
@@ -3097,7 +3097,7 @@ type Page implements Entry & _Node {
   _id: ID!
   contentfulMetadata: ContentfulMetadata!
   footer(locale: String, preview: Boolean, where: FooterFilter): Footer
-  header(locale: String, preview: Boolean, where: HeaderFilter): Header
+  hero(locale: String, preview: Boolean, where: ModuleHeroHomeFilter): ModuleHeroHome
   linkedFrom(allowedLocales: [String]): PageLinkingCollections
   market(locale: String, preview: Boolean, where: MarketFilter): Market
   modulesCollection(limit: Int = 100, locale: String, order: [PageModulesCollectionOrder], preview: Boolean, skip: Int = 0, where: ModuleContainerFilter): PageModulesCollection
@@ -3121,8 +3121,8 @@ input PageFilter {
   contentfulMetadata: ContentfulMetadataFilter
   footer: cfFooterNestedFilter
   footer_exists: Boolean
-  header: cfHeaderNestedFilter
-  header_exists: Boolean
+  hero: cfModuleHeroHomeNestedFilter
+  hero_exists: Boolean
   market: cfMarketNestedFilter
   market_exists: Boolean
   modules: cfModuleContainerNestedFilter
@@ -4228,21 +4228,6 @@ input cfFooterNestedFilter {
   title_not_in: [String]
 }
 
-input cfHeaderNestedFilter {
-  AND: [cfHeaderNestedFilter]
-  OR: [cfHeaderNestedFilter]
-  contentfulMetadata: ContentfulMetadataFilter
-  image_exists: Boolean
-  sys: SysFilter
-  title: String
-  title_contains: String
-  title_exists: Boolean
-  title_in: [String]
-  title_not: String
-  title_not_contains: String
-  title_not_in: [String]
-}
-
 input cfMarketNestedFilter {
   AND: [cfMarketNestedFilter]
   OR: [cfMarketNestedFilter]
@@ -4314,7 +4299,7 @@ input cfPageNestedFilter {
   OR: [cfPageNestedFilter]
   contentfulMetadata: ContentfulMetadataFilter
   footer_exists: Boolean
-  header_exists: Boolean
+  hero_exists: Boolean
   market_exists: Boolean
   modulesCollection_exists: Boolean
   pagesCollection_exists: Boolean
