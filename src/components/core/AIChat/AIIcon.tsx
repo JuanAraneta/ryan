@@ -20,7 +20,7 @@ export const AIIcon = ({ className = "" }: { className?: string }) => {
       <span className="absolute inset-0 bg-new-gold/50 rounded-full blur-lg" />
 
       <span className="relative z-10 flex items-center justify-center">
-        <Icons.IA className="text-new-gold" />
+        <Icons.AI className="text-new-gold" />
       </span>
     </div>
   );
