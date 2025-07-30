@@ -18,10 +18,8 @@ export const ModuleInsightsBentoFragment = graphql(
       exploreInsightsButton {
         ...ComponentLinkFragment
       }
-      insightsCollection {
-        items {
-          ...ComponentInsightFragment
-        }
+      insights {
+        ...ComponentInsightFragment
       }
       newsletterSignup {
         ...ComponentNewsletterSignupFragment
