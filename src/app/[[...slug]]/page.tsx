@@ -12,6 +12,7 @@ export default async function Page(props: {
   const slugs = Array.isArray(params.slug) ? params.slug : [params.slug];
 
   const [marketSlug, locale, slug] = slugs;
+
   const pageResult = await contentClient.query(GetPageBySlugAndMarketQuery, {
     marketSlug,
     locale,

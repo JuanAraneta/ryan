@@ -59,7 +59,6 @@ export const ModuleContainerRenderer = async ({
                       );
                       return null;
                     }
-
                     return <Component key={index} data={result.data} />;
                   },
                 ),

@@ -1,12 +1,14 @@
+import { FC } from "react";
 import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
 import { ResultOf, TadaDocumentNode } from "gql.tada";
-import { FC } from "react";
-import { ModuleExpertsOverflow } from "./ExpertsOverflow";
 import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleExpertsOverflowById";
-import { ModuleCustomerStoriesCarousel } from "./ModuleCustomerStoriesCarousel";
 import { GetModuleCustomerStoriesOverflowById } from "@/lib/contentful/query/GetModuleCustomerStoriesOverflowById";
 import { ModuleChapterGroup } from "./ModuleChapterGroup";
 import { GetModuleChapterGroupById } from "@/lib/contentful/query/GetModuleChapterGroupById";
+
+// Modules
+import { ModuleExpertsOverflow } from "./ExpertsOverflow";
+import { ModuleCustomerStoriesCarousel } from "./ModuleCustomerStoriesCarousel";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ModuleComponent<Data = any> = {
