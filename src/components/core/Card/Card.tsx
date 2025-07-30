@@ -13,7 +13,7 @@ export const Card = ({ data, className }: CardProps) => {
     <div
       data-testid="Card"
       className={cx(
-        "rounded-lg w-full h-full p-[1.3rem] overflow-hidden  bg-[url('https://picsum.photos/500/500')] image-overlay",
+        "rounded-lg w-full h-full p-[1.3rem] overflow-hidden  bg-[url('https://picsum.photos/500/500')] gradient-overlay",
         className,
       )}
     >

@@ -1,5 +1,8 @@
 import { graphql } from "gql.tada";
-import { ModuleInsightsBentoFragment } from "../fragments/ModuleInsightsBentoFragment";
+import { ComponentLinkFragment } from "../fragments/ComponentLinkFragment";
+import { RichTextFragments } from "../fragments/RichTextFragments.generated";
+import { ComponentInsightFragment } from "../fragments/ComponentInsightFragment";
+import { ComponentNewsletterSignupFragment } from "../fragments/ComponentNewsletterSignupFragment";
 
 export const GetModuleInsightsBentoById = graphql(
   `
@@ -12,6 +15,31 @@ export const GetModuleInsightsBentoById = graphql(
         ...ModuleInsightsBentoFragment
       }
     }
+
+    fragment ModuleInsightsBentoFragment on ModuleInsightsBento {
+      sys {
+        id
+      }
+      headline {
+        ...ModuleInsightsBento_headlineFragment
+      }
+      eyebrow
+      subheading
+      exploreInsightsButton {
+        ...ComponentLinkFragment
+      }
+      insights {
+        ...ComponentInsightFragment
+      }
+      newsletterSignup {
+        ...ComponentNewsletterSignupFragment
+      }
+    }
   `,
-  [ModuleInsightsBentoFragment],
+  [
+    RichTextFragments.ModuleInsightsBento_headline,
+    ComponentLinkFragment,
+    ComponentInsightFragment,
+    ComponentNewsletterSignupFragment,
+  ],
 );
