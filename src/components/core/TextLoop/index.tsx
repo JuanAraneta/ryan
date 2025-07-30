@@ -13,6 +13,12 @@ export type TextLoopProps = {
   onIndexChange?: (index: number) => void;
 };
 
+const motionVariants: Variants = {
+  initial: { y: 20, opacity: 0 },
+  animate: { y: 0, opacity: 1 },
+  exit: { y: -20, opacity: 0 },
+};
+
 export function TextLoop({
   children,
   className,
@@ -35,12 +41,6 @@ export function TextLoop({
     }, intervalMs);
     return () => clearInterval(timer);
   }, [items.length, interval, onIndexChange]);
-
-  const motionVariants: Variants = {
-    initial: { y: 20, opacity: 0 },
-    animate: { y: 0, opacity: 1 },
-    exit: { y: -20, opacity: 0 },
-  };
 
   return (
     <div className={cx("relative inline-block whitespace-nowrap", className)}>
