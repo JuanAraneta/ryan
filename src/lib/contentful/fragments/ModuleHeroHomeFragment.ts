@@ -1,5 +1,6 @@
 import { graphql } from "gql.tada";
 import { ComponentRoutingItemFragment } from "./ComponentRoutingItemFragment";
+import { RichTextFragments } from "./RichTextFragments.generated";
 
 export const ModuleHeroHomeFragment = graphql(
   `
@@ -10,40 +11,15 @@ export const ModuleHeroHomeFragment = graphql(
       }
       contentfulLabel
       headline {
-        json
-        links {
-          entries {
-            hyperlink {
-              __typename
-              ... on Page {
-                sys {
-                  id
-                }
-                slug
-              }
-              ... on ComponentCardDeviceMock {
-                sys {
-                  id
-                }
-              }
-              ... on ComponentCategorySolutionsHeadline {
-                sys {
-                  id
-                }
-              }
-            }
-          }
-        }
+        ...ModuleHeroHome_headlineFragment
       }
       prompts
       routingCardsCollection {
         items {
-          ... on ComponentRoutingItem {
-            ...ComponentRoutingItemFragment
-          }
+          ...ComponentRoutingItemFragment
         }
       }
     }
   `,
-  [ComponentRoutingItemFragment],
+  [ComponentRoutingItemFragment, RichTextFragments.ModuleHeroHome_headline],
 );

@@ -1,6 +1,8 @@
-import { ResultOf } from "gql.tada";
+import { ResultOf, readFragment } from "gql.tada";
 import { ZoomImage } from "@/components/core/ZoomImage";
 import { ComponentRoutingItemFragment } from "@/lib/contentful/fragments/ComponentRoutingItemFragment";
+import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
+import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { MdKeyboardBackspace } from "react-icons/md";
 
 export const HeroRoutingCard = ({
@@ -10,14 +12,17 @@ export const HeroRoutingCard = ({
 }) => {
   const { image, eyebrowText, heading, link } = data;
 
-  const href = link?.internalSource?.slug || link?.externalSource || "";
+  const linkData = readFragment(ComponentLinkFragment, link);
+  const imageData = readFragment(AssetFragment, image);
+  const href = linkData?.internalSource?.slug || linkData?.externalSource || "";
+  const alt = eyebrowText || heading || "";
 
   return (
     <a href={href} className="flex-1 group relative">
-      {image?.url && (
+      {imageData?.url && (
         <ZoomImage
-          src={image?.url}
-          alt={eyebrowText || `${heading} image`}
+          src={imageData?.url}
+          alt={alt}
           className="aspect-21/9 gradient-gold-h-dark-to-light"
         />
       )}
