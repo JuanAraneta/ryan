@@ -1,3 +1,3 @@
-import { IAIcon } from "./IAIcon";
+import { AIIcon as AI } from "./AIIcon";
 
-export const Icons = { IA: IAIcon };
+export const Icons = { AI };
