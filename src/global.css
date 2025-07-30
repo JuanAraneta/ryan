@@ -184,7 +184,7 @@
   @apply bg-gradient-to-b from-neutral-100 to-neutral-50;
 }
 
-@utility image-overlay {
+@utility gradient-overlay {
   @apply relative z-[1] before:content-[''] before:absolute before:inset-0 before:block before:bg-gradient-to-b before:from-black before:to-transparent before:opacity-70 before:z-[-5];
 }
 
