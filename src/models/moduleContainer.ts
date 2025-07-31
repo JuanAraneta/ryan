@@ -1,6 +1,7 @@
 import { moduleChapterGroup } from "./moduleChapterGroup";
 import { moduleCustomerStoriesCarousel } from "./moduleCustomerStoriesCarousel";
 import { moduleExpertsOverflow } from "./moduleExpertsOverflow";
+import { moduleStatementHome } from "./moduleStatementHome";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
@@ -23,6 +24,7 @@ export const moduleContainer = {
         moduleExpertsOverflow,
         moduleCustomerStoriesCarousel,
         moduleChapterGroup,
+        moduleStatementHome,
       ],
     }),
   ],
