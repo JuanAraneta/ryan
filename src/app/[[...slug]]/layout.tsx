@@ -6,8 +6,8 @@ import { GetPageBySlugAndMarketQuery } from "@/lib/contentful/query/GetPageBySlu
 import { notFound } from "next/navigation";
 import { readFragment } from "gql.tada";
 import { SEOMetadataFragment } from "@/lib/contentful/fragments/SEOMetadataFragment";
-import { FooterFragment } from "@/lib/contentful/fragments/FooterFragment";
-import { HeroFragment } from "@/lib/contentful/fragments/HeroFragment";
+import { FooterFragment } from "@/modules/Footer/FooterFragment";
+import { HeroFragment } from "@/modules/Hero/HeroFragment";
 import { Lato } from "next/font/google";
 import { ConstantsProvider } from "@/components/providers/ConstantsContext";
 import { GetConstantsQuery } from "@/lib/contentful/query/GetConstantsQuery";

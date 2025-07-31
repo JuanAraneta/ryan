@@ -1,9 +1,9 @@
 import { Button } from "@/components/core/Button";
 import { Link } from "@/components/core/Link";
-import { GetModuleCustomerStoriesOverflowById } from "@/lib/contentful/query/GetModuleCustomerStoriesOverflowById";
+import { GetModuleCustomerStoriesOverflowById } from ".";
 import { readFragment, ResultOf } from "gql.tada";
 import { CustomerStoriesCarousel } from "./CustomerStoriesCarousel";
-import { ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment } from "@/lib/contentful/fragments/ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment";
+import { ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment } from "@/modules/ModuleCustomerStoriesCarousel/ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment";
 import { Section } from "@/components/core/Section";
 import { RichText } from "@/components/core/RichText";
 

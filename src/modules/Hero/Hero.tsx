@@ -1,9 +1,9 @@
-import { HeroFragment } from "@/lib/contentful/fragments/HeroFragment";
+import { HeroFragment } from "@/modules/Hero/HeroFragment";
 import { ResultOf } from "gql.tada";
 import { FC } from "react";
 import { HeroHome } from "../HeroHome";
 import { readFragment } from "gql.tada";
-import { ModuleHeroHomeFragment } from "@/lib/contentful/fragments/ModuleHeroHomeFragment";
+import { ModuleHeroHomeFragment } from "@/modules/HeroHome/ModuleHeroHomeFragment";
 
 export type HeroProps = {
   data: ResultOf<typeof HeroFragment>;

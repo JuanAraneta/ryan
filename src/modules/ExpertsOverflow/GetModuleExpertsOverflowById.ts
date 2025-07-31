@@ -1,9 +1,9 @@
 import { graphql } from "gql.tada";
-import { ComponentLinkFragment } from "../fragments/ComponentLinkFragment";
-import { ComponentStatisticFragment } from "../fragments/ComponentStatisticFragment";
-import { ModuleExpertsOverflowExpertsListCollectionFragment } from "../fragments/ModuleExpertsOverflowExpertsListCollectionFragment";
-import { AssetFragment } from "../fragments/AssetFragment";
-import { RichTextFragments } from "../fragments/RichTextFragments.generated";
+import { ModuleExpertsOverflowExpertsListCollectionFragment } from "./fragments/ModuleExpertsOverflowExpertsListCollectionFragment";
+import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
+import { ComponentStatisticFragment } from "@/lib/contentful/fragments/ComponentStatisticFragment";
+import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
+import { RichTextFragments } from "@/lib/contentful/fragments/RichTextFragments.generated";
 
 export const GetModuleExpertsOverflowById = graphql(
   `

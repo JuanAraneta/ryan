@@ -2,7 +2,7 @@ import { Button } from "@/components/core/Button";
 import { Link } from "@/components/core/Link";
 import { RichText } from "@/components/core/RichText";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
-import { ComponentCardDeviceMockFragment } from "@/lib/contentful/query/GetModuleChapterGroupById/fragments/CardDeviceMockFragment";
+import { ComponentCardDeviceMockFragment } from "@/modules/ModuleChapterGroup/GetModuleChapterGroupById/fragments/CardDeviceMockFragment";
 import { backgroundDescriptionMapToClass } from "@/utils/backgroundDescriptionMapToClass";
 import { cx } from "cva";
 import { readFragment, ResultOf } from "gql.tada";

@@ -1,5 +1,5 @@
 import { graphql } from "gql.tada";
-import { AssetFragment } from "./AssetFragment";
+import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 
 export const ModuleExpertsOverflowExpertsListCollectionFragment = graphql(
   `

@@ -3,7 +3,7 @@ import { AIChatPrompt } from "@/components/core/AIChat";
 import { RichText } from "@/components/core/RichText";
 import { Section } from "@/components/core/Section";
 import { HeroRoutingCard } from "./components/HeroRoutingCard";
-import { ModuleHeroHomeFragment } from "@/lib/contentful/fragments/ModuleHeroHomeFragment";
+import { ModuleHeroHomeFragment } from "./ModuleHeroHomeFragment";
 import { readFragment } from "gql.tada";
 import { ComponentRoutingItemFragment } from "@/lib/contentful/fragments/ComponentRoutingItemFragment";
 

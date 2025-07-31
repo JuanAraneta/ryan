@@ -1,4 +1,4 @@
-import { FooterFragment } from "@/lib/contentful/fragments/FooterFragment";
+import { FooterFragment } from "./FooterFragment";
 import { ResultOf } from "gql.tada";
 import { FC } from "react";
 

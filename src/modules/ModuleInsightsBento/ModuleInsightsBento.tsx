@@ -1,6 +1,6 @@
 import { readFragment, ResultOf } from "gql.tada";
 import { cx } from "cva";
-import { GetModuleInsightsBentoById } from "@/lib/contentful/query/GetModuleInsightsBentoById";
+import { GetModuleInsightsBentoById } from ".";
 import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
 import { Section } from "@/components/core/Section";
 import { RichText } from "@/components/core/RichText";

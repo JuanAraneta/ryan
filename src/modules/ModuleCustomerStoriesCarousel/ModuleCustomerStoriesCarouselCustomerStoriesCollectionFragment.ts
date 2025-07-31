@@ -1,6 +1,6 @@
 import { graphql } from "gql.tada";
-import { AssetFragment } from "./AssetFragment";
-import { RichTextFragments } from "./RichTextFragments.generated";
+import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
+import { RichTextFragments } from "@/lib/contentful/fragments/RichTextFragments.generated";
 
 export const ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment =
   graphql(
