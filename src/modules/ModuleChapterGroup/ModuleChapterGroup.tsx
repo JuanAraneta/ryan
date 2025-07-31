@@ -54,7 +54,7 @@ export const ModuleChapterGroup = ({
       setMarkerSizeAndTransform();
     };
 
-    const setMarkerSizeAndTransform = () => {
+    const setMarkerSizeAndTransform = (initial = false) => {
       const element = navItemsContainer.children[selectedIndex];
       if (!(element instanceof HTMLElement)) return;
 
@@ -64,11 +64,13 @@ export const ModuleChapterGroup = ({
       } else {
         navMarker.style.width = `${element.clientWidth}px`;
         navMarker.style.transform = `translate(${element.offsetLeft}px, ${element.offsetTop + element.offsetHeight + 8}px)`;
-        element.scrollIntoView({
-          behavior: "smooth",
-          inline: "center",
-          block: "nearest",
-        });
+        if (isMobile && !initial) {
+          element.scrollIntoView({
+            behavior: "smooth",
+            inline: "center",
+            block: "nearest",
+          });
+        }
       }
     };
 
@@ -84,9 +86,9 @@ export const ModuleChapterGroup = ({
       );
     }
 
-    setMarkerSizeAndTransform();
+    setMarkerSizeAndTransform(true);
 
-    window.addEventListener("resize", setMarkerSizeAndTransform, {
+    window.addEventListener("resize", () => setMarkerSizeAndTransform(), {
       signal: controller.signal,
     });
     window.addEventListener(
