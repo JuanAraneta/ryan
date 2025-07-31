@@ -22,7 +22,14 @@ export const Section = ({
     });
   } else {
     return (
-      <section {...props} className={cx(props.className, sectionClasses)} />
+      <section
+        {...props}
+        className={cx(props.className, sectionClasses)}
+        style={{
+          "--horizontal-fade-linear-gradient-mask":
+            "linear-gradient(to right, transparent 0px, black var(--x-section-padding), black calc(100% - var(--x-section-padding)), transparent 100%)",
+        }}
+      />
     );
   }
 };

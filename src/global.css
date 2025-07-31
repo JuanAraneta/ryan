@@ -67,6 +67,16 @@
   /* custom animations */
   --animate-pulse-scale: pulse-scale 5s ease-in-out infinite;
   --animate-fade-scale: fade-scale 5s ease-in-out infinite;
+
+  --animate-carousel: keyframe-carousel 20s infinite linear;
+  @keyframes keyframe-carousel {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-33.3333%);
+    }
+  }
 }
 
 /* themes */

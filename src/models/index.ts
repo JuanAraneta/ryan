@@ -31,6 +31,7 @@ import { script } from "./script";
 // utils
 import { contentModelComposer } from "./utils/contentModelComposer";
 import type { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { moduleStatementHome } from "./moduleStatementHome";
 
 // Components
 const components: ExpandedContentModel[] = [
@@ -53,6 +54,7 @@ const modules: ExpandedContentModel[] = [
   moduleExpertsOverflow,
   moduleCustomerStoriesCarousel,
   moduleHeroHome,
+  moduleStatementHome,
 ];
 
 // Other content types

@@ -111,6 +111,7 @@ type AssetLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   headerCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): HeaderCollection
   moduleExpertsOverflowCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ModuleExpertsOverflowCollection
+  moduleStatementHomeCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ModuleStatementHomeCollection
   seoMetadataCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): SeoMetadataCollection
   socialMediaLinkCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): SocialMediaLinkCollection
 }
@@ -1421,9 +1422,23 @@ input ComponentStatisticFilter {
 type ComponentStatisticLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   moduleExpertsOverflowCollection(limit: Int = 100, locale: String, order: [ComponentStatisticLinkingCollectionsModuleExpertsOverflowCollectionOrder], preview: Boolean, skip: Int = 0): ModuleExpertsOverflowCollection
+  moduleStatementHomeCollection(limit: Int = 100, locale: String, order: [ComponentStatisticLinkingCollectionsModuleStatementHomeCollectionOrder], preview: Boolean, skip: Int = 0): ModuleStatementHomeCollection
 }
 
 enum ComponentStatisticLinkingCollectionsModuleExpertsOverflowCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum ComponentStatisticLinkingCollectionsModuleStatementHomeCollectionOrder {
   contentfulLabel_ASC
   contentfulLabel_DESC
   sys_firstPublishedAt_ASC
@@ -2443,7 +2458,7 @@ input ModuleContainerModulesFilter {
   sys: SysFilter
 }
 
-union ModuleContainerModulesItem = ModuleChapterGroup | ModuleCustomerStoriesCarousel | ModuleExpertsOverflow
+union ModuleContainerModulesItem = ModuleChapterGroup | ModuleCustomerStoriesCarousel | ModuleExpertsOverflow | ModuleStatementHome
 
 enum ModuleContainerOrder {
   contentfulLabel_ASC
@@ -2954,7 +2969,7 @@ type ModuleInsightsBento implements Entry & _Node {
   exploreInsightsButton(locale: String, preview: Boolean, where: ComponentLinkFilter): ComponentLink
   eyebrow(locale: String): String
   headline(locale: String): ModuleInsightsBentoHeadline
-  insightsCollection(limit: Int = 100, locale: String, order: [ModuleInsightsBentoInsightsCollectionOrder], preview: Boolean, skip: Int = 0, where: ComponentInsightFilter): ModuleInsightsBentoInsightsCollection
+  insights(locale: String, preview: Boolean, where: ComponentInsightFilter): ComponentInsight
   linkedFrom(allowedLocales: [String]): ModuleInsightsBentoLinkingCollections
   newsletterSignup(locale: String, preview: Boolean, where: ComponentNewsletterSignupFilter): ComponentNewsletterSignup
   subheading(locale: String): String
@@ -2992,7 +3007,7 @@ input ModuleInsightsBentoFilter {
   headline_exists: Boolean
   headline_not_contains: String
   insights: cfComponentInsightNestedFilter
-  insightsCollection_exists: Boolean
+  insights_exists: Boolean
   newsletterSignup: cfComponentNewsletterSignupNestedFilter
   newsletterSignup_exists: Boolean
   subheading: String
@@ -3045,30 +3060,6 @@ type ModuleInsightsBentoHeadlineResourcesInline implements ResourceLink {
   sys: ResourceSys!
 }
 
-type ModuleInsightsBentoInsightsCollection {
-  items: [ComponentInsight]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-enum ModuleInsightsBentoInsightsCollectionOrder {
-  contentType_ASC
-  contentType_DESC
-  eyebrow_ASC
-  eyebrow_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-  title_ASC
-  title_DESC
-}
-
 type ModuleInsightsBentoLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
 }
@@ -3088,6 +3079,146 @@ enum ModuleInsightsBentoOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/moduleStatementHome)
+"""
+type ModuleStatementHome implements Entry & _Node {
+  _id: ID!
+  brandCarouselCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): AssetCollection
+  contentfulLabel(locale: String): String
+  contentfulMetadata: ContentfulMetadata!
+  headline(locale: String): ModuleStatementHomeHeadline
+  linkedFrom(allowedLocales: [String]): ModuleStatementHomeLinkingCollections
+  statisticsCollection(limit: Int = 100, locale: String, order: [ModuleStatementHomeStatisticsCollectionOrder], preview: Boolean, skip: Int = 0, where: ComponentStatisticFilter): ModuleStatementHomeStatisticsCollection
+  sys: Sys!
+}
+
+type ModuleStatementHomeCollection {
+  items: [ModuleStatementHome]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input ModuleStatementHomeFilter {
+  AND: [ModuleStatementHomeFilter]
+  OR: [ModuleStatementHomeFilter]
+  brandCarouselCollection_exists: Boolean
+  contentfulLabel: String
+  contentfulLabel_contains: String
+  contentfulLabel_exists: Boolean
+  contentfulLabel_in: [String]
+  contentfulLabel_not: String
+  contentfulLabel_not_contains: String
+  contentfulLabel_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  headline_contains: String
+  headline_exists: Boolean
+  headline_not_contains: String
+  statistics: cfComponentStatisticNestedFilter
+  statisticsCollection_exists: Boolean
+  sys: SysFilter
+}
+
+type ModuleStatementHomeHeadline {
+  json: JSON!
+  links: ModuleStatementHomeHeadlineLinks!
+}
+
+type ModuleStatementHomeHeadlineAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type ModuleStatementHomeHeadlineEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type ModuleStatementHomeHeadlineLinks {
+  assets: ModuleStatementHomeHeadlineAssets!
+  entries: ModuleStatementHomeHeadlineEntries!
+  resources: ModuleStatementHomeHeadlineResources!
+}
+
+type ModuleStatementHomeHeadlineResources {
+  block: [ModuleStatementHomeHeadlineResourcesBlock!]!
+  hyperlink: [ModuleStatementHomeHeadlineResourcesHyperlink!]!
+  inline: [ModuleStatementHomeHeadlineResourcesInline!]!
+}
+
+type ModuleStatementHomeHeadlineResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ModuleStatementHomeHeadlineResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ModuleStatementHomeHeadlineResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ModuleStatementHomeLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  moduleContainerCollection(limit: Int = 100, locale: String, order: [ModuleStatementHomeLinkingCollectionsModuleContainerCollectionOrder], preview: Boolean, skip: Int = 0): ModuleContainerCollection
+}
+
+enum ModuleStatementHomeLinkingCollectionsModuleContainerCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  moduleBackground_ASC
+  moduleBackground_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum ModuleStatementHomeOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+type ModuleStatementHomeStatisticsCollection {
+  items: [ComponentStatistic]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+enum ModuleStatementHomeStatisticsCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  prefix_ASC
+  prefix_DESC
+  suffix_ASC
+  suffix_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  value_ASC
+  value_DESC
 }
 
 """
@@ -3304,6 +3435,8 @@ type Query {
   moduleHeroHomeCollection(limit: Int = 100, locale: String, order: [ModuleHeroHomeOrder], preview: Boolean, skip: Int = 0, where: ModuleHeroHomeFilter): ModuleHeroHomeCollection
   moduleInsightsBento(id: String!, locale: String, preview: Boolean): ModuleInsightsBento
   moduleInsightsBentoCollection(limit: Int = 100, locale: String, order: [ModuleInsightsBentoOrder], preview: Boolean, skip: Int = 0, where: ModuleInsightsBentoFilter): ModuleInsightsBentoCollection
+  moduleStatementHome(id: String!, locale: String, preview: Boolean): ModuleStatementHome
+  moduleStatementHomeCollection(limit: Int = 100, locale: String, order: [ModuleStatementHomeOrder], preview: Boolean, skip: Int = 0, where: ModuleStatementHomeFilter): ModuleStatementHomeCollection
   page(id: String!, locale: String, preview: Boolean): Page
   pageCollection(limit: Int = 100, locale: String, order: [PageOrder], preview: Boolean, skip: Int = 0, where: PageFilter): PageCollection
   script(id: String!, locale: String, preview: Boolean): Script
