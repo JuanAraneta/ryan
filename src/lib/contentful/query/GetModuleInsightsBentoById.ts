@@ -30,7 +30,6 @@ export const GetModuleInsightsBentoById = graphql(
       }
       insightsCollection {
         items {
-          _id
           ...ComponentInsightFragment
         }
       }

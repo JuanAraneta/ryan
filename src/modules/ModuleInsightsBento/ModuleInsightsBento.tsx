@@ -9,6 +9,14 @@ import { Link } from "@/components/core/Link";
 import { NewsletterSignup } from "@/components/core/NewsletterSignup";
 import { Card } from "@/components/core/Card/Card";
 
+const LAYOUTS = {
+  // 4 is the max number of insights in the module.
+  1: ["col-span-2"],
+  2: ["col-span-1", "col-span-1"],
+  3: ["col-span-1", "col-span-1", "col-span-2 col-start-2"],
+  4: ["col-span-1", "col-span-1", "col-span-2", "col-span-1"],
+};
+
 export const ModuleInsightsBento = ({
   data,
 }: {
@@ -26,14 +34,6 @@ export const ModuleInsightsBento = ({
   } = data.moduleInsightsBento;
 
   const link = readFragment(ComponentLinkFragment, exploreInsightsButton);
-
-  const LAYOUTS = {
-    // 4 is the max number of insights in the module.
-    1: ["col-span-2"],
-    2: ["col-span-1", "col-span-1"],
-    3: ["col-span-1", "col-span-1", "col-span-2 col-start-2"],
-    4: ["col-span-1", "col-span-1", "col-span-2", "col-span-1"],
-  };
 
   const insights = insightsCollection?.items.filter(Boolean);
   const insightsCount = insights?.length as keyof typeof LAYOUTS;
@@ -57,7 +57,7 @@ export const ModuleInsightsBento = ({
 
         {insights?.map((insight, index) => (
           <Card
-            key={insight._id}
+            key={index}
             data={insight}
             className={cx("aspect-square dsk:aspect-auto", layout[index])}
           />
