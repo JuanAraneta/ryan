@@ -1,13 +1,13 @@
 import { readFragment, ResultOf } from "gql.tada";
+import { cx } from "cva";
+import { GetModuleInsightsBentoById } from "@/lib/contentful/query/GetModuleInsightsBentoById";
+import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
 import { Section } from "@/components/core/Section";
 import { RichText } from "@/components/core/RichText";
 import { Button } from "@/components/core/Button";
-import { GetModuleInsightsBentoById } from "@/lib/contentful/query/GetModuleInsightsBentoById";
 import { Link } from "@/components/core/Link";
-import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
 import { NewsletterSignup } from "@/components/core/NewsletterSignup";
 import { Card } from "@/components/core/Card/Card";
-import { cx } from "cva";
 
 export const ModuleInsightsBento = ({
   data,
@@ -41,11 +41,12 @@ export const ModuleInsightsBento = ({
 
   return (
     <Section data-testid="ModuleInsightsBento" className="dark py-16 dsk:py-32">
-      <h2 className="typo-display font-light max-w-[39rem] mb-20 mx-auto text-center">
+      <h2 className="typo-display font-light max-w-[39rem] mb-16 dsk:mb-20 mx-auto text-center">
         <RichText content={headline} variant="title" spansOnly />
       </h2>
-      <div className="grid gap-4 w-full mb-5 grid-cols-3 auto-rows-fr">
-        <div className="aspect-square flex flex-col gap-6 items-start text-left pr-8">
+
+      <div className="flex flex-col dsk:grid grid-cols-3 auto-rows-fr gap-4 w-full mb-5">
+        <div className="aspect-auto dsk:aspect-square flex flex-col gap-6 items-start text-left pr-0 dsk:pr-8 mb-16 dsk:mb-0">
           <h6 className="typo-heading-6 text-new-gold">{eyebrow}</h6>
           <h4 className="typo-heading-4 opacity-70">{subheading}</h4>
 
@@ -58,7 +59,7 @@ export const ModuleInsightsBento = ({
           <Card
             key={insight._id}
             data={insight}
-            className={cx(layout[index])}
+            className={cx("aspect-square dsk:aspect-auto", layout[index])}
           />
         ))}
       </div>

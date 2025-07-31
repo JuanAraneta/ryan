@@ -3,9 +3,10 @@ import { ComponentInsightFragment } from "@/lib/contentful/fragments/ComponentIn
 import { readFragment, FragmentOf } from "gql.tada";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { Tag } from "@/components/core/Tag";
+import { Link } from "@/components/core/Link";
 
 type CardProps = {
-  data: FragmentOf<typeof ComponentInsightFragment>;
+  data: FragmentOf<typeof ComponentInsightFragment>; // TODO: Add extra types when we define the articles, insights, etc.
   className?: string;
 };
 
@@ -19,10 +20,11 @@ export const Card = ({ data, className }: CardProps) => {
   const imageUrl = readFragment(AssetFragment, image);
 
   return (
-    <div
+    <Link
+      link={link}
       data-testid="Card"
       className={cx(
-        "rounded-lg w-full h-full p-[1.3rem] overflow-hidden  bg-[url('https://picsum.photos/500/500')] gradient-overlay bg-cover bg-center",
+        "rounded-lg w-full h-full p-[1.3rem] overflow-hidden gradient-overlay bg-cover bg-center",
         className,
       )}
       style={{ backgroundImage: `url(${imageUrl?.url})` }}
@@ -33,6 +35,6 @@ export const Card = ({ data, className }: CardProps) => {
       </p>
       <p className="mb-3">{title}</p>
       {contentType && <Tag text={contentType} />}
-    </div>
+    </Link>
   );
 };
