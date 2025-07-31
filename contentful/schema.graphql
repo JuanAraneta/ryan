@@ -2533,7 +2533,7 @@ input ModuleContainerModulesFilter {
   sys: SysFilter
 }
 
-union ModuleContainerModulesItem = ModuleChapterGroup | ModuleCustomerStoriesCarousel | ModuleExpertsOverflow | ModuleInsightsBento
+union ModuleContainerModulesItem = ModuleChapterGroup | ModuleCustomerStoriesCarousel | ModuleExpertsOverflow | ModuleInsightsBento | ModuleStatementHome
 
 enum ModuleContainerOrder {
   contentfulLabel_ASC
@@ -3280,6 +3280,22 @@ type ModuleStatementHomeHeadlineResourcesInline implements ResourceLink {
 
 type ModuleStatementHomeLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  moduleContainerCollection(limit: Int = 100, locale: String, order: [ModuleStatementHomeLinkingCollectionsModuleContainerCollectionOrder], preview: Boolean, skip: Int = 0): ModuleContainerCollection
+}
+
+enum ModuleStatementHomeLinkingCollectionsModuleContainerCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  moduleBackground_ASC
+  moduleBackground_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 enum ModuleStatementHomeOrder {
