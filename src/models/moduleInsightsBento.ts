@@ -23,7 +23,8 @@ export const moduleInsightsBento = {
       id: "insights",
       name: "Insights",
       linkContentType: [componentInsight],
-      validations: [{ size: { max: 4 } }],
+      array: true,
+      size: { max: 4 },
     }),
     createField("entryReference", {
       id: "newsletterSignup",

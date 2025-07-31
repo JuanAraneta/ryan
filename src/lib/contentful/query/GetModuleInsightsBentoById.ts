@@ -28,8 +28,11 @@ export const GetModuleInsightsBentoById = graphql(
       exploreInsightsButton {
         ...ComponentLinkFragment
       }
-      insights {
-        ...ComponentInsightFragment
+      insightsCollection {
+        items {
+          _id
+          ...ComponentInsightFragment
+        }
       }
       newsletterSignup {
         ...ComponentNewsletterSignupFragment
