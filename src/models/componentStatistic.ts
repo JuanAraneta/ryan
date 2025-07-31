@@ -12,6 +12,15 @@ export const componentStatistic = {
     createField("contentfulLabel"),
     createField("richText", { id: "richTextLabel", name: "Label" }),
     createField("shortText", {
+      id: "prefix",
+      name: "Prefix",
+      editorInterface: {
+        settings: {
+          helpText: "Any necessary prefix for the value, e.g. $",
+        },
+      },
+    }),
+    createField("shortText", {
       id: "value",
       name: "Value",
       validations: [
@@ -28,15 +37,6 @@ export const componentStatistic = {
         settings: {
           helpText:
             "Should be a number. If visually represented as a scaled value, just give the scaled value (e.g. if representing 1,000,000 as 1M, just put 1 in this field).",
-        },
-      },
-    }),
-    createField("shortText", {
-      id: "prefix",
-      name: "Prefix",
-      editorInterface: {
-        settings: {
-          helpText: "Any necessary prefix for the value, e.g. $",
         },
       },
     }),

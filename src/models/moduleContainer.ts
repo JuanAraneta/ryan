@@ -4,6 +4,7 @@ import { moduleChapterGroup } from "./moduleChapterGroup";
 import { moduleCustomerStoriesCarousel } from "./moduleCustomerStoriesCarousel";
 import { moduleExpertsOverflow } from "./moduleExpertsOverflow";
 import { moduleInsightsBento } from "./moduleInsightsBento";
+import { moduleStatementHome } from "./moduleStatementHome";
 
 export const moduleContainer = {
   sys: {
@@ -25,6 +26,7 @@ export const moduleContainer = {
         moduleCustomerStoriesCarousel,
         moduleChapterGroup,
         moduleInsightsBento,
+        moduleStatementHome,
       ],
     }),
   ],

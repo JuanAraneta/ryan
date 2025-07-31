@@ -7,12 +7,14 @@ import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleEx
 import { GetModuleCustomerStoriesOverflowById } from "@/lib/contentful/query/GetModuleCustomerStoriesOverflowById";
 import { GetModuleChapterGroupById } from "@/lib/contentful/query/GetModuleChapterGroupById";
 import { GetModuleInsightsBentoById } from "@/lib/contentful/query/GetModuleInsightsBentoById";
+import { GetModuleStatementHomeById } from "@/lib/contentful/query/GetModuleStatementHomeById";
 
 // Modules
 import { ModuleExpertsOverflow } from "./ExpertsOverflow";
 import { ModuleCustomerStoriesCarousel } from "./ModuleCustomerStoriesCarousel";
 import { ModuleChapterGroup } from "./ModuleChapterGroup";
 import { ModuleInsightsBento } from "./ModuleInsightsBento";
+import { ModuleStatementHome } from "./ModuleStatementHome";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ModuleComponent<Data = any> = {
@@ -50,6 +52,10 @@ const moduleRegistry: ModuleRegistry = {
   ModuleChapterGroup: {
     component: ModuleChapterGroup,
     queryById: GetModuleChapterGroupById,
+  },
+  ModuleStatementHome: {
+    component: ModuleStatementHome,
+    queryById: GetModuleStatementHomeById,
   },
 };
 
