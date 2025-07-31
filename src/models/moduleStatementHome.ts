@@ -1,3 +1,4 @@
+import { componentLogoCarousel } from "./componentLogoCarousel";
 import { componentStatistic } from "./componentStatistic";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
@@ -18,12 +19,10 @@ export const moduleStatementHome = {
       size: { max: 4 },
       linkContentType: [componentStatistic],
     }),
-    createField("assetReference", {
-      array: true,
-      id: "brandCarousel",
+    createField("entryReference", {
+      id: "brandCarouselRef",
       name: "Brand carousel",
-      imagesOnly: true,
-      size: { max: 20 },
+      linkContentType: [componentLogoCarousel],
     }),
   ],
 } as const satisfies ExpandedContentModel;

@@ -107,11 +107,11 @@ type AssetLinkingCollections {
   componentCustomerStoryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentCustomerStoryCollection
   componentExpertCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentExpertCollection
   componentInsightCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentInsightCollection
+  componentLogoCarouselCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentLogoCarouselCollection
   componentRoutingItemCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentRoutingItemCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   headerCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): HeaderCollection
   moduleExpertsOverflowCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ModuleExpertsOverflowCollection
-  moduleStatementHomeCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ModuleStatementHomeCollection
   seoMetadataCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): SeoMetadataCollection
   socialMediaLinkCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): SocialMediaLinkCollection
 }
@@ -1174,6 +1174,71 @@ enum ComponentLinkOrder {
   externalSource_DESC
   label_ASC
   label_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/componentLogoCarousel)
+"""
+type ComponentLogoCarousel implements Entry & _Node {
+  _id: ID!
+  contentfulLabel(locale: String): String
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): ComponentLogoCarouselLinkingCollections
+  logosCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): AssetCollection
+  sys: Sys!
+}
+
+type ComponentLogoCarouselCollection {
+  items: [ComponentLogoCarousel]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input ComponentLogoCarouselFilter {
+  AND: [ComponentLogoCarouselFilter]
+  OR: [ComponentLogoCarouselFilter]
+  contentfulLabel: String
+  contentfulLabel_contains: String
+  contentfulLabel_exists: Boolean
+  contentfulLabel_in: [String]
+  contentfulLabel_not: String
+  contentfulLabel_not_contains: String
+  contentfulLabel_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  logosCollection_exists: Boolean
+  sys: SysFilter
+}
+
+type ComponentLogoCarouselLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  moduleStatementHomeCollection(limit: Int = 100, locale: String, order: [ComponentLogoCarouselLinkingCollectionsModuleStatementHomeCollectionOrder], preview: Boolean, skip: Int = 0): ModuleStatementHomeCollection
+}
+
+enum ComponentLogoCarouselLinkingCollectionsModuleStatementHomeCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum ComponentLogoCarouselOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -3086,7 +3151,7 @@ enum ModuleInsightsBentoOrder {
 """
 type ModuleStatementHome implements Entry & _Node {
   _id: ID!
-  brandCarouselCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): AssetCollection
+  brandCarouselRef(locale: String, preview: Boolean, where: ComponentLogoCarouselFilter): ComponentLogoCarousel
   contentfulLabel(locale: String): String
   contentfulMetadata: ContentfulMetadata!
   headline(locale: String): ModuleStatementHomeHeadline
@@ -3105,7 +3170,8 @@ type ModuleStatementHomeCollection {
 input ModuleStatementHomeFilter {
   AND: [ModuleStatementHomeFilter]
   OR: [ModuleStatementHomeFilter]
-  brandCarouselCollection_exists: Boolean
+  brandCarouselRef: cfComponentLogoCarouselNestedFilter
+  brandCarouselRef_exists: Boolean
   contentfulLabel: String
   contentfulLabel_contains: String
   contentfulLabel_exists: Boolean
@@ -3404,6 +3470,8 @@ type Query {
   componentInsightCollection(limit: Int = 100, locale: String, order: [ComponentInsightOrder], preview: Boolean, skip: Int = 0, where: ComponentInsightFilter): ComponentInsightCollection
   componentLink(id: String!, locale: String, preview: Boolean): ComponentLink
   componentLinkCollection(limit: Int = 100, locale: String, order: [ComponentLinkOrder], preview: Boolean, skip: Int = 0, where: ComponentLinkFilter): ComponentLinkCollection
+  componentLogoCarousel(id: String!, locale: String, preview: Boolean): ComponentLogoCarousel
+  componentLogoCarouselCollection(limit: Int = 100, locale: String, order: [ComponentLogoCarouselOrder], preview: Boolean, skip: Int = 0, where: ComponentLogoCarouselFilter): ComponentLogoCarouselCollection
   componentNewsletterSignup(id: String!, locale: String, preview: Boolean): ComponentNewsletterSignup
   componentNewsletterSignupCollection(limit: Int = 100, locale: String, order: [ComponentNewsletterSignupOrder], preview: Boolean, skip: Int = 0, where: ComponentNewsletterSignupFilter): ComponentNewsletterSignupCollection
   componentRoutingItem(id: String!, locale: String, preview: Boolean): ComponentRoutingItem
@@ -4228,6 +4296,21 @@ input cfComponentLinkNestedFilter {
   label_not: String
   label_not_contains: String
   label_not_in: [String]
+  sys: SysFilter
+}
+
+input cfComponentLogoCarouselNestedFilter {
+  AND: [cfComponentLogoCarouselNestedFilter]
+  OR: [cfComponentLogoCarouselNestedFilter]
+  contentfulLabel: String
+  contentfulLabel_contains: String
+  contentfulLabel_exists: Boolean
+  contentfulLabel_in: [String]
+  contentfulLabel_not: String
+  contentfulLabel_not_contains: String
+  contentfulLabel_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  logosCollection_exists: Boolean
   sys: SysFilter
 }
 

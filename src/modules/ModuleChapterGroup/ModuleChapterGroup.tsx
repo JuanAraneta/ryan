@@ -108,7 +108,10 @@ export const ModuleChapterGroup = ({
   }, [isDesktop, isMobile, inViewSectionIndex]);
 
   return (
-    <Section className="dsk:py-32 pb-32 flex flex-col dsk:flex-row gap-14">
+    <Section
+      data-testid="ModuleChapterGroup"
+      className="dsk:py-32 pb-32 flex flex-col dsk:flex-row gap-14"
+    >
       <div
         ref={stickyContainerRef}
         className={cx(

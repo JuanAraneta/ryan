@@ -74,7 +74,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-33.3333%);
+      transform: translateX(calc(-100% / var(--carousel-repetitions)));
     }
   }
 }

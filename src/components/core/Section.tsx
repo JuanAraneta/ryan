@@ -5,7 +5,10 @@ import { cloneElement, ComponentProps, ReactElement } from "react";
 export const Section = ({
   ...props
 }:
-  | ComponentProps<"section">
+  | (Omit<ComponentProps<"section">, "data-testid"> & {
+      // Makes this property mandatory but you can still pass undefined if you're sure you don't need it
+      "data-testid": string | undefined;
+    })
   | {
       asChild: true;
       children: ReactElement;
