@@ -5,7 +5,7 @@ export const componentCustomerStory = {
   sys: {
     id: "componentCustomerStory",
   },
-  name: "Customer story",
+  name: "Page / Customer story",
   description:
     "An article or link to an article describing a customer's experience with Ryan.",
   fields: [
