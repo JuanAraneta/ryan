@@ -6,5 +6,6 @@ export const ConstantsFragment = graphql(`
     nextButtonAriaLabel
     scrollbarThumbLabel
     scrollbarTrackAriaLabel
+    subscribeButtonLabel
   }
 `);
