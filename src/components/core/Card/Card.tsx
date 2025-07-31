@@ -39,7 +39,7 @@ export const Card = ({ data, className }: CardProps) => {
           <span className="block rounded-full h-2 w-2 bg-brand-300" />
           <span className="typo-eyebrow">{eyebrow}</span>
         </p>
-        <p className="mb-3">{title}</p>
+        <p className="typo-heading-5 mb-3">{title}</p>
         {contentType && <Tag text={contentType} />}
       </div>
     </Link>
