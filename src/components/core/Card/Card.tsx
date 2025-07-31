@@ -11,8 +11,6 @@ type CardProps = {
 };
 
 export const Card = ({ data, className }: CardProps) => {
-  if (!data) return null;
-
   const { title, eyebrow, contentType, image, link } = readFragment(
     ComponentInsightFragment,
     data,
