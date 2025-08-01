@@ -21,7 +21,7 @@ export const entryReferenceFieldFactory = ({
     Omit<ExpandedFieldDetails, "type" | "id" | "name">
   >): ExpandedFieldDetails => {
   const linkContentType = linkContentTypeProp.map((type) =>
-    typeof type === "string" ? type : type.sys.id,
+    typeof type === "string" ? type : type?.sys?.id,
   );
 
   return merge(

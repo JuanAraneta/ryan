@@ -7,6 +7,7 @@ import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleEx
 import { GetModuleCustomerStoriesOverflowById } from "@/lib/contentful/query/GetModuleCustomerStoriesOverflowById";
 import { GetModuleChapterGroupById } from "@/lib/contentful/query/GetModuleChapterGroupById";
 import { GetModuleInsightsBentoById } from "@/lib/contentful/query/GetModuleInsightsBentoById";
+import { GetModulePlatformById } from "@/lib/contentful/query/GetModulePlatformById";
 
 // Modules
 import { ModuleExpertsOverflow } from "./ExpertsOverflow";
@@ -14,6 +15,7 @@ import { ModuleCustomerStoriesCarousel } from "./ModuleCustomerStoriesCarousel";
 import { ModuleChapterGroup } from "./ModuleChapterGroup";
 import { ModuleInsightsBento } from "./ModuleInsightsBento";
 import { ModuleStatementHome } from "./ModuleStatementHome";
+import { ModulePlatform } from "./ModulePlatform";
 import { GetModuleStatementHomeById } from "@/lib/contentful/query/GetModuleStatementHomeById";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -56,6 +58,10 @@ const moduleRegistry: ModuleRegistry = {
   ModuleStatementHome: {
     component: ModuleStatementHome,
     queryById: GetModuleStatementHomeById,
+  },
+  ModulePlatform: {
+    component: ModulePlatform,
+    queryById: GetModulePlatformById,
   },
 };
 
