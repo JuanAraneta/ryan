@@ -1,6 +1,6 @@
 import merge from "lodash/merge";
 import { ExpandedFieldDetails } from "../types/ExpandedFieldDetails";
-import { Icons } from "@/components/icons";
+import * as Icons from "@/components/icons";
 
 export const iconFieldFactory = ({
   id = "icon",
