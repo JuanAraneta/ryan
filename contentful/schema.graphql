@@ -1739,6 +1739,7 @@ type Constants implements Entry & _Node {
   scrollbarThumbLabel(locale: String): String
   scrollbarTrackAriaLabel(locale: String): String
   singletonLock(locale: String): String
+  subscribeButtonLabel(locale: String): String
   sys: Sys!
 }
 
@@ -1795,6 +1796,13 @@ input ConstantsFilter {
   singletonLock_not: String
   singletonLock_not_contains: String
   singletonLock_not_in: [String]
+  subscribeButtonLabel: String
+  subscribeButtonLabel_contains: String
+  subscribeButtonLabel_exists: Boolean
+  subscribeButtonLabel_in: [String]
+  subscribeButtonLabel_not: String
+  subscribeButtonLabel_not_contains: String
+  subscribeButtonLabel_not_in: [String]
   sys: SysFilter
 }
 
@@ -1815,6 +1823,8 @@ enum ConstantsOrder {
   scrollbarTrackAriaLabel_DESC
   singletonLock_ASC
   singletonLock_DESC
+  subscribeButtonLabel_ASC
+  subscribeButtonLabel_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -2523,7 +2533,7 @@ input ModuleContainerModulesFilter {
   sys: SysFilter
 }
 
-union ModuleContainerModulesItem = ModuleChapterGroup | ModuleCustomerStoriesCarousel | ModuleExpertsOverflow | ModuleStatementHome
+union ModuleContainerModulesItem = ModuleChapterGroup | ModuleCustomerStoriesCarousel | ModuleExpertsOverflow | ModuleInsightsBento | ModuleStatementHome
 
 enum ModuleContainerOrder {
   contentfulLabel_ASC
@@ -3034,7 +3044,7 @@ type ModuleInsightsBento implements Entry & _Node {
   exploreInsightsButton(locale: String, preview: Boolean, where: ComponentLinkFilter): ComponentLink
   eyebrow(locale: String): String
   headline(locale: String): ModuleInsightsBentoHeadline
-  insights(locale: String, preview: Boolean, where: ComponentInsightFilter): ComponentInsight
+  insightsCollection(limit: Int = 100, locale: String, order: [ModuleInsightsBentoInsightsCollectionOrder], preview: Boolean, skip: Int = 0, where: ComponentInsightFilter): ModuleInsightsBentoInsightsCollection
   linkedFrom(allowedLocales: [String]): ModuleInsightsBentoLinkingCollections
   newsletterSignup(locale: String, preview: Boolean, where: ComponentNewsletterSignupFilter): ComponentNewsletterSignup
   subheading(locale: String): String
@@ -3072,7 +3082,7 @@ input ModuleInsightsBentoFilter {
   headline_exists: Boolean
   headline_not_contains: String
   insights: cfComponentInsightNestedFilter
-  insights_exists: Boolean
+  insightsCollection_exists: Boolean
   newsletterSignup: cfComponentNewsletterSignupNestedFilter
   newsletterSignup_exists: Boolean
   subheading: String
@@ -3125,8 +3135,48 @@ type ModuleInsightsBentoHeadlineResourcesInline implements ResourceLink {
   sys: ResourceSys!
 }
 
+type ModuleInsightsBentoInsightsCollection {
+  items: [ComponentInsight]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+enum ModuleInsightsBentoInsightsCollectionOrder {
+  contentType_ASC
+  contentType_DESC
+  eyebrow_ASC
+  eyebrow_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
 type ModuleInsightsBentoLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  moduleContainerCollection(limit: Int = 100, locale: String, order: [ModuleInsightsBentoLinkingCollectionsModuleContainerCollectionOrder], preview: Boolean, skip: Int = 0): ModuleContainerCollection
+}
+
+enum ModuleInsightsBentoLinkingCollectionsModuleContainerCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  moduleBackground_ASC
+  moduleBackground_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 enum ModuleInsightsBentoOrder {

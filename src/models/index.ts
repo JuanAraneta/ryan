@@ -1,3 +1,5 @@
+import { page } from "./page";
+
 // models
 import { componentCategorySolutionsHeadline } from "./componentCategorySolutionsHeadline";
 import { componentCategorySolutionsChapter } from "./componentCategorySolutionsChapter";
@@ -6,7 +8,9 @@ import { componentCategorySolutions2ColSubBody } from "./componentCategorySoluti
 import { componentCardDeviceMock } from "./componentCardDeviceMock";
 import { componentExpert } from "./componentExpert";
 import { componentCustomerStory } from "./componentCustomerStory";
+import { componentInsight } from "./componentInsight";
 import { componentLink } from "./componentLink";
+import { componentNewsletterSignup } from "./componentNewsletterSignup";
 import { componentStatistic } from "./componentStatistic";
 import { componentRoutingItem } from "./componentRoutingItem";
 import { moduleChapterGroup } from "./moduleChapterGroup";
@@ -14,11 +18,12 @@ import { moduleContainer } from "./moduleContainer";
 import { moduleExpertsOverflow } from "./moduleExpertsOverflow";
 import { moduleCustomerStoriesCarousel } from "./moduleCustomerStoriesCarousel";
 import { moduleHeroHome } from "./moduleHeroHome";
+import { moduleInsightsBento } from "./moduleInsightsBento";
+
 import {
   categorySolutionsImageLinkGrid,
   categorySolutionsImageLink,
 } from "./categorySolutionsImageLinkGrid";
-import { page } from "./page";
 import { constants } from "./constants";
 import { footer } from "./footer";
 import { seoMetadata } from "./seoMetadata";
@@ -43,7 +48,9 @@ const components: ExpandedContentModel[] = [
   componentCardDeviceMock,
   componentExpert,
   componentCustomerStory,
+  componentInsight,
   componentLink,
+  componentNewsletterSignup,
   componentStatistic,
   componentRoutingItem,
   componentLogoCarousel,
@@ -56,6 +63,7 @@ const modules: ExpandedContentModel[] = [
   moduleExpertsOverflow,
   moduleCustomerStoriesCarousel,
   moduleHeroHome,
+  moduleInsightsBento,
   moduleStatementHome,
 ];
 

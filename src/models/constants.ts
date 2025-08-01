@@ -26,6 +26,11 @@ export const constants = {
       id: "scrollbarTrackAriaLabel",
       name: "Scrollbar track ARIA label",
     }),
+    createField("shortText", {
+      id: "subscribeButtonLabel",
+      name: "Subscribe button label",
+    }),
+
     createField("singletonLock"),
   ],
 } as const satisfies ExpandedContentModel;

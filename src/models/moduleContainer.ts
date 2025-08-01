@@ -1,9 +1,10 @@
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
 import { moduleChapterGroup } from "./moduleChapterGroup";
 import { moduleCustomerStoriesCarousel } from "./moduleCustomerStoriesCarousel";
 import { moduleExpertsOverflow } from "./moduleExpertsOverflow";
+import { moduleInsightsBento } from "./moduleInsightsBento";
 import { moduleStatementHome } from "./moduleStatementHome";
-import { ExpandedContentModel } from "./types/ExpandedContentModel";
-import { createField } from "./utils/createField";
 
 export const moduleContainer = {
   sys: {
@@ -24,6 +25,7 @@ export const moduleContainer = {
         moduleExpertsOverflow,
         moduleCustomerStoriesCarousel,
         moduleChapterGroup,
+        moduleInsightsBento,
         moduleStatementHome,
       ],
     }),

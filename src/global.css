@@ -162,9 +162,7 @@
 .gradient-gold-h-dark-to-light {
   @apply bg-gradient-to-r from-dark-gold to-new-gold;
 }
-.gradient-image-overlay {
-  @apply bg-gradient-to-b from-black to-transparent;
-}
+
 .gradient-container {
   @apply bg-gradient-to-r from-brand-700 via-50% via-[rgba(88,104,158,0.5)] to-brand-700;
 }
@@ -186,6 +184,11 @@
 .gradient-tertiary-gray {
   @apply bg-gradient-to-b from-neutral-100 to-neutral-50;
 }
+
+@utility gradient-overlay {
+  @apply relative z-[1] before:content-[''] before:absolute before:inset-0 before:block before:bg-gradient-to-b before:from-black before:to-transparent before:opacity-70 before:z-[-5];
+}
+
 /* typography */
 @utility typo-display {
   @apply text-[36px] dsk:text-[64px] leading-[42px] dsk:leading-[72px];
