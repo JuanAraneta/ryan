@@ -35,11 +35,7 @@ export const ScrollCarouselContainer = <ListItem,>({
     <div>
       <div
         ref={scrollContainerRef}
-        className="-mx-(--x-section-padding) px-(--x-section-padding) scroll-pl-(--x-section-padding) overflow-x-auto no-scrollbar pt-10 snap-start snap-x snap-mandatory [mask-image:var(--linear-gradient-mask)] relative"
-        style={{
-          "--linear-gradient-mask":
-            "linear-gradient(to right, transparent 0px, black var(--x-section-padding), black calc(100% - var(--x-section-padding)), transparent 100%)",
-        }}
+        className="-mx-(--x-section-padding) px-(--x-section-padding) scroll-pl-(--x-section-padding) overflow-x-auto no-scrollbar pt-10 snap-start snap-x snap-mandatory [mask-image:var(--horizontal-fade-linear-gradient-mask)] relative"
       >
         <ul className="flex gap-6 flex-1 w-max">
           {items.filter(Boolean).map((item, index) => (

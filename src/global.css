@@ -67,6 +67,7 @@
   /* custom animations */
   --animate-pulse-scale: pulse-scale 5s ease-in-out infinite;
   --animate-fade-scale: fade-scale 5s ease-in-out infinite;
+  --animate-carousel: carousel 20s linear infinite;
 }
 
 /* themes */
@@ -268,6 +269,15 @@
   100% {
     transform: scale(0.8);
     opacity: 0;
+  }
+}
+
+@keyframes carousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / var(--carousel-repetitions)));
   }
 }
 

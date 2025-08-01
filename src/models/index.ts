@@ -36,6 +36,8 @@ import { script } from "./script";
 // utils
 import { contentModelComposer } from "./utils/contentModelComposer";
 import type { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { moduleStatementHome } from "./moduleStatementHome";
+import { componentLogoCarousel } from "./componentLogoCarousel";
 
 // Components
 const components: ExpandedContentModel[] = [
@@ -51,6 +53,7 @@ const components: ExpandedContentModel[] = [
   componentNewsletterSignup,
   componentStatistic,
   componentRoutingItem,
+  componentLogoCarousel,
 ];
 
 // Modules
@@ -61,6 +64,7 @@ const modules: ExpandedContentModel[] = [
   moduleCustomerStoriesCarousel,
   moduleHeroHome,
   moduleInsightsBento,
+  moduleStatementHome,
 ];
 
 // Other content types

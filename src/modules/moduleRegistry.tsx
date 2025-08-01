@@ -13,6 +13,8 @@ import { ModuleExpertsOverflow } from "./ExpertsOverflow";
 import { ModuleCustomerStoriesCarousel } from "./ModuleCustomerStoriesCarousel";
 import { ModuleChapterGroup } from "./ModuleChapterGroup";
 import { ModuleInsightsBento } from "./ModuleInsightsBento";
+import { ModuleStatementHome } from "./ModuleStatementHome";
+import { GetModuleStatementHomeById } from "@/lib/contentful/query/GetModuleStatementHomeById";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ModuleComponent<Data = any> = {
@@ -50,6 +52,10 @@ const moduleRegistry: ModuleRegistry = {
   ModuleChapterGroup: {
     component: ModuleChapterGroup,
     queryById: GetModuleChapterGroupById,
+  },
+  ModuleStatementHome: {
+    component: ModuleStatementHome,
+    queryById: GetModuleStatementHomeById,
   },
 };
 

@@ -5,7 +5,10 @@ import { cloneElement, ComponentProps, ReactElement } from "react";
 export const Section = ({
   ...props
 }:
-  | ComponentProps<"section">
+  | (Omit<ComponentProps<"section">, "data-testid"> & {
+      // Makes this property mandatory but you can still pass undefined if you're sure you don't need it
+      "data-testid": string | undefined;
+    })
   | {
       asChild: true;
       children: ReactElement;
@@ -22,7 +25,14 @@ export const Section = ({
     });
   } else {
     return (
-      <section {...props} className={cx(props.className, sectionClasses)} />
+      <section
+        {...props}
+        className={cx(props.className, sectionClasses)}
+        style={{
+          "--horizontal-fade-linear-gradient-mask":
+            "linear-gradient(to right, transparent 0px, black var(--x-section-padding), black calc(100% - var(--x-section-padding)), transparent 100%)",
+        }}
+      />
     );
   }
 };
