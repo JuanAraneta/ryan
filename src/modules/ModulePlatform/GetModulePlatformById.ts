@@ -1,11 +1,21 @@
 import { graphql } from "gql.tada";
-import { AssetFragment } from "./AssetFragment";
-import { ComponentIconTextWrapFragment } from "./ComponentIconTextWrapFragment";
-import { ComponentLinkFragment } from "./ComponentLinkFragment";
-import { RichTextFragments } from "./RichTextFragments.generated";
+import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
+import { ComponentIconTextWrapFragment } from "@/lib/contentful/fragments/ComponentIconTextWrapFragment";
+import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
+import { RichTextFragments } from "@/lib/contentful/fragments/RichTextFragments.generated";
 
-export const ModulePlatformFragment = graphql(
+export const GetModulePlatformById = graphql(
   `
+    query GetModulePlatformById(
+      $locale: String
+      $preview: Boolean
+      $id: String!
+    ) {
+      modulePlatform(id: $id, preview: $preview, locale: $locale) {
+        ...ModulePlatformFragment
+      }
+    }
+
     fragment ModulePlatformFragment on ModulePlatform {
       headline {
         ...ModulePlatform_headlineFragment

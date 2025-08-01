@@ -7,7 +7,7 @@ import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleEx
 import { GetModuleCustomerStoriesOverflowById } from "@/lib/contentful/query/GetModuleCustomerStoriesOverflowById";
 import { GetModuleChapterGroupById } from "@/lib/contentful/query/GetModuleChapterGroupById";
 import { GetModuleInsightsBentoById } from "@/lib/contentful/query/GetModuleInsightsBentoById";
-import { GetModulePlatformById } from "@/lib/contentful/query/GetModulePlatformById";
+import { GetModulePlatformById } from "@/modules/ModulePlatform/GetModulePlatformById";
 
 // Modules
 import { ModuleExpertsOverflow } from "./ExpertsOverflow";

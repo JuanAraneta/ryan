@@ -12,10 +12,7 @@ export const modulePlatform = {
     "Platform module with highlighted image and capability components",
   fields: [
     createField("contentfulLabel"),
-    createField("richText", {
-      id: "headline",
-      name: "Headline",
-    }),
+    createField("richText", { id: "headline", name: "Headline" }),
     createField("entryReference", {
       id: "ctaButton",
       name: "CTA Button",
@@ -33,7 +30,6 @@ export const modulePlatform = {
       name: "Image",
       imagesOnly: true,
     }),
-
     createField("assetReference", {
       id: "leftOverlayAsset",
       name: "Left Overlay Asset",
