@@ -5,6 +5,7 @@ import { moduleCustomerStoriesCarousel } from "./moduleCustomerStoriesCarousel";
 import { moduleExpertsOverflow } from "./moduleExpertsOverflow";
 import { moduleInsightsBento } from "./moduleInsightsBento";
 import { moduleStatementHome } from "./moduleStatementHome";
+import { modulePlatform } from "./modulePlatform";
 
 export const moduleContainer = {
   sys: {
@@ -27,6 +28,7 @@ export const moduleContainer = {
         moduleChapterGroup,
         moduleInsightsBento,
         moduleStatementHome,
+        modulePlatform,
       ],
     }),
   ],

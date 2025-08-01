@@ -213,6 +213,25 @@ export const RichTextFragments = {
       }
     }
   `),
+  ModulePlatform_headline: graphql(`
+    fragment ModulePlatform_headlineFragment on ModulePlatformHeadline
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `),
   ModuleStatementHome_headline: graphql(`
     fragment ModuleStatementHome_headlineFragment on ModuleStatementHomeHeadline
     @_unmask {
