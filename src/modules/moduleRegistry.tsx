@@ -2,8 +2,6 @@ import { FC } from "react";
 import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
 import { ResultOf, TadaDocumentNode } from "gql.tada";
 
-import { GetModuleChapterGroupById } from "@/modules/ModuleChapterGroup/GetModuleChapterGroupById";
-
 import {
   ModuleExpertsOverflow,
   GetModuleExpertsOverflowById,
@@ -12,7 +10,10 @@ import {
   ModuleCustomerStoriesCarousel,
   GetModuleCustomerStoriesOverflowById,
 } from "./ModuleCustomerStoriesCarousel";
-import { ModuleChapterGroup } from "./ModuleChapterGroup";
+import {
+  ModuleChapterGroup,
+  GetModuleChapterGroupById,
+} from "./ModuleChapterGroup";
 import {
   ModuleInsightsBento,
   GetModuleInsightsBentoById,

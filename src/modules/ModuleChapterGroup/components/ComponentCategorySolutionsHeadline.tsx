@@ -1,5 +1,5 @@
 import { RichText } from "@/components/core/RichText";
-import { ComponentCategorySolutionsHeadlineFragment } from "@/modules/ModuleChapterGroup/GetModuleChapterGroupById/fragments/ComponentCategorySolutionsHeadlineFragment";
+import { ComponentCategorySolutionsHeadlineFragment } from "@/modules/ModuleChapterGroup/fragments/ComponentCategorySolutionsHeadlineFragment";
 import { ResultOf } from "gql.tada";
 
 export const ComponentCategorySolutionsHeadline = ({

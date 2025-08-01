@@ -8,13 +8,13 @@ import kebabCase from "lodash/kebabCase";
 import { default as NextLink } from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ComponentCardDeviceMock } from "./components/ComponentCardDeviceMock";
-import { ComponentCardDeviceMockFragment } from "@/modules/ModuleChapterGroup/GetModuleChapterGroupById/fragments/CardDeviceMockFragment";
+import { ComponentCardDeviceMockFragment } from "@/modules/ModuleChapterGroup/fragments/CardDeviceMockFragment";
 import { ComponentCategorySolutionsHeadline } from "./components/ComponentCategorySolutionsHeadline";
-import { ComponentCategorySolutionsHeadlineFragment } from "@/modules/ModuleChapterGroup/GetModuleChapterGroupById/fragments/ComponentCategorySolutionsHeadlineFragment";
+import { ComponentCategorySolutionsHeadlineFragment } from "@/modules/ModuleChapterGroup/fragments/ComponentCategorySolutionsHeadlineFragment";
 import { ComponentCategorySolutions2ColSubBody } from "./components/ComponentCategorySolutions2ColSubBody";
-import { ComponentCategorySolutions2ColSubBodyFragment } from "@/modules/ModuleChapterGroup/GetModuleChapterGroupById/fragments/ComponentCategorySolutions2ColSubBodyFragment";
+import { ComponentCategorySolutions2ColSubBodyFragment } from "@/modules/ModuleChapterGroup/fragments/ComponentCategorySolutions2ColSubBodyFragment";
 import { CategorySolutionsImageLinkGrid } from "./components/CategorySolutionsImageLinkGrid";
-import { CategorySolutionsImageLinkGridFragment } from "@/modules/ModuleChapterGroup/GetModuleChapterGroupById/fragments/CategorySolutionsImageLinkGridFragment";
+import { CategorySolutionsImageLinkGridFragment } from "@/modules/ModuleChapterGroup/fragments/CategorySolutionsImageLinkGridFragment";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { createIntersectionObserver } from "@/utils/createIntersectionObserver";
 

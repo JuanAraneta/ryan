@@ -1,5 +1,5 @@
 import { RichText } from "@/components/core/RichText";
-import { ComponentCategorySolutions2ColSubBodyFragment } from "@/modules/ModuleChapterGroup/GetModuleChapterGroupById/fragments/ComponentCategorySolutions2ColSubBodyFragment";
+import { ComponentCategorySolutions2ColSubBodyFragment } from "@/modules/ModuleChapterGroup/fragments/ComponentCategorySolutions2ColSubBodyFragment";
 import { ResultOf } from "gql.tada";
 
 export const ComponentCategorySolutions2ColSubBody = ({

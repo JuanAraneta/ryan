@@ -1,7 +1,7 @@
 import { Link } from "@/components/core/Link";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
-import { CategorySolutionsImageLinkGridFragment } from "@/modules/ModuleChapterGroup/GetModuleChapterGroupById/fragments/CategorySolutionsImageLinkGridFragment";
+import { CategorySolutionsImageLinkGridFragment } from "@/modules/ModuleChapterGroup/fragments/CategorySolutionsImageLinkGridFragment";
 import { readFragment, ResultOf } from "gql.tada";
 import { MdArrowForward } from "react-icons/md";
 
