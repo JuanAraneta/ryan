@@ -1,6 +1,6 @@
 import { readFragment, FragmentOf } from "gql.tada";
 import { ComponentIconTextWrapFragment } from "@/lib/contentful/fragments/ComponentIconTextWrapFragment";
-import { getIconByKey } from "@/components/icons";
+import * as Icons from "@/components/icons";
 
 export const IconTextWrap = ({
   data,
@@ -12,7 +12,7 @@ export const IconTextWrap = ({
     data,
   );
 
-  const Icon = getIconByKey(icon);
+  const Icon = Icons[icon as keyof typeof Icons];
 
   return (
     <div className="flex flex-col">
