@@ -1,7 +1,7 @@
 import { graphql } from "gql.tada";
 import { SEOMetadataFragment } from "../fragments/SEOMetadataFragment";
-import { HeroFragment } from "../fragments/HeroFragment";
-import { FooterFragment } from "../fragments/FooterFragment";
+import { HeroFragment } from "../../../modules/Hero/HeroFragment";
+import { FooterFragment } from "../../../modules/Footer/FooterFragment";
 import { PageModulesCollectionFragment } from "../fragments/PageModulesCollectionFragment";
 
 export const GetPageBySlugAndMarketQuery = graphql(

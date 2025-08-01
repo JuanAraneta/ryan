@@ -4,7 +4,7 @@ import { Link } from "@/components/core/Link";
 import { RichText } from "@/components/core/RichText";
 import { ScrollCarouselContainer } from "@/constants/ScrollCarouselContainer";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
-import { ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment } from "@/lib/contentful/fragments/ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment";
+import { ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment } from "@/modules/ModuleCustomerStoriesCarousel/ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment";
 import { focusStyle } from "@/utils/focusStyle";
 import { cx } from "cva";
 import { readFragment, ResultOf } from "gql.tada";
