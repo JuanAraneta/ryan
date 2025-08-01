@@ -2,7 +2,7 @@
 
 import { ScrollCarouselContainer } from "@/constants/ScrollCarouselContainer";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
-import { ModuleExpertsOverflowExpertsListCollectionFragment } from "@/lib/contentful/fragments/ModuleExpertsOverflowExpertsListCollectionFragment";
+import { ModuleExpertsOverflowExpertsListCollectionFragment } from "@/modules/ExpertsOverflow/fragments/ModuleExpertsOverflowExpertsListCollectionFragment";
 import { focusStyle } from "@/utils/focusStyle";
 import { cx } from "cva";
 import { readFragment, ResultOf } from "gql.tada";

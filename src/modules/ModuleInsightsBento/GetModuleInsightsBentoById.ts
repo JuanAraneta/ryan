@@ -1,8 +1,8 @@
 import { graphql } from "gql.tada";
-import { ComponentLinkFragment } from "../fragments/ComponentLinkFragment";
-import { RichTextFragments } from "../fragments/RichTextFragments.generated";
-import { ComponentInsightFragment } from "../fragments/ComponentInsightFragment";
-import { ComponentNewsletterSignupFragment } from "../fragments/ComponentNewsletterSignupFragment";
+import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
+import { RichTextFragments } from "@/lib/contentful/fragments/RichTextFragments.generated";
+import { ComponentInsightFragment } from "@/lib/contentful/fragments/ComponentInsightFragment";
+import { ComponentNewsletterSignupFragment } from "@/lib/contentful/fragments/ComponentNewsletterSignupFragment";
 
 export const GetModuleInsightsBentoById = graphql(
   `
@@ -30,7 +30,6 @@ export const GetModuleInsightsBentoById = graphql(
       }
       insightsCollection {
         items {
-          _id
           ...ComponentInsightFragment
         }
       }

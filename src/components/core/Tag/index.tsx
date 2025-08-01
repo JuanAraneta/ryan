@@ -4,7 +4,7 @@ type TagProps = {
 
 export const Tag = ({ text }: TagProps) => {
   return (
-    <div className="bg-brand-700/50 rounded-sm w-min text-nowrap typo-body-small px-3 py-1">
+    <div className="bg-brand-700/50 rounded-sm w-min text-nowrap typo-body-small px-3 py-1 backdrop-blur-xs">
       {text}
     </div>
   );

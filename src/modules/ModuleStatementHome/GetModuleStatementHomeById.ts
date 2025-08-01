@@ -1,8 +1,8 @@
 import { graphql } from "gql.tada";
-import { ComponentStatisticFragment } from "../fragments/ComponentStatisticFragment";
-import { AssetFragment } from "../fragments/AssetFragment";
-import { RichTextFragments } from "../fragments/RichTextFragments.generated";
-import { ComponentLogoCarouselFragment } from "../fragments/ComponentLogoCarouselFragment";
+import { ComponentStatisticFragment } from "@/lib/contentful/fragments/ComponentStatisticFragment";
+import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
+import { RichTextFragments } from "@/lib/contentful/fragments/RichTextFragments.generated";
+import { ComponentLogoCarouselFragment } from "@/lib/contentful/fragments/ComponentLogoCarouselFragment";
 
 export const GetModuleStatementHomeById = graphql(
   `

@@ -1,6 +1,6 @@
 import { graphql } from "gql.tada";
-import { ComponentRoutingItemFragment } from "./ComponentRoutingItemFragment";
-import { RichTextFragments } from "./RichTextFragments.generated";
+import { ComponentRoutingItemFragment } from "@/lib/contentful/fragments/ComponentRoutingItemFragment";
+import { RichTextFragments } from "@/lib/contentful/fragments/RichTextFragments.generated";
 
 export const ModuleHeroHomeFragment = graphql(
   `

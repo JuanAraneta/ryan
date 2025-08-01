@@ -2,8 +2,8 @@ import { ComponentLogoCarousel } from "@/components/ComponentLogoCarousel";
 import { AnimatableNumber } from "@/components/core/AnimatableNumber";
 import { RichText } from "@/components/core/RichText";
 import { Section } from "@/components/core/Section";
+import { GetModuleStatementHomeById } from ".";
 import { ComponentStatisticFragment } from "@/lib/contentful/fragments/ComponentStatisticFragment";
-import { GetModuleStatementHomeById } from "@/lib/contentful/query/GetModuleStatementHomeById";
 import { cx } from "cva";
 import { readFragment, ResultOf } from "gql.tada";
 

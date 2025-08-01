@@ -46,5 +46,5 @@ export const GetModuleChapterGroupById = graphql(
     ComponentCategorySolutionsHeadlineFragment,
     ComponentCategorySolutions2ColSubBodyFragment,
     CategorySolutionsImageLinkGridFragment,
-  ]
+  ],
 );

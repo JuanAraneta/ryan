@@ -2,21 +2,27 @@ import { FC } from "react";
 import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
 import { ResultOf, TadaDocumentNode } from "gql.tada";
 
-// Queries
-import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleExpertsOverflowById";
-import { GetModuleCustomerStoriesOverflowById } from "@/lib/contentful/query/GetModuleCustomerStoriesOverflowById";
-import { GetModuleChapterGroupById } from "@/lib/contentful/query/GetModuleChapterGroupById";
-import { GetModuleInsightsBentoById } from "@/lib/contentful/query/GetModuleInsightsBentoById";
-import { GetModulePlatformById } from "@/modules/ModulePlatform/GetModulePlatformById";
-
-// Modules
-import { ModuleExpertsOverflow } from "./ExpertsOverflow";
-import { ModuleCustomerStoriesCarousel } from "./ModuleCustomerStoriesCarousel";
-import { ModuleChapterGroup } from "./ModuleChapterGroup";
-import { ModuleInsightsBento } from "./ModuleInsightsBento";
-import { ModuleStatementHome } from "./ModuleStatementHome";
-import { ModulePlatform } from "./ModulePlatform";
-import { GetModuleStatementHomeById } from "@/lib/contentful/query/GetModuleStatementHomeById";
+import {
+  ModuleExpertsOverflow,
+  GetModuleExpertsOverflowById,
+} from "./ExpertsOverflow";
+import {
+  ModuleCustomerStoriesCarousel,
+  GetModuleCustomerStoriesOverflowById,
+} from "./ModuleCustomerStoriesCarousel";
+import {
+  ModuleChapterGroup,
+  GetModuleChapterGroupById,
+} from "./ModuleChapterGroup";
+import {
+  ModuleInsightsBento,
+  GetModuleInsightsBentoById,
+} from "./ModuleInsightsBento";
+import {
+  ModuleStatementHome,
+  GetModuleStatementHomeById,
+} from "./ModuleStatementHome";
+import { ModulePlatform, GetModulePlatformById } from "./ModulePlatform";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ModuleComponent<Data = any> = {

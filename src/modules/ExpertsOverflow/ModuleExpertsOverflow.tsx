@@ -1,10 +1,10 @@
 import { Link } from "@/components/core/Link";
 import { RichText } from "@/components/core/RichText";
+import { GetModuleExpertsOverflowById } from ".";
 import { ComponentStatisticFragment } from "@/lib/contentful/fragments/ComponentStatisticFragment";
-import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleExpertsOverflowById";
 import { readFragment, ResultOf } from "gql.tada";
 import { ExpertsOverflowExpertsListScroll } from "./components/ExpertsOverflowExpertsListScroll";
-import { ModuleExpertsOverflowExpertsListCollectionFragment } from "@/lib/contentful/fragments/ModuleExpertsOverflowExpertsListCollectionFragment";
+import { ModuleExpertsOverflowExpertsListCollectionFragment } from "@/modules/ExpertsOverflow/fragments/ModuleExpertsOverflowExpertsListCollectionFragment";
 import { AnimatableNumber } from "@/components/core/AnimatableNumber";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { Button } from "@/components/core/Button";

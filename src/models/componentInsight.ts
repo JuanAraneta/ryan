@@ -6,7 +6,7 @@ export const componentInsight = {
   sys: {
     id: "componentInsight",
   },
-  name: "Insight",
+  name: "Page / Insight",
   description:
     "An individual insight article or piece of thought leadership content for Ryan.",
   fields: [
