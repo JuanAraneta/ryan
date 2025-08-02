@@ -30,6 +30,7 @@ export const GetModuleSoftwareServicesRoutingGridById = graphql(
         ...ComponentLinkFragment
       }
       gridItemsCollection(limit: 8) {
+        total
         items {
           __typename
           ... on PageSoftware {

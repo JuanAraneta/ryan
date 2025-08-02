@@ -25,3 +25,13 @@ export const ConstantsProvider = ({
     {children}
   </ConstantsContext.Provider>
 );
+
+export const Constant = ({
+  name,
+}: {
+  name: keyof ResultOf<typeof ConstantsFragment>;
+}) => {
+  const value = useConstants()[name];
+
+  return <>{value}</>;
+};
