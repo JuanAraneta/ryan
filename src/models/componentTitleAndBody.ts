@@ -2,9 +2,7 @@ import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const componentTitleAndBody = {
-  sys: {
-    id: "componentTitleAndBody",
-  },
+  sys: { id: "componentTitleAndBody" },
   name: "Component / Title and body",
   description: "",
   fields: [

@@ -4,12 +4,11 @@ import { moduleChapterGroup } from "./moduleChapterGroup";
 import { moduleCustomerStoriesCarousel } from "./moduleCustomerStoriesCarousel";
 import { moduleExpertsOverflow } from "./moduleExpertsOverflow";
 import { moduleInsightsBento } from "./moduleInsightsBento";
+import { moduleSoftwareServicesRoutingGrid } from "./moduleSoftwareServicesRoutingGrid";
 import { moduleStatementHome } from "./moduleStatementHome";
 
 export const moduleContainer = {
-  sys: {
-    id: "moduleContainer",
-  },
+  sys: { id: "moduleContainer" },
   name: "Module / Container",
   description:
     "A container which owns groups of modules but supplies them with a theme & background color.",
@@ -27,6 +26,7 @@ export const moduleContainer = {
         moduleChapterGroup,
         moduleInsightsBento,
         moduleStatementHome,
+        moduleSoftwareServicesRoutingGrid,
       ],
     }),
   ],

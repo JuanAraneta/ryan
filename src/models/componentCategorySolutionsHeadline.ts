@@ -2,9 +2,7 @@ import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const componentCategorySolutionsHeadline = {
-  sys: {
-    id: "componentCategorySolutionsHeadline",
-  },
+  sys: { id: "componentCategorySolutionsHeadline" },
   name: "Category solutions / Headline",
   description: "",
   fields: [
