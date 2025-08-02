@@ -102,43 +102,55 @@ export const useRichTextRenderOptions = (
         renderNode: {
           [BLOCKS.HEADING_1]: (_, children) =>
             spansOnly ? (
-              <span className="block">{children}</span>
+              <span className="block typo-heading-1 [*+&]:mt-9">
+                {children}
+              </span>
             ) : (
               <h2 className="typo-heading-1 [*+&]:mt-9">{children}</h2>
             ),
           [BLOCKS.HEADING_2]: (_, children) =>
             spansOnly ? (
-              <span className="block">{children}</span>
+              <span className="block typo-heading-2 [*+&]:mt-8">
+                {children}
+              </span>
             ) : (
               <h2 className="typo-heading-2 [*+&]:mt-8">{children}</h2>
             ),
           [BLOCKS.HEADING_3]: (_, children) =>
             spansOnly ? (
-              <span className="block">{children}</span>
+              <span className="block typo-heading-3 [*+&]:mt-6">
+                {children}
+              </span>
             ) : (
               <h3 className="typo-heading-3 [*+&]:mt-6">{children}</h3>
             ),
           [BLOCKS.HEADING_4]: (_, children) =>
             spansOnly ? (
-              <span className="block">{children}</span>
+              <span className="block typo-heading-4 [*+&]:mt-5">
+                {children}
+              </span>
             ) : (
               <h4 className="typo-heading-4 [*+&]:mt-5">{children}</h4>
             ),
           [BLOCKS.HEADING_5]: (_, children) =>
             spansOnly ? (
-              <span className="block">{children}</span>
+              <span className="block typo-heading-5 [*+&]:mt-4">
+                {children}
+              </span>
             ) : (
               <h5 className="typo-heading-5 [*+&]:mt-4">{children}</h5>
             ),
           [BLOCKS.HEADING_6]: (_, children) =>
             spansOnly ? (
-              <span className="block">{children}</span>
+              <span className="block typo-heading-6 [*+&]:mt-2">
+                {children}
+              </span>
             ) : (
               <h6 className="typo-heading-6 [*+&]:mt-2">{children}</h6>
             ),
           [BLOCKS.PARAGRAPH]: (_, children) =>
             spansOnly ? (
-              <span className="block">{children}</span>
+              <span className="block [*+&]:mt-5">{children}</span>
             ) : (
               <p className="typo-body-base [*+&]:mt-5">{children}</p>
             ),

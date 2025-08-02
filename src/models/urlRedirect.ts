@@ -2,9 +2,7 @@ import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const urlRedirect = {
-  sys: {
-    id: "urlRedirect",
-  },
+  sys: { id: "urlRedirect" },
   name: "URL Redirect",
   description:
     "Defines a redirect rule to guide users and search engines from one URL to another. Useful for maintaining SEO when content is moved, renamed, or removed. Supports permanent (301) and temporary (302) redirects, as well as region- and language-specific use cases.",

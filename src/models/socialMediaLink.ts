@@ -2,9 +2,7 @@ import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const socialMediaLink = {
-  sys: {
-    id: "socialMediaLink",
-  },
+  sys: { id: "socialMediaLink" },
   name: "Social media link",
   description:
     "Stores information for individual social media profiles per region/market. This allows localized branding and targeting by associating links with specific markets (e.g., US Facebook page, UK LinkedIn page).",

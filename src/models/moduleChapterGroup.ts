@@ -6,9 +6,7 @@ import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const componentCategorySolutionsChapter = {
-  sys: {
-    id: "componentCategorySolutionsChapter",
-  },
+  sys: { id: "componentCategorySolutionsChapter" },
   name: "Category solutions / Chapter",
   description: "",
   fields: [
@@ -33,9 +31,7 @@ export const componentCategorySolutionsChapter = {
 } as const satisfies ExpandedContentModel;
 
 export const moduleChapterGroup = {
-  sys: {
-    id: "moduleChapterGroup",
-  },
+  sys: { id: "moduleChapterGroup" },
   name: "Module / Chapter group",
   description: "A group of chapter items.",
   fields: [

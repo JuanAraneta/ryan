@@ -4,9 +4,7 @@ import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const siteSettings = {
-  sys: {
-    id: "siteSettings",
-  },
+  sys: { id: "siteSettings" },
   name: "Site settings",
   description:
     "Stores global configuration and shared settings for the site, including confirmation IDs for external tools (like analytics), social media links and other site-wide defaults. This content type ensures consistent configuration across all pages and regions.",

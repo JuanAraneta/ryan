@@ -1,10 +1,8 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const componentExpert = {
-  sys: {
-    id: "componentExpert",
-  },
+export const pageExpert = {
+  sys: { id: "componentExpert" },
   name: "Page / Expert",
   description:
     "The simple representation of a Ryan Tax Expert. Will have associated bio-pages, and other section references.",

@@ -4,9 +4,7 @@ import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const moduleStatementHome = {
-  sys: {
-    id: "moduleStatementHome",
-  },
+  sys: { id: "moduleStatementHome" },
   name: "Module / Statement / Home",
   description: "",
   fields: [

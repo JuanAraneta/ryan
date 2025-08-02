@@ -3,9 +3,7 @@ import { createField } from "./utils/createField";
 import { componentLink } from "./componentLink";
 
 export const categorySolutionsImageLink = {
-  sys: {
-    id: "categorySolutionsImageLink",
-  },
+  sys: { id: "categorySolutionsImageLink" },
   name: "Category solutions / Image link grid / Item",
   description: "",
   fields: [
@@ -24,9 +22,7 @@ export const categorySolutionsImageLink = {
 } as const satisfies ExpandedContentModel;
 
 export const categorySolutionsImageLinkGrid = {
-  sys: {
-    id: "categorySolutionsImageLinkGrid",
-  },
+  sys: { id: "categorySolutionsImageLinkGrid" },
   name: "Category solutions / Image link grid",
   description: "",
   fields: [

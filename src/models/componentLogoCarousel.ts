@@ -2,9 +2,7 @@ import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const componentLogoCarousel = {
-  sys: {
-    id: "componentLogoCarousel",
-  },
+  sys: { id: "componentLogoCarousel" },
   name: "Component / Logo carousel",
   description:
     "A component representing a carousel of logos. Created so that a small set of instances can be shared.",

@@ -80,6 +80,25 @@ export const RichTextFragments = {
       }
     }
   `),
+  ComponentTestimonial_testimonial: graphql(`
+    fragment ComponentTestimonial_testimonialFragment on ComponentTestimonialTestimonial
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `),
   ComponentTitleAndBody_richTextBody: graphql(`
     fragment ComponentTitleAndBody_richTextBodyFragment on ComponentTitleAndBodyRichTextBody
     @_unmask {
@@ -213,8 +232,84 @@ export const RichTextFragments = {
       }
     }
   `),
+  ModuleSoftwareServicesRoutingGrid_description: graphql(`
+    fragment ModuleSoftwareServicesRoutingGrid_descriptionFragment on ModuleSoftwareServicesRoutingGridDescription
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `),
+  ModuleSoftwareServicesRoutingGrid_title: graphql(`
+    fragment ModuleSoftwareServicesRoutingGrid_titleFragment on ModuleSoftwareServicesRoutingGridTitle
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `),
   ModuleStatementHome_headline: graphql(`
     fragment ModuleStatementHome_headlineFragment on ModuleStatementHomeHeadline
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `),
+  PageService_shortDescription: graphql(`
+    fragment PageService_shortDescriptionFragment on PageServiceShortDescription
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `),
+  PageSoftware_shortDescription: graphql(`
+    fragment PageSoftware_shortDescriptionFragment on PageSoftwareShortDescription
     @_unmask {
       json
       links {

@@ -3,9 +3,7 @@ import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const market = {
-  sys: {
-    id: "market",
-  },
+  sys: { id: "market" },
   name: "Market",
   description:
     "Represents a geographical market or country (e.g., United States, Brazil, Canada) used to associate region-specific content like pages, social links, site settings, and SEO metadata. Language variations are handled separately through Contentful localization.",

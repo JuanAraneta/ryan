@@ -2,9 +2,7 @@ import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const componentStatistic = {
-  sys: {
-    id: "componentStatistic",
-  },
+  sys: { id: "componentStatistic" },
   name: "Component / Statistic",
   description:
     "A representation of a particular statistic to be shared and updated from a single source.",
