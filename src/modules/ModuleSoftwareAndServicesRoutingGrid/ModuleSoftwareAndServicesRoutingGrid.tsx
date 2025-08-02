@@ -81,17 +81,18 @@ export const ModuleSoftwareAndServicesRoutingGrid = ({
               <Link
                 link={{ internalSource: page }}
                 className={cx(
-                  "block bg-white border border-border-primary rounded-xl size-full p-6",
+                  "group block relative overflow-hidden transition-colors bg-neutral-50 hover:bg-white focus-visible:bg-white border border-border-primary rounded-xl size-full p-6",
                   focusStyle,
                 )}
               >
                 <span className="flex justify-between gap-6">
                   <span className="block typo-heading-5">{page.title}</span>
-                  <MdArrowForward className="text-brand-300 size-6" />
+                  <MdArrowForward className="text-brand-300 size-6 transition-transform -translate-x-2 group-hover:translate-x-0 group-focus-visible:translate-x-0" />
                 </span>
                 <span className="hidden dsk:block pt-3 dsk:pb:pb-7 last:dsk:pb-12 text-content-secondary">
                   <RichText content={page.shortDescription} spansOnly />
                 </span>
+                <div className="gradient-gold-h-dark-to-light w-full h-1 absolute bottom-0 left-0 translate-y-full group-hover:translate-y-0 group-focus-visible:translate-y-0 transition-transform" />
               </Link>
             </li>
           ))}
