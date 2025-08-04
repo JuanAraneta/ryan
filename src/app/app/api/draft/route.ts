@@ -30,7 +30,6 @@ export async function GET(request: Request) {
     return new Response("Invalid slug", { status: 401 });
   }
 
-  // Enable Draft Mode by setting the cookie
   const draft = await draftMode();
   draft.enable();
 

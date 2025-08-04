@@ -12,6 +12,7 @@ import { Lato } from "next/font/google";
 import { ConstantsProvider } from "@/components/providers/ConstantsContext";
 import { GetConstantsQuery } from "@/lib/contentful/query/GetConstantsQuery";
 import { ConstantsFragment } from "@/lib/contentful/fragments/ConstantsFragment";
+import { DraftModeBanner } from "@/components/DraftModeBanner";
 
 const latoSans = Lato({
   variable: "--font-sans",
@@ -55,6 +56,7 @@ export default async function RootLayout(
       </head>
       <body className={latoSans.variable}>
         <main className="min-h-screen">
+          <DraftModeBanner />
           {page.hero && <Hero data={readFragment(HeroFragment, page.hero)} />}
           {props.children}
           {page.footer && (
