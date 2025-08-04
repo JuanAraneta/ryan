@@ -13,11 +13,12 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
 
   const secret = searchParams.get("secret");
+
+  if (secret !== SECRET) return new Response("Invalid token", { status: 401 });
+
   const slug = searchParams.get("slug");
 
-  if (secret !== SECRET || !slug) {
-    return new Response("Invalid token", { status: 401 });
-  }
+  if (!slug) return new Response("Invalid slug", { status: 401 });
 
   const pagesResult = await contentClient.query(GetAllPagesQuery, {});
 
@@ -25,7 +26,6 @@ export async function GET(request: Request) {
     (page) => page?.slug === slug,
   );
 
-  // If the slug doesn't exist prevent draft mode from being enabled
   if (!page?.slug) {
     return new Response("Invalid slug", { status: 401 });
   }
@@ -33,7 +33,5 @@ export async function GET(request: Request) {
   const draft = await draftMode();
   draft.enable();
 
-  // Redirect to the path from the fetched post
-  // We don't redirect to searchParams.slug as that might lead to open redirect vulnerabilities
-  redirect(page.slug);
+  redirect(`/${page.slug}`);
 }
