@@ -22,6 +22,10 @@ import {
   ModuleStatementHome,
   GetModuleStatementHomeById,
 } from "./ModuleStatementHome";
+import {
+  ModuleSoftwareAndServicesRoutingGrid,
+  GetModuleSoftwareServicesRoutingGridById,
+} from "./ModuleSoftwareAndServicesRoutingGrid";
 import { ModulePlatform, GetModulePlatformById } from "./ModulePlatform";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -64,6 +68,10 @@ const moduleRegistry: ModuleRegistry = {
   ModuleStatementHome: {
     component: ModuleStatementHome,
     queryById: GetModuleStatementHomeById,
+  },
+  ModuleSoftwareServicesRoutingGrid: {
+    component: ModuleSoftwareAndServicesRoutingGrid,
+    queryById: GetModuleSoftwareServicesRoutingGridById,
   },
   ModulePlatform: {
     component: ModulePlatform,

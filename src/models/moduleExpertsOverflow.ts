@@ -1,13 +1,11 @@
-import { componentExpert } from "./componentExpert";
+import { pageExpert } from "./pageExpert";
 import { componentLink } from "./componentLink";
 import { componentStatistic } from "./componentStatistic";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const moduleExpertsOverflow = {
-  sys: {
-    id: "moduleExpertsOverflow",
-  },
+  sys: { id: "moduleExpertsOverflow" },
   name: "Module / Experts overflow",
   description:
     "A page-module for displaying a select list of tax experts with links to their individual bio-pages.",
@@ -35,7 +33,7 @@ export const moduleExpertsOverflow = {
       id: "expertsList",
       name: "Experts List",
       size: { max: 10 },
-      linkContentType: [componentExpert],
+      linkContentType: [pageExpert],
     }),
   ],
 } as const satisfies ExpandedContentModel;

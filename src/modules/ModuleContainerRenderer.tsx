@@ -11,7 +11,6 @@ export const ModuleContainerRenderer = async ({
   data: ResultOf<typeof PageModulesCollectionFragment>;
 }) => {
   const contentClient = createContentClient();
-
   return (
     <>
       {await Promise.allSettled(

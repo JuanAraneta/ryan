@@ -2,9 +2,7 @@ import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const componentRoutingItem = {
-  sys: {
-    id: "componentRoutingItem",
-  },
+  sys: { id: "componentRoutingItem" },
   name: "Component / Routing Item",
   description:
     "A generic routing item component that can be used in various navigation contexts with configurable content.",
