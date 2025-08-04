@@ -22,6 +22,7 @@ import {
   ModuleStatementHome,
   GetModuleStatementHomeById,
 } from "./ModuleStatementHome";
+import { ModulePlatform, GetModulePlatformById } from "./ModulePlatform";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ModuleComponent<Data = any> = {
@@ -63,6 +64,10 @@ const moduleRegistry: ModuleRegistry = {
   ModuleStatementHome: {
     component: ModuleStatementHome,
     queryById: GetModuleStatementHomeById,
+  },
+  ModulePlatform: {
+    component: ModulePlatform,
+    queryById: GetModulePlatformById,
   },
 };
 
