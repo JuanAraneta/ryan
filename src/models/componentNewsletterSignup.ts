@@ -2,9 +2,7 @@ import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const componentNewsletterSignup = {
-  sys: {
-    id: "componentNewsletterSignup",
-  },
+  sys: { id: "componentNewsletterSignup" },
   name: "Newsletter signup",
   description:
     "A newsletter signup form component for collecting email subscriptions.",

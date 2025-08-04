@@ -6,9 +6,9 @@ import { componentCategorySolutionsChapter } from "./componentCategorySolutionsC
 import { componentIconTextWrap } from "./componentIconTextWrap";
 import { componentCategorySolutions2ColSubBody } from "./componentCategorySolutions2ColSubBody";
 import { componentCardDeviceMock } from "./componentCardDeviceMock";
-import { componentExpert } from "./componentExpert";
-import { componentCustomerStory } from "./componentCustomerStory";
-import { componentInsight } from "./componentInsight";
+import { pageExpert } from "./pageExpert";
+import { pageCustomerStory } from "./pageCustomerStory";
+import { pageInsight } from "./pageInsight";
 import { componentLink } from "./componentLink";
 import { componentNewsletterSignup } from "./componentNewsletterSignup";
 import { componentStatistic } from "./componentStatistic";
@@ -39,6 +39,12 @@ import type { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { moduleStatementHome } from "./moduleStatementHome";
 import { modulePlatform } from "./modulePlatform";
 import { componentLogoCarousel } from "./componentLogoCarousel";
+import { pageSoftware } from "./pageSoftware";
+import { pageService } from "./pageService";
+import {
+  componentTestimonial,
+  moduleSoftwareServicesRoutingGrid,
+} from "./moduleSoftwareServicesRoutingGrid";
 
 // Components
 const components: ExpandedContentModel[] = [
@@ -47,14 +53,12 @@ const components: ExpandedContentModel[] = [
   componentIconTextWrap,
   componentCategorySolutions2ColSubBody,
   componentCardDeviceMock,
-  componentExpert,
-  componentCustomerStory,
-  componentInsight,
   componentLink,
   componentNewsletterSignup,
   componentStatistic,
   componentRoutingItem,
   componentLogoCarousel,
+  componentTestimonial,
 ];
 
 // Modules
@@ -66,6 +70,16 @@ const modules: ExpandedContentModel[] = [
   moduleHeroHome,
   moduleInsightsBento,
   moduleStatementHome,
+  moduleSoftwareServicesRoutingGrid,
+];
+
+const pages: ExpandedContentModel[] = [
+  page,
+  pageExpert,
+  pageCustomerStory,
+  pageInsight,
+  pageSoftware,
+  pageService,
   modulePlatform,
 ];
 
@@ -73,7 +87,6 @@ const modules: ExpandedContentModel[] = [
 const other: ExpandedContentModel[] = [
   categorySolutionsImageLink,
   categorySolutionsImageLinkGrid,
-  page,
   constants,
   footer,
   seoMetadata,
@@ -84,7 +97,7 @@ const other: ExpandedContentModel[] = [
   script,
 ];
 
-export const models = [...components, ...modules, ...other].map(
+export const models = [...components, ...modules, ...pages, ...other].map(
   contentModelComposer,
 );
 

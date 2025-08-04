@@ -2,9 +2,7 @@ import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const seoMetadata = {
-  sys: {
-    id: "seoMetadata",
-  },
+  sys: { id: "seoMetadata" },
   name: "SEO Metadata",
   description:
     "Stores SEO-related information such as meta titles, descriptions, canonical URLs, and Open Graph / social sharing data. This content type helps optimize how pages appear in search engines and social platforms, improving visibility and click-through rates.",

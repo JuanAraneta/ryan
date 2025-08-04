@@ -11,6 +11,7 @@ type LinkProps =
       link:
         | ResultOf<typeof ComponentLinkFragment>
         | FragmentOf<typeof ComponentLinkFragment>
+        | Pick<ResultOf<typeof ComponentLinkFragment>, "internalSource">
         | null
         | undefined;
       href?: never;

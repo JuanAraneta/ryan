@@ -3,9 +3,7 @@ import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const componentCardDeviceMock = {
-  sys: {
-    id: "componentCardDeviceMock",
-  },
+  sys: { id: "componentCardDeviceMock" },
   name: "Category solutions / Card & device mock",
   description: "Often the card that is the headline container for a chapter.",
   fields: [

@@ -2,9 +2,7 @@ import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const constants = {
-  sys: {
-    id: "constants",
-  },
+  sys: { id: "constants" },
   name: "Constants",
   description:
     "All constant strings that get used in multiple places throughout the application.",
@@ -30,7 +28,10 @@ export const constants = {
       id: "subscribeButtonLabel",
       name: "Subscribe button label",
     }),
-
+    createField("shortText", {
+      id: "seeMore",
+      name: "See more button label",
+    }),
     createField("singletonLock"),
   ],
 } as const satisfies ExpandedContentModel;
