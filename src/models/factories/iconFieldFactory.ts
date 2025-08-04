@@ -1,6 +1,5 @@
 import merge from "lodash/merge";
 import { ExpandedFieldDetails } from "../types/ExpandedFieldDetails";
-import * as Icons from "@/components/icons";
 
 export const iconFieldFactory = ({
   id = "icon",
@@ -14,13 +13,23 @@ export const iconFieldFactory = ({
     {
       id,
       name,
-      type: "Symbol",
-      validations: [{ in: Object.keys(Icons) }],
+      type: "Link",
+      linkType: "Asset",
+      validations: [
+        { linkMimetypeGroup: ["image"] },
+        {
+          assetImageDimensions: { width: { max: 18 }, height: { max: 18 } },
+          message:
+            "Icon cannot be bigger than 18x18 pixels, use assets tagged with 'icon'.",
+        },
+        { assetFileSize: { max: 10240 } },
+      ],
       editorInterface: {
-        widgetId: "dropdown",
-        widgetNamespace: "builtin",
+        widgetId: "assetLinkEditor",
         settings: {
-          helpText: "Select an icon from the list",
+          helpText: "SVG files only, 18x18px max, under 10KB.",
+          showLinkEntityAction: true,
+          showCreateEntityAction: false,
         },
       },
     },
