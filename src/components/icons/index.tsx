@@ -1,10 +1,12 @@
-import { AIIcon as AI } from "./AIIcon";
+import { AIIcon } from "./AIIcon";
 
-export const Icons = { AI } as const;
+export const Icons = { AIIcon } as const;
 
 export const getIconByKey = (icon?: string | null) => {
   if (!icon) return null;
 
-  const key = icon as keyof typeof Icons;
-  return Icons[key];
+  if (icon in Icons) {
+    return Icons[icon as keyof typeof Icons];
+  }
+  return null;
 };
