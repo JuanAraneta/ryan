@@ -1,6 +1,5 @@
 import { Hero } from "@/modules/Hero/Hero";
 import { Footer } from "@/modules/Footer/Footer";
-import Script from "next/script";
 import { SEOMetadata } from "@/components/SEOMetadata/SEOMetadata";
 import {
   createContentClient,
@@ -17,6 +16,7 @@ import { ConstantsProvider } from "@/components/providers/ConstantsContext";
 import { GetConstantsQuery } from "@/lib/contentful/query/GetConstantsQuery";
 import { ConstantsFragment } from "@/lib/contentful/fragments/ConstantsFragment";
 import { DraftModeBanner } from "@/components/DraftModeBanner";
+import { ContentfulLivePreviewProvider } from "@/components/providers/ContentfulLivePreviewProvider";
 
 const latoSans = Lato({
   variable: "--font-sans",
@@ -47,7 +47,6 @@ export default async function RootLayout(
     }),
     contentClient.query(GetConstantsQuery, { locale, preview }),
   ]);
-  console.log("🚀 ~ pageResult:", pageResult);
 
   const page = pageResult.data?.pageCollection?.items[0];
   const constants = constantsResult.data?.constantsCollection?.items[0];
@@ -64,15 +63,16 @@ export default async function RootLayout(
         )}
       </head>
       <body className={latoSans.variable}>
-        <main className="min-h-screen">
-          <DraftModeBanner />
-          {page.hero && <Hero data={readFragment(HeroFragment, page.hero)} />}
-          {props.children}
-          {page.footer && (
-            <Footer data={readFragment(FooterFragment, page.footer)} />
-          )}
-        </main>
-        {preview && <Script src="/_live-preview.ts" />}
+        <ContentfulLivePreviewProvider>
+          <main className="min-h-screen">
+            <DraftModeBanner />
+            {page.hero && <Hero data={readFragment(HeroFragment, page.hero)} />}
+            {props.children}
+            {page.footer && (
+              <Footer data={readFragment(FooterFragment, page.footer)} />
+            )}
+          </main>
+        </ContentfulLivePreviewProvider>
       </body>
     </ConstantsProvider>
   );
