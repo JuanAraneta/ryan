@@ -1,5 +1,3 @@
-import { contentClient } from "@/lib/contentful/contentClient";
-import { GetAllPagesQuery } from "@/lib/contentful/query/GetAllPagesQuery";
 import { draftMode } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -18,20 +16,12 @@ export async function GET(request: Request) {
 
   const slug = searchParams.get("slug");
 
-  if (!slug) return new Response("Invalid slug", { status: 401 });
-
-  const pagesResult = await contentClient.query(GetAllPagesQuery, {});
-
-  const page = pagesResult.data?.pageCollection?.items.find(
-    (page) => page?.slug === slug,
-  );
-
-  if (!page?.slug) {
-    return new Response("Invalid slug", { status: 401 });
-  }
-
   const draft = await draftMode();
   draft.enable();
 
-  redirect(`/${page.slug}`);
+  if (!slug || slug === "home") {
+    redirect("/");
+  }
+
+  redirect(`/${slug}`);
 }

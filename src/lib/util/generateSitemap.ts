@@ -1,8 +1,9 @@
-import { contentClient } from "../contentful/contentClient";
+import { createContentClient } from "../contentful/contentClient";
 import { GetAllPagesQuery } from "../contentful/query/GetAllPagesQuery";
 
 export const generateSitemap = async () => {
   // TODO - make this call recurse if we hit the limit size
+  const contentClient = createContentClient();
   const pagesResult = await contentClient.query(GetAllPagesQuery, {});
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://ryan.com";

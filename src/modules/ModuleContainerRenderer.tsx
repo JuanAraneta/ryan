@@ -1,4 +1,4 @@
-import { contentClient } from "@/lib/contentful/contentClient";
+import { createContentClient } from "@/lib/contentful/contentClient";
 import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
 import moduleRegistry from "@/modules/moduleRegistry";
 import { backgroundDescriptionMapToClass } from "@/utils/backgroundDescriptionMapToClass";
@@ -10,6 +10,8 @@ export const ModuleContainerRenderer = async ({
 }: {
   data: ResultOf<typeof PageModulesCollectionFragment>;
 }) => {
+  const contentClient = createContentClient();
+
   return (
     <>
       {await Promise.allSettled(
