@@ -106,6 +106,7 @@ type AssetLinkingCollections {
   componentCardDeviceMockCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentCardDeviceMockCollection
   componentCustomerStoryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentCustomerStoryCollection
   componentExpertCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentExpertCollection
+  componentIconTextWrapCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentIconTextWrapCollection
   componentInsightCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentInsightCollection
   componentLogoCarouselCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentLogoCarouselCollection
   componentRoutingItemCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentRoutingItemCollection
@@ -957,7 +958,7 @@ type ComponentIconTextWrap implements Entry & _Node {
   _id: ID!
   body(locale: String): String
   contentfulMetadata: ContentfulMetadata!
-  icon(locale: String): String
+  icon(locale: String, preview: Boolean): Asset
   linkedFrom(allowedLocales: [String]): ComponentIconTextWrapLinkingCollections
   sys: Sys!
   title(locale: String): String
@@ -981,13 +982,7 @@ input ComponentIconTextWrapFilter {
   body_not_contains: String
   body_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
-  icon: String
-  icon_contains: String
   icon_exists: Boolean
-  icon_in: [String]
-  icon_not: String
-  icon_not_contains: String
-  icon_not_in: [String]
   sys: SysFilter
   title: String
   title_contains: String
@@ -1019,8 +1014,6 @@ enum ComponentIconTextWrapLinkingCollectionsModulePlatformCollectionOrder {
 enum ComponentIconTextWrapOrder {
   body_ASC
   body_DESC
-  icon_ASC
-  icon_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -3520,8 +3513,6 @@ type ModulePlatformCapabilityComponentsCollection {
 enum ModulePlatformCapabilityComponentsCollectionOrder {
   body_ASC
   body_DESC
-  icon_ASC
-  icon_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -5223,13 +5214,7 @@ input cfComponentIconTextWrapNestedFilter {
   body_not_contains: String
   body_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
-  icon: String
-  icon_contains: String
   icon_exists: Boolean
-  icon_in: [String]
-  icon_not: String
-  icon_not_contains: String
-  icon_not_in: [String]
   sys: SysFilter
   title: String
   title_contains: String
