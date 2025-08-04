@@ -22,11 +22,15 @@ import {
   ModuleStatementHome,
   GetModuleStatementHomeById,
 } from "./ModuleStatementHome";
-import { ModuleSoftwareAndServicesRoutingGrid } from "./ModuleSoftwareAndServicesRoutingGrid/ModuleSoftwareAndServicesRoutingGrid";
-import { GetModuleSoftwareServicesRoutingGridById } from "./ModuleSoftwareAndServicesRoutingGrid/GetModuleSoftwareServicesRoutingGridById";
+import {
+  ModuleSoftwareAndServicesRoutingGrid,
+  GetModuleSoftwareServicesRoutingGridById,
+} from "./ModuleSoftwareAndServicesRoutingGrid";
 import { ModulePlatform, GetModulePlatformById } from "./ModulePlatform";
-import { ModuleServiceSoftwareRoutingCards } from "./ModuleServiceSoftwareRoutingCards/ModuleServiceSoftwareRoutingCards";
-import { GetModuleServiceSoftwareRoutingCardsById } from "./ModuleServiceSoftwareRoutingCards/GetModuleServiceSoftwareRoutingCardsById";
+import {
+  ModuleServiceSoftwareRoutingCards,
+  GetModuleServiceSoftwareRoutingCardsById,
+} from "./ModuleServiceSoftwareRoutingCards";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ModuleComponent<Data = any> = {

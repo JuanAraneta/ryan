@@ -95,7 +95,7 @@ export const ModuleSoftwareAndServicesRoutingGrid = ({
                     <span className="block typo-heading-5">{page.title}</span>
                     <MdArrowForward className="text-brand-300 size-6 transition-transform -translate-x-2 group-hover:translate-x-0 group-focus-visible:translate-x-0" />
                   </span>
-                  <span className="hidden dsk:block pt-3 dsk:pb:pb-7 last:dsk:pb-12 text-content-secondary">
+                  <span className="hidden dsk:block pt-3 dsk:pb-7 last:dsk:pb-12 text-content-secondary">
                     <RichText content={page.shortDescription} spansOnly />
                   </span>
                 </Link>

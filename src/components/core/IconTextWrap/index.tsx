@@ -1,6 +1,9 @@
+"use client";
+
 import { readFragment, FragmentOf } from "gql.tada";
 import { ComponentIconTextWrapFragment } from "@/lib/contentful/fragments/ComponentIconTextWrapFragment";
-import { getIconByKey } from "@/components/icons";
+import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
+import { ExternalSVGIcon } from "../ExternalSVGIcon";
 
 export const IconTextWrap = ({
   data,
@@ -12,14 +15,14 @@ export const IconTextWrap = ({
     data,
   );
 
-  const Icon = getIconByKey(icon);
+  const iconData = readFragment(AssetFragment, icon);
 
   return (
     <div className="flex flex-col">
       <div className="min-h-16">
-        {Icon && (
+        {iconData?.url && (
           <div className="text-new-gold border-2 rounded-full p-3 aspect-square w-fit flex items-center justify-center mb-3">
-            <Icon className="w-4" />
+            <ExternalSVGIcon url={iconData.url} alt={`${title} icon`} />
           </div>
         )}
       </div>
