@@ -1,3 +1,5 @@
+"use client";
+
 import { ResultOf } from "gql.tada";
 import { AIChatPrompt } from "@/components/core/AIChat";
 import { RichText } from "@/components/core/RichText";
@@ -6,12 +8,15 @@ import { HeroRoutingCard } from "./components/HeroRoutingCard";
 import { ModuleHeroHomeFragment } from "./ModuleHeroHomeFragment";
 import { readFragment } from "gql.tada";
 import { ComponentRoutingItemFragment } from "@/lib/contentful/fragments/ComponentRoutingItemFragment";
+import { useContentfulInspectorMode } from "@contentful/live-preview/react";
 
 export function HeroHome({
   data,
 }: {
   data: ResultOf<typeof ModuleHeroHomeFragment>;
 }) {
+  const inspectorProps = useContentfulInspectorMode();
+
   const { headline, prompts, routingCardsCollection } = data;
 
   return (

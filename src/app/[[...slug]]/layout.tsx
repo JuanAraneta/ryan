@@ -15,8 +15,8 @@ import { Lato } from "next/font/google";
 import { ConstantsProvider } from "@/components/providers/ConstantsContext";
 import { GetConstantsQuery } from "@/lib/contentful/query/GetConstantsQuery";
 import { ConstantsFragment } from "@/lib/contentful/fragments/ConstantsFragment";
-import { DraftModeBanner } from "@/components/DraftModeBanner";
-import { ContentfulLivePreviewProvider } from "@/components/providers/ContentfulLivePreviewProvider";
+import { PreviewModeBanner } from "@/components/PreviewModeBanner";
+import { ContentfulPreviewProvider } from "@/components/providers/ContentfulPreviewProvider";
 
 const latoSans = Lato({
   variable: "--font-sans",
@@ -63,16 +63,21 @@ export default async function RootLayout(
         )}
       </head>
       <body className={latoSans.variable}>
-        <ContentfulLivePreviewProvider>
-          <main className="min-h-screen">
-            <DraftModeBanner />
+        <main className="min-h-screen">
+          <ContentfulPreviewProvider
+            locale="en-US"
+            enableInspectorMode={preview}
+            enableLiveUpdates={preview}
+          >
+            <PreviewModeBanner />
+
             {page.hero && <Hero data={readFragment(HeroFragment, page.hero)} />}
             {props.children}
             {page.footer && (
               <Footer data={readFragment(FooterFragment, page.footer)} />
             )}
-          </main>
-        </ContentfulLivePreviewProvider>
+          </ContentfulPreviewProvider>
+        </main>
       </body>
     </ConstantsProvider>
   );
