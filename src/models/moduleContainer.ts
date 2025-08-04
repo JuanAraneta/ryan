@@ -6,6 +6,7 @@ import { moduleExpertsOverflow } from "./moduleExpertsOverflow";
 import { moduleInsightsBento } from "./moduleInsightsBento";
 import { moduleSoftwareServicesRoutingGrid } from "./moduleSoftwareServicesRoutingGrid";
 import { moduleStatementHome } from "./moduleStatementHome";
+import { modulePlatform } from "./modulePlatform";
 
 export const moduleContainer = {
   sys: { id: "moduleContainer" },
@@ -27,6 +28,7 @@ export const moduleContainer = {
         moduleInsightsBento,
         moduleStatementHome,
         moduleSoftwareServicesRoutingGrid,
+        modulePlatform,
       ],
     }),
   ],

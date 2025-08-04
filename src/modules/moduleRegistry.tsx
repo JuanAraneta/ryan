@@ -24,6 +24,7 @@ import {
 } from "./ModuleStatementHome";
 import { ModuleSoftwareAndServicesRoutingGrid } from "./ModuleSoftwareAndServicesRoutingGrid/ModuleSoftwareAndServicesRoutingGrid";
 import { GetModuleSoftwareServicesRoutingGridById } from "./ModuleSoftwareAndServicesRoutingGrid/GetModuleSoftwareServicesRoutingGridById";
+import { ModulePlatform, GetModulePlatformById } from "./ModulePlatform";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ModuleComponent<Data = any> = {
@@ -69,6 +70,10 @@ const moduleRegistry: ModuleRegistry = {
   ModuleSoftwareServicesRoutingGrid: {
     component: ModuleSoftwareAndServicesRoutingGrid,
     queryById: GetModuleSoftwareServicesRoutingGridById,
+  },
+  ModulePlatform: {
+    component: ModulePlatform,
+    queryById: GetModulePlatformById,
   },
 };
 

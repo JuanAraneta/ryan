@@ -116,7 +116,7 @@
     var(--color-white) 8%,
     transparent
   );
-  --color-content-secondary: var(--color-neutral-300);
+  --color-content-secondary: var(--color-silver-mist);
   --color-icon-button-secondary-border: var(--color-border-primary);
   --color-icon-button-secondary-bg-hover: var(--color-new-gold);
   --color-icon-button-secondary-content-hover: var(--color-neutral-900);

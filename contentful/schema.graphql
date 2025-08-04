@@ -113,6 +113,7 @@ type AssetLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   headerCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): HeaderCollection
   moduleExpertsOverflowCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ModuleExpertsOverflowCollection
+  modulePlatformCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ModulePlatformCollection
   seoMetadataCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): SeoMetadataCollection
   socialMediaLinkCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): SocialMediaLinkCollection
 }
@@ -950,6 +951,89 @@ enum ComponentExpertOrder {
 }
 
 """
+[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/componentIconTextWrap)
+"""
+type ComponentIconTextWrap implements Entry & _Node {
+  _id: ID!
+  body(locale: String): String
+  contentfulMetadata: ContentfulMetadata!
+  icon(locale: String): String
+  linkedFrom(allowedLocales: [String]): ComponentIconTextWrapLinkingCollections
+  sys: Sys!
+  title(locale: String): String
+}
+
+type ComponentIconTextWrapCollection {
+  items: [ComponentIconTextWrap]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input ComponentIconTextWrapFilter {
+  AND: [ComponentIconTextWrapFilter]
+  OR: [ComponentIconTextWrapFilter]
+  body: String
+  body_contains: String
+  body_exists: Boolean
+  body_in: [String]
+  body_not: String
+  body_not_contains: String
+  body_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  icon: String
+  icon_contains: String
+  icon_exists: Boolean
+  icon_in: [String]
+  icon_not: String
+  icon_not_contains: String
+  icon_not_in: [String]
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+type ComponentIconTextWrapLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  modulePlatformCollection(limit: Int = 100, locale: String, order: [ComponentIconTextWrapLinkingCollectionsModulePlatformCollectionOrder], preview: Boolean, skip: Int = 0): ModulePlatformCollection
+}
+
+enum ComponentIconTextWrapLinkingCollectionsModulePlatformCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum ComponentIconTextWrapOrder {
+  body_ASC
+  body_DESC
+  icon_ASC
+  icon_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+"""
 [See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/componentInsight)
 """
 type ComponentInsight implements Entry & _Node {
@@ -1120,6 +1204,7 @@ type ComponentLinkLinkingCollections {
   moduleCustomerStoriesCarouselCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsModuleCustomerStoriesCarouselCollectionOrder], preview: Boolean, skip: Int = 0): ModuleCustomerStoriesCarouselCollection
   moduleExpertsOverflowCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsModuleExpertsOverflowCollectionOrder], preview: Boolean, skip: Int = 0): ModuleExpertsOverflowCollection
   moduleInsightsBentoCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsModuleInsightsBentoCollectionOrder], preview: Boolean, skip: Int = 0): ModuleInsightsBentoCollection
+  modulePlatformCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsModulePlatformCollectionOrder], preview: Boolean, skip: Int = 0): ModulePlatformCollection
   moduleSoftwareServicesRoutingGridCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsModuleSoftwareServicesRoutingGridCollectionOrder], preview: Boolean, skip: Int = 0): ModuleSoftwareServicesRoutingGridCollection
 }
 
@@ -1222,6 +1307,19 @@ enum ComponentLinkLinkingCollectionsModuleInsightsBentoCollectionOrder {
   eyebrow_DESC
   subheading_ASC
   subheading_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum ComponentLinkLinkingCollectionsModulePlatformCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -2730,7 +2828,7 @@ input ModuleContainerModulesFilter {
   sys: SysFilter
 }
 
-union ModuleContainerModulesItem = ModuleChapterGroup | ModuleCustomerStoriesCarousel | ModuleExpertsOverflow | ModuleInsightsBento | ModuleSoftwareServicesRoutingGrid | ModuleStatementHome
+union ModuleContainerModulesItem = ModuleChapterGroup | ModuleCustomerStoriesCarousel | ModuleExpertsOverflow | ModuleInsightsBento | ModulePlatform | ModuleSoftwareServicesRoutingGrid | ModuleStatementHome
 
 enum ModuleContainerOrder {
   contentfulLabel_ASC
@@ -3385,6 +3483,151 @@ enum ModuleInsightsBentoOrder {
   eyebrow_DESC
   subheading_ASC
   subheading_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/modulePlatform)
+"""
+type ModulePlatform implements Entry & _Node {
+  _id: ID!
+  capabilityComponentsCollection(limit: Int = 100, locale: String, order: [ModulePlatformCapabilityComponentsCollectionOrder], preview: Boolean, skip: Int = 0, where: ComponentIconTextWrapFilter): ModulePlatformCapabilityComponentsCollection
+  contentfulLabel(locale: String): String
+  contentfulMetadata: ContentfulMetadata!
+  ctaButton(locale: String, preview: Boolean, where: ComponentLinkFilter): ComponentLink
+  headline(locale: String): ModulePlatformHeadline
+  image(locale: String, preview: Boolean): Asset
+  leftOverlayAsset(locale: String, preview: Boolean): Asset
+  linkedFrom(allowedLocales: [String]): ModulePlatformLinkingCollections
+  rightOverlayAsset(locale: String, preview: Boolean): Asset
+  sys: Sys!
+}
+
+type ModulePlatformCapabilityComponentsCollection {
+  items: [ComponentIconTextWrap]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+enum ModulePlatformCapabilityComponentsCollectionOrder {
+  body_ASC
+  body_DESC
+  icon_ASC
+  icon_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+type ModulePlatformCollection {
+  items: [ModulePlatform]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input ModulePlatformFilter {
+  AND: [ModulePlatformFilter]
+  OR: [ModulePlatformFilter]
+  capabilityComponents: cfComponentIconTextWrapNestedFilter
+  capabilityComponentsCollection_exists: Boolean
+  contentfulLabel: String
+  contentfulLabel_contains: String
+  contentfulLabel_exists: Boolean
+  contentfulLabel_in: [String]
+  contentfulLabel_not: String
+  contentfulLabel_not_contains: String
+  contentfulLabel_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  ctaButton: cfComponentLinkNestedFilter
+  ctaButton_exists: Boolean
+  headline_contains: String
+  headline_exists: Boolean
+  headline_not_contains: String
+  image_exists: Boolean
+  leftOverlayAsset_exists: Boolean
+  rightOverlayAsset_exists: Boolean
+  sys: SysFilter
+}
+
+type ModulePlatformHeadline {
+  json: JSON!
+  links: ModulePlatformHeadlineLinks!
+}
+
+type ModulePlatformHeadlineAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type ModulePlatformHeadlineEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type ModulePlatformHeadlineLinks {
+  assets: ModulePlatformHeadlineAssets!
+  entries: ModulePlatformHeadlineEntries!
+  resources: ModulePlatformHeadlineResources!
+}
+
+type ModulePlatformHeadlineResources {
+  block: [ModulePlatformHeadlineResourcesBlock!]!
+  hyperlink: [ModulePlatformHeadlineResourcesHyperlink!]!
+  inline: [ModulePlatformHeadlineResourcesInline!]!
+}
+
+type ModulePlatformHeadlineResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ModulePlatformHeadlineResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ModulePlatformHeadlineResourcesInline implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ModulePlatformLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  moduleContainerCollection(limit: Int = 100, locale: String, order: [ModulePlatformLinkingCollectionsModuleContainerCollectionOrder], preview: Boolean, skip: Int = 0): ModuleContainerCollection
+}
+
+enum ModulePlatformLinkingCollectionsModuleContainerCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  moduleBackground_ASC
+  moduleBackground_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum ModulePlatformOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -4176,6 +4419,8 @@ type Query {
   componentCustomerStoryCollection(limit: Int = 100, locale: String, order: [ComponentCustomerStoryOrder], preview: Boolean, skip: Int = 0, where: ComponentCustomerStoryFilter): ComponentCustomerStoryCollection
   componentExpert(id: String!, locale: String, preview: Boolean): ComponentExpert
   componentExpertCollection(limit: Int = 100, locale: String, order: [ComponentExpertOrder], preview: Boolean, skip: Int = 0, where: ComponentExpertFilter): ComponentExpertCollection
+  componentIconTextWrap(id: String!, locale: String, preview: Boolean): ComponentIconTextWrap
+  componentIconTextWrapCollection(limit: Int = 100, locale: String, order: [ComponentIconTextWrapOrder], preview: Boolean, skip: Int = 0, where: ComponentIconTextWrapFilter): ComponentIconTextWrapCollection
   componentInsight(id: String!, locale: String, preview: Boolean): ComponentInsight
   componentInsightCollection(limit: Int = 100, locale: String, order: [ComponentInsightOrder], preview: Boolean, skip: Int = 0, where: ComponentInsightFilter): ComponentInsightCollection
   componentLink(id: String!, locale: String, preview: Boolean): ComponentLink
@@ -4215,6 +4460,8 @@ type Query {
   moduleHeroHomeCollection(limit: Int = 100, locale: String, order: [ModuleHeroHomeOrder], preview: Boolean, skip: Int = 0, where: ModuleHeroHomeFilter): ModuleHeroHomeCollection
   moduleInsightsBento(id: String!, locale: String, preview: Boolean): ModuleInsightsBento
   moduleInsightsBentoCollection(limit: Int = 100, locale: String, order: [ModuleInsightsBentoOrder], preview: Boolean, skip: Int = 0, where: ModuleInsightsBentoFilter): ModuleInsightsBentoCollection
+  modulePlatform(id: String!, locale: String, preview: Boolean): ModulePlatform
+  modulePlatformCollection(limit: Int = 100, locale: String, order: [ModulePlatformOrder], preview: Boolean, skip: Int = 0, where: ModulePlatformFilter): ModulePlatformCollection
   moduleSoftwareServicesRoutingGrid(id: String!, locale: String, preview: Boolean): ModuleSoftwareServicesRoutingGrid
   moduleSoftwareServicesRoutingGridCollection(limit: Int = 100, locale: String, order: [ModuleSoftwareServicesRoutingGridOrder], preview: Boolean, skip: Int = 0, where: ModuleSoftwareServicesRoutingGridFilter): ModuleSoftwareServicesRoutingGridCollection
   moduleStatementHome(id: String!, locale: String, preview: Boolean): ModuleStatementHome
@@ -4955,6 +5202,34 @@ input cfComponentExpertNestedFilter {
   slug_not: String
   slug_not_contains: String
   slug_not_in: [String]
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+input cfComponentIconTextWrapNestedFilter {
+  AND: [cfComponentIconTextWrapNestedFilter]
+  OR: [cfComponentIconTextWrapNestedFilter]
+  body: String
+  body_contains: String
+  body_exists: Boolean
+  body_in: [String]
+  body_not: String
+  body_not_contains: String
+  body_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  icon: String
+  icon_contains: String
+  icon_exists: Boolean
+  icon_in: [String]
+  icon_not: String
+  icon_not_contains: String
+  icon_not_in: [String]
   sys: SysFilter
   title: String
   title_contains: String

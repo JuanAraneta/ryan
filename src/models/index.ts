@@ -3,7 +3,7 @@ import { page } from "./page";
 // models
 import { componentCategorySolutionsHeadline } from "./componentCategorySolutionsHeadline";
 import { componentCategorySolutionsChapter } from "./componentCategorySolutionsChapter";
-import { componentTitleAndBody } from "./componentTitleAndBody";
+import { componentIconTextWrap } from "./componentIconTextWrap";
 import { componentCategorySolutions2ColSubBody } from "./componentCategorySolutions2ColSubBody";
 import { componentCardDeviceMock } from "./componentCardDeviceMock";
 import { pageExpert } from "./pageExpert";
@@ -37,6 +37,7 @@ import { script } from "./script";
 import { contentModelComposer } from "./utils/contentModelComposer";
 import type { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { moduleStatementHome } from "./moduleStatementHome";
+import { modulePlatform } from "./modulePlatform";
 import { componentLogoCarousel } from "./componentLogoCarousel";
 import { pageSoftware } from "./pageSoftware";
 import { pageService } from "./pageService";
@@ -49,7 +50,7 @@ import {
 const components: ExpandedContentModel[] = [
   componentCategorySolutionsHeadline,
   componentCategorySolutionsChapter,
-  componentTitleAndBody,
+  componentIconTextWrap,
   componentCategorySolutions2ColSubBody,
   componentCardDeviceMock,
   componentLink,
@@ -79,6 +80,7 @@ const pages: ExpandedContentModel[] = [
   pageInsight,
   pageSoftware,
   pageService,
+  modulePlatform,
 ];
 
 // Other content types

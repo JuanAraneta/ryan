@@ -232,6 +232,25 @@ export const RichTextFragments = {
       }
     }
   `),
+  ModulePlatform_headline: graphql(`
+    fragment ModulePlatform_headlineFragment on ModulePlatformHeadline
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `),
   ModuleSoftwareServicesRoutingGrid_description: graphql(`
     fragment ModuleSoftwareServicesRoutingGrid_descriptionFragment on ModuleSoftwareServicesRoutingGridDescription
     @_unmask {
