@@ -1,7 +1,7 @@
 "use client";
 
 import { cx } from "cva";
-import { AIIcon } from "@/components/icons";
+import { AIIcon } from "./AIIcon";
 
 export const AIAnimatedIcon = ({ className = "" }: { className?: string }) => {
   return (
