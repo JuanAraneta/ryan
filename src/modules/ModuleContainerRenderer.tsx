@@ -1,4 +1,7 @@
-import { createContentClient } from "@/lib/contentful/contentClient";
+import {
+  createContentClient,
+  isPreviewMode,
+} from "@/lib/contentful/contentClient";
 import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
 import moduleRegistry from "@/modules/moduleRegistry";
 import { backgroundDescriptionMapToClass } from "@/utils/backgroundDescriptionMapToClass";
@@ -6,10 +9,13 @@ import { cx } from "cva";
 import { ResultOf } from "gql.tada";
 
 export const ModuleContainerRenderer = async ({
+  locale,
   data,
 }: {
   data: ResultOf<typeof PageModulesCollectionFragment>;
+  locale: string;
 }) => {
+  const preview = await isPreviewMode();
   const contentClient = createContentClient();
   return (
     <>
@@ -20,7 +26,6 @@ export const ModuleContainerRenderer = async ({
             <div
               key={moduleContainer.sys.id}
               className={cx(
-                "relative",
                 backgroundDescriptionMapToClass.resolveClass(
                   moduleContainer.moduleBackground,
                 ),
@@ -52,6 +57,8 @@ export const ModuleContainerRenderer = async ({
 
                     const result = await contentClient.query(queryById, {
                       id: module.sys.id,
+                      preview,
+                      locale,
                     });
 
                     if (!result || !result.data) {
@@ -61,6 +68,7 @@ export const ModuleContainerRenderer = async ({
                       );
                       return null;
                     }
+
                     return <Component key={index} data={result.data} />;
                   },
                 ),

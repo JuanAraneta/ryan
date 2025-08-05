@@ -32,6 +32,7 @@ export default async function Page(props: {
   return (
     <ModuleContainerRenderer
       data={readFragment(PageModulesCollectionFragment, page.modulesCollection)}
+      locale={locale}
     />
   );
 }
