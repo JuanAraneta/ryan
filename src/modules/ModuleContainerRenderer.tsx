@@ -20,6 +20,7 @@ export const ModuleContainerRenderer = async ({
             <div
               key={moduleContainer.sys.id}
               className={cx(
+                "relative",
                 backgroundDescriptionMapToClass.resolveClass(
                   moduleContainer.moduleBackground,
                 ),
