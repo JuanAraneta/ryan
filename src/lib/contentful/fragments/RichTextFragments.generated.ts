@@ -61,25 +61,6 @@ export const RichTextFragments = {
       }
     }
   `),
-  ComponentServiceSoftwareRoutingCard_body: graphql(`
-    fragment ComponentServiceSoftwareRoutingCard_bodyFragment on ComponentServiceSoftwareRoutingCardBody
-    @_unmask {
-      json
-      links {
-        entries {
-          hyperlink {
-            sys {
-              id
-            }
-            __typename
-            ... on Page {
-              slug
-            }
-          }
-        }
-      }
-    }
-  `),
   ComponentStatistic_richTextLabel: graphql(`
     fragment ComponentStatistic_richTextLabelFragment on ComponentStatisticRichTextLabel
     @_unmask {
@@ -253,25 +234,6 @@ export const RichTextFragments = {
   `),
   ModulePlatform_headline: graphql(`
     fragment ModulePlatform_headlineFragment on ModulePlatformHeadline
-    @_unmask {
-      json
-      links {
-        entries {
-          hyperlink {
-            sys {
-              id
-            }
-            __typename
-            ... on Page {
-              slug
-            }
-          }
-        }
-      }
-    }
-  `),
-  ModuleServiceSoftwareRoutingCards_headline: graphql(`
-    fragment ModuleServiceSoftwareRoutingCards_headlineFragment on ModuleServiceSoftwareRoutingCardsHeadline
     @_unmask {
       json
       links {
