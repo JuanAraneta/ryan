@@ -12,7 +12,7 @@ export const HeroRoutingCard = ({
   data: ResultOf<typeof ComponentRoutingItemFragment>;
 }) => {
   const { image, eyebrowText, heading, link } = data;
-  const inspector = getInspector<typeof data>(data);
+  const inspector = getInspector(data);
 
   const linkData = readFragment(ComponentLinkFragment, link);
   const imageData = readFragment(AssetFragment, image);

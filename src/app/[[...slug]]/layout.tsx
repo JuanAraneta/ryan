@@ -15,8 +15,7 @@ import { Lato } from "next/font/google";
 import { ConstantsProvider } from "@/components/providers/ConstantsContext";
 import { GetConstantsQuery } from "@/lib/contentful/query/GetConstantsQuery";
 import { ConstantsFragment } from "@/lib/contentful/fragments/ConstantsFragment";
-import { PreviewModeBanner } from "@/components/PreviewModeBanner";
-import { ContentfulLivePreviewScript } from "@/components/providers/ContentfulLivePreviewScript";
+import { ContentfulLivePreviewScript } from "@/components/ContentfulLivePreviewScript";
 
 const latoSans = Lato({
   variable: "--font-sans",
