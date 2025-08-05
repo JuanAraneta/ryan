@@ -46,6 +46,7 @@ export const ModuleServiceSoftwareRoutingCards = ({
               >
                 <img
                   src={image?.url ?? ""}
+                  alt={image?.description ?? ""}
                   className="w-full dsk:w-2/5 h-40 dsk:h-80 object-cover"
                 />
                 <span className="gradient-brand-h-dark-to-light">
