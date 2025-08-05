@@ -24,5 +24,10 @@ export function ContentfulLivePreviewScript() {
     }
   }, []);
 
-  return null; // This component doesn't render anything
+  return (
+    // Preview mode banner
+    <div className="fixed top-0 left-0 w-full text-white bg-danger backdrop-blur-sm z-50 flex items-center justify-center p-2 typo-eyebrow">
+      Preview mode enabled
+    </div>
+  );
 }

@@ -4,6 +4,7 @@ import { ComponentRoutingItemFragment } from "@/lib/contentful/fragments/Compone
 import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { MdKeyboardBackspace } from "react-icons/md";
+import { getInspector } from "@/utils/inspectorMode";
 
 export const HeroRoutingCard = ({
   data,
@@ -11,6 +12,7 @@ export const HeroRoutingCard = ({
   data: ResultOf<typeof ComponentRoutingItemFragment>;
 }) => {
   const { image, eyebrowText, heading, link } = data;
+  const inspector = getInspector<typeof data>(data);
 
   const linkData = readFragment(ComponentLinkFragment, link);
   const imageData = readFragment(AssetFragment, image);
@@ -18,7 +20,7 @@ export const HeroRoutingCard = ({
   const alt = eyebrowText || heading || "";
 
   return (
-    <a href={href} className="flex-1 group relative">
+    <a href={href} className="flex-1 group relative" {...inspector("link")}>
       {imageData?.url && (
         <ZoomImage
           src={imageData?.url}

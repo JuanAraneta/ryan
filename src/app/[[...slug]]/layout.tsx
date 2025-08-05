@@ -64,17 +64,14 @@ export default async function RootLayout(
       </head>
       <body className={latoSans.variable}>
         <main className="min-h-screen">
-          <PreviewModeBanner />
-
           {page.hero && <Hero data={readFragment(HeroFragment, page.hero)} />}
           {props.children}
           {page.footer && (
             <Footer data={readFragment(FooterFragment, page.footer)} />
           )}
+          {preview && <ContentfulLivePreviewScript />}
         </main>
       </body>
-
-      {preview && <ContentfulLivePreviewScript />}
     </ConstantsProvider>
   );
 }
