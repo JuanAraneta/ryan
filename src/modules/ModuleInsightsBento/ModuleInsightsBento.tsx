@@ -1,5 +1,3 @@
-"use client";
-
 import { readFragment, ResultOf } from "gql.tada";
 import { cx } from "cva";
 import { GetModuleInsightsBentoById } from ".";
@@ -10,7 +8,6 @@ import { Button } from "@/components/core/Button";
 import { Link } from "@/components/core/Link";
 import { NewsletterSignup } from "@/components/core/NewsletterSignup";
 import { Card } from "@/components/core/Card/Card";
-import { useContentfulPreview } from "@/hooks/useContentfulPreview";
 
 const LAYOUTS = {
   // 4 is the max number of insights in the module.
@@ -25,11 +22,7 @@ export const ModuleInsightsBento = ({
 }: {
   data: ResultOf<typeof GetModuleInsightsBentoById>;
 }) => {
-  const { updatedData, inspector } = useContentfulPreview(
-    data.moduleInsightsBento,
-  );
-
-  if (!updatedData) return null;
+  if (!data.moduleInsightsBento) return null;
 
   const {
     headline,
@@ -38,7 +31,7 @@ export const ModuleInsightsBento = ({
     insightsCollection,
     exploreInsightsButton,
     newsletterSignup,
-  } = updatedData;
+  } = data.moduleInsightsBento;
 
   const link = readFragment(ComponentLinkFragment, exploreInsightsButton);
 
@@ -48,32 +41,17 @@ export const ModuleInsightsBento = ({
 
   return (
     <Section data-testid="ModuleInsightsBento" className="dark py-16 dsk:py-32">
-      <h2
-        className="typo-display font-light max-w-[39rem] mb-16 dsk:mb-20 mx-auto text-center"
-        {...inspector("headline")}
-      >
+      <h2 className="typo-display font-light max-w-[39rem] mb-16 dsk:mb-20 mx-auto text-center">
         <RichText content={headline} variant="title" spansOnly />
       </h2>
 
       <div className="flex flex-col dsk:grid grid-cols-3 auto-rows-fr gap-4 w-full mb-5">
         <div className="aspect-auto dsk:aspect-square flex flex-col gap-6 items-start text-left pr-0 dsk:pr-8 mb-16 dsk:mb-0">
-          <h6
-            className="typo-heading-6 text-new-gold"
-            {...inspector("eyebrow")}
-          >
-            {eyebrow}
-          </h6>
-          <h4
-            className="typo-heading-4 opacity-70"
-            {...inspector("subheading")}
-          >
-            {subheading}
-          </h4>
+          <h6 className="typo-heading-6 text-new-gold">{eyebrow}</h6>
+          <h4 className="typo-heading-4 opacity-70">{subheading}</h4>
 
           <Button asChild>
-            <Link link={link} {...inspector("link")}>
-              {link?.label}
-            </Link>
+            <Link link={link}>{link?.label}</Link>
           </Button>
         </div>
 
@@ -82,7 +60,6 @@ export const ModuleInsightsBento = ({
             key={index}
             data={insight}
             className={cx("aspect-square dsk:aspect-auto", layout[index])}
-            {...inspector(`insights`)}
           />
         ))}
       </div>

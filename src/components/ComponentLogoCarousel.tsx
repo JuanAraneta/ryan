@@ -1,11 +1,8 @@
-"use client";
-
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { ComponentLogoCarouselFragment } from "@/lib/contentful/fragments/ComponentLogoCarouselFragment";
 import { cx } from "cva";
 import { FragmentOf, readFragment, ResultOf } from "gql.tada";
 import { ComponentProps } from "react";
-import { useContentfulPreview } from "@/hooks/useContentfulPreview";
 
 export const ComponentLogoCarousel = ({
   data,
@@ -19,9 +16,7 @@ export const ComponentLogoCarousel = ({
     | undefined;
   repetitions?: number;
 } & ComponentProps<"div">) => {
-  const { updatedData, inspector } = useContentfulPreview(data);
-
-  const logos = readFragment(ComponentLogoCarouselFragment, updatedData)
+  const logos = readFragment(ComponentLogoCarouselFragment, data)
     ?.logosCollection?.items;
 
   if (!logos || logos.length === 0) return null;
@@ -37,7 +32,6 @@ export const ComponentLogoCarousel = ({
       <div
         className="flex items-center flex-1 animate-carousel w-fit"
         style={{ "--carousel-repetitions": repetitions }}
-        {...inspector("logos")}
       >
         {Array.from({ length: repetitions }).map((_, index) => (
           <ul

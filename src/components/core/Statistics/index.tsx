@@ -1,29 +1,21 @@
-"use client";
-
 import { AnimatableNumber } from "@/components/core/AnimatableNumber";
 import { RichText } from "@/components/core/RichText";
 import { ComponentStatisticFragment } from "@/lib/contentful/fragments/ComponentStatisticFragment";
 import { readFragment, FragmentOf } from "gql.tada";
-import { useContentfulPreview } from "@/hooks/useContentfulPreview";
 
 export const Statistics = ({
   data,
 }: {
   data: FragmentOf<typeof ComponentStatisticFragment>;
 }) => {
-  const { updatedData, inspector } = useContentfulPreview(data);
-
   const { prefix, value, suffix, richTextLabel } = readFragment(
     ComponentStatisticFragment,
-    updatedData,
+    data,
   );
 
   return (
     <div className="dsk:flex flex-col text-center dsk:text-left">
-      <p
-        className="typo-display font-light text-highlight"
-        {...inspector("prefix")}
-      >
+      <p className="typo-display font-light text-highlight">
         {prefix}
         <AnimatableNumber
           value={
@@ -32,10 +24,7 @@ export const Statistics = ({
         />
         {suffix}
       </p>
-      <p
-        className="text-content-secondary typo-eyebrow pt-2 font-bold dsk:max-w-60 max-w-52 text-balance"
-        {...inspector("richTextLabel")}
-      >
+      <p className="text-content-secondary typo-eyebrow pt-2 font-bold dsk:max-w-60 max-w-52 text-balance">
         <RichText content={richTextLabel} spansOnly />
       </p>
     </div>
