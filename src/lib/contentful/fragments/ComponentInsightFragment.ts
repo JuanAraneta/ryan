@@ -10,7 +10,6 @@ export const ComponentInsightFragment = graphql(
       }
       title
       eyebrow
-      contentType
       image {
         ...AssetFragment
       }
