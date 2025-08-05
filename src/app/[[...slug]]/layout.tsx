@@ -65,7 +65,7 @@ export default async function RootLayout(
       <body className={latoSans.variable}>
         <main className="min-h-screen">
           <ContentfulPreviewProvider
-            locale="en-US"
+            locale={locale || "en-US"}
             enableInspectorMode={preview}
             enableLiveUpdates={preview}
           >
