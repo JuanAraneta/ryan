@@ -1,10 +1,7 @@
 import { Hero } from "@/modules/Hero/Hero";
 import { Footer } from "@/modules/Footer/Footer";
 import { SEOMetadata } from "@/components/SEOMetadata/SEOMetadata";
-import {
-  createContentClient,
-  isPreviewMode,
-} from "@/lib/contentful/contentClient";
+import { contentClient, isPreviewMode } from "@/lib/contentful/contentClient";
 import { GetPageBySlugAndMarketQuery } from "@/lib/contentful/query/GetPageBySlugAndMarketQuery";
 import { notFound } from "next/navigation";
 import { readFragment } from "gql.tada";
@@ -36,7 +33,6 @@ export default async function RootLayout(
 
   const [marketSlug, locale, slug] = slugs;
 
-  const contentClient = createContentClient();
   const [pageResult, constantsResult] = await Promise.all([
     contentClient.query(GetPageBySlugAndMarketQuery, {
       preview,
