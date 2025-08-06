@@ -28,6 +28,10 @@ import {
   GetModuleSoftwareServicesRoutingGridById,
 } from "./ModuleSoftwareAndServicesRoutingGrid";
 import { ModulePlatform, GetModulePlatformById } from "./ModulePlatform";
+import {
+  ModuleServiceSoftwareRoutingCards,
+  GetModuleServiceSoftwareRoutingCardsById,
+} from "./ModuleServiceSoftwareRoutingCards";
 
 // Common props interface for all modules
 export type ModuleProps<Data> = {
@@ -82,6 +86,10 @@ const moduleRegistry: ModuleRegistry = {
   ModulePlatform: {
     component: ModulePlatform,
     queryById: GetModulePlatformById,
+  },
+  ModuleServiceSoftwareRoutingCards: {
+    component: ModuleServiceSoftwareRoutingCards,
+    queryById: GetModuleServiceSoftwareRoutingCardsById,
   },
 };
 

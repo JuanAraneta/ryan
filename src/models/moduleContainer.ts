@@ -7,6 +7,7 @@ import { moduleInsightsBento } from "./moduleInsightsBento";
 import { moduleSoftwareServicesRoutingGrid } from "./moduleSoftwareServicesRoutingGrid";
 import { moduleStatementHome } from "./moduleStatementHome";
 import { modulePlatform } from "./modulePlatform";
+import { moduleServiceSoftwareRoutingCards } from "./moduleServiceSoftwareRoutingCards";
 
 export const moduleContainer = {
   sys: { id: "moduleContainer" },
@@ -29,6 +30,7 @@ export const moduleContainer = {
         moduleStatementHome,
         moduleSoftwareServicesRoutingGrid,
         modulePlatform,
+        moduleServiceSoftwareRoutingCards,
       ],
     }),
   ],

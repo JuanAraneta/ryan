@@ -45,6 +45,10 @@ import {
   componentTestimonial,
   moduleSoftwareServicesRoutingGrid,
 } from "./moduleSoftwareServicesRoutingGrid";
+import {
+  componentServiceSoftwareRoutingCard,
+  moduleServiceSoftwareRoutingCards,
+} from "./moduleServiceSoftwareRoutingCards";
 
 // Components
 const components: ExpandedContentModel[] = [
@@ -59,6 +63,7 @@ const components: ExpandedContentModel[] = [
   componentRoutingItem,
   componentLogoCarousel,
   componentTestimonial,
+  componentServiceSoftwareRoutingCard,
 ];
 
 // Modules
@@ -71,6 +76,7 @@ const modules: ExpandedContentModel[] = [
   moduleInsightsBento,
   moduleStatementHome,
   moduleSoftwareServicesRoutingGrid,
+  moduleServiceSoftwareRoutingCards,
 ];
 
 const pages: ExpandedContentModel[] = [
