@@ -17,6 +17,9 @@ export const GetModuleStatementHomeById = graphql(
     }
 
     fragment ModuleStatementHomeFragment on ModuleStatementHome {
+      sys {
+        id
+      }
       headline {
         ...ModuleStatementHome_headlineFragment
       }

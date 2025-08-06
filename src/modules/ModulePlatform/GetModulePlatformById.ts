@@ -17,6 +17,9 @@ export const GetModulePlatformById = graphql(
     }
 
     fragment ModulePlatformFragment on ModulePlatform {
+      sys {
+        id
+      }
       headline {
         ...ModulePlatform_headlineFragment
       }

@@ -1,4 +1,3 @@
-/* eslint-disable */
 // DO NOT MODIFY
 // Generated via `pnpm run generate-contentful-rich-text-fragments`
 import { graphql } from "gql.tada";

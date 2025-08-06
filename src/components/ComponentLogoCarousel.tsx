@@ -3,6 +3,7 @@ import { ComponentLogoCarouselFragment } from "@/lib/contentful/fragments/Compon
 import { cx } from "cva";
 import { FragmentOf, readFragment, ResultOf } from "gql.tada";
 import { ComponentProps } from "react";
+import { getInspector } from "@/utils/inspectorMode";
 
 export const ComponentLogoCarousel = ({
   data,
@@ -21,6 +22,12 @@ export const ComponentLogoCarousel = ({
 
   if (!logos || logos.length === 0) return null;
 
+  const logoCarouselData = readFragment(ComponentLogoCarouselFragment, data);
+
+  if (!logoCarouselData) return null;
+
+  const inspector = getInspector(logoCarouselData);
+
   return (
     <div
       {...props}
@@ -32,6 +39,7 @@ export const ComponentLogoCarousel = ({
       <div
         className="flex items-center flex-1 animate-carousel w-fit"
         style={{ "--carousel-repetitions": repetitions }}
+        {...inspector("logosCollection")}
       >
         {Array.from({ length: repetitions }).map((_, index) => (
           <ul

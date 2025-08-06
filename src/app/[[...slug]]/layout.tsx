@@ -1,7 +1,7 @@
 import { Hero } from "@/modules/Hero/Hero";
 import { Footer } from "@/modules/Footer/Footer";
 import { SEOMetadata } from "@/components/SEOMetadata/SEOMetadata";
-import { contentClient } from "@/lib/contentful/contentClient";
+import { contentClient, isPreviewMode } from "@/lib/contentful/contentClient";
 import { GetPageBySlugAndMarketQuery } from "@/lib/contentful/query/GetPageBySlugAndMarketQuery";
 import { notFound } from "next/navigation";
 import { readFragment } from "gql.tada";
@@ -12,6 +12,7 @@ import { Lato } from "next/font/google";
 import { ConstantsProvider } from "@/components/providers/ConstantsContext";
 import { GetConstantsQuery } from "@/lib/contentful/query/GetConstantsQuery";
 import { ConstantsFragment } from "@/lib/contentful/fragments/ConstantsFragment";
+import { ContentfulLivePreviewScript } from "@/components/ContentfulLivePreviewScript";
 
 const latoSans = Lato({
   variable: "--font-sans",
@@ -28,15 +29,18 @@ export default async function RootLayout(
 ) {
   const params = await props.params;
   const slugs = Array.isArray(params.slug) ? params.slug : [params.slug];
+  const preview = await isPreviewMode();
 
   const [marketSlug, locale, slug] = slugs;
+
   const [pageResult, constantsResult] = await Promise.all([
     contentClient.query(GetPageBySlugAndMarketQuery, {
+      preview,
       marketSlug,
       locale,
       slug,
     }),
-    contentClient.query(GetConstantsQuery, { locale }),
+    contentClient.query(GetConstantsQuery, { locale, preview }),
   ]);
 
   const page = pageResult.data?.pageCollection?.items[0];
@@ -60,6 +64,7 @@ export default async function RootLayout(
           {page.footer && (
             <Footer data={readFragment(FooterFragment, page.footer)} />
           )}
+          {preview && <ContentfulLivePreviewScript />}
         </main>
       </body>
     </ConstantsProvider>

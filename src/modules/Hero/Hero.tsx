@@ -4,7 +4,6 @@ import { FC } from "react";
 import { HeroHome } from "../HeroHome";
 import { readFragment } from "gql.tada";
 import { ModuleHeroHomeFragment } from "@/modules/HeroHome/ModuleHeroHomeFragment";
-
 export type HeroProps = {
   data: ResultOf<typeof HeroFragment>;
 };

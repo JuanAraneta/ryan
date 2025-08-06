@@ -17,6 +17,7 @@ import { CategorySolutionsImageLinkGrid } from "./components/CategorySolutionsIm
 import { CategorySolutionsImageLinkGridFragment } from "@/modules/ModuleChapterGroup/fragments/CategorySolutionsImageLinkGridFragment";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { createIntersectionObserver } from "@/utils/createIntersectionObserver";
+import { getInspector } from "@/utils/inspectorMode";
 
 export const ModuleChapterGroup = ({
   data,
@@ -141,6 +142,7 @@ export const ModuleChapterGroup = ({
             .filter(Boolean)
             .map((chapter, index) => {
               const current = index === inViewSectionIndex;
+              const inspector = getInspector(chapter);
 
               return (
                 <NextLink
@@ -148,6 +150,7 @@ export const ModuleChapterGroup = ({
                   href={`#${kebabCase(chapter.title ?? "")}`}
                   className="group flex flex-col gap-2 dsk:pl-8"
                   {...(current && { "aria-current": current })}
+                  {...inspector("title")}
                 >
                   <span
                     className="hidden dsk:block font-bold typo-heading-6 text-neutral-600 transition-colors group-aria-[current]:text-brand-500"
@@ -168,60 +171,65 @@ export const ModuleChapterGroup = ({
       <ul className="grow" ref={contentItemsContainerRef}>
         {data.moduleChapterGroup?.chaptersCollection?.items
           .filter(Boolean)
-          .map((chapter, index) => (
-            <li
-              key={index}
-              id={kebabCase(chapter.title ?? "")}
-              className="flex flex-col gap-8 dsk:gap-16 w-full not-last:pb-10 not-first:pt-10 dsk:not-last:pb-20 dsk:not-first:pt-20 not-first:border-t border-border-primary"
-            >
-              {chapter.contentsCollection?.items.map((item, index) => {
-                switch (item?.__typename) {
-                  case "ComponentCardDeviceMock":
-                    return (
-                      <ComponentCardDeviceMock
-                        key={index}
-                        data={readFragment(
-                          ComponentCardDeviceMockFragment,
-                          item,
-                        )}
-                      />
-                    );
-                  case "ComponentCategorySolutionsHeadline":
-                    return (
-                      <ComponentCategorySolutionsHeadline
-                        key={index}
-                        data={readFragment(
-                          ComponentCategorySolutionsHeadlineFragment,
-                          item,
-                        )}
-                      />
-                    );
-                  case "ComponentCategorySolutions2ColSubBody":
-                    return (
-                      <ComponentCategorySolutions2ColSubBody
-                        key={index}
-                        data={readFragment(
-                          ComponentCategorySolutions2ColSubBodyFragment,
-                          item,
-                        )}
-                      />
-                    );
-                  case "CategorySolutionsImageLinkGrid":
-                    return (
-                      <CategorySolutionsImageLinkGrid
-                        key={index}
-                        data={readFragment(
-                          CategorySolutionsImageLinkGridFragment,
-                          item,
-                        )}
-                      />
-                    );
-                  default:
-                    return null;
-                }
-              })}
-            </li>
-          ))}
+          .map((chapter, index) => {
+            const inspector = getInspector(chapter);
+
+            return (
+              <li
+                key={index}
+                id={kebabCase(chapter.title ?? "")}
+                className="flex flex-col gap-8 dsk:gap-16 w-full not-last:pb-10 not-first:pt-10 dsk:not-last:pb-20 dsk:not-first:pt-20 not-first:border-t border-border-primary"
+                {...inspector("contentsCollection")}
+              >
+                {chapter.contentsCollection?.items.map((item, index) => {
+                  switch (item?.__typename) {
+                    case "ComponentCardDeviceMock":
+                      return (
+                        <ComponentCardDeviceMock
+                          key={index}
+                          data={readFragment(
+                            ComponentCardDeviceMockFragment,
+                            item,
+                          )}
+                        />
+                      );
+                    case "ComponentCategorySolutionsHeadline":
+                      return (
+                        <ComponentCategorySolutionsHeadline
+                          key={index}
+                          data={readFragment(
+                            ComponentCategorySolutionsHeadlineFragment,
+                            item,
+                          )}
+                        />
+                      );
+                    case "ComponentCategorySolutions2ColSubBody":
+                      return (
+                        <ComponentCategorySolutions2ColSubBody
+                          key={index}
+                          data={readFragment(
+                            ComponentCategorySolutions2ColSubBodyFragment,
+                            item,
+                          )}
+                        />
+                      );
+                    case "CategorySolutionsImageLinkGrid":
+                      return (
+                        <CategorySolutionsImageLinkGrid
+                          key={index}
+                          data={readFragment(
+                            CategorySolutionsImageLinkGridFragment,
+                            item,
+                          )}
+                        />
+                      );
+                    default:
+                      return null;
+                  }
+                })}
+              </li>
+            );
+          })}
       </ul>
     </Section>
   );

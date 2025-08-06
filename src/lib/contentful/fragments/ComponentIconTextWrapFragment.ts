@@ -4,6 +4,9 @@ import { AssetFragment } from "./AssetFragment";
 export const ComponentIconTextWrapFragment = graphql(
   `
     fragment ComponentIconTextWrapFragment on ComponentIconTextWrap {
+      sys {
+        id
+      }
       title
       body
       icon {

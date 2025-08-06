@@ -2,8 +2,8 @@ import { cx } from "cva";
 import { ComponentInsightFragment } from "@/lib/contentful/fragments/ComponentInsightFragment";
 import { readFragment, FragmentOf } from "gql.tada";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
-import { Tag } from "@/components/core/Tag";
 import { Link } from "@/components/core/Link";
+import { getInspector } from "@/utils/inspectorMode";
 
 type CardProps = {
   data: FragmentOf<typeof ComponentInsightFragment>; // TODO: Add extra types when we define the articles, insights, etc.
@@ -11,10 +11,11 @@ type CardProps = {
 };
 
 export const Card = ({ data, className }: CardProps) => {
-  const { title, eyebrow, contentType, image, link } = readFragment(
-    ComponentInsightFragment,
-    data,
-  );
+  const insightData = readFragment(ComponentInsightFragment, data);
+  const inspector = getInspector(insightData);
+
+  const { title, eyebrow, image, link } = insightData;
+
   const imageUrl = readFragment(AssetFragment, image);
 
   return (
@@ -25,6 +26,7 @@ export const Card = ({ data, className }: CardProps) => {
         "relative rounded-lg w-full h-full overflow-hidden group",
         className,
       )}
+      {...inspector("image")}
     >
       <img
         src={imageUrl?.url ?? ""}
@@ -37,10 +39,13 @@ export const Card = ({ data, className }: CardProps) => {
       <div className="relative z-10 p-[1.3rem] gradient-overlay h-full">
         <p className="inline-flex mb-6 items-center gap-3">
           <span className="block rounded-full h-2 w-2 bg-brand-300" />
-          <span className="typo-eyebrow">{eyebrow}</span>
+          <span className="typo-eyebrow" {...inspector("eyebrow")}>
+            {eyebrow}
+          </span>
         </p>
-        <p className="typo-heading-5 mb-3">{title}</p>
-        {contentType && <Tag text={contentType} />}
+        <p className="typo-heading-5 mb-3" {...inspector("title")}>
+          {title}
+        </p>
       </div>
     </Link>
   );

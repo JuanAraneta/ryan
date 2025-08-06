@@ -1,3 +1,4 @@
+import { ComponentProps } from "react";
 import { TextLoop } from "@/components/core/TextLoop";
 import { AIAnimatedIcon } from "./AIAnimatedIcon";
 import { IconButton } from "../IconButton";
@@ -7,9 +8,12 @@ export type AIChatPromptProps = {
   prompts?: string[];
 };
 
-export const AIChatPrompt = ({ prompts }: AIChatPromptProps) => {
+export const AIChatPrompt = ({
+  prompts,
+  ...props
+}: AIChatPromptProps & ComponentProps<"div">) => {
   return (
-    <div className="w-full max-w-[52rem] flex gap-4 items-center">
+    <div className="w-full max-w-[52rem] flex gap-4 items-center" {...props}>
       <AIAnimatedIcon className="hidden dsk:flex" />
 
       <div className="w-full rounded-full bg-white/15 backdrop-blur-lg flex items-center gap-2 h-14 pl-3 dsk:pl-8 pr-8 dsk:pr-2 ">

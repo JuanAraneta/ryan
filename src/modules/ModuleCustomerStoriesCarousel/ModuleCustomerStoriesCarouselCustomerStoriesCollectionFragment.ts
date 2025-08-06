@@ -7,6 +7,9 @@ export const ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment =
     `
       fragment ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment on ModuleCustomerStoriesCarouselCustomerStoriesCollection {
         items {
+          sys {
+            id
+          }
           customerName
           slug
           richTextHeadline {

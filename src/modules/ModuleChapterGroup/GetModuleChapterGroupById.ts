@@ -19,6 +19,9 @@ export const GetModuleChapterGroupById = graphql(
     fragment ModuleChapterGroupByFragment on ModuleChapterGroup {
       chaptersCollection {
         items {
+          sys {
+            id
+          }
           title
           contentsCollection {
             items {
