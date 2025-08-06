@@ -1,4 +1,4 @@
-import { draftMode, cookies } from "next/headers";
+import { draftMode } from "next/headers";
 import { redirect } from "next/navigation";
 
 const SECRET = process.env.DRAFT_MODE_SECRET;
@@ -18,20 +18,6 @@ export async function GET(request: Request) {
 
   const draft = await draftMode();
   draft.enable();
-
-  const cookieStore = await cookies();
-  const cookie = cookieStore.get("__prerender_bypass");
-
-  if (cookie) {
-    cookieStore.set({
-      name: "__prerender_bypass",
-      value: cookie?.value,
-      httpOnly: true,
-      path: "/",
-      secure: true,
-      sameSite: "none",
-    });
-  }
 
   if (!slug || slug === "home") {
     redirect("/");
