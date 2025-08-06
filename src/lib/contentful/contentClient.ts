@@ -8,53 +8,59 @@ import { draftMode } from "next/headers";
 import type { introspection } from "../../graphql-env";
 import type { initGraphQLTada } from "gql.tada";
 
+const spaceId = process.env.CONTENTFUL_SPACE_ID;
+const environment = process.env.CONTENTFUL_ENVIRONMENT;
+const previewToken = process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN!;
+const deliveryToken = process.env.CONTENTFUL_DELIVERY_ACCESS_TOKEN!;
+
+const isDevelopment = process.env.NODE_ENV === "development";
+
 export const isPreviewMode = async () => {
   try {
     const draft = await draftMode();
     return draft.isEnabled;
-  } catch {
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error";
+    console.error("isPreviewMode:", errorMessage);
     return false;
   }
 };
 
-export function createContentClient() {
-  return new Client({
-    url: `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/${process.env.CONTENTFUL_ENVIRONMENT}`,
+export const createContentClient = () =>
+  new Client({
+    url: `https://graphql.contentful.com/content/v1/spaces/${spaceId}/environments/${environment}`,
     exchanges: [
-      ...(process.env.NODE_ENV === "development" ? [] : [defaultCacheExchange]),
-      authExchange(async (utils) => {
-        const isPreview = await isPreviewMode();
+      ...(isDevelopment ? [] : [defaultCacheExchange]),
+      authExchange(async (utils) => ({
+        addAuthToOperation(operation) {
+          const isPreview = operation.variables?.preview || false;
+          const token = isPreview ? previewToken : deliveryToken;
 
-        const token = isPreview
-          ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
-          : process.env.CONTENTFUL_DELIVERY_ACCESS_TOKEN;
+          return utils.appendHeaders(operation, {
+            Authorization: `Bearer ${token}`,
+          });
+        },
+        didAuthError(error) {
+          const networkErrorMsg = error.networkError?.message;
+          const didError =
+            error.graphQLErrors.some(
+              (e) => e.extensions?.code === "FORBIDDEN",
+            ) || !!networkErrorMsg;
 
-        return {
-          addAuthToOperation(operation) {
-            return utils.appendHeaders(operation, {
-              Authorization: `Bearer ${token}`,
-            });
-          },
-          didAuthError(error) {
-            const networkErrorMsg = error.networkError?.message;
-            const didError =
-              error.graphQLErrors.some(
-                (e) => e.extensions?.code === "FORBIDDEN",
-              ) || !!networkErrorMsg;
+          if (networkErrorMsg) console.error(networkErrorMsg);
 
-            if (networkErrorMsg) console.error(networkErrorMsg);
-
-            return didError;
-          },
-          async refreshAuth() {
-            throw new Error("No auth refresh operation");
-          },
-        };
-      }),
+          return didError;
+        },
+        async refreshAuth() {
+          throw new Error("No auth refresh operation");
+        },
+      })),
       fetchExchange,
     ],
   });
-}
+
+export const contentClient = createContentClient();
 
 declare module "gql.tada" {
   //@ts-expect-error This isn't actually overriding anything.

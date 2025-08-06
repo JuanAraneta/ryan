@@ -1,7 +1,4 @@
-import {
-  createContentClient,
-  isPreviewMode,
-} from "@/lib/contentful/contentClient";
+import { contentClient, isPreviewMode } from "@/lib/contentful/contentClient";
 import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
 import moduleRegistry from "@/modules/moduleRegistry";
 import { backgroundDescriptionMapToClass } from "@/utils/backgroundDescriptionMapToClass";
@@ -16,7 +13,7 @@ export const ModuleContainerRenderer = async ({
   locale: string;
 }) => {
   const preview = await isPreviewMode();
-  const contentClient = createContentClient();
+
   return (
     <>
       {await Promise.allSettled(
