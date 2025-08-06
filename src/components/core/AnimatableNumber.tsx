@@ -1,12 +1,12 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { ComponentProps, useRef, useState } from "react";
 import { cx } from "cva";
 import { useLayoutEffect } from "@/hooks/useLayoutEffect";
 import { useOnScreenState } from "@/hooks/useOnScreenEffect";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
 
-type AnimatableNumberProps = {
+type AnimatableNumberProps = ComponentProps<"span"> & {
   value: string;
   startingValue?: number;
   duration?: number;
