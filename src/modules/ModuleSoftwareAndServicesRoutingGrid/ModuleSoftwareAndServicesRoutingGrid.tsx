@@ -10,15 +10,13 @@ import { focusStyle } from "@/utils/focusStyle";
 import { MdArrowForward, MdAdd } from "react-icons/md";
 import { Constant } from "@/components/providers/ConstantsContext";
 import { getInspector } from "@/utils/inspectorMode";
+import { type ModuleProps } from "@/modules/moduleRegistry";
 
 export const ModuleSoftwareAndServicesRoutingGrid = ({
   data,
-}: {
-  data: ResultOf<typeof GetModuleSoftwareServicesRoutingGridById>;
-}) => {
+  inspector,
+}: ModuleProps<ResultOf<typeof GetModuleSoftwareServicesRoutingGridById>>) => {
   if (!data.moduleSoftwareServicesRoutingGrid) return null;
-
-  const inspector = getInspector(data.moduleSoftwareServicesRoutingGrid);
 
   const testimonialImage = readFragment(
     AssetFragment,

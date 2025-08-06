@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
 import { ResultOf, TadaDocumentNode } from "gql.tada";
+import { type Inspector } from "@/utils/inspectorMode";
 
 import {
   ModuleExpertsOverflow,
@@ -28,10 +29,15 @@ import {
 } from "./ModuleSoftwareAndServicesRoutingGrid";
 import { ModulePlatform, GetModulePlatformById } from "./ModulePlatform";
 
+// Common props interface for all modules
+export type ModuleProps<Data> = {
+  data: Data;
+  inspector: Inspector<NonNullable<Data[keyof Data]>>;
+};
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ModuleComponent<Data = any> = {
-  // TODO: Check if there is a better way to type this
-  component: FC<{ data: Data }>;
+  component: FC<ModuleProps<Data>>;
   queryById: TadaDocumentNode<Data, { id: string }>;
 };
 

@@ -1,20 +1,18 @@
 import { Button } from "@/components/core/Button";
 import { Link } from "@/components/core/Link";
+import { type ModuleProps } from "@/modules/moduleRegistry";
 import { GetModuleCustomerStoriesOverflowById } from ".";
 import { readFragment, ResultOf } from "gql.tada";
 import { CustomerStoriesCarousel } from "./CustomerStoriesCarousel";
 import { ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment } from "@/modules/ModuleCustomerStoriesCarousel/ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment";
 import { Section } from "@/components/core/Section";
 import { RichText } from "@/components/core/RichText";
-import { getInspector } from "@/utils/inspectorMode";
 
 export const ModuleCustomerStoriesCarousel = ({
   data,
-}: {
-  data: ResultOf<typeof GetModuleCustomerStoriesOverflowById>;
-}) => {
+  inspector,
+}: ModuleProps<ResultOf<typeof GetModuleCustomerStoriesOverflowById>>) => {
   if (!data.moduleCustomerStoriesCarousel) return null;
-  const inspector = getInspector(data.moduleCustomerStoriesCarousel);
 
   return (
     <Section

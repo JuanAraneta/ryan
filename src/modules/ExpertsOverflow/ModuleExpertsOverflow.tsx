@@ -1,5 +1,6 @@
 import { Link } from "@/components/core/Link";
 import { RichText } from "@/components/core/RichText";
+import { type ModuleProps } from "@/modules/moduleRegistry";
 import { GetModuleExpertsOverflowById } from ".";
 import { ComponentStatisticFragment } from "@/lib/contentful/fragments/ComponentStatisticFragment";
 import { readFragment, ResultOf } from "gql.tada";
@@ -9,16 +10,12 @@ import { AnimatableNumber } from "@/components/core/AnimatableNumber";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { Button } from "@/components/core/Button";
 import { Section } from "@/components/core/Section";
-import { getInspector } from "@/utils/inspectorMode";
 
 export const ModuleExpertsOverflow = ({
   data,
-}: {
-  data: ResultOf<typeof GetModuleExpertsOverflowById>;
-}) => {
+  inspector,
+}: ModuleProps<ResultOf<typeof GetModuleExpertsOverflowById>>) => {
   if (!data.moduleExpertsOverflow) return null;
-
-  const inspector = getInspector(data.moduleExpertsOverflow);
 
   const statistic = readFragment(
     ComponentStatisticFragment,

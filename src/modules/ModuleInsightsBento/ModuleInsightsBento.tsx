@@ -1,5 +1,6 @@
 import { readFragment, ResultOf } from "gql.tada";
 import { cx } from "cva";
+import { type ModuleProps } from "@/modules/moduleRegistry";
 import { GetModuleInsightsBentoById } from ".";
 import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
 import { Section } from "@/components/core/Section";
@@ -8,7 +9,6 @@ import { Button } from "@/components/core/Button";
 import { Link } from "@/components/core/Link";
 import { NewsletterSignup } from "@/components/core/NewsletterSignup";
 import { Card } from "@/components/core/Card/Card";
-import { getInspector } from "@/utils/inspectorMode";
 
 const LAYOUTS = {
   // 4 is the max number of insights in the module.
@@ -20,9 +20,8 @@ const LAYOUTS = {
 
 export const ModuleInsightsBento = ({
   data,
-}: {
-  data: ResultOf<typeof GetModuleInsightsBentoById>;
-}) => {
+  inspector,
+}: ModuleProps<ResultOf<typeof GetModuleInsightsBentoById>>) => {
   if (!data.moduleInsightsBento) return null;
 
   const {
@@ -33,8 +32,6 @@ export const ModuleInsightsBento = ({
     exploreInsightsButton,
     newsletterSignup,
   } = data.moduleInsightsBento;
-
-  const inspector = getInspector(data.moduleInsightsBento);
 
   const link = readFragment(ComponentLinkFragment, exploreInsightsButton);
 
