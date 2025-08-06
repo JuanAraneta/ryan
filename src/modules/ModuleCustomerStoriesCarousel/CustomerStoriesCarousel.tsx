@@ -6,6 +6,7 @@ import { ScrollCarouselContainer } from "@/constants/ScrollCarouselContainer";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment } from "@/modules/ModuleCustomerStoriesCarousel/ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment";
 import { focusStyle } from "@/utils/focusStyle";
+import { getInspector } from "@/utils/inspectorMode";
 import { cx } from "cva";
 import { readFragment, ResultOf } from "gql.tada";
 
@@ -21,6 +22,7 @@ export const CustomerStoriesCarousel = ({
     itemRender={({ item: story }) => {
       const heroMedia = readFragment(AssetFragment, story.heroMedia);
       const customerLogo = readFragment(AssetFragment, story.customerLogo);
+      const inspector = getInspector(story);
       return (
         <Link
           href={`/customer-stories/${story.slug}`}
@@ -35,6 +37,7 @@ export const CustomerStoriesCarousel = ({
                 className="h-[190px] dsk:h-[400px] w-full object-cover group-hover:scale-105 transition-transform"
                 src={heroMedia.url}
                 alt={`${story.customerName} hero media`}
+                {...inspector("heroMedia")}
               />
             )}
             {!!customerLogo?.url && (
@@ -42,6 +45,7 @@ export const CustomerStoriesCarousel = ({
                 className="absolute left-5 top-5 h-8"
                 src={customerLogo?.url}
                 alt={`${story.customerName} customer logo`}
+                {...inspector("customerLogo")}
               />
             )}
           </div>
@@ -50,11 +54,16 @@ export const CustomerStoriesCarousel = ({
               <div className="rounded-full size-2.5 bg-new-gold" />
               <p className="typo-eyebrow">{story.customerName}</p>
             </div>
-            <p className="typo-heading-5 font-light pt-3">
+            <p
+              className="typo-heading-5 font-light mt-3"
+              {...inspector("richTextHeadline")}
+            >
               <RichText content={story.richTextHeadline} spansOnly />
             </p>
             {!!story.quoteSource && (
-              <p className="typo-caption pt-3">{story.quoteSource}</p>
+              <p className="typo-caption mt-3" {...inspector("quoteSource")}>
+                {story.quoteSource}
+              </p>
             )}
           </div>
         </Link>

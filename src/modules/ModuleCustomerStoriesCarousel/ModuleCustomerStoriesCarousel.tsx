@@ -21,11 +21,8 @@ export const ModuleCustomerStoriesCarousel = ({
       data-testid="ModuleCustomerStoriesCarousel"
       className="dark py-16 dsk:py-32"
     >
-      <div
-        className="flex flex-col justify-center items-center text-center"
-        {...inspector("richTextTitle")}
-      >
-        <h2 className="typo-display font-light">
+      <div className="flex flex-col justify-center items-center text-center">
+        <h2 className="typo-display font-light" {...inspector("richTextTitle")}>
           <RichText
             content={data.moduleCustomerStoriesCarousel?.richTextTitle}
             variant="title"
@@ -45,7 +42,6 @@ export const ModuleCustomerStoriesCarousel = ({
       </div>
       {!!data.moduleCustomerStoriesCarousel?.customerStoriesCollection && (
         <CustomerStoriesCarousel
-          {...inspector("customerStoriesCollection")}
           data={readFragment(
             ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment,
             data.moduleCustomerStoriesCarousel?.customerStoriesCollection,
