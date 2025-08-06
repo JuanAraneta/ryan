@@ -40,8 +40,8 @@ export const ModulePlatform = ({
           <RichText content={headline} variant="title" spansOnly />
         </h2>
 
-        <Button asChild {...inspector("ctaButton")}>
-          <Link link={ctaButton} />
+        <Button asChild>
+          <Link {...inspector("ctaButton")} link={ctaButton} />
         </Button>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mt-20 mb-32">

@@ -20,17 +20,17 @@ export function HeroHome({
     <div className="gradient-brand-v-dark-to-darker">
       <Section data-testid="HeroHome" className="dark px-0 pt-16 dsk:pt-32">
         <h1
-          className="typo-display pt-4 mb-10 font-light text-center"
+          className="typo-display pt-4 mb-10 font-light text-center w-fit mx-auto"
           {...inspector("headline")}
         >
           <RichText content={headline} variant="title" spansOnly />
         </h1>
 
-        <div
-          className="w-full px-6 flex justify-center mb-[3.75rem] dsk:mb-[5.4rem]"
-          {...inspector("prompts")}
-        >
-          <AIChatPrompt prompts={prompts?.filter(Boolean)} />
+        <div className="w-full px-6 flex justify-center mb-[3.75rem] dsk:mb-[5.4rem]">
+          <AIChatPrompt
+            prompts={prompts?.filter(Boolean)}
+            {...inspector("prompts")}
+          />
         </div>
 
         <div className="flex flex-col dsk:flex-row">

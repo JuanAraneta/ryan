@@ -48,7 +48,6 @@ export const ModuleStatementHome = ({
       <ComponentLogoCarousel
         data={brandCarouselRef}
         className="pt-10 dsk:pt-20 h-20 dsk:h-36"
-        {...inspector("brandCarouselRef")}
       />
     </Section>
   );

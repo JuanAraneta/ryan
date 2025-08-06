@@ -15,6 +15,9 @@ export const GetModuleCustomerStoriesOverflowById = graphql(
         preview: $preview
         locale: $locale
       ) {
+        sys {
+          id
+        }
         ...ModuleCustomerStoriesOverflowFragment
       }
     }

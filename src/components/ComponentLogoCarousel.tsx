@@ -35,11 +35,11 @@ export const ComponentLogoCarousel = ({
         "overflow-hidden [mask-image:var(--horizontal-fade-linear-gradient-mask)] w-full",
         props.className,
       )}
-      {...inspector("logosCollection")}
     >
       <div
         className="flex items-center flex-1 animate-carousel w-fit"
         style={{ "--carousel-repetitions": repetitions }}
+        {...inspector("logosCollection")}
       >
         {Array.from({ length: repetitions }).map((_, index) => (
           <ul

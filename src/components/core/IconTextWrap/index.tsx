@@ -18,9 +18,12 @@ export const IconTextWrap = ({
 
   return (
     <div className="flex flex-col">
-      <div className="min-h-16" {...inspector("icon")}>
+      <div className="min-h-16 w-fit">
         {iconData?.url && (
-          <div className="text-new-gold border-2 rounded-full p-3 aspect-square w-fit flex items-center justify-center mb-3">
+          <div
+            className="text-new-gold border-2 rounded-full p-3 aspect-square w-fit flex items-center justify-center mb-3"
+            {...inspector("icon")}
+          >
             <ExternalSVGIcon url={iconData.url} alt={`${title} icon`} />
           </div>
         )}

@@ -16,21 +16,18 @@ export const Statistics = ({
 
   return (
     <div className="dsk:flex flex-col text-center dsk:text-left">
-      <p
-        className="typo-display font-light text-highlight"
-        {...inspector("prefix")}
-      >
-        {prefix}
+      <p className="typo-display font-light text-highlight">
+        <span {...inspector("prefix")}>{prefix}</span>
         <AnimatableNumber
           value={
             new Intl.NumberFormat("en-US").format(Number(value ?? "0")) ?? "0"
           }
           {...inspector("value")}
         />
-        {suffix}
+        <span {...inspector("suffix")}>{suffix}</span>
       </p>
       <p
-        className="text-content-secondary typo-eyebrow pt-2 font-bold dsk:max-w-60 max-w-52 text-balance"
+        className="text-content-secondary typo-eyebrow mt-2 font-bold dsk:max-w-60 max-w-52 text-balance"
         {...inspector("richTextLabel")}
       >
         <RichText content={richTextLabel} spansOnly />
