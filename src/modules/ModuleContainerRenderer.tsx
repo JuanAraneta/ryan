@@ -5,7 +5,6 @@ import {
 import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
 import moduleRegistry from "@/modules/moduleRegistry";
 import { backgroundDescriptionMapToClass } from "@/utils/backgroundDescriptionMapToClass";
-import { getInspector } from "@/utils/inspectorMode";
 import { cx } from "cva";
 import { ResultOf } from "gql.tada";
 
@@ -70,15 +69,7 @@ export const ModuleContainerRenderer = async ({
                       return null;
                     }
 
-                    const inspector = getInspector(result.data[type]);
-
-                    return (
-                      <Component
-                        key={index}
-                        data={result.data}
-                        inspector={inspector}
-                      />
-                    );
+                    return <Component key={index} data={result.data} />;
                   },
                 ),
               ).then((result) =>

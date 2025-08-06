@@ -1,17 +1,15 @@
 import { ContentfulLivePreview } from "@contentful/live-preview";
 
-export type Inspector<T> = (
-  fieldId: keyof Omit<T, "sys" | "__typename">,
-) => ReturnType<typeof ContentfulLivePreview.getProps>;
+interface InspectorData {
+  sys: { id: string };
+}
 
-export const getInspector = <T extends { sys: { id: string } }>(
-  data: T,
-): Inspector<T> => {
+export const getInspector = <T extends InspectorData>(data: T) => {
   const entryId = data.sys.id;
 
   if (!entryId) throw new Error("Entry ID not found in inspector mode");
 
-  type FieldNames = keyof T;
+  type FieldNames = keyof Omit<typeof data, "sys" | "__typename">;
 
   return (fieldId: FieldNames) =>
     ContentfulLivePreview.getProps({

@@ -5,16 +5,19 @@ import { Statistics } from "@/components/core/Statistics";
 import { GetModuleStatementHomeById } from ".";
 import { cx } from "cva";
 import { ResultOf } from "gql.tada";
-import { type ModuleProps } from "@/modules/moduleRegistry";
+import { getInspector } from "@/utils/inspectorMode";
 
 export const ModuleStatementHome = ({
   data,
-  inspector,
-}: ModuleProps<ResultOf<typeof GetModuleStatementHomeById>>) => {
+}: {
+  data: ResultOf<typeof GetModuleStatementHomeById>;
+}) => {
   if (!data.moduleStatementHome) return null;
 
   const { headline, statisticsCollection, brandCarouselRef } =
     data.moduleStatementHome;
+
+  const inspector = getInspector(data.moduleStatementHome);
 
   return (
     <Section

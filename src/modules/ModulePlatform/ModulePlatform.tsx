@@ -6,12 +6,13 @@ import { Button } from "@/components/core/Button";
 import { Link } from "@/components/core/Link";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { IconTextWrap } from "@/components/core/IconTextWrap";
-import { ModuleProps } from "@/modules/moduleRegistry";
+import { getInspector } from "@/utils/inspectorMode";
 
 export const ModulePlatform = ({
   data,
-  inspector,
-}: ModuleProps<ResultOf<typeof GetModulePlatformById>>) => {
+}: {
+  data: ResultOf<typeof GetModulePlatformById>;
+}) => {
   if (!data.modulePlatform) return null;
 
   const {
@@ -22,6 +23,8 @@ export const ModulePlatform = ({
     leftOverlayAsset,
     rightOverlayAsset,
   } = data.modulePlatform;
+
+  const inspector = getInspector(data.modulePlatform);
 
   const mainImage = readFragment(AssetFragment, image);
   const leftOverlay = readFragment(AssetFragment, leftOverlayAsset);
