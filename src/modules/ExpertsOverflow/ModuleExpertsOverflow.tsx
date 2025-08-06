@@ -45,7 +45,7 @@ export const ModuleExpertsOverflow = ({
             />
           </h2>
           <p
-            className="typo-heading-1 pt-4 font-light text-center dsk:text-left"
+            className="typo-heading-1 mt-4 font-light text-center dsk:text-left"
             {...inspector("richTextTitle")}
           >
             <RichText
@@ -55,8 +55,11 @@ export const ModuleExpertsOverflow = ({
             />
           </p>
           <div className="pt-6 flex items-center justify-center dsk:justify-start">
-            <Button asChild {...inspector("callToAction")}>
-              <Link link={data.moduleExpertsOverflow?.callToAction} />
+            <Button asChild>
+              <Link
+                link={data.moduleExpertsOverflow?.callToAction}
+                {...inspector("callToAction")}
+              />
             </Button>
           </div>
         </div>

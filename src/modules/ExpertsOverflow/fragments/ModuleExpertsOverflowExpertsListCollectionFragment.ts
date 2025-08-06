@@ -5,6 +5,9 @@ export const ModuleExpertsOverflowExpertsListCollectionFragment = graphql(
   `
     fragment ModuleExpertsOverflowExpertsListCollectionFragment on ModuleExpertsOverflowExpertsListCollection {
       items {
+        sys {
+          id
+        }
         fullName
         title
         serviceLabel

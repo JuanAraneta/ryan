@@ -74,7 +74,7 @@ export const ModuleSoftwareAndServicesRoutingGrid = ({
             />
           </h2>
           <p
-            className="pt-6 typo-body-base text-content-secondary"
+            className="mt-6 typo-body-base text-content-secondary"
             {...inspector("description")}
           >
             <RichText
@@ -83,8 +83,11 @@ export const ModuleSoftwareAndServicesRoutingGrid = ({
             />
           </p>
           <div className="pt-6 dsk:pt-10">
-            <Button asChild {...inspector("cta")}>
-              <Link link={data.moduleSoftwareServicesRoutingGrid?.cta} />
+            <Button asChild>
+              <Link
+                {...inspector("cta")}
+                link={data.moduleSoftwareServicesRoutingGrid?.cta}
+              />
             </Button>
           </div>
         </div>
@@ -92,6 +95,7 @@ export const ModuleSoftwareAndServicesRoutingGrid = ({
       </div>
       <div>
         <ul className="grid dsk:grid-cols-4 gap-3 dsk:gap-y-8 dsk:gap-x-6">
+          {/* TODO: add inspector for individual items */}
           {data.moduleSoftwareServicesRoutingGrid?.gridItemsCollection?.items
             .filter(Boolean)
             .map((page, index) => (
