@@ -95,7 +95,6 @@ export const ModuleSoftwareAndServicesRoutingGrid = ({
       </div>
       <div>
         <ul className="grid dsk:grid-cols-4 gap-3 dsk:gap-y-8 dsk:gap-x-6">
-          {/* TODO: add inspector for individual items */}
           {data.moduleSoftwareServicesRoutingGrid?.gridItemsCollection?.items
             .filter(Boolean)
             .map((page, index) => {
