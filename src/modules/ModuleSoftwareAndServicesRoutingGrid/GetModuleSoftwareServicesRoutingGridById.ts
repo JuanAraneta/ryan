@@ -20,6 +20,9 @@ export const GetModuleSoftwareServicesRoutingGridById = graphql(
     }
 
     fragment ModuleSoftwareServicesRoutingGridFragment on ModuleSoftwareServicesRoutingGrid {
+      sys {
+        id
+      }
       title {
         ...ModuleSoftwareServicesRoutingGrid_titleFragment
       }

@@ -9,12 +9,17 @@ import { cx } from "cva";
 import { focusStyle } from "@/utils/focusStyle";
 import { MdArrowForward, MdAdd } from "react-icons/md";
 import { Constant } from "@/components/providers/ConstantsContext";
+import { getInspector } from "@/utils/inspectorMode";
 
 export const ModuleSoftwareAndServicesRoutingGrid = ({
   data,
 }: {
   data: ResultOf<typeof GetModuleSoftwareServicesRoutingGridById>;
 }) => {
+  if (!data.moduleSoftwareServicesRoutingGrid) return null;
+
+  const inspector = getInspector(data.moduleSoftwareServicesRoutingGrid);
+
   const testimonialImage = readFragment(
     AssetFragment,
     data.moduleSoftwareServicesRoutingGrid?.testimonial?.image,
@@ -25,15 +30,20 @@ export const ModuleSoftwareAndServicesRoutingGrid = ({
   );
 
   const testimonial = (
-    <div className="dsk:max-w-xs justify-self-end">
+    <div
+      className="dsk:max-w-xs justify-self-end"
+      {...inspector("testimonial")}
+    >
       <div className="aspect-video rounded-sm overflow-hidden gradient-overlay">
         <img
           className="size-full object-cover relative -z-10"
           src={testimonialImage?.url ?? ""}
+          alt={testimonialImage?.description ?? ""}
         />
         <img
           className="absolute left-3 bottom-3 max-w-28"
           src={testimonialLogo?.url ?? ""}
+          alt={testimonialLogo?.description ?? ""}
         />
       </div>
       <p className="typo-body-small text-content-secondary pt-6">
@@ -54,20 +64,26 @@ export const ModuleSoftwareAndServicesRoutingGrid = ({
     >
       <div className="grid dsk:grid-cols-2">
         <div>
-          <h2 className="text-highlight typo-heading-2 font-light">
+          <h2
+            className="text-highlight typo-heading-2 font-light"
+            {...inspector("title")}
+          >
             <RichText
               content={data.moduleSoftwareServicesRoutingGrid?.title}
               spansOnly
             />
           </h2>
-          <p className="pt-6 typo-body-base text-content-secondary">
+          <p
+            className="pt-6 typo-body-base text-content-secondary"
+            {...inspector("description")}
+          >
             <RichText
               content={data.moduleSoftwareServicesRoutingGrid?.description}
               spansOnly
             />
           </p>
           <div className="pt-6 dsk:pt-10">
-            <Button asChild>
+            <Button asChild {...inspector("cta")}>
               <Link link={data.moduleSoftwareServicesRoutingGrid?.cta} />
             </Button>
           </div>

@@ -17,7 +17,6 @@ import { CategorySolutionsImageLinkGrid } from "./components/CategorySolutionsIm
 import { CategorySolutionsImageLinkGridFragment } from "@/modules/ModuleChapterGroup/fragments/CategorySolutionsImageLinkGridFragment";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { createIntersectionObserver } from "@/utils/createIntersectionObserver";
-
 export const ModuleChapterGroup = ({
   data,
 }: {
@@ -108,6 +107,8 @@ export const ModuleChapterGroup = ({
 
     return () => controller.abort();
   }, [isDesktop, isMobile, inViewSectionIndex]);
+
+  if (!data.moduleChapterGroup) return null;
 
   return (
     <Section

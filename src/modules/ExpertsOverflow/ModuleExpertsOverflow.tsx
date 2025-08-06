@@ -9,12 +9,17 @@ import { AnimatableNumber } from "@/components/core/AnimatableNumber";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { Button } from "@/components/core/Button";
 import { Section } from "@/components/core/Section";
+import { getInspector } from "@/utils/inspectorMode";
 
 export const ModuleExpertsOverflow = ({
   data,
 }: {
   data: ResultOf<typeof GetModuleExpertsOverflowById>;
 }) => {
+  if (!data.moduleExpertsOverflow) return null;
+
+  const inspector = getInspector(data.moduleExpertsOverflow);
+
   const statistic = readFragment(
     ComponentStatisticFragment,
     data.moduleExpertsOverflow?.statistic,
@@ -30,13 +35,19 @@ export const ModuleExpertsOverflow = ({
     >
       <div className="flex flex-col dsk:flex-row justify-between items-center">
         <div className="flex flex-col justify-center dsk:justify-left">
-          <h2 className="typo-heading-6 text-highlight text-center dsk:text-left">
+          <h2
+            className="typo-heading-6 text-highlight text-center dsk:text-left"
+            {...inspector("richTextEyebrow")}
+          >
             <RichText
               content={data.moduleExpertsOverflow?.richTextEyebrow}
               spansOnly
             />
           </h2>
-          <p className="typo-heading-1 pt-4 font-light text-center dsk:text-left">
+          <p
+            className="typo-heading-1 pt-4 font-light text-center dsk:text-left"
+            {...inspector("richTextTitle")}
+          >
             <RichText
               content={data.moduleExpertsOverflow?.richTextTitle}
               variant="title"
@@ -44,7 +55,7 @@ export const ModuleExpertsOverflow = ({
             />
           </p>
           <div className="pt-6 flex items-center justify-center dsk:justify-start">
-            <Button asChild>
+            <Button asChild {...inspector("callToAction")}>
               <Link link={data.moduleExpertsOverflow?.callToAction} />
             </Button>
           </div>

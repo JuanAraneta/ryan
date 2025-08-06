@@ -18,6 +18,9 @@ export const GetModuleExpertsOverflowById = graphql(
     }
 
     fragment ModuleExpertsOverflowFragment on ModuleExpertsOverflow {
+      sys {
+        id
+      }
       richTextEyebrow {
         ...ModuleExpertsOverflow_richTextEyebrowFragment
       }

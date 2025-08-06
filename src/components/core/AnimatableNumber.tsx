@@ -25,6 +25,7 @@ export const AnimatableNumber: React.FC<AnimatableNumberProps> = ({
   startingValue = 0,
   duration = 3000,
   easing: easingProp = "quart",
+  ...props
 }) => {
   const [onScreen, ref] = useOnScreenState<HTMLSpanElement>({ once: true });
   const easingFunction =
@@ -60,7 +61,7 @@ export const AnimatableNumber: React.FC<AnimatableNumberProps> = ({
   ]);
 
   return (
-    <span ref={ref} className="relative">
+    <span ref={ref} className="relative" {...props}>
       <span className="select-none opacity-0" aria-hidden>
         {getPrintout(finalValue, precision, usesCommas)}
       </span>
