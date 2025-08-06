@@ -19,6 +19,7 @@ import { moduleExpertsOverflow } from "./moduleExpertsOverflow";
 import { moduleCustomerStoriesCarousel } from "./moduleCustomerStoriesCarousel";
 import { moduleHeroHome } from "./moduleHeroHome";
 import { moduleInsightsBento } from "./moduleInsightsBento";
+import { moduleInsights3Up } from "./moduleInsights3Up";
 
 import {
   categorySolutionsImageLinkGrid,
@@ -74,6 +75,7 @@ const modules: ExpandedContentModel[] = [
   moduleCustomerStoriesCarousel,
   moduleHeroHome,
   moduleInsightsBento,
+  moduleInsights3Up,
   moduleStatementHome,
   moduleSoftwareServicesRoutingGrid,
   moduleServiceSoftwareRoutingCards,

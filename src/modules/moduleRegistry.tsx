@@ -31,6 +31,10 @@ import {
   ModuleServiceSoftwareRoutingCards,
   GetModuleServiceSoftwareRoutingCardsById,
 } from "./ModuleServiceSoftwareRoutingCards";
+import {
+  ModuleInsights3Up,
+  GetModuleInsights3UpById,
+} from "./ModuleInsights3Up";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ModuleComponent<Data = any> = {
@@ -84,6 +88,10 @@ const moduleRegistry: ModuleRegistry = {
   ModuleServiceSoftwareRoutingCards: {
     component: ModuleServiceSoftwareRoutingCards,
     queryById: GetModuleServiceSoftwareRoutingCardsById,
+  },
+  ModuleInsights3Up: {
+    component: ModuleInsights3Up,
+    queryById: GetModuleInsights3UpById,
   },
 };
 

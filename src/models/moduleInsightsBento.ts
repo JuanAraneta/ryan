@@ -15,8 +15,8 @@ export const moduleInsightsBento = {
     createField("shortText", { id: "eyebrow", name: "Eyebrow" }),
     createField("shortText", { id: "subheading", name: "Subheading" }),
     createField("entryReference", {
-      id: "exploreInsightsButton",
-      name: "Explore insights button",
+      id: "cta",
+      name: "CTA",
       linkContentType: [componentLink],
     }),
     createField("entryReference", {

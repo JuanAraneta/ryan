@@ -4,6 +4,7 @@ import { moduleChapterGroup } from "./moduleChapterGroup";
 import { moduleCustomerStoriesCarousel } from "./moduleCustomerStoriesCarousel";
 import { moduleExpertsOverflow } from "./moduleExpertsOverflow";
 import { moduleInsightsBento } from "./moduleInsightsBento";
+import { moduleInsights3Up } from "./moduleInsights3Up";
 import { moduleSoftwareServicesRoutingGrid } from "./moduleSoftwareServicesRoutingGrid";
 import { moduleStatementHome } from "./moduleStatementHome";
 import { modulePlatform } from "./modulePlatform";
@@ -27,6 +28,7 @@ export const moduleContainer = {
         moduleCustomerStoriesCarousel,
         moduleChapterGroup,
         moduleInsightsBento,
+        moduleInsights3Up,
         moduleStatementHome,
         moduleSoftwareServicesRoutingGrid,
         modulePlatform,
