@@ -30,13 +30,13 @@ export const ModuleInsightsBento = ({
     subheading,
     eyebrow,
     insightsCollection,
-    exploreInsightsButton,
+    cta,
     newsletterSignup,
   } = data.moduleInsightsBento;
 
   const inspector = getInspector(data.moduleInsightsBento);
 
-  const link = readFragment(ComponentLinkFragment, exploreInsightsButton);
+  const link = readFragment(ComponentLinkFragment, cta);
 
   const insights = insightsCollection?.items.filter(Boolean);
   const insightsCount = insights?.length as keyof typeof LAYOUTS;
@@ -67,7 +67,7 @@ export const ModuleInsightsBento = ({
           </h4>
 
           <Button asChild>
-            <Link link={link} {...inspector("exploreInsightsButton")}>
+            <Link link={link} {...inspector("cta")}>
               {link?.label}
             </Link>
           </Button>
