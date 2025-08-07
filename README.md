@@ -45,6 +45,9 @@ src/
 
 ### 3. Deploy to Contentful
 
+When testing out new modules, it may be beneficial to test in a separate environment. You can create your own Contentful environment forked from your intended target in the `Environments` menu in Contentful.
+This can help you to safely test migrations while developing or before finally committing to a new environment shape.
+
 ```bash
 npm run contentful-code-models-migrate
 ```
@@ -97,17 +100,20 @@ npm run dev       # Development server
 
 ### Component Standards
 
-- Include `data-testid` to easily find the component in the DOM
+- Wrap new modules in the `Section` component. Set the required prop `data-testid` to the name of the module to easily find the component in the DOM.
 - Use `getInspector()` for @contentful/live-preview integration
 - Add `"use client"` only for client-side features
 - Use existing core components (`Section`, `Button`, `Link`, `Card`)
 - Check data exists before rendering
 - Use optional chaining (`?.`) and filter null/undefined items
+- Test out your new component in the Contentful Preview mode to see how it will feel for content-editors.
 
 ### GraphQL Best Practices
 
 - Reuse existing fragments (`ComponentLinkFragment`, `ComponentInsightFragment`, etc.)
 - Fragment names should match content type names
+- RichText fragments are auto-generated in `RichTextFragments.generated.ts` - import the entire object, use the property in the query dependencies
+  e.g., `RichTextFragments.ModuleInsightsBento_headline`, but reference the fragment in queries with "Fragment" suffix `...ModuleInsightsBento_headlineFragment`
 
 ## Development Scripts
 
