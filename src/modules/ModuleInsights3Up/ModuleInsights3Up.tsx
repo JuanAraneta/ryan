@@ -37,9 +37,7 @@ export const ModuleInsights3Up = ({
 
         {link && (
           <Button asChild>
-            <Link link={link} {...inspector("cta")}>
-              {link.label}
-            </Link>
+            <Link link={link} {...inspector("cta")} />
           </Button>
         )}
       </div>
