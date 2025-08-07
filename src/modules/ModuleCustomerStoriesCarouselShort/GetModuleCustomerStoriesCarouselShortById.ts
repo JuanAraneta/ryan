@@ -3,6 +3,7 @@ import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkF
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { ComponentStatisticFragment } from "@/lib/contentful/fragments/ComponentStatisticFragment";
 import { RichTextFragments } from "@/lib/contentful/fragments/RichTextFragments.generated";
+import { ComponentCustomerStoryCardFragment } from "./ComponentCustomerStoryCardFragment";
 
 export const GetModuleCustomerStoriesCarouselShortById = graphql(
   `
@@ -19,40 +20,17 @@ export const GetModuleCustomerStoriesCarouselShortById = graphql(
         sys {
           id
         }
-        ...ModuleCustomerStoriesCarouselShortFragment
-      }
-    }
-
-    fragment ModuleCustomerStoriesCarouselShortFragment on ModuleCustomerStoriesCarouselShort {
-      headline {
-        ...ModuleCustomerStoriesCarouselShort_headlineFragment
-      }
-      cta {
-        ...ComponentLinkFragment
-      }
-      customerStoryCardsCollection(limit: 10) {
-        items {
-          ...ComponentCustomerStoryCardFragment
+        headline {
+          ...ModuleCustomerStoriesCarouselShort_headlineFragment
         }
-      }
-    }
-
-    fragment ComponentCustomerStoryCardFragment on ComponentCustomerStoryCard {
-      sys {
-        id
-      }
-      backgroundImage {
-        ...AssetFragment
-      }
-      clientLogo {
-        ...AssetFragment
-      }
-      statistic {
-        ...ComponentStatisticFragment
-      }
-      tags
-      link {
-        ...ComponentLinkFragment
+        cta {
+          ...ComponentLinkFragment
+        }
+        customerStoryCardsCollection(limit: 10) {
+          items {
+            ...ComponentCustomerStoryCardFragment
+          }
+        }
       }
     }
   `,
@@ -60,6 +38,7 @@ export const GetModuleCustomerStoriesCarouselShortById = graphql(
     ComponentLinkFragment,
     AssetFragment,
     ComponentStatisticFragment,
+    ComponentCustomerStoryCardFragment,
     RichTextFragments.ModuleCustomerStoriesCarouselShort_headline,
   ],
 );
