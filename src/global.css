@@ -167,7 +167,7 @@
 }
 
 .gradient-container {
-  @apply bg-gradient-to-r from-brand-700 via-50% via-[rgba(88,104,158,0.5)] to-brand-700;
+  @apply bg-gradient-to-r from-brand-700/50 via-50% via-[rgba(88,104,158,0.5)] to-brand-700/50;
 }
 .gradient-primary-gray {
   @apply bg-gradient-to-br from-neutral-100 to-white;

@@ -1,10 +1,8 @@
-import { cx } from "cva";
 import { getInspector } from "@/utils/inspectorMode";
 import { readFragment, ResultOf } from "gql.tada";
 import { ComponentCustomerStoryCardFragment } from "./ComponentCustomerStoryCardFragment";
 import { Link } from "@/components/core/Link";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
-import { focusStyle } from "@/utils/focusStyle";
 import { Statistics } from "@/components/core/Statistics";
 
 export const ComponentCustomerStoryCard = ({
@@ -20,38 +18,21 @@ export const ComponentCustomerStoryCard = ({
   return (
     <Link
       link={data.link}
-      className={cx(
-        "group block h-[300px] dsk:h-[350px] aspect-square dsk:aspect-[2/1] mob:aspect-square relative rounded-lg overflow-hidden",
-        "transition-transform duration-300 hover:scale-105",
-        focusStyle,
-      )}
+      className="relative h-[300px] dsk:h-[350px] aspect-square dsk:aspect-[2/1] bg-cover bg-center gradient-overlay before:opacity-20 rounded-lg overflow-hidden px-10 py-12"
+      style={{ backgroundImage: `url(${backgroundImage?.url})` }}
       {...inspector("link")}
     >
-      {/* Background Image */}
-      {backgroundImage?.url && (
-        <img
-          className="absolute inset-0 w-full h-full object-cover"
-          src={backgroundImage.url}
-          alt=""
-          {...inspector("backgroundImage")}
-        />
-      )}
-
-      {/* Overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-
       {/* Client Logo */}
       {clientLogo?.url && (
         <img
           className="absolute top-6 left-6 h-8 max-w-[120px] object-contain"
           src={clientLogo.url}
-          alt=""
+          alt={clientLogo.description || "client logo"}
           {...inspector("clientLogo")}
         />
       )}
-
       {/* Content */}
-      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+      <div className="border-1 border-dim-blue gradient-container w-[23.25rem] h-full backdrop-blur-lg rounded-lg">
         {/* Statistics */}
         <div className="mb-4" {...inspector("statistic")}>
           {data.statistic && <Statistics data={data.statistic} />}
