@@ -35,6 +35,10 @@ import {
   ModuleInsights3Up,
   GetModuleInsights3UpById,
 } from "./ModuleInsights3Up";
+import {
+  ModuleCustomerStoriesCarouselShort,
+  GetModuleCustomerStoriesCarouselShortById,
+} from "./ModuleCustomerStoriesCarouselShort";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ModuleComponent<Data = any> = {
@@ -92,6 +96,10 @@ const moduleRegistry: ModuleRegistry = {
   ModuleInsights3Up: {
     component: ModuleInsights3Up,
     queryById: GetModuleInsights3UpById,
+  },
+  ModuleCustomerStoriesCarouselShort: {
+    component: ModuleCustomerStoriesCarouselShort,
+    queryById: GetModuleCustomerStoriesCarouselShortById,
   },
 };
 
