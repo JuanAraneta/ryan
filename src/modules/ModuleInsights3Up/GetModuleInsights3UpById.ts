@@ -10,14 +10,14 @@ export const GetModuleInsights3UpById = graphql(
       $id: String!
     ) {
       moduleInsights3Up(id: $id, preview: $preview, locale: $locale) {
+        sys {
+          id
+        }
         ...ModuleInsights3UpFragment
       }
     }
 
     fragment ModuleInsights3UpFragment on ModuleInsights3Up {
-      sys {
-        id
-      }
       headline
       cta {
         ...ComponentLinkFragment
