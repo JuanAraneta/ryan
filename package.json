@@ -8,6 +8,7 @@
     "start": "next start",
     "test": "vitest run",
     "lint": "next lint",
+    "check": "npm run lint && npx tsc --noEmit && npm run test",
     "prepare": "husky",
     "format": "pnpm exec prettier --write src/**/*.{ts,tsx,css}",
     "generate-contentful-schema": "tsx ./scripts/generate-contentful-schema",
