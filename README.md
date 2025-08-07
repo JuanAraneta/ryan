@@ -1,23 +1,128 @@
-## CMS:
+# Ryan CMS Project
 
-The CMS should have a contentType called "page", and this page should include a field named modules, which will be a list of linked items corresponding to the modules that will be rendered in the application.
+A Next.js application with Contentful CMS using a modular architecture for flexible page composition.
 
-## Code:
+## Architecture Overview
 
-For each module created in the CMS, the corresponding component should be created within the modules directory. Additionally, it should be registered in the moduleRegistry file, including both the component and the morpher. The morpher is the function responsible for making the CMS data compatible with the component.
+### CMS Structure
 
-## Contentful Code Models Scripts
+The CMS uses a "page" content type ([page.ts](/src/models/page.ts)) with a modular approach:
 
-This project uses Contentful Code Models to keep content models synchronized between TypeScript code and Contentful.
+- **Pages** contain a `modules` field linking to reusable content modules
+- **Modules** are registered in [moduleRegistry.tsx](/src/modules/moduleRegistry.tsx)
+- **Components** are reusable content parts (e.g., [componentLink.ts](/src/models/componentLink.ts), [componentStatistic.ts](/src/models/componentStatistic.ts)) used within modules
+- **Content models** are managed as TypeScript code using contentful-code-models
 
-### Scripts
+### Code Structure
 
-- `contentful-code-models-migrate` - Pushes changes from the `src/models/` folder to Contentful
-- `generate-contentful-schema` - Generates GraphQL schema from Contentful into `contentful/schema.graphql`
+```
+src/
+├── models/           # Contentful content model definitions
+│   ├── component*.ts # Reusable content components
+│   └── module*.ts    # Module definitions
+├── modules/          # React components for each module type
+│   └── moduleRegistry.tsx
+├── components/core/  # React components (Link.tsx, Button.tsx, etc.)
+└── lib/contentful/   # GraphQL queries and fragments
+```
 
-### Workflow
+## 🚀 Module Creation Guide
 
-1. Modify models in `src/models/`
-2. Run `contentful-code-models-migrate` to push changes to Contentful
-   - The GraphQL schema is automatically regenerated after migration
-   - No need to run `generate-contentful-schema` manually
+### 1. Create Content Model
+
+**Location**: `src/models/moduleNewModule.ts`
+
+- Define fields using [createField.ts](/src/models/utils/createField.ts) helper.
+- Always include `createField("contentfulLabel")`
+- Set appropriate field types, validation, and help text
+
+### 2. Register Content Model
+
+**Files to update**:
+
+- [`src/models/index.ts`](/src/models/index.ts) - Add to modules array
+- [`src/models/moduleContainer.ts`](/src/models/moduleContainer.ts) - Add to linkContentType array
+
+### 3. Deploy to Contentful
+
+```bash
+npm run contentful-code-models-migrate
+```
+
+_Uses contentful-code-models to push models to Contentful and automatically runs schema generation via post-hook_
+
+**If schema generation doesn't run automatically, execute manually**:
+
+```bash
+npm run generate-contentful-schema
+```
+
+### 4. Create Module Files
+
+**Location**: `src/modules/ModuleNewModule/`
+
+**Required files**:
+
+- `GetModuleNewModuleById.ts` - GraphQL query
+- `ModuleNewModule.tsx` - React component
+- `index.ts` - Exports
+
+**Optional files** (if needed):
+
+- **Single extra component/fragment**: Place directly in module folder
+- **Multiple extra components**: Create `components/` folder
+- **Multiple extra fragments**: Create `fragments/` folder
+
+### 5. Register in Module Registry
+
+**File**: [`src/modules/moduleRegistry.tsx`](/src/modules/moduleRegistry.tsx)
+
+- Import component and query
+- Add to registry object
+
+### 6. Verify Implementation
+
+```bash
+npm run check     # Run lint, TypeScript check, and tests
+npm run dev       # Development server
+```
+
+## 📝 Development Guidelines
+
+### Naming Conventions
+
+- **Content Model ID**: camelCase (e.g., `moduleNewModule`)
+- **Display Name**: Descriptive (e.g., `"Module / New Module"`)
+- **GraphQL Fragments**: Match content type names
+
+### Component Standards
+
+- Include `data-testid` to easily find the component in the DOM
+- Use `getInspector()` for @contentful/live-preview integration
+- Add `"use client"` only for client-side features
+- Use existing core components (`Section`, `Button`, `Link`, `Card`)
+- Check data exists before rendering
+- Use optional chaining (`?.`) and filter null/undefined items
+
+### GraphQL Best Practices
+
+- Reuse existing fragments (`ComponentLinkFragment`, `ComponentInsightFragment`, etc.)
+- Fragment names should match content type names
+
+## Development Scripts
+
+### Content Model Management
+
+- `npm run contentful-code-models-migrate` - Deploy content models to Contentful (runs schema generation automatically)
+- `npm run generate-contentful-schema` - Generate GraphQL schema after manual Contentful changes
+
+### Code Quality & Testing
+
+- `npm run check` - Complete verification (lint + TypeScript + tests)
+- `npm run lint` - Fix code style issues
+- `npm run test` - Run test suite
+- `npm run format` - Format code with prettier
+
+### Development Server
+
+- `npm run dev` - Start development server
