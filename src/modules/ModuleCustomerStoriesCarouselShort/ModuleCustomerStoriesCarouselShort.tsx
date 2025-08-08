@@ -9,8 +9,8 @@ import { getInspector } from "@/utils/inspectorMode";
 import { readFragment, ResultOf } from "gql.tada";
 import { GetModuleCustomerStoriesCarouselShortById } from "./GetModuleCustomerStoriesCarouselShortById";
 import { RichText } from "@/components/core/RichText";
-import { ComponentCustomerStoryCard } from "./ComponentCustomerStoryCard";
-import { ComponentCustomerStoryCardFragment } from "./ComponentCustomerStoryCardFragment";
+import { ComponentCustomerStoryCard } from "./components/ComponentCustomerStoryCard";
+import { ComponentCustomerStoryCardFragment } from "./fragments/ComponentCustomerStoryCardFragment";
 
 export const ModuleCustomerStoriesCarouselShort = ({
   data,

@@ -3,7 +3,7 @@ import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkF
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { ComponentStatisticFragment } from "@/lib/contentful/fragments/ComponentStatisticFragment";
 import { RichTextFragments } from "@/lib/contentful/fragments/RichTextFragments.generated";
-import { ComponentCustomerStoryCardFragment } from "./ComponentCustomerStoryCardFragment";
+import { ComponentCustomerStoryCardFragment } from "./fragments/ComponentCustomerStoryCardFragment";
 
 export const GetModuleCustomerStoriesCarouselShortById = graphql(
   `

@@ -1,13 +1,16 @@
+import { cx } from "cva";
+import { readFragment, FragmentOf } from "gql.tada";
 import { AnimatableNumber } from "@/components/core/AnimatableNumber";
 import { RichText } from "@/components/core/RichText";
 import { ComponentStatisticFragment } from "@/lib/contentful/fragments/ComponentStatisticFragment";
-import { readFragment, FragmentOf } from "gql.tada";
 import { getInspector } from "@/utils/inspectorMode";
 
 export const Statistics = ({
   data,
+  statisticClassName,
 }: {
   data: FragmentOf<typeof ComponentStatisticFragment>;
+  statisticClassName?: string;
 }) => {
   const statisticData = readFragment(ComponentStatisticFragment, data);
   const { prefix, value, suffix, richTextLabel } = statisticData;
@@ -16,7 +19,12 @@ export const Statistics = ({
 
   return (
     <div className="dsk:flex flex-col text-center dsk:text-left">
-      <p className="typo-display font-light text-highlight">
+      <p
+        className={cx(
+          "typo-display font-light text-highlight",
+          statisticClassName,
+        )}
+      >
         <span {...inspector("prefix")}>{prefix}</span>
         <AnimatableNumber
           value={
