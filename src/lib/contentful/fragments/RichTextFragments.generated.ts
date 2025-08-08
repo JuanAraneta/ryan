@@ -1,3 +1,4 @@
+/* eslint-disable */
 // DO NOT MODIFY
 // Generated via `pnpm run generate-contentful-rich-text-fragments`
 import { graphql } from "gql.tada";
@@ -157,6 +158,25 @@ export const RichTextFragments = {
   `),
   ModuleCustomerStoriesCarousel_richTextTitle: graphql(`
     fragment ModuleCustomerStoriesCarousel_richTextTitleFragment on ModuleCustomerStoriesCarouselRichTextTitle
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `),
+  ModuleCustomerStoriesCarouselShort_headline: graphql(`
+    fragment ModuleCustomerStoriesCarouselShort_headlineFragment on ModuleCustomerStoriesCarouselShortHeadline
     @_unmask {
       json
       links {
