@@ -1,10 +1,11 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const pageService = {
+export const pageContentService = {
   sys: { id: "pageService" },
-  name: "Page / Service",
-  description: "",
+  name: "Page content / Service",
+  description:
+    "Page-content model which represents all details for a particular service.",
   fields: [
     createField("shortText", {
       id: "title",
@@ -14,10 +15,6 @@ export const pageService = {
     createField("richText", {
       id: "shortDescription",
       name: "Short description",
-    }),
-    createField("shortText", {
-      id: "slug",
-      name: "slug",
     }),
   ],
 } as const satisfies ExpandedContentModel;

@@ -1,7 +1,10 @@
-import { footer } from "./footer";
 import { market } from "./market";
-import { moduleContainer } from "./moduleContainer";
-import { moduleHeroHome } from "./moduleHeroHome";
+import { pageContentCustomerStory } from "./pageContentCustomerStory";
+import { pageContentExpert } from "./pageContentExpert";
+import { pageContentInsight } from "./pageContentInsight";
+import { pageContentModular } from "./pageContentModular";
+import { pageContentService } from "./pageContentService";
+import { pageContentSoftware } from "./pageContentSoftware";
 import { seoMetadata } from "./seoMetadata";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
@@ -12,19 +15,7 @@ export const page = {
   description:
     "Represents a single webpage on the site, such as a homepage, service page, landing page, or contact page. Supports flexible layouts through modular content, SEO metadata, market scoping, and localization.",
   fields: [
-    createField("shortText", {
-      id: "title",
-      name: "Title",
-      required: true,
-      displayField: true,
-      validations: [{ unique: true }],
-      editorInterface: {
-        settings: {
-          helpText:
-            "Internal title for content editors. Will be used as the visible H1 on the page.",
-        },
-      },
-    }),
+    createField("contentfulLabel"),
     createField("shortText", {
       id: "slug",
       name: "Slug",
@@ -33,18 +24,6 @@ export const page = {
         settings: {
           helpText:
             "The URL-friendly identifier for this page (e.g., about-us). Should be lowercase, with hyphens instead of spaces. No slashes.",
-        },
-      },
-    }),
-    createField("entryReference", {
-      id: "market",
-      name: "Market",
-      required: true,
-      linkContentType: [market],
-      editorInterface: {
-        settings: {
-          helpText:
-            "The regional market this page belongs to (e.g., United States, Brazil). Required for routing and market-specific content.",
         },
       },
     }),
@@ -61,47 +40,43 @@ export const page = {
       },
     }),
     createField("entryReference", {
-      id: "hero",
-      name: "Hero",
+      id: "market",
+      name: "Market",
       required: true,
-      linkContentType: [moduleHeroHome],
+      linkContentType: [market],
       editorInterface: {
         settings: {
-          helpText: "Header that will be used on the page",
+          helpText:
+            "The regional market this page belongs to (e.g., United States, Brazil). Required for routing and market-specific content.",
         },
       },
     }),
     createField("entryReference", {
-      id: "footer",
-      name: "Footer",
-      required: true,
-      linkContentType: [footer],
-      editorInterface: {
-        settings: {
-          helpText: "Footer that will be used on the page",
-        },
-      },
-    }),
-    createField("entryReference", {
-      array: true,
-      id: "modules",
-      name: "Modules",
-      size: { max: 20 },
-      linkContentType: [moduleContainer],
-      editorInterface: {
-        settings: { helpText: "Modules that will compose a page layout" },
-      },
-    }),
-    createField("entryReference", {
-      array: true,
-      id: "pages",
-      name: "Pages",
-      size: { max: 100 },
+      id: "parent",
+      name: "Parent route",
       linkContentType: ["page"],
       editorInterface: {
         settings: {
           helpText:
-            "Pages that will be child of the current page, e.g.: services/consulting, services/advisement",
+            'The page which owns this page, e.g. if this page represents a particular expert, it should be under the page whose slug is "experts" and has no parent.',
+        },
+      },
+    }),
+    createField("entryReference", {
+      id: "pageContent",
+      name: "Page content",
+      linkContentType: [
+        pageContentCustomerStory,
+        pageContentExpert,
+        pageContentInsight,
+        pageContentModular,
+        pageContentService,
+        pageContentSoftware,
+      ],
+      editorInterface: {
+        settings: {
+          helpText:
+            "The entry which defines the page content. If not fulfilled, the route for this page may return a 404.",
         },
       },
     }),

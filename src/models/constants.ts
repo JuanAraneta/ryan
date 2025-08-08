@@ -1,3 +1,4 @@
+import { market } from "./market";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
@@ -8,6 +9,11 @@ export const constants = {
     "All constant strings that get used in multiple places throughout the application.",
   fields: [
     createField("contentfulLabel"),
+    createField("entryReference", {
+      id: "defaultMarket",
+      name: "Default market",
+      linkContentType: [market],
+    }),
     createField("shortText", {
       id: "previousButtonAriaLabel",
       name: "Previous button ARIA label",

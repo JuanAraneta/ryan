@@ -8,8 +8,8 @@ export const urlRedirect = {
     "Defines a redirect rule to guide users and search engines from one URL to another. Useful for maintaining SEO when content is moved, renamed, or removed. Supports permanent (301) and temporary (302) redirects, as well as region- and language-specific use cases.",
   fields: [
     createField("shortText", {
-      id: "slug",
-      name: "Slug",
+      id: "path",
+      name: "Path",
       required: true,
       displayField: true,
       validations: [
