@@ -35,6 +35,10 @@ import {
   ModuleInsights3Up,
   GetModuleInsights3UpById,
 } from "./ModuleInsights3Up";
+import {
+  ModuleGeneralVideoMission,
+  GetModuleGeneralVideoMissionById,
+} from "./ModuleGeneralVideoMission";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ModuleComponent<Data = any> = {
@@ -92,6 +96,10 @@ const moduleRegistry: ModuleRegistry = {
   ModuleInsights3Up: {
     component: ModuleInsights3Up,
     queryById: GetModuleInsights3UpById,
+  },
+  ModuleGeneralVideoMission: {
+    component: ModuleGeneralVideoMission,
+    queryById: GetModuleGeneralVideoMissionById,
   },
 };
 

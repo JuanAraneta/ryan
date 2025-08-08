@@ -1,3 +1,4 @@
+/* eslint-disable */
 // DO NOT MODIFY
 // Generated via `pnpm run generate-contentful-rich-text-fragments`
 import { graphql } from "gql.tada";
@@ -174,6 +175,25 @@ export const RichTextFragments = {
       }
     }
   `),
+  ModuleCustomerStoriesCarouselShort_headline: graphql(`
+    fragment ModuleCustomerStoriesCarouselShort_headlineFragment on ModuleCustomerStoriesCarouselShortHeadline
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `),
   ModuleExpertsOverflow_richTextEyebrow: graphql(`
     fragment ModuleExpertsOverflow_richTextEyebrowFragment on ModuleExpertsOverflowRichTextEyebrow
     @_unmask {
@@ -195,6 +215,25 @@ export const RichTextFragments = {
   `),
   ModuleExpertsOverflow_richTextTitle: graphql(`
     fragment ModuleExpertsOverflow_richTextTitleFragment on ModuleExpertsOverflowRichTextTitle
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `),
+  ModuleGeneralVideoMission_body: graphql(`
+    fragment ModuleGeneralVideoMission_bodyFragment on ModuleGeneralVideoMissionBody
     @_unmask {
       json
       links {
