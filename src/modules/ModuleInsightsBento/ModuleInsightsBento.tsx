@@ -67,9 +67,7 @@ export const ModuleInsightsBento = ({
           </h4>
 
           <Button asChild>
-            <Link link={link} {...inspector("cta")}>
-              {link?.label}
-            </Link>
+            <Link link={link} {...inspector("cta")} />
           </Button>
         </div>
 
