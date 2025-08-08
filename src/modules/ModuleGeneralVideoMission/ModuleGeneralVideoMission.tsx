@@ -20,7 +20,7 @@ export const ModuleGeneralVideoMission = ({
         <RichText content={data.moduleGeneralVideoMission?.body} spansOnly />
       </div>
       <div className="aspect-video w-full dsk:w-2/3 bg-brand-300">
-        VIDEO SPACE
+      VIDEO SPACE {/* TODO: Add video player here */}
       </div>
     </Section>
   );
