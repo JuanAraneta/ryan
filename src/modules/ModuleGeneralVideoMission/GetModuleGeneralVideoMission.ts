@@ -14,6 +14,9 @@ export const GetModuleGeneralVideoMissionById = graphql(
     }
 
     fragment ModuleGeneralVideoMissionFragment on ModuleGeneralVideoMission {
+      sys {
+        id
+      }
       headline
       body {
         ...ModuleGeneralVideoMission_bodyFragment
