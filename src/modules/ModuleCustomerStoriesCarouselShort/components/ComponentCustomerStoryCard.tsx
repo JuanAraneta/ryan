@@ -19,12 +19,12 @@ export const ComponentCustomerStoryCard = ({
   return (
     <Link
       link={data.link}
-      className="relative h-[300px] dsk:h-[350px] aspect-square dsk:aspect-[2/1] bg-cover bg-center gradient-overlay before:opacity-20 rounded-lg overflow-hidden px-10 py-12"
+      className="relative h-[300px] dsk:h-[350px] aspect-square dsk:aspect-[2/1] bg-cover bg-center gradient-overlay before:opacity-20 rounded-lg overflow-hidden px-6 py-[3rem] dsk:px-10 dsk:py-12"
       style={{ backgroundImage: `url(${backgroundImage?.url})` }}
       {...inspector("link")}
     >
       {/* Content */}
-      <div className="border-1 border-dim-blue/60 gradient-container w-[23.25rem] h-full backdrop-blur-lg rounded-lg p-6">
+      <div className="border-1 border-dim-blue/60 gradient-container w-full dsk:w-[23.25rem] h-full backdrop-blur-lg rounded-lg p-6">
         {clientLogo?.url && (
           <img
             className="max-w-[120px] object-contain mb-10"
@@ -37,14 +37,19 @@ export const ComponentCustomerStoryCard = ({
         <div className="mb-6" {...inspector("statistic")}>
           {data.statistic && (
             <Statistics
+              animate={false}
               data={data.statistic}
+              className="text-left"
               statisticClassName="typo-heading-1"
             />
           )}
         </div>
 
-        {data.tags && data.tags.length > 0 && (
-          <div className="flex gap-2 flex-wrap" {...inspector("tags")}>
+        {data.tags?.length && (
+          <div
+            className="hidden dsk:flex gap-2 flex-wrap"
+            {...inspector("tags")}
+          >
             {data.tags.filter(Boolean).map((tag, index) => (
               <Tag key={index} text={tag} />
             ))}

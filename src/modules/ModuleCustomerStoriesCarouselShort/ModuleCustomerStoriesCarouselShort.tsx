@@ -36,7 +36,7 @@ export const ModuleCustomerStoriesCarouselShort = ({
       <div className="flex flex-col justify-center items-center text-center mb-16">
         {headline && (
           <h2
-            className="typo-heading-2 font-light mb-10 max-w-2xl"
+            className="typo-heading-2 dsk:typo-heading-1 font-light mb-10 max-w-4xl"
             {...inspector("headline")}
           >
             <RichText content={headline} variant="title" spansOnly />
@@ -54,6 +54,7 @@ export const ModuleCustomerStoriesCarouselShort = ({
       {cards.length > 0 && (
         <ScrollCarouselContainer
           items={cards}
+          className="!py-0"
           itemRender={({ item: card }) => {
             const cardData = readFragment(
               ComponentCustomerStoryCardFragment,
