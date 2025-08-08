@@ -35,12 +35,11 @@ export default async function RootLayout(
 
   const [pageResult, constantsResult] = await Promise.all([
     contentClient.query(GetPageBySlugAndMarketQuery, {
-      preview,
       marketSlug,
       locale,
       slug,
     }),
-    contentClient.query(GetConstantsQuery, { locale, preview }),
+    contentClient.query(GetConstantsQuery, { locale }),
   ]);
 
   const page = pageResult.data?.pageCollection?.items[0];

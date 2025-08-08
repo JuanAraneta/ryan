@@ -1,6 +1,6 @@
 import { ModuleContainerRenderer } from "@/modules/ModuleContainerRenderer";
 import { notFound } from "next/navigation";
-import { contentClient, isPreviewMode } from "@/lib/contentful/contentClient";
+import { contentClient } from "@/lib/contentful/contentClient";
 import { GetPageBySlugAndMarketQuery } from "@/lib/contentful/query/GetPageBySlugAndMarketQuery";
 import { readFragment } from "gql.tada";
 import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
@@ -10,12 +10,10 @@ export default async function Page(props: {
 }) {
   const params = await props.params;
   const slugs = Array.isArray(params.slug) ? params.slug : [params.slug];
-  const preview = await isPreviewMode();
 
   const [marketSlug, locale, slug] = slugs;
 
   const pageResult = await contentClient.query(GetPageBySlugAndMarketQuery, {
-    preview,
     marketSlug,
     locale,
     slug,

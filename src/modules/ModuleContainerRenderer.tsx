@@ -1,4 +1,4 @@
-import { contentClient, isPreviewMode } from "@/lib/contentful/contentClient";
+import { contentClient } from "@/lib/contentful/contentClient";
 import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
 import moduleRegistry from "@/modules/moduleRegistry";
 import { backgroundDescriptionMapToClass } from "@/utils/backgroundDescriptionMapToClass";
@@ -12,8 +12,6 @@ export const ModuleContainerRenderer = async ({
   data: ResultOf<typeof PageModulesCollectionFragment>;
   locale: string;
 }) => {
-  const preview = await isPreviewMode();
-
   return (
     <>
       {await Promise.allSettled(
@@ -54,7 +52,6 @@ export const ModuleContainerRenderer = async ({
 
                     const result = await contentClient.query(queryById, {
                       id: module.sys.id,
-                      preview,
                       locale,
                     });
 
