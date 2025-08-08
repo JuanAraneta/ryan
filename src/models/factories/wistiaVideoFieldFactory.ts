@@ -12,9 +12,6 @@ export const wistiaVideoFieldFactory = (
     {
       type: "Object",
       localized: false,
-      validations: [],
-      disabled: false,
-      omitted: false,
       editorInterface: {
         widgetId: "6StWOM1AZBDHDjynDkm1iz",
         widgetNamespace: "app",
