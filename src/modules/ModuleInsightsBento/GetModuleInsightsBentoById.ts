@@ -25,7 +25,7 @@ export const GetModuleInsightsBentoById = graphql(
       }
       eyebrow
       subheading
-      exploreInsightsButton {
+      cta {
         ...ComponentLinkFragment
       }
       insightsCollection {
