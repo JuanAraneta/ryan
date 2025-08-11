@@ -20,6 +20,7 @@ import { moduleCustomerStoriesCarousel } from "./moduleCustomerStoriesCarousel";
 import { moduleHeroHome } from "./moduleHeroHome";
 import { moduleInsightsBento } from "./moduleInsightsBento";
 import { moduleInsights3Up } from "./moduleInsights3Up";
+import { moduleGeneralVideoMission } from "./moduleGeneralVideoMission";
 
 import {
   categorySolutionsImageLinkGrid,
@@ -83,6 +84,7 @@ const modules: ExpandedContentModel[] = [
   moduleSoftwareServicesRoutingGrid,
   moduleServiceSoftwareRoutingCards,
   moduleCustomerStoriesCarouselShort,
+  moduleGeneralVideoMission,
 ];
 
 const pages: ExpandedContentModel[] = [

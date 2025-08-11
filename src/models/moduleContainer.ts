@@ -10,6 +10,7 @@ import { moduleStatementHome } from "./moduleStatementHome";
 import { modulePlatform } from "./modulePlatform";
 import { moduleServiceSoftwareRoutingCards } from "./moduleServiceSoftwareRoutingCards";
 import { moduleCustomerStoriesCarouselShort } from "./moduleCustomerStoriesCarouselShort";
+import { moduleGeneralVideoMission } from "./moduleGeneralVideoMission";
 
 export const moduleContainer = {
   sys: { id: "moduleContainer" },
@@ -35,6 +36,7 @@ export const moduleContainer = {
         modulePlatform,
         moduleServiceSoftwareRoutingCards,
         moduleCustomerStoriesCarouselShort,
+        moduleGeneralVideoMission,
       ],
     }),
   ],
