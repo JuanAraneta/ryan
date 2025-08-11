@@ -7,6 +7,7 @@ import { authExchange } from "@urql/exchange-auth";
 import { draftMode } from "next/headers";
 import type { introspection } from "../../graphql-env";
 import type { initGraphQLTada } from "gql.tada";
+import { appendVariablesExchange } from "./exchanges/appendVariablesExchange";
 
 const spaceId = process.env.CONTENTFUL_SPACE_ID;
 const environment = process.env.CONTENTFUL_ENVIRONMENT;
@@ -32,6 +33,7 @@ export const createContentClient = () =>
     url: `https://graphql.contentful.com/content/v1/spaces/${spaceId}/environments/${environment}`,
     exchanges: [
       ...(isDevelopment ? [] : [defaultCacheExchange]),
+      appendVariablesExchange(async () => ({ preview: await isPreviewMode() })),
       authExchange(async (utils) => ({
         addAuthToOperation(operation) {
           const isPreview = operation.variables?.preview || false;
