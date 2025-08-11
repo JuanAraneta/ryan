@@ -831,24 +831,8 @@ input ComponentCustomerStoryFilter {
 }
 
 type ComponentCustomerStoryLinkingCollections {
-  componentLinkCollection(limit: Int = 100, locale: String, order: [ComponentCustomerStoryLinkingCollectionsComponentLinkCollectionOrder], preview: Boolean, skip: Int = 0): ComponentLinkCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   pageCustomerStoryCollection(limit: Int = 100, locale: String, order: [ComponentCustomerStoryLinkingCollectionsPageCustomerStoryCollectionOrder], preview: Boolean, skip: Int = 0): PageCustomerStoryCollection
-}
-
-enum ComponentCustomerStoryLinkingCollectionsComponentLinkCollectionOrder {
-  externalSource_ASC
-  externalSource_DESC
-  label_ASC
-  label_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
 }
 
 enum ComponentCustomerStoryLinkingCollectionsPageCustomerStoryCollectionOrder {
@@ -972,24 +956,8 @@ input ComponentExpertFilter {
 }
 
 type ComponentExpertLinkingCollections {
-  componentLinkCollection(limit: Int = 100, locale: String, order: [ComponentExpertLinkingCollectionsComponentLinkCollectionOrder], preview: Boolean, skip: Int = 0): ComponentLinkCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   pageExpertCollection(limit: Int = 100, locale: String, order: [ComponentExpertLinkingCollectionsPageExpertCollectionOrder], preview: Boolean, skip: Int = 0): PageExpertCollection
-}
-
-enum ComponentExpertLinkingCollectionsComponentLinkCollectionOrder {
-  externalSource_ASC
-  externalSource_DESC
-  label_ASC
-  label_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
 }
 
 enum ComponentExpertLinkingCollectionsPageExpertCollectionOrder {
@@ -1159,23 +1127,7 @@ input ComponentInsightFilter {
 }
 
 type ComponentInsightLinkingCollections {
-  componentLinkCollection(limit: Int = 100, locale: String, order: [ComponentInsightLinkingCollectionsComponentLinkCollectionOrder], preview: Boolean, skip: Int = 0): ComponentLinkCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-}
-
-enum ComponentInsightLinkingCollectionsComponentLinkCollectionOrder {
-  externalSource_ASC
-  externalSource_DESC
-  label_ASC
-  label_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
 }
 
 enum ComponentInsightOrder {
@@ -1239,7 +1191,7 @@ input ComponentLinkFilter {
   sys: SysFilter
 }
 
-union ComponentLinkInternalSource = ComponentCustomerStory | ComponentExpert | ComponentInsight | Page | PageService | PageSoftware
+union ComponentLinkInternalSource = PageCustomerStory | PageExpert | PageModular | PageNewsAndInsights | PageServiceDetails | PageSoftwareDetails
 
 type ComponentLinkLinkingCollections {
   categorySolutionsImageLinkCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsCategorySolutionsImageLinkCollectionOrder], preview: Boolean, skip: Int = 0): CategorySolutionsImageLinkCollection
@@ -5265,8 +5217,24 @@ input PageCustomerStoryFilter {
 }
 
 type PageCustomerStoryLinkingCollections {
+  componentLinkCollection(limit: Int = 100, locale: String, order: [PageCustomerStoryLinkingCollectionsComponentLinkCollectionOrder], preview: Boolean, skip: Int = 0): ComponentLinkCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   moduleCustomerStoriesCarouselCollection(limit: Int = 100, locale: String, order: [PageCustomerStoryLinkingCollectionsModuleCustomerStoriesCarouselCollectionOrder], preview: Boolean, skip: Int = 0): ModuleCustomerStoriesCarouselCollection
+}
+
+enum PageCustomerStoryLinkingCollectionsComponentLinkCollectionOrder {
+  externalSource_ASC
+  externalSource_DESC
+  label_ASC
+  label_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 enum PageCustomerStoryLinkingCollectionsModuleCustomerStoriesCarouselCollectionOrder {
@@ -5334,8 +5302,24 @@ input PageExpertFilter {
 }
 
 type PageExpertLinkingCollections {
+  componentLinkCollection(limit: Int = 100, locale: String, order: [PageExpertLinkingCollectionsComponentLinkCollectionOrder], preview: Boolean, skip: Int = 0): ComponentLinkCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   moduleExpertsOverflowCollection(limit: Int = 100, locale: String, order: [PageExpertLinkingCollectionsModuleExpertsOverflowCollectionOrder], preview: Boolean, skip: Int = 0): ModuleExpertsOverflowCollection
+}
+
+enum PageExpertLinkingCollectionsComponentLinkCollectionOrder {
+  externalSource_ASC
+  externalSource_DESC
+  label_ASC
+  label_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 enum PageExpertLinkingCollectionsModuleExpertsOverflowCollectionOrder {
@@ -5398,24 +5382,8 @@ input PageFilter {
 }
 
 type PageLinkingCollections {
-  componentLinkCollection(limit: Int = 100, locale: String, order: [PageLinkingCollectionsComponentLinkCollectionOrder], preview: Boolean, skip: Int = 0): ComponentLinkCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   pageCollection(limit: Int = 100, locale: String, order: [PageLinkingCollectionsPageCollectionOrder], preview: Boolean, skip: Int = 0): PageCollection
-}
-
-enum PageLinkingCollectionsComponentLinkCollectionOrder {
-  externalSource_ASC
-  externalSource_DESC
-  label_ASC
-  label_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
 }
 
 enum PageLinkingCollectionsPageCollectionOrder {
@@ -5475,7 +5443,23 @@ input PageModularFilter {
 }
 
 type PageModularLinkingCollections {
+  componentLinkCollection(limit: Int = 100, locale: String, order: [PageModularLinkingCollectionsComponentLinkCollectionOrder], preview: Boolean, skip: Int = 0): ComponentLinkCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum PageModularLinkingCollectionsComponentLinkCollectionOrder {
+  externalSource_ASC
+  externalSource_DESC
+  label_ASC
+  label_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 type PageModularModulesCollection {
@@ -5574,9 +5558,25 @@ input PageNewsAndInsightsFilter {
 }
 
 type PageNewsAndInsightsLinkingCollections {
+  componentLinkCollection(limit: Int = 100, locale: String, order: [PageNewsAndInsightsLinkingCollectionsComponentLinkCollectionOrder], preview: Boolean, skip: Int = 0): ComponentLinkCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   moduleInsights3UpCollection(limit: Int = 100, locale: String, order: [PageNewsAndInsightsLinkingCollectionsModuleInsights3UpCollectionOrder], preview: Boolean, skip: Int = 0): ModuleInsights3UpCollection
   moduleInsightsBentoCollection(limit: Int = 100, locale: String, order: [PageNewsAndInsightsLinkingCollectionsModuleInsightsBentoCollectionOrder], preview: Boolean, skip: Int = 0): ModuleInsightsBentoCollection
+}
+
+enum PageNewsAndInsightsLinkingCollectionsComponentLinkCollectionOrder {
+  externalSource_ASC
+  externalSource_DESC
+  label_ASC
+  label_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 enum PageNewsAndInsightsLinkingCollectionsModuleInsights3UpCollectionOrder {
@@ -5720,8 +5720,24 @@ input PageServiceDetailsFilter {
 }
 
 type PageServiceDetailsLinkingCollections {
+  componentLinkCollection(limit: Int = 100, locale: String, order: [PageServiceDetailsLinkingCollectionsComponentLinkCollectionOrder], preview: Boolean, skip: Int = 0): ComponentLinkCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   moduleSoftwareServicesRoutingGridCollection(limit: Int = 100, locale: String, order: [PageServiceDetailsLinkingCollectionsModuleSoftwareServicesRoutingGridCollectionOrder], preview: Boolean, skip: Int = 0): ModuleSoftwareServicesRoutingGridCollection
+}
+
+enum PageServiceDetailsLinkingCollectionsComponentLinkCollectionOrder {
+  externalSource_ASC
+  externalSource_DESC
+  label_ASC
+  label_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 enum PageServiceDetailsLinkingCollectionsModuleSoftwareServicesRoutingGridCollectionOrder {
@@ -5775,23 +5791,7 @@ input PageServiceFilter {
 }
 
 type PageServiceLinkingCollections {
-  componentLinkCollection(limit: Int = 100, locale: String, order: [PageServiceLinkingCollectionsComponentLinkCollectionOrder], preview: Boolean, skip: Int = 0): ComponentLinkCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-}
-
-enum PageServiceLinkingCollectionsComponentLinkCollectionOrder {
-  externalSource_ASC
-  externalSource_DESC
-  label_ASC
-  label_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
 }
 
 enum PageServiceOrder {
@@ -5908,8 +5908,24 @@ input PageSoftwareDetailsFilter {
 }
 
 type PageSoftwareDetailsLinkingCollections {
+  componentLinkCollection(limit: Int = 100, locale: String, order: [PageSoftwareDetailsLinkingCollectionsComponentLinkCollectionOrder], preview: Boolean, skip: Int = 0): ComponentLinkCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   moduleSoftwareServicesRoutingGridCollection(limit: Int = 100, locale: String, order: [PageSoftwareDetailsLinkingCollectionsModuleSoftwareServicesRoutingGridCollectionOrder], preview: Boolean, skip: Int = 0): ModuleSoftwareServicesRoutingGridCollection
+}
+
+enum PageSoftwareDetailsLinkingCollectionsComponentLinkCollectionOrder {
+  externalSource_ASC
+  externalSource_DESC
+  label_ASC
+  label_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 enum PageSoftwareDetailsLinkingCollectionsModuleSoftwareServicesRoutingGridCollectionOrder {
@@ -5963,23 +5979,7 @@ input PageSoftwareFilter {
 }
 
 type PageSoftwareLinkingCollections {
-  componentLinkCollection(limit: Int = 100, locale: String, order: [PageSoftwareLinkingCollectionsComponentLinkCollectionOrder], preview: Boolean, skip: Int = 0): ComponentLinkCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-}
-
-enum PageSoftwareLinkingCollectionsComponentLinkCollectionOrder {
-  externalSource_ASC
-  externalSource_DESC
-  label_ASC
-  label_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
 }
 
 enum PageSoftwareOrder {
