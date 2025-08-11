@@ -44,7 +44,6 @@ export const GetModuleSoftwareServicesRoutingGridById = graphql(
             shortDescription {
               ...PageSoftware_shortDescriptionFragment
             }
-            slug
           }
           ... on PageService {
             sys {
@@ -54,7 +53,6 @@ export const GetModuleSoftwareServicesRoutingGridById = graphql(
             shortDescription {
               ...PageService_shortDescriptionFragment
             }
-            slug
           }
         }
       }

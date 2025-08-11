@@ -1,34 +1,50 @@
-import { ModuleContainerRenderer } from "@/modules/ModuleContainerRenderer";
+import { PageContentModular } from "@/modules/PageContentModular/PageContentModular";
 import { notFound } from "next/navigation";
-import { contentClient, isPreviewMode } from "@/lib/contentful/contentClient";
-import { GetPageBySlugAndMarketQuery } from "@/lib/contentful/query/GetPageBySlugAndMarketQuery";
-import { readFragment } from "gql.tada";
-import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
+import { contentClient } from "@/lib/contentful/contentClient";
+import { GetPageByIdQuery } from "@/lib/contentful/query/GetPageByIdQuery";
+import { routingUtils } from "@/lib/util/routingUtils";
+import { GetPageContentModularByIdQuery } from "@/modules/PageContentModular/GetPageContentModularByIdQuery";
+import { getContentfulLocales } from "@/lib/contentful/getContentfulLocales";
 
 export default async function Page(props: {
-  params: Promise<{ slug: string[] }>;
+  params: Promise<{ slug?: string | Array<string> }>;
 }) {
-  const params = await props.params;
-  const slugs = Array.isArray(params.slug) ? params.slug : [params.slug];
-  const preview = await isPreviewMode();
+  const path = await routingUtils.getPathFromProps(props);
+  const id = await routingUtils.getPageIdByPath(path);
 
-  const [marketSlug, locale, slug] = slugs;
+  if (!id) notFound();
 
-  const pageResult = await contentClient.query(GetPageBySlugAndMarketQuery, {
-    preview,
-    marketSlug,
-    locale,
-    slug,
-  });
+  const pageResult = await contentClient.query(GetPageByIdQuery, { id });
 
-  const page = pageResult.data?.pageCollection?.items[0];
+  const locales = await getContentfulLocales();
+  const locale = (
+    locales.items.find(
+      // we maybe want to eventually base this on the market having a locale ID embedded
+      (locale) => locale.code === pageResult.data?.page?.market?.slug,
+    ) || locales.items.find((locale) => locale.default)
+  )?.code;
+  const pageContentId = pageResult.data?.page?.pageContent?.sys.id;
+  const pageContentType = pageResult.data?.page?.pageContent?.__typename;
 
-  if (!page || !page.modulesCollection) notFound();
+  if (!locale || !pageContentType || !pageContentId) notFound();
 
-  return (
-    <ModuleContainerRenderer
-      data={readFragment(PageModulesCollectionFragment, page.modulesCollection)}
-      locale={locale}
-    />
-  );
+  switch (pageContentType) {
+    case "ComponentCustomerStory":
+      return null;
+    case "ComponentExpert":
+      return null;
+    case "ComponentInsight":
+      return null;
+    case "PageService":
+      return null;
+    case "PageSoftware":
+      return null;
+    case "PageContentModular":
+      const pageContent = (
+        await contentClient.query(GetPageContentModularByIdQuery, {
+          id: pageContentId,
+        })
+      ).data;
+      return <PageContentModular data={pageContent} locale={locale} />;
+  }
 }

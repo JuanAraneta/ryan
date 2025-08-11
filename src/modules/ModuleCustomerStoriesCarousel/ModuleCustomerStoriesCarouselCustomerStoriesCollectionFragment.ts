@@ -11,7 +11,6 @@ export const ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment =
             id
           }
           customerName
-          slug
           richTextHeadline {
             ...ComponentCustomerStory_richTextHeadlineFragment
           }

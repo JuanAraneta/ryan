@@ -11,7 +11,6 @@ export const ModuleExpertsOverflowExpertsListCollectionFragment = graphql(
         fullName
         title
         serviceLabel
-        slug
         headshot {
           ...AssetFragment
         }

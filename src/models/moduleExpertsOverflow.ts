@@ -1,4 +1,3 @@
-import { pageContentExpert } from "./pageContentExpert";
 import { componentLink } from "./componentLink";
 import { componentStatistic } from "./componentStatistic";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
@@ -30,10 +29,10 @@ export const moduleExpertsOverflow = {
     }),
     createField("entryReference", {
       array: true,
-      id: "expertsList",
-      name: "Experts List",
+      id: "expertsPageList",
+      name: "Experts page page",
       size: { max: 10 },
-      linkContentType: [pageContentExpert],
+      linkContentType: ["page"],
     }),
   ],
 } as const satisfies ExpandedContentModel;
