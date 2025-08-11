@@ -51,6 +51,8 @@ import {
   componentServiceSoftwareRoutingCard,
   moduleServiceSoftwareRoutingCards,
 } from "./moduleServiceSoftwareRoutingCards";
+import { componentCustomerStoryCard } from "./componentCustomerStoryCard";
+import { moduleCustomerStoriesCarouselShort } from "./moduleCustomerStoriesCarouselShort";
 
 // Components
 const components: ExpandedContentModel[] = [
@@ -66,6 +68,7 @@ const components: ExpandedContentModel[] = [
   componentLogoCarousel,
   componentTestimonial,
   componentServiceSoftwareRoutingCard,
+  componentCustomerStoryCard,
 ];
 
 // Modules
@@ -80,6 +83,7 @@ const modules: ExpandedContentModel[] = [
   moduleStatementHome,
   moduleSoftwareServicesRoutingGrid,
   moduleServiceSoftwareRoutingCards,
+  moduleCustomerStoriesCarouselShort,
   moduleGeneralVideoMission,
 ];
 

@@ -9,6 +9,7 @@ import { moduleSoftwareServicesRoutingGrid } from "./moduleSoftwareServicesRouti
 import { moduleStatementHome } from "./moduleStatementHome";
 import { modulePlatform } from "./modulePlatform";
 import { moduleServiceSoftwareRoutingCards } from "./moduleServiceSoftwareRoutingCards";
+import { moduleCustomerStoriesCarouselShort } from "./moduleCustomerStoriesCarouselShort";
 import { moduleGeneralVideoMission } from "./moduleGeneralVideoMission";
 
 export const moduleContainer = {
@@ -34,6 +35,7 @@ export const moduleContainer = {
         moduleSoftwareServicesRoutingGrid,
         modulePlatform,
         moduleServiceSoftwareRoutingCards,
+        moduleCustomerStoriesCarouselShort,
         moduleGeneralVideoMission,
       ],
     }),

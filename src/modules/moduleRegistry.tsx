@@ -36,6 +36,10 @@ import {
   GetModuleInsights3UpById,
 } from "./ModuleInsights3Up";
 import {
+  ModuleCustomerStoriesCarouselShort,
+  GetModuleCustomerStoriesCarouselShortById,
+} from "./ModuleCustomerStoriesCarouselShort";
+import {
   ModuleGeneralVideoMission,
   GetModuleGeneralVideoMissionById,
 } from "./ModuleGeneralVideoMission";
@@ -96,6 +100,10 @@ const moduleRegistry: ModuleRegistry = {
   ModuleInsights3Up: {
     component: ModuleInsights3Up,
     queryById: GetModuleInsights3UpById,
+  },
+  ModuleCustomerStoriesCarouselShort: {
+    component: ModuleCustomerStoriesCarouselShort,
+    queryById: GetModuleCustomerStoriesCarouselShortById,
   },
   ModuleGeneralVideoMission: {
     component: ModuleGeneralVideoMission,

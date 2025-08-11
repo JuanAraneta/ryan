@@ -3111,7 +3111,7 @@ input ModuleContainerModulesFilter {
   sys: SysFilter
 }
 
-union ModuleContainerModulesItem = ModuleChapterGroup | ModuleCustomerStoriesCarousel | ModuleExpertsOverflow | ModuleGeneralVideoMission | ModuleInsights3Up | ModuleInsightsBento | ModulePlatform | ModuleServiceSoftwareRoutingCards | ModuleSoftwareServicesRoutingGrid | ModuleStatementHome
+union ModuleContainerModulesItem = ModuleChapterGroup | ModuleCustomerStoriesCarousel | ModuleCustomerStoriesCarouselShort | ModuleExpertsOverflow | ModuleGeneralVideoMission | ModuleInsights3Up | ModuleInsightsBento | ModulePlatform | ModuleServiceSoftwareRoutingCards | ModuleSoftwareServicesRoutingGrid | ModuleStatementHome
 
 enum ModuleContainerOrder {
   contentfulLabel_ASC
@@ -3371,6 +3371,22 @@ type ModuleCustomerStoriesCarouselShortHeadlineResourcesInline implements Resour
 
 type ModuleCustomerStoriesCarouselShortLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  moduleContainerCollection(limit: Int = 100, locale: String, order: [ModuleCustomerStoriesCarouselShortLinkingCollectionsModuleContainerCollectionOrder], preview: Boolean, skip: Int = 0): ModuleContainerCollection
+}
+
+enum ModuleCustomerStoriesCarouselShortLinkingCollectionsModuleContainerCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  moduleBackground_ASC
+  moduleBackground_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 enum ModuleCustomerStoriesCarouselShortOrder {
@@ -5246,6 +5262,8 @@ type Query {
   tagsCollection(limit: Int = 100, locale: String, order: [TagsOrder], preview: Boolean, skip: Int = 0, where: TagsFilter): TagsCollection
   urlRedirect(id: String!, locale: String, preview: Boolean): UrlRedirect
   urlRedirectCollection(limit: Int = 100, locale: String, order: [UrlRedirectOrder], preview: Boolean, skip: Int = 0, where: UrlRedirectFilter): UrlRedirectCollection
+  video(id: String!, locale: String, preview: Boolean): Video
+  videoCollection(limit: Int = 100, locale: String, order: [VideoOrder], preview: Boolean, skip: Int = 0, where: VideoFilter): VideoCollection
 }
 
 interface ResourceLink {
@@ -5860,6 +5878,47 @@ enum UrlRedirectOrder {
   slug_DESC
   startDate_ASC
   startDate_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/video)
+"""
+type Video implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  id(locale: String): JSON
+  linkedFrom(allowedLocales: [String]): VideoLinkingCollections
+  sys: Sys!
+}
+
+type VideoCollection {
+  items: [Video]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input VideoFilter {
+  AND: [VideoFilter]
+  OR: [VideoFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  id_exists: Boolean
+  sys: SysFilter
+}
+
+type VideoLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum VideoOrder {
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
