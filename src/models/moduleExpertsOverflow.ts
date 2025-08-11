@@ -1,6 +1,6 @@
-import { pageExpert } from "./pageExpert";
 import { componentLink } from "./componentLink";
 import { componentStatistic } from "./componentStatistic";
+import { pageExpert } from "./pages/pageExpert";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 

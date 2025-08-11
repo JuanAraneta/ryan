@@ -61,8 +61,46 @@ export const RichTextFragments = {
       }
     }
   `),
+  ComponentServiceDetails_shortDescription: graphql(`
+    fragment ComponentServiceDetails_shortDescriptionFragment on ComponentServiceDetailsShortDescription
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `),
   ComponentServiceSoftwareRoutingCard_body: graphql(`
     fragment ComponentServiceSoftwareRoutingCard_bodyFragment on ComponentServiceSoftwareRoutingCardBody
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `),
+  ComponentSoftwareDetails_shortDescription: graphql(`
+    fragment ComponentSoftwareDetails_shortDescriptionFragment on ComponentSoftwareDetailsShortDescription
     @_unmask {
       json
       links {

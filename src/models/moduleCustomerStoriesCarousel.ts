@@ -1,5 +1,5 @@
-import { pageCustomerStory } from "./pageCustomerStory";
 import { componentLink } from "./componentLink";
+import { pageCustomerStory } from "./pages/pageCustomerStory";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 

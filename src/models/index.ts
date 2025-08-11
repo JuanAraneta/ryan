@@ -1,14 +1,9 @@
-import { page } from "./page";
-
 // models
 import { componentCategorySolutionsHeadline } from "./componentCategorySolutionsHeadline";
 import { componentCategorySolutionsChapter } from "./componentCategorySolutionsChapter";
 import { componentIconTextWrap } from "./componentIconTextWrap";
 import { componentCategorySolutions2ColSubBody } from "./componentCategorySolutions2ColSubBody";
 import { componentCardDeviceMock } from "./componentCardDeviceMock";
-import { pageExpert } from "./pageExpert";
-import { pageCustomerStory } from "./pageCustomerStory";
-import { pageInsight } from "./pageInsight";
 import { componentLink } from "./componentLink";
 import { componentNewsletterSignup } from "./componentNewsletterSignup";
 import { componentStatistic } from "./componentStatistic";
@@ -27,7 +22,6 @@ import {
   categorySolutionsImageLink,
 } from "./categorySolutionsImageLinkGrid";
 import { constants } from "./constants";
-import { footer } from "./footer";
 import { seoMetadata } from "./seoMetadata";
 import { market } from "./market";
 import { siteSettings } from "./siteSettings";
@@ -41,8 +35,6 @@ import type { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { moduleStatementHome } from "./moduleStatementHome";
 import { modulePlatform } from "./modulePlatform";
 import { componentLogoCarousel } from "./componentLogoCarousel";
-import { pageSoftware } from "./pageSoftware";
-import { pageService } from "./pageService";
 import {
   componentTestimonial,
   moduleSoftwareServicesRoutingGrid,
@@ -53,6 +45,18 @@ import {
 } from "./moduleServiceSoftwareRoutingCards";
 import { componentCustomerStoryCard } from "./componentCustomerStoryCard";
 import { moduleCustomerStoriesCarouselShort } from "./moduleCustomerStoriesCarouselShort";
+import { componentPageCore } from "./pages/componentPageCore";
+import { pageModular } from "./pages/pageModular";
+import { pageExpert } from "./pages/pageExpert";
+import { pageCustomerStory } from "./pages/pageCustomerStory";
+import { pageNewsAndInsights } from "./pages/pageNewsAndInsights";
+import { pageSoftwareDetails } from "./pages/pageSoftware";
+import { pageServiceDetails } from "./pages/pageService";
+import { componentCustomerStory } from "./componentCustomerStory";
+import { componentExpert } from "./componentExpert";
+import { componentNewsAndInsights } from "./componentNewsAndInsights";
+import { componentServiceDetails } from "./componentServiceDetails";
+import { componentSoftwareDetails } from "./componentSoftwareDetails";
 
 // Components
 const components: ExpandedContentModel[] = [
@@ -69,6 +73,11 @@ const components: ExpandedContentModel[] = [
   componentTestimonial,
   componentServiceSoftwareRoutingCard,
   componentCustomerStoryCard,
+  componentCustomerStory,
+  componentExpert,
+  componentNewsAndInsights,
+  componentServiceDetails,
+  componentSoftwareDetails,
 ];
 
 // Modules
@@ -85,16 +94,17 @@ const modules: ExpandedContentModel[] = [
   moduleServiceSoftwareRoutingCards,
   moduleCustomerStoriesCarouselShort,
   moduleGeneralVideoMission,
+  modulePlatform,
 ];
 
 const pages: ExpandedContentModel[] = [
-  page,
+  componentPageCore,
+  pageModular,
   pageExpert,
   pageCustomerStory,
-  pageInsight,
-  pageSoftware,
-  pageService,
-  modulePlatform,
+  pageNewsAndInsights,
+  pageSoftwareDetails,
+  pageServiceDetails,
 ];
 
 // Other content types
@@ -102,7 +112,6 @@ const other: ExpandedContentModel[] = [
   categorySolutionsImageLink,
   categorySolutionsImageLinkGrid,
   constants,
-  footer,
   seoMetadata,
   market,
   siteSettings,

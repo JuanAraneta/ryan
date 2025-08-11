@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const pageCustomerStory = {
+export const componentCustomerStory = {
   sys: { id: "componentCustomerStory" },
   name: "Page / Customer story",
   description:

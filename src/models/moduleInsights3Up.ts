@@ -1,7 +1,7 @@
 import { createField } from "./utils/createField";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { componentLink } from "./componentLink";
-import { pageInsight } from "./pageInsight";
+import { pageNewsAndInsights } from "./pages/pageNewsAndInsights";
 
 export const moduleInsights3Up = {
   sys: { id: "moduleInsights3Up" },
@@ -29,7 +29,7 @@ export const moduleInsights3Up = {
     createField("entryReference", {
       id: "insights",
       name: "Insights",
-      linkContentType: [pageInsight],
+      linkContentType: [pageNewsAndInsights],
       array: true,
       size: { min: 3, max: 3 },
       required: true,
