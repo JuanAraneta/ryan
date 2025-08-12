@@ -1,3 +1,4 @@
+import { componentVideo } from "./componentVideo";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
@@ -13,6 +14,10 @@ export const moduleGeneralVideoMission = {
       required: true,
     }),
     createField("richText", { id: "body", name: "Body" }),
-    createField("wistiaVideo", { id: "video", name: "Video", required: true }),
+    createField("entryReference", {
+      id: "video",
+      name: "Video",
+      linkContentType: [componentVideo],
+    }),
   ],
 } as const satisfies ExpandedContentModel;

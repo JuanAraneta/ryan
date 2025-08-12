@@ -9,6 +9,8 @@ import { shortTextFieldFactory } from "./shortTextFieldFactory";
 import { singletonLockFieldFactory } from "./singletonLockFieldFactory";
 import { iconFieldFactory } from "./iconFieldFactory";
 import { wistiaVideoFieldFactory } from "./wistiaVideoFieldFactory";
+import { brandfolderVideoFieldFactory } from "./brandfolderVideoFieldFactory";
+import { videoSourceFieldFactory } from "./videoSourceFieldFactory";
 
 export const factoryRegistry = {
   contentfulLabel: contentfulLabelFieldFactory,
@@ -22,4 +24,6 @@ export const factoryRegistry = {
   moduleBackground: moduleBackgroundFieldFactory,
   icon: iconFieldFactory,
   wistiaVideo: wistiaVideoFieldFactory,
+  brandfolderVideo: brandfolderVideoFieldFactory,
+  videoSource: videoSourceFieldFactory,
 };

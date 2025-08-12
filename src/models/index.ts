@@ -53,6 +53,7 @@ import {
 } from "./moduleServiceSoftwareRoutingCards";
 import { componentCustomerStoryCard } from "./componentCustomerStoryCard";
 import { moduleCustomerStoriesCarouselShort } from "./moduleCustomerStoriesCarouselShort";
+import { componentVideo } from "./componentVideo";
 
 // Components
 const components: ExpandedContentModel[] = [
@@ -69,6 +70,7 @@ const components: ExpandedContentModel[] = [
   componentTestimonial,
   componentServiceSoftwareRoutingCard,
   componentCustomerStoryCard,
+  componentVideo,
 ];
 
 // Modules
