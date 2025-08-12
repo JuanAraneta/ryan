@@ -4429,7 +4429,6 @@ type ModuleSoftwareProductsCarousel implements Entry & _Node {
   body(locale: String): String
   contentfulMetadata: ContentfulMetadata!
   cta(locale: String, preview: Boolean, where: ComponentLinkFilter): ComponentLink
-  filters(locale: String): [String]
   headline(locale: String): String
   linkedFrom(allowedLocales: [String]): ModuleSoftwareProductsCarouselLinkingCollections
   softwareProductsCollection(limit: Int = 100, locale: String, order: [ModuleSoftwareProductsCarouselSoftwareProductsCollectionOrder], preview: Boolean, skip: Int = 0, where: PageSoftwareFilter): ModuleSoftwareProductsCarouselSoftwareProductsCollection
@@ -4456,10 +4455,6 @@ input ModuleSoftwareProductsCarouselFilter {
   contentfulMetadata: ContentfulMetadataFilter
   cta: cfComponentLinkNestedFilter
   cta_exists: Boolean
-  filters_contains_all: [String]
-  filters_contains_none: [String]
-  filters_contains_some: [String]
-  filters_exists: Boolean
   headline: String
   headline_contains: String
   headline_exists: Boolean
@@ -4517,6 +4512,8 @@ type ModuleSoftwareProductsCarouselSoftwareProductsCollection {
 enum ModuleSoftwareProductsCarouselSoftwareProductsCollectionOrder {
   practiceArea_ASC
   practiceArea_DESC
+  slug_ASC
+  slug_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -4632,6 +4629,13 @@ input ModuleSoftwareServicesRoutingGridGridItemsFilter {
   shortDescription_contains: String
   shortDescription_exists: Boolean
   shortDescription_not_contains: String
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
   sys: SysFilter
   title: String
   title_contains: String
@@ -5154,6 +5158,7 @@ type PageSoftware implements Entry & _Node {
   linkedFrom(allowedLocales: [String]): PageSoftwareLinkingCollections
   practiceArea(locale: String): String
   shortDescription(locale: String): PageSoftwareShortDescription
+  slug(locale: String): String
   sys: Sys!
   title(locale: String): String
 }
@@ -5180,6 +5185,13 @@ input PageSoftwareFilter {
   shortDescription_contains: String
   shortDescription_exists: Boolean
   shortDescription_not_contains: String
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
   sys: SysFilter
   title: String
   title_contains: String
@@ -5243,6 +5255,8 @@ enum PageSoftwareLinkingCollectionsModuleSoftwareServicesRoutingGridCollectionOr
 enum PageSoftwareOrder {
   practiceArea_ASC
   practiceArea_DESC
+  slug_ASC
+  slug_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -6566,6 +6580,13 @@ input cfPageSoftwareNestedFilter {
   shortDescription_contains: String
   shortDescription_exists: Boolean
   shortDescription_not_contains: String
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
   sys: SysFilter
   title: String
   title_contains: String
@@ -6703,6 +6724,13 @@ input cfgridItemsMultiTypeNestedFilter {
   shortDescription_contains: String
   shortDescription_exists: Boolean
   shortDescription_not_contains: String
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
   sys: SysFilter
   title: String
   title_contains: String
