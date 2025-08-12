@@ -7,7 +7,7 @@ import { RichText } from "@/components/core/RichText";
 import { Button } from "@/components/core/Button";
 import { Link } from "@/components/core/Link";
 import { NewsletterSignup } from "@/components/core/NewsletterSignup";
-import { Card } from "@/components/core/Card/Card";
+import { Card } from "@/components/core/Card";
 import { getInspector } from "@/utils/inspectorMode";
 
 const LAYOUTS = {

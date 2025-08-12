@@ -6,7 +6,7 @@ import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkF
 import { Section } from "@/components/core/Section";
 import { Button } from "@/components/core/Button";
 import { Link } from "@/components/core/Link";
-import { Card } from "@/components/core/Card/Card";
+import { Card } from "@/components/core/Card";
 import { ScrollCarouselContainer } from "@/constants/ScrollCarouselContainer";
 import { getInspector } from "@/utils/inspectorMode";
 
