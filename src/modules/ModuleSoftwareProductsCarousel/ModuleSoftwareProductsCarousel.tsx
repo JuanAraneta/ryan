@@ -117,14 +117,14 @@ export function ModuleSoftwareProductsCarousel({
           items={filteredItems}
           {...inspector("softwareProductsCollection")}
           itemRender={({ item, index }) => (
-            <motion.li
+            <motion.div
               custom={index}
               variants={cardVariants}
               initial="hidden"
               animate="visible"
             >
               <SoftwareCard data={item} />
-            </motion.li>
+            </motion.div>
           )}
         />
       )}
