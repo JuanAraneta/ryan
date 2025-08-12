@@ -11,9 +11,12 @@ export const getInspector = <T extends InspectorData>(data: T) => {
 
   type FieldNames = keyof Omit<typeof data, "sys" | "__typename">;
 
-  return (fieldId: FieldNames) =>
-    ContentfulLivePreview.getProps({
+  return (fieldId: FieldNames) => {
+    const entryType = String(fieldId).replace("Collection", "");
+
+    return ContentfulLivePreview.getProps({
       entryId,
-      fieldId: String(fieldId),
+      fieldId: entryType,
     });
+  };
 };

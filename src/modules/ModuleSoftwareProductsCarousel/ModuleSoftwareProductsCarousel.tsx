@@ -11,6 +11,7 @@ import { GetModuleSoftwareProductsCarouselById } from "./GetModuleSoftwareProduc
 import { SoftwareCard } from "@/components/core/Card";
 import { PageSoftwareFragment } from "@/lib/contentful/fragments/PageSoftwareFragment";
 import { motion } from "motion/react";
+import { getInspector } from "@/utils/inspectorMode";
 
 const cardVariants = {
   hidden: { opacity: 0 },
@@ -27,7 +28,10 @@ export function ModuleSoftwareProductsCarousel({
 }) {
   const moduleData = data.moduleSoftwareProductsCarousel;
 
-  const { headline, body, cta, softwareProductsCollection } = moduleData || {};
+  const { headline, body, cta, softwareProductsCollection } =
+    data.moduleSoftwareProductsCarousel || {};
+
+  const inspector = getInspector(moduleData!);
 
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
 
@@ -38,18 +42,18 @@ export function ModuleSoftwareProductsCarousel({
     });
   }, [softwareProductsCollection?.items]);
 
+  const filters = useMemo(() => {
+    const values = items?.map((item) => item?.practiceArea).filter(Boolean);
+
+    return [...new Set(values)];
+  }, [items]);
+
   const filteredItems = useMemo(() => {
     if (activeFilter) {
       return items?.filter((item) => item?.practiceArea === activeFilter);
     }
     return items;
   }, [items, activeFilter]);
-
-  const filters = useMemo(() => {
-    const values = items?.map((item) => item?.practiceArea).filter(Boolean);
-
-    return [...new Set(values)];
-  }, [items]);
 
   const handleFilterClick = (filter: string) => {
     const isCurrentActive = activeFilter === filter;
@@ -64,20 +68,26 @@ export function ModuleSoftwareProductsCarousel({
     >
       <div className="w-full flex flex-col dsk:flex-row gap-10 justify-between mb-6">
         {headline && (
-          <h2 className="text-highlight typo-heading-1 font-light">
+          <h2
+            className="text-highlight typo-heading-1 font-light"
+            {...inspector("headline")}
+          >
             {headline}
           </h2>
         )}
 
         {cta && (
           <Button asChild>
-            <Link link={cta} aria-label="Explore all software" />
+            <Link link={cta} {...inspector("cta")} />
           </Button>
         )}
       </div>
 
       {body && (
-        <p className="typo-body-large text-content-secondary max-w-2xl mb-10">
+        <p
+          className="typo-body-large text-content-secondary max-w-2xl mb-10"
+          {...inspector("body")}
+        >
           {body}
         </p>
       )}
@@ -105,6 +115,7 @@ export function ModuleSoftwareProductsCarousel({
         <ScrollCarouselContainer
           hideControls
           items={filteredItems}
+          {...inspector("softwareProductsCollection")}
           itemRender={({ item, index }) => (
             <motion.li
               custom={index}

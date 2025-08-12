@@ -6,6 +6,9 @@ import { ComponentLinkFragment } from "./ComponentLinkFragment";
 export const PageSoftwareFragment = graphql(
   `
     fragment PageSoftwareFragment on PageSoftware {
+      sys {
+        id
+      }
       title
       slug
       shortDescription {

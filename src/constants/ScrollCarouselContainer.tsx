@@ -4,23 +4,25 @@ import { useConstants } from "@/components/providers/ConstantsContext";
 import { useRerenderOnScreenSize } from "@/hooks/useRerenderOnScreenSize";
 import { useScrollJumpOnClickEventHandler } from "@/hooks/useScrollJumpOnClickEventHandler";
 import { cx } from "cva";
-import { ReactNode, useRef } from "react";
+import { ComponentProps, ReactNode, useRef } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+
+type ScrollCarouselContainerProps<ListItem> = {
+  items: Array<ListItem>;
+  itemRender: (props: {
+    item: TSReset.NonFalsy<ListItem>;
+    index: number;
+  }) => ReactNode;
+  hideControls?: boolean;
+} & ComponentProps<"div">;
 
 export const ScrollCarouselContainer = <ListItem,>({
   items,
   itemRender,
   className,
   hideControls,
-}: {
-  items: Array<ListItem>;
-  itemRender: (props: {
-    item: TSReset.NonFalsy<ListItem>;
-    index: number;
-  }) => ReactNode;
-  className?: string;
-  hideControls?: boolean;
-}) => {
+  ...props
+}: ScrollCarouselContainerProps<ListItem>) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const prevClickHandler = useScrollJumpOnClickEventHandler(
     scrollContainerRef,
@@ -36,11 +38,11 @@ export const ScrollCarouselContainer = <ListItem,>({
   useRerenderOnScreenSize();
 
   return (
-    <div>
+    <div {...props}>
       <div
         ref={scrollContainerRef}
         className={cx(
-          "-mx-(--x-section-padding) px-(--x-section-padding) scroll-pl-(--x-section-padding) overflow-x-auto no-scrollbar pt-10 snap-start snap-x snap-mandatory [mask-image:var(--horizontal-fade-linear-gradient-mask)] relative",
+          "-mx-(--x-section-padding) px-(--x-section-padding) scroll-pl-(--x-section-padding) overflow-x-auto no-scrollbar mt-10 snap-start snap-x snap-mandatory [mask-image:var(--horizontal-fade-linear-gradient-mask)] relative",
           className,
         )}
       >
