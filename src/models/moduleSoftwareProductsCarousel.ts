@@ -1,0 +1,43 @@
+import { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { createField } from "./utils/createField";
+import { componentLink } from "./componentLink";
+import { pageContentSoftware } from "./pageContentSoftware";
+
+export const moduleSoftwareProductsCarousel = {
+  sys: { id: "moduleSoftwareProductsCarousel" },
+  name: "Module / Software Products Carousel",
+  description:
+    "Intro block with headline, body, CTA, practice-area filter tags, and a horizontal carousel of software product cards.",
+  fields: [
+    createField("shortText", {
+      id: "headline",
+      name: "Headline",
+      required: true,
+      displayField: true,
+      size: { min: 24, max: 60 },
+    }),
+    createField("shortText", {
+      id: "body",
+      name: "Body",
+      required: true,
+      size: { min: 80, max: 200 },
+    }),
+    createField("entryReference", {
+      id: "cta",
+      name: "CTA",
+      linkContentType: [componentLink],
+    }),
+    createField("shortText", {
+      id: "filters",
+      name: "Practice Area Filters",
+      array: true,
+    }),
+    createField("entryReference", {
+      id: "softwareProducts",
+      name: "Software Products",
+      array: true,
+      size: { max: 10 },
+      linkContentType: [pageContentSoftware],
+    }),
+  ],
+} as const satisfies ExpandedContentModel;

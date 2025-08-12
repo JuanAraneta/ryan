@@ -11,6 +11,7 @@ import { modulePlatform } from "./modulePlatform";
 import { moduleServiceSoftwareRoutingCards } from "./moduleServiceSoftwareRoutingCards";
 import { moduleCustomerStoriesCarouselShort } from "./moduleCustomerStoriesCarouselShort";
 import { moduleGeneralVideoMission } from "./moduleGeneralVideoMission";
+import { moduleSoftwareProductsCarousel } from "./moduleSoftwareProductsCarousel";
 
 export const moduleContainer = {
   sys: { id: "moduleContainer" },
@@ -37,6 +38,7 @@ export const moduleContainer = {
         moduleServiceSoftwareRoutingCards,
         moduleCustomerStoriesCarouselShort,
         moduleGeneralVideoMission,
+        moduleSoftwareProductsCarousel,
       ],
     }),
   ],

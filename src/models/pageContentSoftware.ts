@@ -1,10 +1,11 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
-export const pageSoftware = {
+export const pageContentSoftware = {
   sys: { id: "pageSoftware" },
-  name: "Page / Software",
-  description: "",
+  name: "Page content / Software",
+  description:
+    "Page-content model which represents all details for a particular software.",
   fields: [
     createField("shortText", {
       id: "title",
@@ -15,9 +16,14 @@ export const pageSoftware = {
       id: "shortDescription",
       name: "Short description",
     }),
+    createField("assetReference", {
+      id: "image",
+      name: "Image",
+      imagesOnly: true,
+    }),
     createField("shortText", {
-      id: "slug",
-      name: "slug",
+      id: "practiceArea",
+      name: "Practice Area",
     }),
   ],
 } as const satisfies ExpandedContentModel;

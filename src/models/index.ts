@@ -21,6 +21,7 @@ import { moduleHeroHome } from "./moduleHeroHome";
 import { moduleInsightsBento } from "./moduleInsightsBento";
 import { moduleInsights3Up } from "./moduleInsights3Up";
 import { moduleGeneralVideoMission } from "./moduleGeneralVideoMission";
+import { moduleSoftwareProductsCarousel } from "./moduleSoftwareProductsCarousel";
 
 import {
   categorySolutionsImageLinkGrid,
@@ -41,8 +42,9 @@ import type { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { moduleStatementHome } from "./moduleStatementHome";
 import { modulePlatform } from "./modulePlatform";
 import { componentLogoCarousel } from "./componentLogoCarousel";
-import { pageSoftware } from "./pageSoftware";
+import { pageContentSoftware } from "./pageContentSoftware";
 import { pageService } from "./pageService";
+
 import {
   componentTestimonial,
   moduleSoftwareServicesRoutingGrid,
@@ -85,6 +87,7 @@ const modules: ExpandedContentModel[] = [
   moduleServiceSoftwareRoutingCards,
   moduleCustomerStoriesCarouselShort,
   moduleGeneralVideoMission,
+  moduleSoftwareProductsCarousel,
 ];
 
 const pages: ExpandedContentModel[] = [
@@ -92,7 +95,7 @@ const pages: ExpandedContentModel[] = [
   pageExpert,
   pageCustomerStory,
   pageInsight,
-  pageSoftware,
+  pageContentSoftware,
   pageService,
   modulePlatform,
 ];
