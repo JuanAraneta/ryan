@@ -1670,7 +1670,7 @@ type ComponentPageCore implements Entry & _Node {
   contentfulLabel(locale: String): String
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): ComponentPageCoreLinkingCollections
-  marketsCollection(limit: Int = 100, locale: String, order: [ComponentPageCoreMarketsCollectionOrder], preview: Boolean, skip: Int = 0, where: MarketFilter): ComponentPageCoreMarketsCollection
+  market(locale: String, preview: Boolean, where: MarketFilter): Market
   path(locale: String): String
   seoMetadata(locale: String, preview: Boolean, where: SeoMetadataFilter): SeoMetadata
   sys: Sys!
@@ -1694,8 +1694,8 @@ input ComponentPageCoreFilter {
   contentfulLabel_not_contains: String
   contentfulLabel_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
-  markets: cfMarketNestedFilter
-  marketsCollection_exists: Boolean
+  market: cfMarketNestedFilter
+  market_exists: Boolean
   path: String
   path_contains: String
   path_exists: Boolean
@@ -1786,28 +1786,6 @@ enum ComponentPageCoreLinkingCollectionsPageServiceDetailsCollectionOrder {
 enum ComponentPageCoreLinkingCollectionsPageSoftwareDetailsCollectionOrder {
   contentfulLabel_ASC
   contentfulLabel_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-type ComponentPageCoreMarketsCollection {
-  items: [Market]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-enum ComponentPageCoreMarketsCollectionOrder {
-  name_ASC
-  name_DESC
-  slug_ASC
-  slug_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -2708,6 +2686,7 @@ type Constants implements Entry & _Node {
   _id: ID!
   contentfulLabel(locale: String): String
   contentfulMetadata: ContentfulMetadata!
+  defaultMarket(locale: String, preview: Boolean, where: MarketFilter): Market
   linkedFrom(allowedLocales: [String]): ConstantsLinkingCollections
   nextButtonAriaLabel(locale: String): String
   previousButtonAriaLabel(locale: String): String
@@ -2737,6 +2716,8 @@ input ConstantsFilter {
   contentfulLabel_not_contains: String
   contentfulLabel_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
+  defaultMarket: cfMarketNestedFilter
+  defaultMarket_exists: Boolean
   nextButtonAriaLabel: String
   nextButtonAriaLabel_contains: String
   nextButtonAriaLabel_exists: Boolean
@@ -3271,6 +3252,7 @@ input MarketFilter {
 
 type MarketLinkingCollections {
   componentPageCoreCollection(limit: Int = 100, locale: String, order: [MarketLinkingCollectionsComponentPageCoreCollectionOrder], preview: Boolean, skip: Int = 0): ComponentPageCoreCollection
+  constantsCollection(limit: Int = 100, locale: String, order: [MarketLinkingCollectionsConstantsCollectionOrder], preview: Boolean, skip: Int = 0): ConstantsCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   pageCollection(limit: Int = 100, locale: String, order: [MarketLinkingCollectionsPageCollectionOrder], preview: Boolean, skip: Int = 0): PageCollection
   siteSettingsCollection(limit: Int = 100, locale: String, order: [MarketLinkingCollectionsSiteSettingsCollectionOrder], preview: Boolean, skip: Int = 0): SiteSettingsCollection
@@ -3281,6 +3263,33 @@ enum MarketLinkingCollectionsComponentPageCoreCollectionOrder {
   contentfulLabel_DESC
   path_ASC
   path_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum MarketLinkingCollectionsConstantsCollectionOrder {
+  contentfulLabel_ASC
+  contentfulLabel_DESC
+  nextButtonAriaLabel_ASC
+  nextButtonAriaLabel_DESC
+  previousButtonAriaLabel_ASC
+  previousButtonAriaLabel_DESC
+  scrollbarThumbLabel_ASC
+  scrollbarThumbLabel_DESC
+  scrollbarTrackAriaLabel_ASC
+  scrollbarTrackAriaLabel_DESC
+  seeMore_ASC
+  seeMore_DESC
+  singletonLock_ASC
+  singletonLock_DESC
+  subscribeButtonLabel_ASC
+  subscribeButtonLabel_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -7040,7 +7049,7 @@ input cfComponentPageCoreNestedFilter {
   contentfulLabel_not_contains: String
   contentfulLabel_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
-  marketsCollection_exists: Boolean
+  market_exists: Boolean
   path: String
   path_contains: String
   path_exists: Boolean

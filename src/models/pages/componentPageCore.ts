@@ -21,11 +21,9 @@ export const componentPageCore = {
       },
     }),
     createField("entryReference", {
-      id: "markets",
-      name: "Markets",
-      array: true,
+      id: "market",
+      name: "Market",
       required: true,
-      size: { min: 1, max: 10 },
       linkContentType: [market],
       editorInterface: {
         settings: {
