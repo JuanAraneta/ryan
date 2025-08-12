@@ -43,6 +43,10 @@ import {
   ModuleGeneralVideoMission,
   GetModuleGeneralVideoMissionById,
 } from "./ModuleGeneralVideoMission";
+import {
+  ModuleSoftwareProductsCarousel,
+  GetModuleSoftwareProductsCarouselById,
+} from "./ModuleSoftwareProductsCarousel";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ModuleComponent<Data = any> = {
@@ -108,6 +112,10 @@ const moduleRegistry: ModuleRegistry = {
   ModuleGeneralVideoMission: {
     component: ModuleGeneralVideoMission,
     queryById: GetModuleGeneralVideoMissionById,
+  },
+  ModuleSoftwareProductsCarousel: {
+    component: ModuleSoftwareProductsCarousel,
+    queryById: GetModuleSoftwareProductsCarouselById,
   },
 };
 

@@ -4,7 +4,10 @@ import { cva, cx, type VariantProps } from "cva";
 import { cloneElement, ComponentProps, ReactElement } from "react";
 
 const buttonClasses = cva(
-  ["transition-colors flex justify-center items-center gap-2", focusStyle],
+  [
+    "transition-colors flex justify-center items-center gap-2 h-min",
+    focusStyle,
+  ],
   {
     variants: {
       variant: {

@@ -14,7 +14,7 @@ export const moduleSoftwareProductsCarousel = {
       name: "Headline",
       required: true,
       displayField: true,
-      size: { min: 24, max: 60 },
+      size: { min: 10, max: 60 },
     }),
     createField("shortText", {
       id: "body",
@@ -26,11 +26,6 @@ export const moduleSoftwareProductsCarousel = {
       id: "cta",
       name: "CTA",
       linkContentType: [componentLink],
-    }),
-    createField("shortText", {
-      id: "filters",
-      name: "Practice Area Filters",
-      array: true,
     }),
     createField("entryReference", {
       id: "softwareProducts",

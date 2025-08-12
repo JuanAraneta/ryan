@@ -11,6 +11,7 @@ export const ScrollCarouselContainer = <ListItem,>({
   items,
   itemRender,
   className,
+  hideControls,
 }: {
   items: Array<ListItem>;
   itemRender: (props: {
@@ -18,6 +19,7 @@ export const ScrollCarouselContainer = <ListItem,>({
     index: number;
   }) => ReactNode;
   className?: string;
+  hideControls?: boolean;
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const prevClickHandler = useScrollJumpOnClickEventHandler(
@@ -53,37 +55,39 @@ export const ScrollCarouselContainer = <ListItem,>({
           ))}
         </ul>
       </div>
-      <div
-        className={cx(
-          "pt-6 dsk:pt-10 gap-6 items-center",
-          scrollContainerRef.current?.clientWidth ===
-            scrollContainerRef.current?.scrollWidth
-            ? "hidden"
-            : "flex",
-        )}
-      >
-        <div className="hidden dsk:flex gap-6">
-          <IconButton
-            variant="secondary"
-            onClick={prevClickHandler}
-            aria-label={constants.previousButtonAriaLabel ?? ""}
-          >
-            <MdChevronLeft size={24} />
-          </IconButton>
-          <IconButton
-            variant="secondary"
-            onClick={nextClickHandler}
-            aria-label={constants.nextButtonAriaLabel ?? ""}
-          >
-            <MdChevronRight size={24} />
-          </IconButton>
+      {!hideControls && (
+        <div
+          className={cx(
+            "pt-6 dsk:pt-10 gap-6 items-center",
+            scrollContainerRef.current?.clientWidth ===
+              scrollContainerRef.current?.scrollWidth
+              ? "hidden"
+              : "flex",
+          )}
+        >
+          <div className="hidden dsk:flex gap-6">
+            <IconButton
+              variant="secondary"
+              onClick={prevClickHandler}
+              aria-label={constants.previousButtonAriaLabel ?? ""}
+            >
+              <MdChevronLeft size={24} />
+            </IconButton>
+            <IconButton
+              variant="secondary"
+              onClick={nextClickHandler}
+              aria-label={constants.nextButtonAriaLabel ?? ""}
+            >
+              <MdChevronRight size={24} />
+            </IconButton>
+          </div>
+          <FakeHorizontalScrollbar
+            scrollContainerRef={scrollContainerRef}
+            scrollSnapTo="start"
+            itemQuerySelector="li"
+          />
         </div>
-        <FakeHorizontalScrollbar
-          scrollContainerRef={scrollContainerRef}
-          scrollSnapTo="start"
-          itemQuerySelector="li"
-        />
-      </div>
+      )}
     </div>
   );
 };

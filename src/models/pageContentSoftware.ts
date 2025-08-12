@@ -12,6 +12,10 @@ export const pageContentSoftware = {
       name: "Title",
       displayField: true,
     }),
+    createField("shortText", {
+      id: "slug",
+      name: "Slug",
+    }),
     createField("richText", {
       id: "shortDescription",
       name: "Short description",

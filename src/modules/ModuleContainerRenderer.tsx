@@ -74,11 +74,16 @@ export const ModuleContainerRenderer = async ({
             </div>
           ),
         ),
-      ).then((result) =>
-        result
-          .filter((render) => render.status === "fulfilled")
-          .map((render) => render.value),
-      )}
+      )
+        .then((result) =>
+          result
+            .filter((render) => render.status === "fulfilled")
+            .map((render) => render.value),
+        )
+        .catch((error) => {
+          console.error(error);
+          return null;
+        })}
     </>
   );
 };
