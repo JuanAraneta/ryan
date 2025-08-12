@@ -32,6 +32,10 @@ export const constants = {
       id: "seeMore",
       name: "See more button label",
     }),
+    createField("shortText", {
+      id: "exploreButtonLabel",
+      name: "Explore button label",
+    }),
     createField("singletonLock"),
   ],
 } as const satisfies ExpandedContentModel;

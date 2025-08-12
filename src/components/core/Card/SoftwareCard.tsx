@@ -4,6 +4,7 @@ import { RichText } from "@/components/core/RichText";
 import { Image } from "@/components/core/Image";
 import { Button } from "@/components/core/Button";
 import { Link } from "@/components/core/Link";
+import { useConstants } from "@/components/providers/ConstantsContext";
 
 export function SoftwareCard({
   data,
@@ -12,6 +13,7 @@ export function SoftwareCard({
   data: ResultOf<typeof PageSoftwareFragment>;
   variant?: "tall" | "short";
 }) {
+  const { exploreButtonLabel } = useConstants();
   const softwareData = readFragment(PageSoftwareFragment, data);
 
   const { title, shortDescription, image, slug } = softwareData;
@@ -27,11 +29,13 @@ export function SoftwareCard({
           <RichText content={shortDescription} spansOnly />
         </p>
 
-        <Button asChild small>
-          <Link className="mt-6" href={`/software/${slug}`}>
-            EXPLORE
-          </Link>
-        </Button>
+        {!!slug && (
+          <Button asChild small>
+            <Link className="mt-6" href={`/software/${slug}`}>
+              {exploreButtonLabel}
+            </Link>
+          </Button>
+        )}
       </div>
 
       <Image source={image} aspectRatio="square" alt={`${title} software`} />

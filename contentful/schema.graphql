@@ -2325,6 +2325,7 @@ type Constants implements Entry & _Node {
   _id: ID!
   contentfulLabel(locale: String): String
   contentfulMetadata: ContentfulMetadata!
+  exploreButtonLabel(locale: String): String
   linkedFrom(allowedLocales: [String]): ConstantsLinkingCollections
   nextButtonAriaLabel(locale: String): String
   previousButtonAriaLabel(locale: String): String
@@ -2354,6 +2355,13 @@ input ConstantsFilter {
   contentfulLabel_not_contains: String
   contentfulLabel_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
+  exploreButtonLabel: String
+  exploreButtonLabel_contains: String
+  exploreButtonLabel_exists: Boolean
+  exploreButtonLabel_in: [String]
+  exploreButtonLabel_not: String
+  exploreButtonLabel_not_contains: String
+  exploreButtonLabel_not_in: [String]
   nextButtonAriaLabel: String
   nextButtonAriaLabel_contains: String
   nextButtonAriaLabel_exists: Boolean
@@ -2413,6 +2421,8 @@ type ConstantsLinkingCollections {
 enum ConstantsOrder {
   contentfulLabel_ASC
   contentfulLabel_DESC
+  exploreButtonLabel_ASC
+  exploreButtonLabel_DESC
   nextButtonAriaLabel_ASC
   nextButtonAriaLabel_DESC
   previousButtonAriaLabel_ASC
