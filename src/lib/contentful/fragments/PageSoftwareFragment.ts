@@ -1,6 +1,7 @@
 import { graphql } from "gql.tada";
 import { AssetFragment } from "./AssetFragment";
 import { RichTextFragments } from "./RichTextFragments.generated";
+import { ComponentLinkFragment } from "./ComponentLinkFragment";
 
 export const PageSoftwareFragment = graphql(
   `
@@ -16,5 +17,9 @@ export const PageSoftwareFragment = graphql(
       practiceArea
     }
   `,
-  [AssetFragment, RichTextFragments.PageSoftware_shortDescription],
+  [
+    AssetFragment,
+    RichTextFragments.PageSoftware_shortDescription,
+    ComponentLinkFragment,
+  ],
 );

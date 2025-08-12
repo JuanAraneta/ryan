@@ -2,6 +2,8 @@ import { readFragment, ResultOf } from "gql.tada";
 import { PageSoftwareFragment } from "@/lib/contentful/fragments/PageSoftwareFragment";
 import { RichText } from "@/components/core/RichText";
 import { Image } from "@/components/core/Image";
+import { Button } from "@/components/core/Button";
+import { Link } from "@/components/core/Link";
 
 export function SoftwareCard({
   data,
@@ -12,18 +14,24 @@ export function SoftwareCard({
 }) {
   const softwareData = readFragment(PageSoftwareFragment, data);
 
-  const { title, shortDescription, image } = softwareData;
+  const { title, shortDescription, image, slug } = softwareData;
 
   return (
     <div
       data-testid="SoftwareCard"
-      className="bg-white border-1 border-neutral-200 rounded-lg w-[22.5rem] flex flex-col"
+      className="bg-white border-1 border-neutral-200/50 rounded-lg w-[22.5rem] flex flex-col"
     >
       <div className="p-6">
-        <p>{title}</p>
-        <p>
-          <RichText content={shortDescription} />
+        <h5 className="typo-heading-5 mb-3">{title}</h5>
+        <p className="typo-body-small text-content-secondary">
+          <RichText content={shortDescription} spansOnly />
         </p>
+
+        <Button asChild small>
+          <Link className="mt-6" href={`/software/${slug}`}>
+            EXPLORE
+          </Link>
+        </Button>
       </div>
 
       <Image source={image} aspectRatio="square" alt={`${title} software`} />
