@@ -46,7 +46,7 @@ export function ModuleSoftwareProductsCarousel({
       data-testid="ModuleSoftwareProductsCarousel"
       className="py-16 dsk:py-24"
     >
-      <div className="w-full flex justify-between mb-6">
+      <div className="w-full flex flex-col dsk:flex-row gap-10 justify-between mb-6">
         {headline && (
           <h2 className="text-highlight typo-heading-1 font-light">
             {headline}
@@ -67,7 +67,7 @@ export function ModuleSoftwareProductsCarousel({
       )}
 
       {filters?.length && (
-        <ul className="flex gap-3">
+        <ul className="flex gap-3 flex-wrap">
           {filters?.map((filter, idx) => (
             <li
               key={idx}

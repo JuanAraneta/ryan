@@ -21,9 +21,9 @@ export function SoftwareCard({
   return (
     <div
       data-testid="SoftwareCard"
-      className="bg-white border-1 border-neutral-200/50 rounded-lg w-[22.5rem] flex flex-col"
+      className="bg-white border-1 border-neutral-200/50 rounded-lg w-[15rem] dsk:w-[22rem] flex flex-col h-full"
     >
-      <div className="p-6">
+      <div className="p-6 flex-1">
         <h5 className="typo-heading-5 mb-3">{title}</h5>
         <p className="typo-body-small text-content-secondary">
           <RichText content={shortDescription} spansOnly />
