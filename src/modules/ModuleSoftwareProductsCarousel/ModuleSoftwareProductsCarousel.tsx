@@ -10,6 +10,15 @@ import { ScrollCarouselContainer } from "@/constants/ScrollCarouselContainer";
 import { GetModuleSoftwareProductsCarouselById } from "./GetModuleSoftwareProductsCarouselById";
 import { SoftwareCard } from "@/components/core/Card";
 import { PageSoftwareFragment } from "@/lib/contentful/fragments/PageSoftwareFragment";
+import { motion } from "motion/react";
+
+const cardVariants = {
+  hidden: { opacity: 0 },
+  visible: (index: number) => ({
+    opacity: 1,
+    transition: { delay: index * 0.05 },
+  }),
+};
 
 export function ModuleSoftwareProductsCarousel({
   data,
@@ -28,6 +37,13 @@ export function ModuleSoftwareProductsCarousel({
       return practiceArea;
     });
   }, [softwareProductsCollection?.items]);
+
+  const filteredItems = useMemo(() => {
+    if (activeFilter) {
+      return items?.filter((item) => item?.practiceArea === activeFilter);
+    }
+    return items;
+  }, [items, activeFilter]);
 
   const filters = useMemo(() => {
     const values = items?.map((item) => item?.practiceArea).filter(Boolean);
@@ -85,11 +101,20 @@ export function ModuleSoftwareProductsCarousel({
         </ul>
       )}
 
-      {items && (
+      {filteredItems && (
         <ScrollCarouselContainer
           hideControls
-          items={items}
-          itemRender={({ item }) => <SoftwareCard data={item} />}
+          items={filteredItems}
+          itemRender={({ item, index }) => (
+            <motion.li
+              custom={index}
+              variants={cardVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <SoftwareCard data={item} />
+            </motion.li>
+          )}
         />
       )}
     </Section>
