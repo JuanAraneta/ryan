@@ -2,6 +2,7 @@ import { ResultOf } from "gql.tada";
 import { GetModuleGeneralVideoMissionById } from ".";
 import { Section } from "@/components/core/Section";
 import { RichText } from "@/components/core/RichText";
+import { Video } from "@/components/core/Video";
 import { getInspector } from "@/utils/inspectorMode";
 
 export const ModuleGeneralVideoMission = ({
@@ -13,8 +14,6 @@ export const ModuleGeneralVideoMission = ({
   const inspector = getInspector(data.moduleGeneralVideoMission);
 
   const { headline, body, video } = data.moduleGeneralVideoMission;
-
-  console.log("🚀 ~ video:", video);
 
   return (
     <Section
@@ -33,9 +32,8 @@ export const ModuleGeneralVideoMission = ({
           <RichText content={body} />
         </div>
       </div>
-      <div className="aspect-video w-full dsk:w-2/3 bg-brand-300">
-        VIDEO SPACE {/* TODO: Add video player here */}
-      </div>
+
+      <Video data={video} className="w-full dsk:w-2/3" />
     </Section>
   );
 };
