@@ -21,7 +21,12 @@ export const GetModuleGeneralVideoMissionById = graphql(
       body {
         ...ModuleGeneralVideoMission_bodyFragment
       }
-      video
+      video {
+        __typename
+        sys {
+          id
+        }
+      }
     }
   `,
   [RichTextFragments.ModuleGeneralVideoMission_body],

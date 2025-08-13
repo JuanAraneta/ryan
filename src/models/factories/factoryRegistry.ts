@@ -8,7 +8,7 @@ import { richTextFieldFactory } from "./richTextFieldFactory";
 import { shortTextFieldFactory } from "./shortTextFieldFactory";
 import { singletonLockFieldFactory } from "./singletonLockFieldFactory";
 import { iconFieldFactory } from "./iconFieldFactory";
-import { wistiaVideoFieldFactory } from "./wistiaVideoFieldFactory";
+import { videoFieldFactory } from "./videoFieldFactory";
 
 export const factoryRegistry = {
   contentfulLabel: contentfulLabelFieldFactory,
@@ -21,5 +21,5 @@ export const factoryRegistry = {
   date: dateFieldFactory,
   moduleBackground: moduleBackgroundFieldFactory,
   icon: iconFieldFactory,
-  wistiaVideo: wistiaVideoFieldFactory,
+  video: videoFieldFactory,
 };

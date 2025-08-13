@@ -12,14 +12,16 @@ export const ModuleGeneralVideoMission = ({
   if (!data.moduleGeneralVideoMission) return null;
   const inspector = getInspector(data.moduleGeneralVideoMission);
 
-  const { headline, body } = data.moduleGeneralVideoMission;
+  const { headline, body, video } = data.moduleGeneralVideoMission;
+
+  console.log("🚀 ~ video:", video);
 
   return (
     <Section
       data-testid="ModuleGeneralVideoMission"
       className="light py-17 dsk:py-31 flex flex-col dsk:flex-row justify-between gap-10 dsk:gap-20"
     >
-      <div className="flex flex-col items-start w-4/5 dsk:w-1/3">
+      <div className="flex flex-col items-start w-4/5 dsk:w-1/3 gap-10">
         <h2
           className="typo-heading-1 text-left text-brand-500 font-light"
           {...inspector("headline")}
@@ -27,10 +29,12 @@ export const ModuleGeneralVideoMission = ({
         >
           {headline}
         </h2>
-        <RichText content={body} spansOnly />
+        <div {...inspector("body")}>
+          <RichText content={body} />
+        </div>
       </div>
       <div className="aspect-video w-full dsk:w-2/3 bg-brand-300">
-      VIDEO SPACE {/* TODO: Add video player here */}
+        VIDEO SPACE {/* TODO: Add video player here */}
       </div>
     </Section>
   );

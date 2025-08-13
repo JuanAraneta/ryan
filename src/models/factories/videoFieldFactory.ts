@@ -2,7 +2,7 @@ import { DeepPartial } from "@/types/utils/DeepPartial";
 import { ExpandedFieldDetails } from "../types/ExpandedFieldDetails";
 import merge from "lodash/merge";
 
-export const wistiaVideoFieldFactory = (
+export const videoFieldFactory = (
   props: {
     id: string;
     name: string;
@@ -10,12 +10,12 @@ export const wistiaVideoFieldFactory = (
 ): ExpandedFieldDetails =>
   merge(
     {
-      type: "Object",
+      type: "Link",
+      linkType: "Entry",
       localized: false,
-      editorInterface: {
-        widgetId: "6StWOM1AZBDHDjynDkm1iz",
-        widgetNamespace: "app",
-      },
+      validations: [
+        { linkContentType: ["wistiaVideo"] }, // TODO: Add other video types here, not use the reference to the asset model to avoid circular dependency
+      ],
     } as Omit<ExpandedFieldDetails, "id" | "name">,
     props,
   );
