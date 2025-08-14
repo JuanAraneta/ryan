@@ -4,7 +4,7 @@ import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkF
 import { Section } from "@/components/core/Section";
 import { Button } from "@/components/core/Button";
 import { Link } from "@/components/core/Link";
-import { Card } from "@/components/core/Card/Card";
+import { NewsAndInsightsCard } from "@/components/core/NewsAndInsightsCard";
 import { ScrollCarouselContainer } from "@/constants/ScrollCarouselContainer";
 import { getInspector } from "@/utils/inspectorMode";
 
@@ -45,7 +45,11 @@ export const ModuleInsights3Up = ({
             {insightsCollection.items.map(
               (insight, index) =>
                 insight && (
-                  <Card key={index} data={insight} className="aspect-square" />
+                  <NewsAndInsightsCard
+                    key={index}
+                    data={insight}
+                    className="aspect-square"
+                  />
                 ),
             )}
           </div>
@@ -55,7 +59,7 @@ export const ModuleInsights3Up = ({
               items={insightsCollection.items.map(
                 (insight) =>
                   insight && (
-                    <Card
+                    <NewsAndInsightsCard
                       data={insight}
                       className="aspect-square !w-[18.75rem]"
                     />

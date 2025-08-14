@@ -11,11 +11,11 @@ type CardProps = {
   className?: string;
 };
 
-export const Card = async ({ data, className }: CardProps) => {
+export const NewsAndInsightsCard = async ({ data, className }: CardProps) => {
   const content = readFragment(PageContentNewsAndInsightsFragment, data);
   const subject = content.subject;
   const url = await routingUtils.getPathByContentEntry(content);
-  if (!subject || !url) return null;
+  if (!subject) return null;
   const inspector = getInspector(subject);
 
   const { title, eyebrow, image } = subject;

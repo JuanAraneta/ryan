@@ -1,3 +1,4 @@
+import "server-only";
 import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
 import { ResultOf, FragmentOf, readFragment } from "gql.tada";
 import { ComponentProps } from "react";
