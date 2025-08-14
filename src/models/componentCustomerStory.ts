@@ -12,10 +12,6 @@ export const componentCustomerStory = {
       name: "Customer name",
       displayField: true,
     }),
-    createField("shortText", {
-      id: "slug",
-      name: "Slug",
-    }),
     createField("richText", { id: "richTextHeadline", name: "Headline" }),
     createField("shortText", {
       id: "quoteSource",

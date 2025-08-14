@@ -2,11 +2,18 @@ import { market } from "../market";
 import { seoMetadata } from "../seoMetadata";
 import { ExpandedContentModel } from "../types/ExpandedContentModel";
 import { createField } from "../utils/createField";
+import { pageContentCustomerStory } from "./pageContentCustomerStory";
+import { pageContentExpert } from "./pageContentExpert";
+import { pageContentModular } from "./pageContentModular";
+import { pageContentNewsAndInsights } from "./pageContentNewsAndInsights";
+import { pageContentServiceDetails } from "./pageContentServiceDetails";
+import { pageContentSoftwareDetails } from "./pageContentSoftwareDetails";
 
-export const componentPageCore = {
-  sys: { id: "componentPageCore" },
-  name: "Component / Page core",
-  description: "Represents the core data for each page on the site",
+export const page = {
+  sys: { id: "page" },
+  name: "Page",
+  description:
+    "Represents the core data for each page on the site. Page URL is determined based upon market, the type of content provided, and then path fields.",
   fields: [
     createField("contentfulLabel"),
     createField("shortText", {
@@ -43,6 +50,18 @@ export const componentPageCore = {
             "Optional override for SEO settings. If not set, the market’s default SEO settings will apply.",
         },
       },
+    }),
+    createField("entryReference", {
+      id: "content",
+      name: "Content",
+      linkContentType: [
+        pageContentCustomerStory,
+        pageContentExpert,
+        pageContentModular,
+        pageContentNewsAndInsights,
+        pageContentServiceDetails,
+        pageContentSoftwareDetails,
+      ],
     }),
   ],
 } as const satisfies ExpandedContentModel;

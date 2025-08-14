@@ -2,6 +2,7 @@ import { graphql } from "gql.tada";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { RichTextFragments } from "@/lib/contentful/fragments/RichTextFragments.generated";
 import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
+import { EntryCoreFragment } from "@/lib/contentful/fragments/EntryCoreFragment";
 
 export const GetModuleSoftwareServicesRoutingGridById = graphql(
   `
@@ -35,26 +36,25 @@ export const GetModuleSoftwareServicesRoutingGridById = graphql(
       gridItemsCollection(limit: 8) {
         total
         items {
-          __typename
-          ... on PageSoftware {
-            sys {
-              id
+          ... on PageContentSoftwareDetails {
+            ...EntryCoreFragment
+            subject {
+              ...EntryCoreFragment
+              title
+              shortDescription {
+                ...ComponentSoftwareDetails_shortDescriptionFragment
+              }
             }
-            title
-            shortDescription {
-              ...PageSoftware_shortDescriptionFragment
-            }
-            slug
           }
-          ... on PageService {
-            sys {
-              id
+          ... on PageContentServiceDetails {
+            ...EntryCoreFragment
+            subject {
+              ...EntryCoreFragment
+              title
+              shortDescription {
+                ...ComponentServiceDetails_shortDescriptionFragment
+              }
             }
-            title
-            shortDescription {
-              ...PageService_shortDescriptionFragment
-            }
-            slug
           }
         }
       }
@@ -75,10 +75,11 @@ export const GetModuleSoftwareServicesRoutingGridById = graphql(
   [
     RichTextFragments.ModuleSoftwareServicesRoutingGrid_title,
     RichTextFragments.ModuleSoftwareServicesRoutingGrid_description,
-    RichTextFragments.PageSoftware_shortDescription,
-    RichTextFragments.PageService_shortDescription,
+    RichTextFragments.ComponentSoftwareDetails_shortDescription,
+    RichTextFragments.ComponentServiceDetails_shortDescription,
     RichTextFragments.ComponentTestimonial_testimonial,
     ComponentLinkFragment,
     AssetFragment,
+    EntryCoreFragment,
   ],
 );

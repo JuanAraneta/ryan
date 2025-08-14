@@ -21,10 +21,5 @@ export const componentNewsAndInsights = {
       name: "Image",
       imagesOnly: true,
     }),
-    createField("entryReference", {
-      id: "link",
-      name: "Link",
-      linkContentType: [componentLink],
-    }),
   ],
 } as const satisfies ExpandedContentModel;

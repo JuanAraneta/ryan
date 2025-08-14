@@ -45,13 +45,13 @@ import {
 } from "./moduleServiceSoftwareRoutingCards";
 import { componentCustomerStoryCard } from "./componentCustomerStoryCard";
 import { moduleCustomerStoriesCarouselShort } from "./moduleCustomerStoriesCarouselShort";
-import { componentPageCore } from "./pages/componentPageCore";
-import { pageModular } from "./pages/pageModular";
-import { pageExpert } from "./pages/pageExpert";
-import { pageCustomerStory } from "./pages/pageCustomerStory";
-import { pageNewsAndInsights } from "./pages/pageNewsAndInsights";
-import { pageSoftwareDetails } from "./pages/pageSoftware";
-import { pageServiceDetails } from "./pages/pageService";
+import { page } from "./page";
+import { pageContentModular } from "./page/pageContentModular";
+import { pageContentExpert } from "./page/pageContentExpert";
+import { pageContentCustomerStory } from "./page/pageContentCustomerStory";
+import { pageContentNewsAndInsights } from "./page/pageContentNewsAndInsights";
+import { pageContentSoftwareDetails } from "./page/pageContentSoftwareDetails";
+import { pageContentServiceDetails } from "./page/pageContentServiceDetails";
 import { componentCustomerStory } from "./componentCustomerStory";
 import { componentExpert } from "./componentExpert";
 import { componentNewsAndInsights } from "./componentNewsAndInsights";
@@ -97,14 +97,14 @@ const modules: ExpandedContentModel[] = [
   modulePlatform,
 ];
 
-const pages: ExpandedContentModel[] = [
-  componentPageCore,
-  pageModular,
-  pageExpert,
-  pageCustomerStory,
-  pageNewsAndInsights,
-  pageSoftwareDetails,
-  pageServiceDetails,
+const pageAndContent: ExpandedContentModel[] = [
+  page,
+  pageContentCustomerStory,
+  pageContentExpert,
+  pageContentModular,
+  pageContentNewsAndInsights,
+  pageContentSoftwareDetails,
+  pageContentServiceDetails,
 ];
 
 // Other content types
@@ -120,9 +120,12 @@ const other: ExpandedContentModel[] = [
   script,
 ];
 
-export const models = [...components, ...modules, ...pages, ...other].map(
-  contentModelComposer,
-);
+export const models = [
+  ...components,
+  ...modules,
+  ...pageAndContent,
+  ...other,
+].map(contentModelComposer);
 
 export const locales = [
   {

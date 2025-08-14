@@ -3,18 +3,20 @@ import { AIChatPrompt } from "@/components/core/AIChat";
 import { RichText } from "@/components/core/RichText";
 import { Section } from "@/components/core/Section";
 import { HeroRoutingCard } from "./components/HeroRoutingCard";
-import { ModuleHeroHomeFragment } from "./ModuleHeroHomeFragment";
+import { GetModuleHeroHomeById } from "./GetModuleHeroHomeById";
 import { readFragment } from "gql.tada";
 import { ComponentRoutingItemFragment } from "@/lib/contentful/fragments/ComponentRoutingItemFragment";
 import { getInspector } from "@/utils/inspectorMode";
 
-export function HeroHome({
+export const ModuleHeroHome = ({
   data,
 }: {
-  data: ResultOf<typeof ModuleHeroHomeFragment>;
-}) {
-  const { headline, prompts, routingCardsCollection } = data;
-  const inspector = getInspector(data);
+  data: ResultOf<typeof GetModuleHeroHomeById>;
+}) => {
+  const moduleHeroHome = data.moduleHeroHome;
+  if (!moduleHeroHome) return null;
+  const { headline, prompts, routingCardsCollection } = moduleHeroHome;
+  const inspector = getInspector(moduleHeroHome);
 
   return (
     <div className="gradient-brand-v-dark-to-darker">
@@ -42,4 +44,4 @@ export function HeroHome({
       </Section>
     </div>
   );
-}
+};

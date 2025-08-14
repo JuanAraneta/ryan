@@ -1,26 +1,30 @@
 import { cx } from "cva";
-import { ComponentInsightFragment } from "@/lib/contentful/fragments/ComponentInsightFragment";
+import { PageContentNewsAndInsightsFragment } from "@/lib/contentful/fragments/PageContentNewsAndInsightsFragment";
 import { readFragment, FragmentOf } from "gql.tada";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { Link } from "@/components/core/Link";
 import { getInspector } from "@/utils/inspectorMode";
+import { routingUtils } from "@/lib/util/routingUtils";
 
 type CardProps = {
-  data: FragmentOf<typeof ComponentInsightFragment>; // TODO: Add extra types when we define the articles, insights, etc.
+  data: FragmentOf<typeof PageContentNewsAndInsightsFragment>; // TODO: Add extra types when we define the articles, insights, etc.
   className?: string;
 };
 
-export const Card = ({ data, className }: CardProps) => {
-  const insightData = readFragment(ComponentInsightFragment, data);
-  const inspector = getInspector(insightData);
+export const Card = async ({ data, className }: CardProps) => {
+  const content = readFragment(PageContentNewsAndInsightsFragment, data);
+  const subject = content.subject;
+  const url = await routingUtils.getPathByContentEntry(content);
+  if (!subject || !url) return null;
+  const inspector = getInspector(subject);
 
-  const { title, eyebrow, image, link } = insightData;
+  const { title, eyebrow, image } = subject;
 
   const imageUrl = readFragment(AssetFragment, image);
 
   return (
     <Link
-      link={link}
+      href={url}
       data-testid="Card"
       className={cx(
         "relative rounded-lg w-full h-full overflow-hidden group",

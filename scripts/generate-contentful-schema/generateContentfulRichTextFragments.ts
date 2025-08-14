@@ -24,7 +24,13 @@ export const generateContentfulRichTextFragments = async () => {
           }
           __typename
           ... on Page {
-            slug
+            path
+            content {
+              __typename
+            }
+            market {
+              slug
+            }
           }
         }
       }

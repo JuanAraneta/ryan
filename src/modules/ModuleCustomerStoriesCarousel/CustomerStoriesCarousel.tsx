@@ -1,16 +1,15 @@
-"use client";
-
 import { Link } from "@/components/core/Link";
 import { RichText } from "@/components/core/RichText";
 import { ScrollCarouselContainer } from "@/constants/ScrollCarouselContainer";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
+import { routingUtils } from "@/lib/util/routingUtils";
 import { ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment } from "@/modules/ModuleCustomerStoriesCarousel/ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment";
 import { focusStyle } from "@/utils/focusStyle";
 import { getInspector } from "@/utils/inspectorMode";
 import { cx } from "cva";
 import { readFragment, ResultOf } from "gql.tada";
 
-export const CustomerStoriesCarousel = ({
+export const CustomerStoriesCarousel = async ({
   data,
 }: {
   data: ResultOf<
@@ -18,56 +17,61 @@ export const CustomerStoriesCarousel = ({
   >;
 }) => (
   <ScrollCarouselContainer
-    items={data.items}
-    itemRender={({ item: story }) => {
-      const heroMedia = readFragment(AssetFragment, story.heroMedia);
-      const customerLogo = readFragment(AssetFragment, story.customerLogo);
-      const inspector = getInspector(story);
-      return (
-        <Link
-          href={`/customer-stories/${story.slug}`}
-          className={cx(
-            "flex w-[700px] max-w-[calc(100vw-3rem)] flex-col snap-start snap-always rounded-lg overflow-hidden gradient-container group h-full",
-            focusStyle,
-          )}
-        >
-          <div className="relative w-full overflow-hidden">
-            {heroMedia?.url && (
-              <img
-                className="h-[190px] dsk:h-[400px] w-full object-cover group-hover:scale-105 transition-transform"
-                src={heroMedia.url}
-                alt={`${story.customerName} hero media`}
-                {...inspector("heroMedia")}
-              />
+    items={await Promise.all(
+      data.items.map(async (content) => {
+        const story = content?.subject;
+        const url = await routingUtils.getPathByContentEntry(content);
+        if (!story || !url) return null;
+        const heroMedia = readFragment(AssetFragment, story.heroMedia);
+        const customerLogo = readFragment(AssetFragment, story.customerLogo);
+        const inspector = getInspector(story);
+
+        return (
+          <Link
+            href={``}
+            className={cx(
+              "flex w-[700px] max-w-[calc(100vw-3rem)] flex-col snap-start snap-always rounded-lg overflow-hidden gradient-container group h-full",
+              focusStyle,
             )}
-            {!!customerLogo?.url && (
-              <img
-                className="absolute left-5 top-5 h-8"
-                src={customerLogo?.url}
-                alt={`${story.customerName} customer logo`}
-                {...inspector("customerLogo")}
-              />
-            )}
-          </div>
-          <div className="p-6">
-            <div className="flex gap-2.5 items-center">
-              <div className="rounded-full size-2.5 bg-new-gold" />
-              <p className="typo-eyebrow">{story.customerName}</p>
+          >
+            <div className="relative w-full overflow-hidden">
+              {heroMedia?.url && (
+                <img
+                  className="h-[190px] dsk:h-[400px] w-full object-cover group-hover:scale-105 transition-transform"
+                  src={heroMedia.url}
+                  alt={`${story.customerName} hero media`}
+                  {...inspector("heroMedia")}
+                />
+              )}
+              {!!customerLogo?.url && (
+                <img
+                  className="absolute left-5 top-5 h-8"
+                  src={customerLogo?.url}
+                  alt={`${story.customerName} customer logo`}
+                  {...inspector("customerLogo")}
+                />
+              )}
             </div>
-            <p
-              className="typo-heading-5 font-light mt-3"
-              {...inspector("richTextHeadline")}
-            >
-              <RichText content={story.richTextHeadline} spansOnly />
-            </p>
-            {!!story.quoteSource && (
-              <p className="typo-caption mt-3" {...inspector("quoteSource")}>
-                {story.quoteSource}
+            <div className="p-6">
+              <div className="flex gap-2.5 items-center">
+                <div className="rounded-full size-2.5 bg-new-gold" />
+                <p className="typo-eyebrow">{story.customerName}</p>
+              </div>
+              <p
+                className="typo-heading-5 font-light mt-3"
+                {...inspector("richTextHeadline")}
+              >
+                <RichText content={story.richTextHeadline} spansOnly />
               </p>
-            )}
-          </div>
-        </Link>
-      );
-    }}
+              {!!story.quoteSource && (
+                <p className="typo-caption mt-3" {...inspector("quoteSource")}>
+                  {story.quoteSource}
+                </p>
+              )}
+            </div>
+          </Link>
+        );
+      }),
+    )}
   />
 );

@@ -9,7 +9,7 @@ import { ConstantsFragment } from "@/lib/contentful/fragments/ConstantsFragment"
 import { ContentfulLivePreviewScript } from "@/components/ContentfulLivePreviewScript";
 import { routingUtils } from "@/lib/util/routingUtils";
 import { getConstants } from "@/lib/contentful/utils/getConstants";
-import { GetComponentPageCoreById } from "@/lib/contentful/query/GetComponentPageCoreById";
+import { GetLayoutById } from "@/lib/contentful/query/GetLayoutByIdQuery";
 
 const latoSans = Lato({
   variable: "--font-sans",
@@ -24,24 +24,20 @@ export default async function RootLayout(props: {
 }) {
   const preview = await isPreviewMode();
 
-  const [{ page, componentPageCore }, constants] = await Promise.all([
+  const [layout, constants] = await Promise.all([
     routingUtils
       .getPathFromProps(props)
-      .then((path) => routingUtils.getPageByPath(path))
-      .then(async (page) => {
-        const componentPageCore = page?.componentPageCore?.sys.id
-          ? (
-              await contentClient.query(GetComponentPageCoreById, {
-                id: page?.componentPageCore?.sys.id,
-              })
-            ).data?.componentPageCore
-          : null;
-        return { page, componentPageCore };
+      .then((path) => routingUtils.getPageEntryByPath(path))
+      .then(async (pageEntry) => {
+        if (!pageEntry?.sys.id) return null;
+        return (
+          await contentClient.query(GetLayoutById, { id: pageEntry.sys.id })
+        ).data?.layout;
       }),
     getConstants(),
   ]);
 
-  if (!page || !componentPageCore) notFound();
+  if (!layout || !constants) notFound();
 
   if (!constants)
     throw new Error(
@@ -51,12 +47,9 @@ export default async function RootLayout(props: {
   return (
     <ConstantsProvider value={readFragment(ConstantsFragment, constants)}>
       <head>
-        {componentPageCore.seoMetadata && (
+        {layout.seoMetadata && (
           <SEOMetadata
-            metadata={readFragment(
-              SEOMetadataFragment,
-              componentPageCore.seoMetadata,
-            )}
+            metadata={readFragment(SEOMetadataFragment, layout.seoMetadata)}
           />
         )}
       </head>

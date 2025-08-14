@@ -1,6 +1,6 @@
 import { componentLink } from "./componentLink";
-import { pageServiceDetails } from "./pages/pageService";
-import { pageSoftwareDetails } from "./pages/pageSoftware";
+import { pageContentServiceDetails } from "./page/pageContentServiceDetails";
+import { pageContentSoftwareDetails } from "./page/pageContentSoftwareDetails";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
@@ -42,7 +42,7 @@ export const moduleSoftwareServicesRoutingGrid = {
       size: { min: 4, max: 25 },
       id: "gridItems",
       name: "Grid items",
-      linkContentType: [pageSoftwareDetails, pageServiceDetails],
+      linkContentType: [pageContentSoftwareDetails, pageContentServiceDetails],
     }),
     createField("entryReference", {
       id: "testimonial",

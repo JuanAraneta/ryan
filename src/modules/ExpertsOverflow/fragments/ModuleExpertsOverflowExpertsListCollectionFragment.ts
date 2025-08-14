@@ -1,22 +1,23 @@
 import { graphql } from "gql.tada";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
+import { EntryCoreFragment } from "@/lib/contentful/fragments/EntryCoreFragment";
 
 export const ModuleExpertsOverflowExpertsListCollectionFragment = graphql(
   `
     fragment ModuleExpertsOverflowExpertsListCollectionFragment on ModuleExpertsOverflowExpertsListCollection {
       items {
-        sys {
-          id
-        }
-        fullName
-        title
-        serviceLabel
-        slug
-        headshot {
-          ...AssetFragment
+        ...EntryCoreFragment
+        subject {
+          ...EntryCoreFragment
+          fullName
+          title
+          serviceLabel
+          headshot {
+            ...AssetFragment
+          }
         }
       }
     }
   `,
-  [AssetFragment],
+  [AssetFragment, EntryCoreFragment],
 );

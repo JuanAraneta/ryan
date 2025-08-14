@@ -10,8 +10,9 @@ import { focusStyle } from "@/utils/focusStyle";
 import { MdArrowForward, MdAdd } from "react-icons/md";
 import { Constant } from "@/components/providers/ConstantsContext";
 import { getInspector } from "@/utils/inspectorMode";
+import { routingUtils } from "@/lib/util/routingUtils";
 
-export const ModuleSoftwareAndServicesRoutingGrid = ({
+export const ModuleSoftwareAndServicesRoutingGrid = async ({
   data,
 }: {
   data: ResultOf<typeof GetModuleSoftwareServicesRoutingGridById>;
@@ -95,10 +96,17 @@ export const ModuleSoftwareAndServicesRoutingGrid = ({
       </div>
       <div>
         <ul className="grid dsk:grid-cols-4 gap-3 dsk:gap-y-8 dsk:gap-x-6">
-          {data.moduleSoftwareServicesRoutingGrid?.gridItemsCollection?.items
-            .filter(Boolean)
-            .map((page, index) => {
-              const inspector = getInspector(page);
+          {await Promise.all(
+            (
+              data.moduleSoftwareServicesRoutingGrid?.gridItemsCollection
+                ?.items ?? []
+            ).map(async (content, index) => {
+              const subject = content?.subject;
+              if (!content || !subject) return null;
+              const url = await routingUtils.getPathByContentEntry(content);
+              if (!url) return null;
+
+              const inspector = getInspector(subject);
 
               return (
                 <li
@@ -106,12 +114,11 @@ export const ModuleSoftwareAndServicesRoutingGrid = ({
                   className={cx("size-full", index > 3 && "max-dsk:hidden")}
                 >
                   <Link
-                    link={{ internalSource: page }}
+                    href={url}
                     className={cx(
                       "group block relative overflow-hidden transition-colors bg-neutral-50 hover:bg-white focus-visible:bg-white border border-border-primary rounded-xl size-full p-6",
                       focusStyle,
                     )}
-                    {...inspector("slug")}
                   >
                     <span className="block gradient-gold-h-dark-to-light w-full h-1 absolute bottom-0 left-0 translate-y-full group-hover:translate-y-0 group-focus-visible:translate-y-0 transition-transform" />
                     <span className="flex justify-between gap-6">
@@ -119,7 +126,7 @@ export const ModuleSoftwareAndServicesRoutingGrid = ({
                         className="block typo-heading-5"
                         {...inspector("title")}
                       >
-                        {page.title}
+                        {subject.title}
                       </span>
                       <MdArrowForward className="text-brand-300 size-6 transition-transform -translate-x-2 group-hover:translate-x-0 group-focus-visible:translate-x-0" />
                     </span>
@@ -127,12 +134,13 @@ export const ModuleSoftwareAndServicesRoutingGrid = ({
                       className="hidden dsk:block mt-3 dsk:mb-7 last:dsk:mb-12 text-content-secondary"
                       {...inspector("shortDescription")}
                     >
-                      <RichText content={page.shortDescription} spansOnly />
+                      <RichText content={subject.shortDescription} spansOnly />
                     </span>
                   </Link>
                 </li>
               );
-            })}
+            }),
+          )}
         </ul>
         {(data.moduleSoftwareServicesRoutingGrid?.gridItemsCollection?.total ??
           0) > 4 && (

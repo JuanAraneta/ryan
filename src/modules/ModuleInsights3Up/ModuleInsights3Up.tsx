@@ -1,5 +1,3 @@
-"use client";
-
 import { readFragment, ResultOf } from "gql.tada";
 import { GetModuleInsights3UpById } from "./GetModuleInsights3UpById";
 import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
@@ -20,9 +18,7 @@ export const ModuleInsights3Up = ({
   const { headline, insightsCollection, cta } = data.moduleInsights3Up;
 
   const inspector = getInspector(data.moduleInsights3Up);
-
   const link = readFragment(ComponentLinkFragment, cta);
-  const insights = insightsCollection?.items.filter(Boolean) || [];
 
   return (
     <Section data-testid="ModuleInsights3Up" className="dark py-16 dsk:py-20">
@@ -42,22 +38,33 @@ export const ModuleInsights3Up = ({
         )}
       </div>
 
-      {/* Desktop: 3-column grid */}
-      <div className="hidden dsk:grid grid-cols-3 gap-10">
-        {insights.map((insight, index) => (
-          <Card key={index} data={insight} className="aspect-square" />
-        ))}
-      </div>
-
-      {/* Mobile: Horizontal carousel */}
-      <div className="block dsk:hidden">
-        <ScrollCarouselContainer
-          items={insights}
-          itemRender={({ item }) => (
-            <Card data={item} className="aspect-square !w-[18.75rem]" />
-          )}
-        />
-      </div>
+      {insightsCollection?.items && (
+        <>
+          {/* Desktop: 3-column grid */}
+          <div className="hidden dsk:grid grid-cols-3 gap-10">
+            {insightsCollection.items.map(
+              (insight, index) =>
+                insight && (
+                  <Card key={index} data={insight} className="aspect-square" />
+                ),
+            )}
+          </div>
+          {/* Mobile: Horizontal carousel */}
+          <div className="block dsk:hidden">
+            <ScrollCarouselContainer
+              items={insightsCollection.items.map(
+                (insight) =>
+                  insight && (
+                    <Card
+                      data={insight}
+                      className="aspect-square !w-[18.75rem]"
+                    />
+                  ),
+              )}
+            />
+          </div>
+        </>
+      )}
     </Section>
   );
 };

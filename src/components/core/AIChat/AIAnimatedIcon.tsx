@@ -1,5 +1,3 @@
-"use client";
-
 import { cx } from "cva";
 import { AIIcon } from "./AIIcon";
 

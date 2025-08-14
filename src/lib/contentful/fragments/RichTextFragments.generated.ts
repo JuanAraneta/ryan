@@ -16,7 +16,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -35,7 +41,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -54,7 +66,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -73,7 +91,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -92,7 +116,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -111,7 +141,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -130,7 +166,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -149,7 +191,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -168,7 +216,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -187,7 +241,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -206,7 +266,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -225,7 +291,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -244,7 +316,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -263,7 +341,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -282,7 +366,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -301,7 +391,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -320,7 +416,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -339,7 +441,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -358,7 +466,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -377,7 +491,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -396,7 +516,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -415,7 +541,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -434,7 +566,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -453,7 +591,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }

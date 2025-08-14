@@ -15,14 +15,7 @@ export const componentLink = {
     createField("entryReference", {
       id: "internalSource",
       name: "Internal Source",
-      linkContentType: [
-        "pageModular",
-        "pageExpert",
-        "pageCustomerStory",
-        "pageNewsAndInsights",
-        "pageSoftwareDetails",
-        "pageServiceDetails",
-      ],
+      linkContentType: ["page"],
     }),
     createField("shortText", { id: "externalSource", name: "External Source" }),
   ],

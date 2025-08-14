@@ -1,7 +1,6 @@
-"use client";
-
 import { ScrollCarouselContainer } from "@/constants/ScrollCarouselContainer";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
+import { routingUtils } from "@/lib/util/routingUtils";
 import { ModuleExpertsOverflowExpertsListCollectionFragment } from "@/modules/ExpertsOverflow/fragments/ModuleExpertsOverflowExpertsListCollectionFragment";
 import { focusStyle } from "@/utils/focusStyle";
 import { getInspector } from "@/utils/inspectorMode";
@@ -10,23 +9,22 @@ import { readFragment, ResultOf } from "gql.tada";
 import Link from "next/link";
 import { MdOutlineArrowForward } from "react-icons/md";
 
-export const ExpertsOverflowExpertsListScroll = ({
+export const ExpertsOverflowExpertsListScroll = async ({
   data,
 }: {
   data: ResultOf<typeof ModuleExpertsOverflowExpertsListCollectionFragment>;
-}) => {
-  return (
-    <ScrollCarouselContainer
-      items={data.items}
-      itemRender={({ item: expert }) => {
+}) => (
+  <ScrollCarouselContainer
+    items={await Promise.all(
+      data.items.map(async (content) => {
+        const expert = content?.subject;
+        const url = await routingUtils.getPathByContentEntry(content);
+        if (!expert || !url) return null;
         const headshot = readFragment(AssetFragment, expert?.headshot);
         const inspector = getInspector(expert);
 
         return (
-          <Link
-            href={`/experts/${expert?.slug}`}
-            className={cx(focusStyle, "group rounded-lg")}
-          >
+          <Link href={url} className={cx(focusStyle, "group rounded-lg")}>
             {!!expert && !!headshot?.url && (
               <div
                 className="w-[300px] h-[400px] rounded-lg overflow-hidden"
@@ -67,7 +65,7 @@ export const ExpertsOverflowExpertsListScroll = ({
             </span>
           </Link>
         );
-      }}
-    />
-  );
-};
+      }),
+    )}
+  />
+);

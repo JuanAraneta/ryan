@@ -1,14 +1,12 @@
 import { graphql } from "gql.tada";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { ComponentStatisticFragment } from "@/lib/contentful/fragments/ComponentStatisticFragment";
-import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
+import { EntryCoreFragment } from "@/lib/contentful/fragments/EntryCoreFragment";
 
 export const ComponentCustomerStoryCardFragment = graphql(
   `
     fragment ComponentCustomerStoryCardFragment on ComponentCustomerStoryCard {
-      sys {
-        id
-      }
+      ...EntryCoreFragment
       backgroundImage {
         ...AssetFragment
       }
@@ -18,11 +16,11 @@ export const ComponentCustomerStoryCardFragment = graphql(
       statistic {
         ...ComponentStatisticFragment
       }
-      tags
-      link {
-        ...ComponentLinkFragment
+      pageContent {
+        ...EntryCoreFragment
       }
+      tags
     }
   `,
-  [AssetFragment, ComponentStatisticFragment, ComponentLinkFragment],
+  [AssetFragment, ComponentStatisticFragment, EntryCoreFragment],
 );

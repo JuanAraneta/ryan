@@ -1,16 +1,21 @@
-import { graphql, readFragment, ResultOf, TadaDocumentNode } from "gql.tada";
+import "server-only";
+import { graphql, readFragment, ResultOf } from "gql.tada";
 import { contentClient } from "../contentful/contentClient";
 import { getConstants } from "../contentful/utils/getConstants";
 import { MarketFragment } from "../contentful/fragments/MarketFragment";
 import { introspection_types } from "@/graphql-env";
 import { EntryCoreFragment } from "../contentful/fragments/EntryCoreFragment";
-import { ComponentPageCoreFragment } from "../contentful/fragments/ComponentPageCoreFragment";
+import { InvertRecord } from "@/types/utils/InvertRecord";
+import { createInMemoryCacheMapFetcher } from "@/utils/createInMemoryCacheMapFetcher";
 
 // TYPES
-type Entry = { __typename: string; sys: { id: string } };
-type Page = null | (Entry & { componentPageCore: Entry | null });
+type Entry<Type extends string = string> = {
+  __typename: Type;
+  sys: { id: string };
+};
 
 // QUERIES
+
 const GetMarketBySlugQuery = graphql(
   `
     query GetMarketBySlugQuery(
@@ -32,92 +37,23 @@ const GetMarketBySlugQuery = graphql(
   `,
   [MarketFragment],
 );
-const GetComponentPageCoreByPathAndMarketSlug = graphql(`
-  query GetComponentPageCoreByPathAndMarketSlug(
-    $locale: String
-    $preview: Boolean
-    $path: String
-    $market: String
-  ) {
-    componentPageCoreCollection(
-      locale: $locale
-      preview: $preview
-      where: { path: $path, market: { sys: { id: $market } } }
-      limit: 1
-    ) {
-      items {
-        sys {
-          id
-        }
-      }
-    }
-  }
-`);
-const GetModularPageByComponentPageCoreId = graphql(
+const GetPageByPathAndMarketSlug = graphql(
   `
-    query GetModularPageByComponentPageCoreId(
+    query GetComponentPageCoreByPathAndMarketSlug(
       $locale: String
       $preview: Boolean
-      $filter: PageModularFilter!
+      $path: String
+      $market: String
     ) {
-      page: pageModularCollection(
+      pageCollection(
         locale: $locale
         preview: $preview
-        where: $filter
-        limit: 1
+        where: { path: $path, market: { sys: { id: $market } } }
       ) {
         items {
           ...EntryCoreFragment
-          componentPageCore {
-            ...ComponentPageCoreFragment
-          }
-        }
-      }
-    }
-  `,
-  [EntryCoreFragment, ComponentPageCoreFragment],
-);
-const GetExpertPageByComponentPageCore = graphql(
-  `
-    query GetExpertPageByComponentPageCore(
-      $locale: String
-      $preview: Boolean
-      $filter: PageExpertFilter!
-    ) {
-      page: pageExpertCollection(
-        locale: $locale
-        preview: $preview
-        where: $filter
-        limit: 1
-      ) {
-        items {
-          ...EntryCoreFragment
-          componentPageCore {
-            ...ComponentPageCoreFragment
-          }
-        }
-      }
-    }
-  `,
-  [EntryCoreFragment, ComponentPageCoreFragment],
-);
-const GetCustomerStoryPageByComponentPageCore = graphql(
-  `
-    query GetCustomerStoryPageByComponentPageCore(
-      $locale: String
-      $preview: Boolean
-      $filter: PageCustomerStoryFilter!
-    ) {
-      page: pageCustomerStoryCollection(
-        locale: $locale
-        preview: $preview
-        where: $filter
-        limit: 1
-      ) {
-        items {
-          ...EntryCoreFragment
-          componentPageCore {
-            ...ComponentPageCoreFragment
+          content {
+            ...EntryCoreFragment
           }
         }
       }
@@ -125,110 +61,49 @@ const GetCustomerStoryPageByComponentPageCore = graphql(
   `,
   [EntryCoreFragment],
 );
-const GetNewsAndInsightsPageByComponentPageCore = graphql(
+const GetPageById = graphql(
   `
-    query GetNewsAndInsightsPageByComponentPageCore(
+    query GetPageById($locale: String, $preview: Boolean, $id: String!) {
+      page(id: $id, locale: $locale, preview: $preview) {
+        ...EntryCoreFragment
+        path
+        market {
+          slug
+        }
+        content {
+          ...EntryCoreFragment
+        }
+      }
+    }
+  `,
+  [EntryCoreFragment],
+);
+const GetAllPages = graphql(
+  `
+    query GetAllPages(
       $locale: String
       $preview: Boolean
-      $filter: PageNewsAndInsightsFilter!
+      $limit: Int!
+      $skip: Int!
     ) {
-      page: pageNewsAndInsightsCollection(
+      pageCollection(
         locale: $locale
         preview: $preview
-        where: $filter
-        limit: 1
+        limit: $limit
+        skip: $skip
       ) {
+        total
         items {
           ...EntryCoreFragment
-          componentPageCore {
-            ...ComponentPageCoreFragment
+          content {
+            ...EntryCoreFragment
           }
         }
       }
     }
   `,
-  [EntryCoreFragment, ComponentPageCoreFragment],
+  [EntryCoreFragment],
 );
-const GetSoftwareDetailsPageByComponentPageCore = graphql(
-  `
-    query GetSoftwareDetailsPageByComponentPageCore(
-      $locale: String
-      $preview: Boolean
-      $filter: PageSoftwareDetailsFilter!
-    ) {
-      page: pageSoftwareDetailsCollection(
-        locale: $locale
-        preview: $preview
-        where: $filter
-        limit: 1
-      ) {
-        items {
-          ...EntryCoreFragment
-          componentPageCore {
-            ...ComponentPageCoreFragment
-          }
-        }
-      }
-    }
-  `,
-  [EntryCoreFragment, ComponentPageCoreFragment],
-);
-const GetServiceDetailsPageByComponentPageCore = graphql(
-  `
-    query GetServiceDetailsPageByComponentPageCore(
-      $locale: String
-      $preview: Boolean
-      $filter: PageServiceDetailsFilter!
-    ) {
-      page: pageServiceDetailsCollection(
-        locale: $locale
-        preview: $preview
-        where: $filter
-        limit: 1
-      ) {
-        items {
-          ...EntryCoreFragment
-          componentPageCore {
-            ...ComponentPageCoreFragment
-          }
-        }
-      }
-    }
-  `,
-  [EntryCoreFragment, ComponentPageCoreFragment],
-);
-
-const PageTypeToSlug = {
-  PageModular: {
-    slug: null,
-    getByPageQuery: GetModularPageByComponentPageCoreId,
-  },
-  PageExpert: {
-    slug: "expert",
-    getByPageQuery: GetExpertPageByComponentPageCore,
-  },
-  PageCustomerStory: {
-    slug: "customer-story",
-    getByPageQuery: GetCustomerStoryPageByComponentPageCore,
-  },
-  PageServiceDetails: {
-    slug: "service",
-    getByPageQuery: GetServiceDetailsPageByComponentPageCore,
-  },
-  PageSoftwareDetails: {
-    slug: "software",
-    getByPageQuery: GetSoftwareDetailsPageByComponentPageCore,
-  },
-  PageNewsAndInsights: {
-    slug: "news-and-insights",
-    getByPageQuery: GetNewsAndInsightsPageByComponentPageCore,
-  },
-} satisfies {
-  [key in introspection_types["Entry"]["possibleTypes"]]?: {
-    slug: string | null;
-    getByPageQuery: TadaDocumentNode<any, any>;
-  };
-};
 
 // FUNCTIONS
 
@@ -297,75 +172,75 @@ const getPathFromProps = async (props: {
   );
 };
 
-// How to find the proper path, based on the Page instance
-const getPageByPath = async (fullPath: string): Promise<Page | null> => {
-  const { market, path: pathSansMarket } = await getMarketIdFromPath(fullPath);
-  const splitPath = pathSansMarket.split("/");
-  const typeSegment = Object.values(PageTypeToSlug).some(
-    (mapping) => mapping.slug === splitPath[0],
-  )
-    ? (splitPath[0] as (typeof PageTypeToSlug)[keyof typeof PageTypeToSlug]["slug"])
-    : null;
-
-  // If the first slug matches a page.__typename slug
-  // Then strip it from path, otherwise use pathSansMarket
-  const path =
-    typeSegment === null ? pathSansMarket : splitPath.slice(1).join("/");
-
-  const componentPageCoreResponse = await contentClient.query(
-    GetComponentPageCoreByPathAndMarketSlug,
-    {
-      market,
-      path,
+// Route leading-segment differentiation
+type PageContentTypes = Exclude<
+  introspection_types["PageContent"]["possibleTypes"],
+  "PageContentModular"
+>;
+const pageContentTypeToSlug = {
+  PageContentCustomerStory: "customer-story",
+  PageContentExpert: "experts",
+  PageContentNewsAndInsights: "news-and-insights",
+  PageContentServiceDetails: "service",
+  PageContentSoftwareDetails: "software",
+} as const satisfies Record<PageContentTypes, string | null>;
+const slugToPageContentType: InvertRecord<typeof pageContentTypeToSlug> =
+  Object.entries(pageContentTypeToSlug).reduce(
+    (map, [key, value]) => {
+      //@ts-expect-error reduce can't be strict typed
+      // but we know this to be true
+      map[value] = key;
+      return map;
     },
-  );
-  const componentPageCore =
-    componentPageCoreResponse.data?.componentPageCoreCollection?.items[0];
+    {} as Partial<InvertRecord<typeof pageContentTypeToSlug>>,
+  ) as InvertRecord<typeof pageContentTypeToSlug>;
 
-  if (!componentPageCore) return null;
-  const pageResult = await contentClient.query(
-    (
-      Object.values(PageTypeToSlug).find(
-        (mapping) => mapping.slug === typeSegment,
-      ) ?? PageTypeToSlug.PageModular
-    ).getByPageQuery,
-    { filter: { componentPageCore } },
-  );
+// How to find the proper path, based on the Page instance
+const getPageEntryByPath = async (fullPath: string): Promise<Entry | null> => {
+  const { market, path: pathSansMarket } = await getMarketIdFromPath(fullPath);
+  const splitPathSansMarket = pathSansMarket.split("/");
+  const isNonModularPage = splitPathSansMarket[0] in slugToPageContentType;
+  const path = isNonModularPage
+    ? splitPathSansMarket.slice(1).join("/")
+    : pathSansMarket;
+  const contentType: introspection_types["PageContent"]["possibleTypes"] =
+    isNonModularPage
+      ? slugToPageContentType[
+          splitPathSansMarket[0] as keyof typeof slugToPageContentType
+        ]
+      : "PageContentModular";
 
-  const page = pageResult.data?.page?.items[0];
+  const pagesResult = await contentClient.query(GetPageByPathAndMarketSlug, {
+    path: path || "index",
+    market,
+  });
+
+  const page = pagesResult.data?.pageCollection?.items.find(
+    (page) => page?.content?.__typename === contentType,
+  );
 
   if (!page) return null;
 
   return page;
 };
 
-// # How to find the proper path, based on the Page instance
-const getPathByPage = async (page: Entry): Promise<string | null> => {
-  const mapping =
-    PageTypeToSlug[
-      (page.__typename in PageTypeToSlug
-        ? page.__typename
-        : "PageModular") as keyof typeof PageTypeToSlug
-    ];
-  const [fullPageResult, constants] = await Promise.all([
-    contentClient.query(mapping.getByPageQuery, {
-      filter: { sys: { id: page.sys.id } },
-    }),
+// How to find the proper path, based on the Page instance
+const getPathByPage = async (pageEntry: Entry): Promise<string | null> => {
+  const [page, constants] = await Promise.all([
+    contentClient
+      .query(GetPageById, {
+        id: pageEntry.sys.id,
+      })
+      .then((page) => page.data?.page),
     getConstants(),
   ]);
 
-  const fullPage = fullPageResult.data?.page?.items[0];
-
-  if (!fullPage) {
+  if (!page) {
     console.error("Page could not be found: ", page);
     return null;
   }
 
-  const market = readFragment(
-    MarketFragment,
-    readFragment(ComponentPageCoreFragment, fullPage?.componentPageCore)
-      ?.market,
-  );
+  const market = readFragment(MarketFragment, page.market);
 
   if (!market) {
     console.error("Page could not identify market: ", page);
@@ -374,39 +249,93 @@ const getPathByPage = async (page: Entry): Promise<string | null> => {
 
   const defaultMarket = readFragment(MarketFragment, constants.defaultMarket);
 
+  if (!defaultMarket) {
+    throw new Error("No default market default in constants!");
+  }
+
   const path = [];
 
   // If not defaultMarket, add market slug to path
   // Otherwise, skip market
-  if (market.sys.id !== defaultMarket?.sys.id) {
+  if (market.slug !== defaultMarket?.sys.id) {
     path.push(market.slug);
   }
 
-  if (mapping.slug !== null) {
-    path.push(mapping.slug);
-  }
-
-  const componentPageCore = readFragment(
-    ComponentPageCoreFragment,
-    fullPage.componentPageCore,
-  );
-
-  if (!componentPageCore) {
-    console.error("Page could not identify componentPageCore: ", page);
+  if (!page.content) {
+    // This page might validly 404 or redirect, so no error log here
     return null;
   }
 
+  if (page.content.__typename !== "PageContentModular") {
+    path.push(pageContentTypeToSlug[page.content.__typename]);
+  }
+
   // path may be treated as empty if path is just "index"
-  if (componentPageCore.path !== "index") {
-    path.push(componentPageCore.path);
+  if (page.path !== "index") {
+    path.push(page.path);
   }
 
   return path.join("/");
 };
 
+const getContentIdToPageIdCache = createInMemoryCacheMapFetcher<Entry>({
+  ttl: 1000 * 60 * 60 * 24, // 1 day
+});
+// TODO - Talk to Contentful about letting us query multi-types
+// by sys.id because this is needlessly painful/inefficient
+const getPageEntryByContentId = async (contentId: string) => {
+  const cache = getContentIdToPageIdCache();
+  if (cache.map.has(contentId)) {
+    cache.map.get(contentId)!;
+  }
+  const limit = 250;
+  let skip = 0;
+
+  while (true) {
+    const result = await contentClient.query(GetAllPages, { limit, skip });
+    const total = result.data?.pageCollection?.total;
+    const items = result.data?.pageCollection?.items;
+    if (
+      !result.data ||
+      result.error ||
+      total == null ||
+      items == null ||
+      items.length === 0
+    )
+      break;
+    items.forEach((page) => {
+      const id = page?.content?.sys.id;
+      if (id && page) cache.map.set(id, page);
+    });
+    if (cache.map.has(contentId)) {
+      return cache.map.get(contentId)!;
+    }
+    if (total < skip + limit) break;
+    else skip += limit;
+  }
+
+  return null;
+};
+
+const getPathByContentEntry = async (
+  contentEntry: Entry<
+    introspection_types["PageContent"]["possibleTypes"]
+  > | null,
+) => {
+  if (!contentEntry) return;
+  const pageEntry = await getPageEntryByContentId(contentEntry.sys.id);
+  if (!pageEntry) return null;
+  return getPathByPage(pageEntry);
+};
+
 export const routingUtils = {
+  // mappings
+  pageContentTypeToSlug,
+  slugToPageContentType,
+  // helper functions
   getPathFromProps,
   getMarketIdFromPath,
-  getPageByPath,
+  getPageEntryByPath,
   getPathByPage,
+  getPathByContentEntry,
 };
