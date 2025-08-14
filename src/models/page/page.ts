@@ -20,7 +20,7 @@ export const page = {
       id: "path",
       name: "Path",
       required: true,
-      validations: [{ regexp: { pattern: "^[a-z0-9-]+([\/][a-z0-9-]+)*$" } }],
+      validations: [{ regexp: { pattern: "^[a-z0-9-]+([\\/][a-z0-9-]+)*$" } }],
       editorInterface: {
         settings: {
           helpText:
