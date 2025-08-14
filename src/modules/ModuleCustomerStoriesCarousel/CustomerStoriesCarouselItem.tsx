@@ -49,7 +49,9 @@ export const CustomerStoriesCarouselItem = async ({
       <div className="p-6">
         <div className="flex gap-2.5 items-center">
           <div className="rounded-full size-2.5 bg-new-gold" />
-          <p className="typo-eyebrow">{story.customerName}</p>
+          <p className="typo-eyebrow" {...inspector("customerName")}>
+            {story.customerName}
+          </p>
         </div>
         <p
           className="typo-heading-5 font-light mt-3"
