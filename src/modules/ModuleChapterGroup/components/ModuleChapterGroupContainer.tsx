@@ -16,7 +16,7 @@ export const ModuleChapterGroupContainer = ({
   chapters,
 }: {
   data: ResultOf<typeof GetModuleChapterGroupById>;
-  chapters: Array<ReactNode | null>;
+  chapters: Array<{ id: string; node: ReactNode } | null>;
 }) => {
   const { isDesktop, isMobile } = useBreakpoint();
   const [mobileHeaderIsStuck, setMobileHeaderIsStuck] = useState(false);
@@ -163,13 +163,13 @@ export const ModuleChapterGroupContainer = ({
         </nav>
       </div>
       <ul className="grow" ref={contentItemsContainerRef}>
-        {chapters.filter(Boolean).map((chapter, index) => (
+        {chapters.filter(Boolean).map(({ id, node }) => (
           <li
-            key={index}
-            // id={kebabCase(chapter.title ?? "")}
+            key={id}
+            id={id}
             className="flex flex-col gap-8 dsk:gap-16 w-full not-last:pb-10 not-first:pt-10 dsk:not-last:pb-20 dsk:not-first:pt-20 not-first:border-t border-border-primary"
           >
-            {chapter}
+            {node}
           </li>
         ))}
       </ul>

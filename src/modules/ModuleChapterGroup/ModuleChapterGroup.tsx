@@ -9,6 +9,8 @@ import { ComponentCategorySolutions2ColSubBodyFragment } from "@/modules/ModuleC
 import { CategorySolutionsImageLinkGrid } from "./components/CategorySolutionsImageLinkGrid";
 import { CategorySolutionsImageLinkGridFragment } from "@/modules/ModuleChapterGroup/fragments/CategorySolutionsImageLinkGridFragment";
 import { ModuleChapterGroupContainer } from "./components/ModuleChapterGroupContainer";
+import { Fragment } from "react";
+import kebabCase from "lodash/kebabCase";
 
 export const ModuleChapterGroup = ({
   data,
@@ -21,53 +23,59 @@ export const ModuleChapterGroup = ({
       (chapter) => {
         if (!chapter) return null;
 
-        return (
-          <>
-            {chapter.contentsCollection?.items.map((item, index) => {
-              switch (item?.__typename) {
-                case "ComponentCardDeviceMock":
-                  return (
-                    <ComponentCardDeviceMock
-                      key={index}
-                      data={readFragment(ComponentCardDeviceMockFragment, item)}
-                    />
-                  );
-                case "ComponentCategorySolutionsHeadline":
-                  return (
-                    <ComponentCategorySolutionsHeadline
-                      key={index}
-                      data={readFragment(
-                        ComponentCategorySolutionsHeadlineFragment,
-                        item,
-                      )}
-                    />
-                  );
-                case "ComponentCategorySolutions2ColSubBody":
-                  return (
-                    <ComponentCategorySolutions2ColSubBody
-                      key={index}
-                      data={readFragment(
-                        ComponentCategorySolutions2ColSubBodyFragment,
-                        item,
-                      )}
-                    />
-                  );
-                case "CategorySolutionsImageLinkGrid":
-                  return (
-                    <CategorySolutionsImageLinkGrid
-                      key={index}
-                      data={readFragment(
-                        CategorySolutionsImageLinkGridFragment,
-                        item,
-                      )}
-                    />
-                  );
-                default:
-                  return null;
-              }
-            })}
-          </>
-        );
+        return {
+          id: kebabCase(chapter.title ?? ""),
+          node: (
+            <Fragment key={chapter.sys.id}>
+              {chapter.contentsCollection?.items.map((item, index) => {
+                switch (item?.__typename) {
+                  case "ComponentCardDeviceMock":
+                    return (
+                      <ComponentCardDeviceMock
+                        key={index}
+                        data={readFragment(
+                          ComponentCardDeviceMockFragment,
+                          item,
+                        )}
+                      />
+                    );
+                  case "ComponentCategorySolutionsHeadline":
+                    return (
+                      <ComponentCategorySolutionsHeadline
+                        key={index}
+                        data={readFragment(
+                          ComponentCategorySolutionsHeadlineFragment,
+                          item,
+                        )}
+                      />
+                    );
+                  case "ComponentCategorySolutions2ColSubBody":
+                    return (
+                      <ComponentCategorySolutions2ColSubBody
+                        key={index}
+                        data={readFragment(
+                          ComponentCategorySolutions2ColSubBodyFragment,
+                          item,
+                        )}
+                      />
+                    );
+                  case "CategorySolutionsImageLinkGrid":
+                    return (
+                      <CategorySolutionsImageLinkGrid
+                        key={index}
+                        data={readFragment(
+                          CategorySolutionsImageLinkGridFragment,
+                          item,
+                        )}
+                      />
+                    );
+                  default:
+                    return null;
+                }
+              })}
+            </Fragment>
+          ),
+        };
       },
     )}
   />

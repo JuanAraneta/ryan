@@ -35,8 +35,12 @@ export const Link = async ({
       return hrefProp;
     }
     if (!link) {
-      console.warn("Null link prop provided to Link component!");
-      return "#";
+      console.warn(
+        "Null link & href props provided to Link component!",
+        "This could be because a page-content reference which is not part of a page was linked to.",
+        'Search the DOM for "#missing-link" to identify bad links.',
+      );
+      return "#missing-link";
     }
     if (link.internalSource) {
       const source = link.internalSource;
