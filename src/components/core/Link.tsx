@@ -7,8 +7,8 @@ import { getConstants } from "@/lib/contentful/utils/getConstants";
 import { MarketFragment } from "@/lib/contentful/fragments/MarketFragment";
 
 type LinkProps =
-  | (ComponentProps<"a"> & { href: string; link?: never })
-  | (ComponentProps<"a"> & {
+  | (Omit<ComponentProps<"a">, "href"> & { href: string | null; link?: never })
+  | (Omit<ComponentProps<"a">, "href"> & {
       link:
         | ResultOf<typeof ComponentLinkFragment>
         | FragmentOf<typeof ComponentLinkFragment>
@@ -35,7 +35,7 @@ export const Link = async ({
       return hrefProp;
     }
     if (!link) {
-      console.error("Null link prop provided to Link component!");
+      console.warn("Null link prop provided to Link component!");
       return "#";
     }
     if (link.internalSource) {

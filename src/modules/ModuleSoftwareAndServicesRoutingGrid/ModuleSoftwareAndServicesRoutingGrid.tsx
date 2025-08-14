@@ -104,7 +104,6 @@ export const ModuleSoftwareAndServicesRoutingGrid = async ({
               const subject = content?.subject;
               if (!content || !subject) return null;
               const url = await routingUtils.getPathByContentEntry(content);
-              if (!url) return null;
 
               const inspector = getInspector(subject);
 

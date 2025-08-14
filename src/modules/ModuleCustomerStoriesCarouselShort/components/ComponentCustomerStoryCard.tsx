@@ -17,7 +17,6 @@ export const ComponentCustomerStoryCard = async ({
   const backgroundImage = readFragment(AssetFragment, data.backgroundImage);
   const clientLogo = readFragment(AssetFragment, data.clientLogo);
   const url = await routingUtils.getPathByContentEntry(data.pageContent);
-  if (!url) return null;
 
   return (
     <Link

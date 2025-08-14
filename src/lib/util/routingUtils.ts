@@ -322,7 +322,7 @@ const getPathByContentEntry = async (
     introspection_types["PageContent"]["possibleTypes"]
   > | null,
 ) => {
-  if (!contentEntry) return;
+  if (!contentEntry) return null;
   const pageEntry = await getPageEntryByContentId(contentEntry.sys.id);
   if (!pageEntry) return null;
   return getPathByPage(pageEntry);
