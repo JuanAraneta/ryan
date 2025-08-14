@@ -1,14 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import { cx } from "cva";
 import { readFragment, FragmentOf } from "gql.tada";
 import { WistiaVideoFragment } from "@/lib/contentful/fragments/WistiaVideoFragment";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { MdOutlinePlayArrow } from "react-icons/md";
 import { PlayerModal } from "./components/PlayerModal";
-import { useState } from "react";
+import { AnimatePresence } from "motion/react";
 
-type VideoData = FragmentOf<typeof WistiaVideoFragment> | null;
+type VideoData = FragmentOf<typeof WistiaVideoFragment> | null; // TODO: add other types like Brandfolder, Youtube, etc.
 
 interface VideoProps {
   data: VideoData;
@@ -55,12 +56,14 @@ export function Video({ data, className = "" }: VideoProps) {
         )}
       </div>
 
-      {isModalOpen && (
-        <PlayerModal
-          data={videoData}
-          onCloseAction={() => setIsModalOpen(false)}
-        />
-      )}
+      <AnimatePresence>
+        {isModalOpen && (
+          <PlayerModal
+            data={videoData}
+            onCloseAction={() => setIsModalOpen(false)}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 }
