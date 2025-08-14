@@ -286,7 +286,7 @@ const getContentIdToPageIdCache = createInMemoryCacheMapFetcher<Entry>({
 const getPageEntryByContentId = async (contentId: string) => {
   const cache = getContentIdToPageIdCache();
   if (cache.map.has(contentId)) {
-    cache.map.get(contentId)!;
+    return cache.map.get(contentId)!;
   }
   const limit = 250;
   let skip = 0;

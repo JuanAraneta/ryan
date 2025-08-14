@@ -44,10 +44,10 @@ import {
 import { introspection_types } from "@/graphql-env";
 import { ModuleHeroHome } from "./ModuleHeroHome";
 import { GetModuleHeroHomeById } from "./ModuleHeroHome/GetModuleHeroHomeById";
+import { ReactNode } from "react";
 
 type ModuleComponent<Data> = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  component: (props: { data: Data }) => any;
+  component: (props: { data: Data }) => ReactNode;
   queryById: TadaDocumentNode<Data, { id: string }>;
 };
 
