@@ -12,7 +12,14 @@ export const moduleGeneralVideoMission = {
       name: "Headline",
       required: true,
     }),
-    createField("richText", { id: "body", name: "Body" }),
+    createField("shortText", {
+      id: "description",
+      name: "Description or Quote",
+    }),
+    createField("shortText", {
+      id: "attribution",
+      name: "Attribution (e.g., Name | Title)",
+    }),
     createField("video", { id: "video", name: "Video", required: true }),
   ],
 } as const satisfies ExpandedContentModel;

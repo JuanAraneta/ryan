@@ -6,8 +6,7 @@ import { useKeypress } from "@/hooks/useKeypress";
 import { CloseButton } from "./CloseButton";
 import { motion } from "motion/react";
 
-import { WistiaPlayer } from "@wistia/wistia-player-react";
-import { type WistiaVideoData } from "@/components/types/video.types";
+import { WistiaPlayer } from "./WistiaPlayer";
 
 interface PlayerModalProps {
   data: ResultOf<typeof WistiaVideoFragment> | null;
@@ -18,19 +17,8 @@ export const PlayerModal = ({ data, onCloseAction }: PlayerModalProps) => {
   useKeypress("Escape", onCloseAction);
 
   const renderPlayer = () => {
-    if (data?.__typename === "WistiaVideo") {
-      const video = data.wistiaVideo as WistiaVideoData;
-      const id = video.items[0]?.hashed_id;
-
-      return (
-        <WistiaPlayer
-          mediaId={id}
-          autoplay
-          bigPlayButton
-          controlsVisibleOnLoad
-        />
-      );
-    }
+    if (data?.__typename === "WistiaVideo")
+      return <WistiaPlayer data={data.wistiaVideo} />;
 
     return (
       <div className="w-full h-full flex items-center justify-center typo-eyebrow ">

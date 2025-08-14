@@ -1,7 +1,6 @@
 import { ResultOf } from "gql.tada";
 import { GetModuleGeneralVideoMissionById } from ".";
 import { Section } from "@/components/core/Section";
-import { RichText } from "@/components/core/RichText";
 import { Video } from "@/components/core/Video";
 import { getInspector } from "@/utils/inspectorMode";
 
@@ -13,7 +12,8 @@ export const ModuleGeneralVideoMission = ({
   if (!data.moduleGeneralVideoMission) return null;
   const inspector = getInspector(data.moduleGeneralVideoMission);
 
-  const { headline, body, video } = data.moduleGeneralVideoMission;
+  const { headline, description, attribution, video } =
+    data.moduleGeneralVideoMission;
 
   return (
     <Section
@@ -28,9 +28,22 @@ export const ModuleGeneralVideoMission = ({
         >
           {headline}
         </h2>
-        <div {...inspector("body")}>
-          <RichText content={body} />
-        </div>
+
+        <h5
+          className="typo-heading-5 text-neutral-600"
+          {...inspector("description")}
+        >
+          {description}
+        </h5>
+
+        {attribution && (
+          <p
+            className="mt-3 typo-body-small text-neutral-600"
+            {...inspector("attribution")}
+          >
+            {attribution}
+          </p>
+        )}
       </div>
 
       <Video data={video} className="w-full dsk:w-2/3" />

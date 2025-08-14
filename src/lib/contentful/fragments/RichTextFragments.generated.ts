@@ -232,25 +232,6 @@ export const RichTextFragments = {
       }
     }
   `),
-  ModuleGeneralVideoMission_body: graphql(`
-    fragment ModuleGeneralVideoMission_bodyFragment on ModuleGeneralVideoMissionBody
-    @_unmask {
-      json
-      links {
-        entries {
-          hyperlink {
-            sys {
-              id
-            }
-            __typename
-            ... on Page {
-              slug
-            }
-          }
-        }
-      }
-    }
-  `),
   ModuleHeroHome_headline: graphql(`
     fragment ModuleHeroHome_headlineFragment on ModuleHeroHomeHeadline
     @_unmask {

@@ -1,5 +1,4 @@
 import { graphql } from "gql.tada";
-import { RichTextFragments } from "@/lib/contentful/fragments/RichTextFragments.generated";
 import { WistiaVideoFragment } from "@/lib/contentful/fragments/WistiaVideoFragment";
 
 export const GetModuleGeneralVideoMissionById = graphql(
@@ -19,9 +18,8 @@ export const GetModuleGeneralVideoMissionById = graphql(
         id
       }
       headline
-      body {
-        ...ModuleGeneralVideoMission_bodyFragment
-      }
+      description
+      attribution
       video {
         __typename
         sys {
@@ -33,5 +31,5 @@ export const GetModuleGeneralVideoMissionById = graphql(
       }
     }
   `,
-  [RichTextFragments.ModuleGeneralVideoMission_body, WistiaVideoFragment],
+  [WistiaVideoFragment],
 );

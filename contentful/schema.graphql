@@ -3614,52 +3614,13 @@ type ModuleExpertsOverflowRichTextTitleResourcesInline implements ResourceLink {
 """
 type ModuleGeneralVideoMission implements Entry & _Node {
   _id: ID!
-  body(locale: String): ModuleGeneralVideoMissionBody
+  attribution(locale: String): String
   contentfulMetadata: ContentfulMetadata!
+  description(locale: String): String
   headline(locale: String): String
   linkedFrom(allowedLocales: [String]): ModuleGeneralVideoMissionLinkingCollections
   sys: Sys!
   video(locale: String, preview: Boolean, where: WistiaVideoFilter): WistiaVideo
-}
-
-type ModuleGeneralVideoMissionBody {
-  json: JSON!
-  links: ModuleGeneralVideoMissionBodyLinks!
-}
-
-type ModuleGeneralVideoMissionBodyAssets {
-  block: [Asset]!
-  hyperlink: [Asset]!
-}
-
-type ModuleGeneralVideoMissionBodyEntries {
-  block: [Entry]!
-  hyperlink: [Entry]!
-  inline: [Entry]!
-}
-
-type ModuleGeneralVideoMissionBodyLinks {
-  assets: ModuleGeneralVideoMissionBodyAssets!
-  entries: ModuleGeneralVideoMissionBodyEntries!
-  resources: ModuleGeneralVideoMissionBodyResources!
-}
-
-type ModuleGeneralVideoMissionBodyResources {
-  block: [ModuleGeneralVideoMissionBodyResourcesBlock!]!
-  hyperlink: [ModuleGeneralVideoMissionBodyResourcesHyperlink!]!
-  inline: [ModuleGeneralVideoMissionBodyResourcesInline!]!
-}
-
-type ModuleGeneralVideoMissionBodyResourcesBlock implements ResourceLink {
-  sys: ResourceSys!
-}
-
-type ModuleGeneralVideoMissionBodyResourcesHyperlink implements ResourceLink {
-  sys: ResourceSys!
-}
-
-type ModuleGeneralVideoMissionBodyResourcesInline implements ResourceLink {
-  sys: ResourceSys!
 }
 
 type ModuleGeneralVideoMissionCollection {
@@ -3672,10 +3633,21 @@ type ModuleGeneralVideoMissionCollection {
 input ModuleGeneralVideoMissionFilter {
   AND: [ModuleGeneralVideoMissionFilter]
   OR: [ModuleGeneralVideoMissionFilter]
-  body_contains: String
-  body_exists: Boolean
-  body_not_contains: String
+  attribution: String
+  attribution_contains: String
+  attribution_exists: Boolean
+  attribution_in: [String]
+  attribution_not: String
+  attribution_not_contains: String
+  attribution_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
+  description: String
+  description_contains: String
+  description_exists: Boolean
+  description_in: [String]
+  description_not: String
+  description_not_contains: String
+  description_not_in: [String]
   headline: String
   headline_contains: String
   headline_exists: Boolean
@@ -3709,6 +3681,10 @@ enum ModuleGeneralVideoMissionLinkingCollectionsModuleContainerCollectionOrder {
 }
 
 enum ModuleGeneralVideoMissionOrder {
+  attribution_ASC
+  attribution_DESC
+  description_ASC
+  description_DESC
   headline_ASC
   headline_DESC
   sys_firstPublishedAt_ASC
@@ -6053,6 +6029,10 @@ type WistiaVideoLinkingCollections {
 }
 
 enum WistiaVideoLinkingCollectionsModuleGeneralVideoMissionCollectionOrder {
+  attribution_ASC
+  attribution_DESC
+  description_ASC
+  description_DESC
   headline_ASC
   headline_DESC
   sys_firstPublishedAt_ASC
