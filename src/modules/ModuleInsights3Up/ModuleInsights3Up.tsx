@@ -57,9 +57,10 @@ export const ModuleInsights3Up = ({
           <div className="block dsk:hidden">
             <ScrollCarouselContainer
               items={insightsCollection.items.map(
-                (insight) =>
+                (insight, index) =>
                   insight && (
                     <NewsAndInsightsCard
+                      key={index}
                       data={insight}
                       className="aspect-square !w-[18.75rem]"
                     />
