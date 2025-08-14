@@ -1,9 +1,10 @@
 import { graphql } from "gql.tada";
-import { ModuleExpertsOverflowExpertsListCollectionFragment } from "./fragments/ModuleExpertsOverflowExpertsListCollectionFragment";
+import { PageContentExpertFragment } from "./fragments/PageContentExpertFragment";
 import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
 import { ComponentStatisticFragment } from "@/lib/contentful/fragments/ComponentStatisticFragment";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { RichTextFragments } from "@/lib/contentful/fragments/RichTextFragments.generated";
+import { EntryCoreFragment } from "@/lib/contentful/fragments/EntryCoreFragment";
 
 export const GetModuleExpertsOverflowById = graphql(
   `
@@ -18,9 +19,7 @@ export const GetModuleExpertsOverflowById = graphql(
     }
 
     fragment ModuleExpertsOverflowFragment on ModuleExpertsOverflow {
-      sys {
-        id
-      }
+      ...EntryCoreFragment
       richTextEyebrow {
         ...ModuleExpertsOverflow_richTextEyebrowFragment
       }
@@ -37,7 +36,9 @@ export const GetModuleExpertsOverflowById = graphql(
         ...AssetFragment
       }
       expertsListCollection {
-        ...ModuleExpertsOverflowExpertsListCollectionFragment
+        items {
+          ...PageContentExpertFragment
+        }
       }
     }
   `,
@@ -46,7 +47,8 @@ export const GetModuleExpertsOverflowById = graphql(
     RichTextFragments.ModuleExpertsOverflow_richTextTitle,
     ComponentLinkFragment,
     ComponentStatisticFragment,
-    ModuleExpertsOverflowExpertsListCollectionFragment,
+    PageContentExpertFragment,
     AssetFragment,
+    EntryCoreFragment,
   ],
 );

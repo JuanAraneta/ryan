@@ -3,13 +3,14 @@ import { RichText } from "@/components/core/RichText";
 import { GetModuleExpertsOverflowById } from ".";
 import { ComponentStatisticFragment } from "@/lib/contentful/fragments/ComponentStatisticFragment";
 import { readFragment, ResultOf } from "gql.tada";
-import { ExpertsOverflowExpertsListScroll } from "./components/ExpertsOverflowExpertsListScroll";
-import { ModuleExpertsOverflowExpertsListCollectionFragment } from "@/modules/ExpertsOverflow/fragments/ModuleExpertsOverflowExpertsListCollectionFragment";
+import { PageContentExpertCard } from "./components/PageContentExpertCard";
+import { PageContentExpertFragment } from "@/modules/ExpertsOverflow/fragments/PageContentExpertFragment";
 import { AnimatableNumber } from "@/components/core/AnimatableNumber";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { Button } from "@/components/core/Button";
 import { Section } from "@/components/core/Section";
 import { getInspector } from "@/utils/inspectorMode";
+import { ScrollCarouselContainer } from "@/constants/ScrollCarouselContainer";
 
 export const ModuleExpertsOverflow = ({
   data,
@@ -91,10 +92,15 @@ export const ModuleExpertsOverflow = ({
         )}
       </div>
       {!!data.moduleExpertsOverflow?.expertsListCollection && (
-        <ExpertsOverflowExpertsListScroll
-          data={readFragment(
-            ModuleExpertsOverflowExpertsListCollectionFragment,
-            data.moduleExpertsOverflow?.expertsListCollection,
+        <ScrollCarouselContainer
+          items={data.moduleExpertsOverflow?.expertsListCollection.items.map(
+            (content, index) =>
+              content && (
+                <PageContentExpertCard
+                  key={index}
+                  data={readFragment(PageContentExpertFragment, content)}
+                />
+              ),
           )}
         />
       )}
