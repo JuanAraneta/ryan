@@ -10,9 +10,9 @@ export const RenderModuleFromRegistry = async ({
   module: FragmentOf<typeof EntryCoreFragment> | null;
   locale: string;
 }) => {
-  const module = readFragment(EntryCoreFragment, moduleFragment);
-  if (!module) return null;
-  const type = module.__typename;
+  const mod = readFragment(EntryCoreFragment, moduleFragment);
+  if (!mod) return null;
+  const type = mod.__typename;
   if (!type || !moduleRegistry[type]) {
     console.warn(`Module type of "${type}" not found in registry`);
     return null;
@@ -29,13 +29,13 @@ export const RenderModuleFromRegistry = async ({
 
   try {
     const result = await contentClient.query(queryById, {
-      id: module.sys.id,
+      id: mod.sys.id,
       locale,
     });
 
     if (!result || !result.data) {
       console.error(
-        `Module request failed for id "${module.sys.id}" of type "${module.__typename}"`,
+        `Module request failed for id "${mod.sys.id}" of type "${mod.__typename}"`,
         result,
       );
       return null;
@@ -44,7 +44,7 @@ export const RenderModuleFromRegistry = async ({
     return <Component data={result.data} />;
   } catch (e) {
     console.error(
-      `Failed to fetch module "${module.sys.id}" with __typename "${module.__typename}"`,
+      `Failed to fetch module "${mod.sys.id}" with __typename "${mod.__typename}"`,
       e,
     );
     return null;

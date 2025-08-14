@@ -1,4 +1,3 @@
-import { componentLink } from "./componentLink";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 

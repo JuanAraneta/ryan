@@ -147,6 +147,7 @@ export const getRichTextRenderOptions = (
           </Link>
         ),
         [INLINES.ENTRY_HYPERLINK]: (node, children) => {
+          // eslint-disable-next-line  @typescript-eslint/no-explicit-any
           const embeddedEntry: any = entryMap.get(node?.data?.target?.sys?.id);
 
           if (embeddedEntry?.__typename !== "Page") {

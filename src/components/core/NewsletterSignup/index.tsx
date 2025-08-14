@@ -1,10 +1,7 @@
 import { readFragment, FragmentOf } from "gql.tada";
 import { ComponentNewsletterSignupFragment } from "@/lib/contentful/fragments/ComponentNewsletterSignupFragment";
 import { Button } from "@/components/core/Button";
-import {
-  Constant,
-  useConstants,
-} from "@/components/providers/ConstantsContext";
+import { Constant } from "@/components/providers/ConstantsContext";
 import { getInspector } from "@/utils/inspectorMode";
 
 export const NewsletterSignup = ({

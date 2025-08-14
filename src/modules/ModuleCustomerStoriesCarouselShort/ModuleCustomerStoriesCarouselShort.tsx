@@ -48,9 +48,10 @@ export const ModuleCustomerStoriesCarouselShort = ({
       {customerStoryCardsCollection?.items && (
         <ScrollCarouselContainer
           items={customerStoryCardsCollection.items.map(
-            (card) =>
+            (card, index) =>
               card && (
                 <ComponentCustomerStoryCard
+                  key={index}
                   data={readFragment(ComponentCustomerStoryCardFragment, card)}
                 />
               ),

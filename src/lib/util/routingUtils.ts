@@ -1,5 +1,5 @@
 import "server-only";
-import { graphql, readFragment, ResultOf } from "gql.tada";
+import { graphql, readFragment } from "gql.tada";
 import { contentClient } from "../contentful/contentClient";
 import { getConstants } from "../contentful/utils/getConstants";
 import { MarketFragment } from "../contentful/fragments/MarketFragment";
