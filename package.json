@@ -22,6 +22,7 @@
     "@react-hookz/web": "^25.1.1",
     "@urql/core": "^5.2.0",
     "@urql/exchange-auth": "^2.2.1",
+    "@wistia/wistia-player-react": "^0.1.12",
     "contentful": "^11.1.4",
     "contentful-code-models": "^2.1.6",
     "contentful-management": "^11.35.1",

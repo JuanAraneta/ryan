@@ -13,6 +13,6 @@ export const moduleGeneralVideoMission = {
       required: true,
     }),
     createField("richText", { id: "body", name: "Body" }),
-    createField("wistiaVideo", { id: "video", name: "Video", required: true }),
+    createField("video", { id: "video", name: "Video", required: true }),
   ],
 } as const satisfies ExpandedContentModel;

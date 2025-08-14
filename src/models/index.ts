@@ -21,6 +21,7 @@ import { moduleHeroHome } from "./moduleHeroHome";
 import { moduleInsightsBento } from "./moduleInsightsBento";
 import { moduleInsights3Up } from "./moduleInsights3Up";
 import { moduleGeneralVideoMission } from "./moduleGeneralVideoMission";
+import { wistiaVideo } from "./assets/wistiaVideo";
 
 import {
   categorySolutionsImageLinkGrid,
@@ -53,6 +54,9 @@ import {
 } from "./moduleServiceSoftwareRoutingCards";
 import { componentCustomerStoryCard } from "./componentCustomerStoryCard";
 import { moduleCustomerStoriesCarouselShort } from "./moduleCustomerStoriesCarouselShort";
+
+// Assets
+const assets: ExpandedContentModel[] = [wistiaVideo];
 
 // Components
 const components: ExpandedContentModel[] = [
@@ -111,9 +115,13 @@ const other: ExpandedContentModel[] = [
   script,
 ];
 
-export const models = [...components, ...modules, ...pages, ...other].map(
-  contentModelComposer,
-);
+export const models = [
+  ...components,
+  ...modules,
+  ...pages,
+  ...other,
+  ...assets,
+].map(contentModelComposer);
 
 export const locales = [
   {

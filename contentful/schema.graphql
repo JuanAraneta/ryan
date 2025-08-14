@@ -119,6 +119,7 @@ type AssetLinkingCollections {
   modulePlatformCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ModulePlatformCollection
   seoMetadataCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): SeoMetadataCollection
   socialMediaLinkCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): SocialMediaLinkCollection
+  wistiaVideoCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): WistiaVideoCollection
 }
 
 enum AssetOrder {
@@ -1298,6 +1299,7 @@ type ComponentLinkLinkingCollections {
   moduleInsights3UpCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsModuleInsights3UpCollectionOrder], preview: Boolean, skip: Int = 0): ModuleInsights3UpCollection
   moduleInsightsBentoCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsModuleInsightsBentoCollectionOrder], preview: Boolean, skip: Int = 0): ModuleInsightsBentoCollection
   modulePlatformCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsModulePlatformCollectionOrder], preview: Boolean, skip: Int = 0): ModulePlatformCollection
+  moduleSoftwareProductsCarouselCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsModuleSoftwareProductsCarouselCollectionOrder], preview: Boolean, skip: Int = 0): ModuleSoftwareProductsCarouselCollection
   moduleSoftwareServicesRoutingGridCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsModuleSoftwareServicesRoutingGridCollectionOrder], preview: Boolean, skip: Int = 0): ModuleSoftwareServicesRoutingGridCollection
 }
 
@@ -1467,6 +1469,21 @@ enum ComponentLinkLinkingCollectionsModuleInsightsBentoCollectionOrder {
 enum ComponentLinkLinkingCollectionsModulePlatformCollectionOrder {
   contentfulLabel_ASC
   contentfulLabel_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum ComponentLinkLinkingCollectionsModuleSoftwareProductsCarouselCollectionOrder {
+  body_ASC
+  body_DESC
+  headline_ASC
+  headline_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -3602,7 +3619,7 @@ type ModuleGeneralVideoMission implements Entry & _Node {
   headline(locale: String): String
   linkedFrom(allowedLocales: [String]): ModuleGeneralVideoMissionLinkingCollections
   sys: Sys!
-  video(locale: String): JSON
+  video(locale: String, preview: Boolean, where: WistiaVideoFilter): WistiaVideo
 }
 
 type ModuleGeneralVideoMissionBody {
@@ -3667,6 +3684,7 @@ input ModuleGeneralVideoMissionFilter {
   headline_not_contains: String
   headline_not_in: [String]
   sys: SysFilter
+  video: cfWistiaVideoNestedFilter
   video_exists: Boolean
 }
 
@@ -4405,6 +4423,93 @@ enum ModuleServiceSoftwareRoutingCardsOrder {
 }
 
 """
+[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/moduleSoftwareProductsCarousel)
+"""
+type ModuleSoftwareProductsCarousel implements Entry & _Node {
+  _id: ID!
+  body(locale: String): String
+  contentfulMetadata: ContentfulMetadata!
+  cta(locale: String, preview: Boolean, where: ComponentLinkFilter): ComponentLink
+  headline(locale: String): String
+  linkedFrom(allowedLocales: [String]): ModuleSoftwareProductsCarouselLinkingCollections
+  softwareProductsCollection(limit: Int = 100, locale: String, order: [ModuleSoftwareProductsCarouselSoftwareProductsCollectionOrder], preview: Boolean, skip: Int = 0, where: PageSoftwareFilter): ModuleSoftwareProductsCarouselSoftwareProductsCollection
+  sys: Sys!
+}
+
+type ModuleSoftwareProductsCarouselCollection {
+  items: [ModuleSoftwareProductsCarousel]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input ModuleSoftwareProductsCarouselFilter {
+  AND: [ModuleSoftwareProductsCarouselFilter]
+  OR: [ModuleSoftwareProductsCarouselFilter]
+  body: String
+  body_contains: String
+  body_exists: Boolean
+  body_in: [String]
+  body_not: String
+  body_not_contains: String
+  body_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  cta: cfComponentLinkNestedFilter
+  cta_exists: Boolean
+  headline: String
+  headline_contains: String
+  headline_exists: Boolean
+  headline_in: [String]
+  headline_not: String
+  headline_not_contains: String
+  headline_not_in: [String]
+  softwareProducts: cfPageSoftwareNestedFilter
+  softwareProductsCollection_exists: Boolean
+  sys: SysFilter
+}
+
+type ModuleSoftwareProductsCarouselLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum ModuleSoftwareProductsCarouselOrder {
+  body_ASC
+  body_DESC
+  headline_ASC
+  headline_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+type ModuleSoftwareProductsCarouselSoftwareProductsCollection {
+  items: [PageSoftware]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+enum ModuleSoftwareProductsCarouselSoftwareProductsCollectionOrder {
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+"""
 [See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/moduleSoftwareServicesRoutingGrid)
 """
 type ModuleSoftwareServicesRoutingGrid implements Entry & _Node {
@@ -5073,6 +5178,7 @@ input PageSoftwareFilter {
 type PageSoftwareLinkingCollections {
   componentLinkCollection(limit: Int = 100, locale: String, order: [PageSoftwareLinkingCollectionsComponentLinkCollectionOrder], preview: Boolean, skip: Int = 0): ComponentLinkCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  moduleSoftwareProductsCarouselCollection(limit: Int = 100, locale: String, order: [PageSoftwareLinkingCollectionsModuleSoftwareProductsCarouselCollectionOrder], preview: Boolean, skip: Int = 0): ModuleSoftwareProductsCarouselCollection
   moduleSoftwareServicesRoutingGridCollection(limit: Int = 100, locale: String, order: [PageSoftwareLinkingCollectionsModuleSoftwareServicesRoutingGridCollectionOrder], preview: Boolean, skip: Int = 0): ModuleSoftwareServicesRoutingGridCollection
 }
 
@@ -5081,6 +5187,21 @@ enum PageSoftwareLinkingCollectionsComponentLinkCollectionOrder {
   externalSource_DESC
   label_ASC
   label_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+enum PageSoftwareLinkingCollectionsModuleSoftwareProductsCarouselCollectionOrder {
+  body_ASC
+  body_DESC
+  headline_ASC
+  headline_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -5240,6 +5361,8 @@ type Query {
   modulePlatformCollection(limit: Int = 100, locale: String, order: [ModulePlatformOrder], preview: Boolean, skip: Int = 0, where: ModulePlatformFilter): ModulePlatformCollection
   moduleServiceSoftwareRoutingCards(id: String!, locale: String, preview: Boolean): ModuleServiceSoftwareRoutingCards
   moduleServiceSoftwareRoutingCardsCollection(limit: Int = 100, locale: String, order: [ModuleServiceSoftwareRoutingCardsOrder], preview: Boolean, skip: Int = 0, where: ModuleServiceSoftwareRoutingCardsFilter): ModuleServiceSoftwareRoutingCardsCollection
+  moduleSoftwareProductsCarousel(id: String!, locale: String, preview: Boolean): ModuleSoftwareProductsCarousel
+  moduleSoftwareProductsCarouselCollection(limit: Int = 100, locale: String, order: [ModuleSoftwareProductsCarouselOrder], preview: Boolean, skip: Int = 0, where: ModuleSoftwareProductsCarouselFilter): ModuleSoftwareProductsCarouselCollection
   moduleSoftwareServicesRoutingGrid(id: String!, locale: String, preview: Boolean): ModuleSoftwareServicesRoutingGrid
   moduleSoftwareServicesRoutingGridCollection(limit: Int = 100, locale: String, order: [ModuleSoftwareServicesRoutingGridOrder], preview: Boolean, skip: Int = 0, where: ModuleSoftwareServicesRoutingGridFilter): ModuleSoftwareServicesRoutingGridCollection
   moduleStatementHome(id: String!, locale: String, preview: Boolean): ModuleStatementHome
@@ -5262,8 +5385,8 @@ type Query {
   tagsCollection(limit: Int = 100, locale: String, order: [TagsOrder], preview: Boolean, skip: Int = 0, where: TagsFilter): TagsCollection
   urlRedirect(id: String!, locale: String, preview: Boolean): UrlRedirect
   urlRedirectCollection(limit: Int = 100, locale: String, order: [UrlRedirectOrder], preview: Boolean, skip: Int = 0, where: UrlRedirectFilter): UrlRedirectCollection
-  video(id: String!, locale: String, preview: Boolean): Video
-  videoCollection(limit: Int = 100, locale: String, order: [VideoOrder], preview: Boolean, skip: Int = 0, where: VideoFilter): VideoCollection
+  wistiaVideo(id: String!, locale: String, preview: Boolean): WistiaVideo
+  wistiaVideoCollection(limit: Int = 100, locale: String, order: [WistiaVideoOrder], preview: Boolean, skip: Int = 0, where: WistiaVideoFilter): WistiaVideoCollection
 }
 
 interface ResourceLink {
@@ -5889,36 +6012,49 @@ enum UrlRedirectOrder {
 }
 
 """
-[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/video)
+[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/wistiaVideo)
 """
-type Video implements Entry & _Node {
+type WistiaVideo implements Entry & _Node {
   _id: ID!
   contentfulMetadata: ContentfulMetadata!
-  id(locale: String): JSON
-  linkedFrom(allowedLocales: [String]): VideoLinkingCollections
+  linkedFrom(allowedLocales: [String]): WistiaVideoLinkingCollections
   sys: Sys!
+  thumbnail(locale: String, preview: Boolean): Asset
+  title(locale: String): String
+  wistiaVideo(locale: String): JSON
 }
 
-type VideoCollection {
-  items: [Video]!
+type WistiaVideoCollection {
+  items: [WistiaVideo]!
   limit: Int!
   skip: Int!
   total: Int!
 }
 
-input VideoFilter {
-  AND: [VideoFilter]
-  OR: [VideoFilter]
+input WistiaVideoFilter {
+  AND: [WistiaVideoFilter]
+  OR: [WistiaVideoFilter]
   contentfulMetadata: ContentfulMetadataFilter
-  id_exists: Boolean
   sys: SysFilter
+  thumbnail_exists: Boolean
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+  wistiaVideo_exists: Boolean
 }
 
-type VideoLinkingCollections {
+type WistiaVideoLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  moduleGeneralVideoMissionCollection(limit: Int = 100, locale: String, order: [WistiaVideoLinkingCollectionsModuleGeneralVideoMissionCollectionOrder], preview: Boolean, skip: Int = 0): ModuleGeneralVideoMissionCollection
 }
 
-enum VideoOrder {
+enum WistiaVideoLinkingCollectionsModuleGeneralVideoMissionCollectionOrder {
+  headline_ASC
+  headline_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -5927,6 +6063,19 @@ enum VideoOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+}
+
+enum WistiaVideoOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
 }
 
 interface _Node {
@@ -6413,6 +6562,30 @@ input cfPageNestedFilter {
   title_not_in: [String]
 }
 
+input cfPageSoftwareNestedFilter {
+  AND: [cfPageSoftwareNestedFilter]
+  OR: [cfPageSoftwareNestedFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  shortDescription_contains: String
+  shortDescription_exists: Boolean
+  shortDescription_not_contains: String
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
 input cfScriptNestedFilter {
   AND: [cfScriptNestedFilter]
   OR: [cfScriptNestedFilter]
@@ -6524,6 +6697,22 @@ input cfSocialMediaLinkNestedFilter {
   url_not: String
   url_not_contains: String
   url_not_in: [String]
+}
+
+input cfWistiaVideoNestedFilter {
+  AND: [cfWistiaVideoNestedFilter]
+  OR: [cfWistiaVideoNestedFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  sys: SysFilter
+  thumbnail_exists: Boolean
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+  wistiaVideo_exists: Boolean
 }
 
 input cfcontentsMultiTypeNestedFilter {
