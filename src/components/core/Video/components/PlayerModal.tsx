@@ -32,7 +32,11 @@ export const PlayerModal = ({ data, onCloseAction }: PlayerModalProps) => {
       );
     }
 
-    return null;
+    return (
+      <div className="w-full h-full flex items-center justify-center typo-eyebrow ">
+        Video not available
+      </div>
+    );
   };
 
   return (
