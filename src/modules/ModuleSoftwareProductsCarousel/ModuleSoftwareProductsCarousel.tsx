@@ -1,27 +1,14 @@
-"use client";
-
-import { useMemo, useState } from "react";
 import { readFragment, ResultOf } from "gql.tada";
-import { cx } from "cva";
 import { Section } from "@/components/core/Section";
 import { Button } from "@/components/core/Button";
 import { Link } from "@/components/core/Link";
-import { ScrollCarouselContainer } from "@/constants/ScrollCarouselContainer";
 import { GetModuleSoftwareProductsCarouselById } from "./GetModuleSoftwareProductsCarouselById";
+import { getInspector } from "@/utils/inspectorMode";
+import { FilteredSoftwareProductsCarousel } from "./components/FilteredSoftwareProductsCarousel";
 import { SoftwareCard } from "@/components/core/SoftwareCard";
 import { PageContentSoftwareDetails } from "@/lib/contentful/fragments/PageContentSoftwareDetails";
-import { motion } from "motion/react";
-import { getInspector } from "@/utils/inspectorMode";
 
-const cardVariants = {
-  hidden: { opacity: 0 },
-  visible: (index: number) => ({
-    opacity: 1,
-    transition: { delay: index * 0.05 },
-  }),
-};
-
-export function ModuleSoftwareProductsCarousel({
+export async function ModuleSoftwareProductsCarousel({
   data,
 }: {
   data: ResultOf<typeof GetModuleSoftwareProductsCarouselById>;
@@ -31,35 +18,20 @@ export function ModuleSoftwareProductsCarousel({
   const { headline, body, cta, softwareProductsCollection } =
     data.moduleSoftwareProductsCarousel || {};
 
+  const cardData = softwareProductsCollection?.items.filter(Boolean) || [];
+
+  const preRenderedCards = await Promise.all(
+    cardData.map(async (item, index) => {
+      const card = readFragment(PageContentSoftwareDetails, item);
+      return {
+        id: card.sys.id,
+        practiceArea: card.subject?.practiceArea,
+        renderedCard: <SoftwareCard key={index} data={card} />,
+      };
+    }),
+  );
+
   const inspector = getInspector(moduleData!);
-
-  const [activeFilter, setActiveFilter] = useState<string | null>(null);
-
-  const items = useMemo(() => {
-    return softwareProductsCollection?.items?.filter(Boolean).map((item) => {
-      const practiceArea = readFragment(PageContentSoftwareDetails, item);
-      return practiceArea;
-    });
-  }, [softwareProductsCollection?.items]);
-
-  const filters = useMemo(() => {
-    const values = items?.map((item) => item?.practiceArea).filter(Boolean);
-
-    return [...new Set(values)];
-  }, [items]);
-
-  const filteredItems = useMemo(() => {
-    if (activeFilter) {
-      return items?.filter((item) => item?.practiceArea === activeFilter);
-    }
-    return items;
-  }, [items, activeFilter]);
-
-  const handleFilterClick = (filter: string) => {
-    const isCurrentActive = activeFilter === filter;
-
-    setActiveFilter(isCurrentActive ? null : filter);
-  };
 
   return (
     <Section
@@ -92,42 +64,7 @@ export function ModuleSoftwareProductsCarousel({
         </p>
       )}
 
-      {filters?.length && (
-        <ul className="flex gap-3 flex-wrap">
-          {filters?.map((filter, idx) => (
-            <li
-              key={idx}
-              className={cx(
-                "py-2 px-3 rounded-sm cursor-pointer border-1 transition-all duration-200 bg-white shadow-xs",
-                activeFilter === filter
-                  ? "border-new-gold"
-                  : "border-transparent",
-              )}
-              onClick={() => handleFilterClick(filter)}
-            >
-              {filter}
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {filteredItems && (
-        <ScrollCarouselContainer
-          hideControls
-          items={filteredItems.map((item, index) => (
-            <motion.div
-              key={index}
-              custom={index}
-              variants={cardVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              <SoftwareCard data={item} />
-            </motion.div>
-          ))}
-          {...inspector("softwareProductsCollection")}
-        />
-      )}
+      <FilteredSoftwareProductsCarousel cards={preRenderedCards} />
     </Section>
   );
 }
