@@ -6,22 +6,13 @@ export const ComponentLinkFragment = graphql(`
     internalSource {
       __typename
       ... on Page {
-        slug
-      }
-      ... on PageService {
-        slug
-      }
-      ... on PageSoftware {
-        slug
-      }
-      ... on ComponentCustomerStory {
-        slug
-      }
-      ... on ComponentExpert {
-        slug
-      }
-      ... on ComponentInsight {
-        slug
+        path
+        market {
+          slug
+        }
+        content {
+          __typename
+        }
       }
     }
     externalSource

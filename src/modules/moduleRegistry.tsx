@@ -1,6 +1,8 @@
-import { FC } from "react";
-import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
-import { ResultOf, TadaDocumentNode } from "gql.tada";
+import { ReactNode } from "react";
+import { TadaDocumentNode } from "gql.tada";
+import { introspection_types } from "@/graphql-env";
+
+import { ModuleHeroHome, GetModuleHeroHomeById } from "./ModuleHeroHome";
 
 import {
   ModuleExpertsOverflow,
@@ -43,80 +45,75 @@ import {
   ModuleGeneralVideoMission,
   GetModuleGeneralVideoMissionById,
 } from "./ModuleGeneralVideoMission";
+
 import {
   ModuleSoftwareProductsCarousel,
   GetModuleSoftwareProductsCarouselById,
 } from "./ModuleSoftwareProductsCarousel";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type ModuleComponent<Data = any> = {
-  // TODO: Check if there is a better way to type this
-  component: FC<{ data: Data }>;
+type ModuleComponent<Data> = {
+  component: (props: { data: Data }) => ReactNode;
   queryById: TadaDocumentNode<Data, { id: string }>;
 };
 
-type ModuleRegistry = Record<
-  NonNullable<
-    NonNullable<
-      NonNullable<
-        NonNullable<
-          ResultOf<typeof PageModulesCollectionFragment>["items"][number]
-        >["modulesCollection"]
-      >["items"][number]
-    >["__typename"]
-  >,
-  ModuleComponent | null
->;
+type ModuleRegistry = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [EntryType in introspection_types["Entry"]["possibleTypes"]]?: ModuleComponent<any>;
+};
+
+// Using this helper ensures that your component & query align properly
+const constructEntry = <Data,>(
+  component: ModuleComponent<Data>["component"],
+  queryById: ModuleComponent<Data>["queryById"],
+) => ({ component, queryById });
 
 const moduleRegistry: ModuleRegistry = {
-  ModuleInsightsBento: {
-    component: ModuleInsightsBento,
-    queryById: GetModuleInsightsBentoById,
-  },
-  ModuleExpertsOverflow: {
-    component: ModuleExpertsOverflow,
-    queryById: GetModuleExpertsOverflowById,
-  },
-  ModuleCustomerStoriesCarousel: {
-    component: ModuleCustomerStoriesCarousel,
-    queryById: GetModuleCustomerStoriesOverflowById,
-  },
-  ModuleChapterGroup: {
-    component: ModuleChapterGroup,
-    queryById: GetModuleChapterGroupById,
-  },
-  ModuleStatementHome: {
-    component: ModuleStatementHome,
-    queryById: GetModuleStatementHomeById,
-  },
-  ModuleSoftwareServicesRoutingGrid: {
-    component: ModuleSoftwareAndServicesRoutingGrid,
-    queryById: GetModuleSoftwareServicesRoutingGridById,
-  },
-  ModulePlatform: {
-    component: ModulePlatform,
-    queryById: GetModulePlatformById,
-  },
-  ModuleServiceSoftwareRoutingCards: {
-    component: ModuleServiceSoftwareRoutingCards,
-    queryById: GetModuleServiceSoftwareRoutingCardsById,
-  },
-  ModuleInsights3Up: {
-    component: ModuleInsights3Up,
-    queryById: GetModuleInsights3UpById,
-  },
-  ModuleCustomerStoriesCarouselShort: {
-    component: ModuleCustomerStoriesCarouselShort,
-    queryById: GetModuleCustomerStoriesCarouselShortById,
-  },
-  ModuleGeneralVideoMission: {
-    component: ModuleGeneralVideoMission,
-    queryById: GetModuleGeneralVideoMissionById,
-  },
-  ModuleSoftwareProductsCarousel: {
-    component: ModuleSoftwareProductsCarousel,
-    queryById: GetModuleSoftwareProductsCarouselById,
-  },
+  ModuleHeroHome: constructEntry(ModuleHeroHome, GetModuleHeroHomeById),
+  ModuleInsightsBento: constructEntry(
+    ModuleInsightsBento,
+    GetModuleInsightsBentoById,
+  ),
+  ModuleExpertsOverflow: constructEntry(
+    ModuleExpertsOverflow,
+    GetModuleExpertsOverflowById,
+  ),
+  ModuleCustomerStoriesCarousel: constructEntry(
+    ModuleCustomerStoriesCarousel,
+    GetModuleCustomerStoriesOverflowById,
+  ),
+  ModuleChapterGroup: constructEntry(
+    ModuleChapterGroup,
+    GetModuleChapterGroupById,
+  ),
+  ModuleStatementHome: constructEntry(
+    ModuleStatementHome,
+    GetModuleStatementHomeById,
+  ),
+  ModuleSoftwareServicesRoutingGrid: constructEntry(
+    ModuleSoftwareAndServicesRoutingGrid,
+    GetModuleSoftwareServicesRoutingGridById,
+  ),
+  ModulePlatform: constructEntry(ModulePlatform, GetModulePlatformById),
+  ModuleServiceSoftwareRoutingCards: constructEntry(
+    ModuleServiceSoftwareRoutingCards,
+    GetModuleServiceSoftwareRoutingCardsById,
+  ),
+  ModuleInsights3Up: constructEntry(
+    ModuleInsights3Up,
+    GetModuleInsights3UpById,
+  ),
+  ModuleCustomerStoriesCarouselShort: constructEntry(
+    ModuleCustomerStoriesCarouselShort,
+    GetModuleCustomerStoriesCarouselShortById,
+  ),
+  ModuleGeneralVideoMission: constructEntry(
+    ModuleGeneralVideoMission,
+    GetModuleGeneralVideoMissionById,
+  ),
+  ModuleSoftwareProductsCarousel: constructEntry(
+    ModuleSoftwareProductsCarousel,
+    GetModuleSoftwareProductsCarouselById,
+  ),
 };
 
 export default moduleRegistry;

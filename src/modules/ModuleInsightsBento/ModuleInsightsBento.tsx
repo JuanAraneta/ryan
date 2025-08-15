@@ -7,7 +7,7 @@ import { RichText } from "@/components/core/RichText";
 import { Button } from "@/components/core/Button";
 import { Link } from "@/components/core/Link";
 import { NewsletterSignup } from "@/components/core/NewsletterSignup";
-import { Card } from "@/components/core/Card";
+import { NewsAndInsightsCard } from "@/components/core/NewsAndInsightsCard/NewsAndInsightsCard";
 import { getInspector } from "@/utils/inspectorMode";
 
 const LAYOUTS = {
@@ -72,7 +72,7 @@ export const ModuleInsightsBento = ({
         </div>
 
         {insights?.map((insight, index) => (
-          <Card
+          <NewsAndInsightsCard
             key={index}
             data={insight}
             className={cx("aspect-square dsk:aspect-auto", layout[index])}

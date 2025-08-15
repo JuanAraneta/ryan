@@ -1,5 +1,5 @@
 import { graphql } from "gql.tada";
-import { ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment } from "./ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment";
+import { PageContentCustomerStoryFragment } from "./PageContentCustomerStoryFragment";
 import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
 import { RichTextFragments } from "@/lib/contentful/fragments/RichTextFragments.generated";
 
@@ -30,13 +30,15 @@ export const GetModuleCustomerStoriesOverflowById = graphql(
         ...ComponentLinkFragment
       }
       customerStoriesCollection {
-        ...ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment
+        items {
+          ...PageContentCustomerStoryFragment
+        }
       }
     }
   `,
   [
     RichTextFragments.ModuleCustomerStoriesCarousel_richTextTitle,
     ComponentLinkFragment,
-    ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment,
+    PageContentCustomerStoryFragment,
   ],
 );

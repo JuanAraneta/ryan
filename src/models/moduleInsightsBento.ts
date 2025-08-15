@@ -1,8 +1,8 @@
 import { createField } from "./utils/createField";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { componentLink } from "./componentLink";
-import { pageInsight } from "./pageInsight";
 import { componentNewsletterSignup } from "./componentNewsletterSignup";
+import { pageContentNewsAndInsights } from "./page/pageContentNewsAndInsights";
 
 export const moduleInsightsBento = {
   sys: { id: "moduleInsightsBento" },
@@ -22,7 +22,7 @@ export const moduleInsightsBento = {
     createField("entryReference", {
       id: "insights",
       name: "Insights",
-      linkContentType: [pageInsight],
+      linkContentType: [pageContentNewsAndInsights],
       array: true,
       size: { max: 4 },
     }),

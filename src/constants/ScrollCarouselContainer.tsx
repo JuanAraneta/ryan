@@ -1,28 +1,26 @@
+"use client";
+
+import { ComponentProps, ReactNode, useRef } from "react";
 import { FakeHorizontalScrollbar } from "@/components/core/FakeHorizontalScrollbar";
 import { IconButton } from "@/components/core/IconButton";
 import { useConstants } from "@/components/providers/ConstantsContext";
 import { useRerenderOnScreenSize } from "@/hooks/useRerenderOnScreenSize";
 import { useScrollJumpOnClickEventHandler } from "@/hooks/useScrollJumpOnClickEventHandler";
 import { cx } from "cva";
-import { ComponentProps, ReactNode, useRef } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
-type ScrollCarouselContainerProps<ListItem> = {
-  items: Array<ListItem>;
-  itemRender: (props: {
-    item: TSReset.NonFalsy<ListItem>;
-    index: number;
-  }) => ReactNode;
+type ScrollCarouselContainerProps = {
+  items: Array<ReactNode>;
+  className?: string;
   hideControls?: boolean;
 } & ComponentProps<"div">;
 
-export const ScrollCarouselContainer = <ListItem,>({
+export const ScrollCarouselContainer = ({
   items,
-  itemRender,
   className,
   hideControls,
   ...props
-}: ScrollCarouselContainerProps<ListItem>) => {
+}: ScrollCarouselContainerProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const prevClickHandler = useScrollJumpOnClickEventHandler(
     scrollContainerRef,
@@ -52,7 +50,7 @@ export const ScrollCarouselContainer = <ListItem,>({
               key={index}
               className="flex flex-col gap-6 snap-start snap-always"
             >
-              {itemRender({ item, index })}
+              {item}
             </li>
           ))}
         </ul>

@@ -8,7 +8,7 @@ import { Button } from "@/components/core/Button";
 import { Link } from "@/components/core/Link";
 import { ScrollCarouselContainer } from "@/constants/ScrollCarouselContainer";
 import { GetModuleSoftwareProductsCarouselById } from "./GetModuleSoftwareProductsCarouselById";
-import { SoftwareCard } from "@/components/core/Card";
+import { SoftwareCard } from "@/components/core/SoftwareCard";
 import { PageSoftwareFragment } from "@/lib/contentful/fragments/PageSoftwareFragment";
 import { motion } from "motion/react";
 import { getInspector } from "@/utils/inspectorMode";

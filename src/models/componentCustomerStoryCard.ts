@@ -1,6 +1,6 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
-import { componentLink } from "./componentLink";
+import { pageContentCustomerStory } from "./page/pageContentCustomerStory";
 import { componentStatistic } from "./componentStatistic";
 
 export const componentCustomerStoryCard = {
@@ -11,10 +11,10 @@ export const componentCustomerStoryCard = {
   fields: [
     createField("contentfulLabel"),
     createField("entryReference", {
-      id: "link",
-      name: "Link",
+      id: "pageContent",
+      name: "Page content reference",
       required: true,
-      linkContentType: [componentLink],
+      linkContentType: [pageContentCustomerStory],
     }),
     createField("assetReference", {
       id: "backgroundImage",
