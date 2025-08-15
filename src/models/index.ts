@@ -25,7 +25,6 @@ import { constants } from "./constants";
 import { seoMetadata } from "./seoMetadata";
 import { market } from "./market";
 import { siteSettings } from "./siteSettings";
-import { socialMediaLink } from "./socialMediaLink";
 import { urlRedirect } from "./urlRedirect";
 import { script } from "./script";
 
@@ -57,6 +56,12 @@ import { componentExpert } from "./componentExpert";
 import { componentNewsAndInsights } from "./componentNewsAndInsights";
 import { componentServiceDetails } from "./componentServiceDetails";
 import { componentSoftwareDetails } from "./componentSoftwareDetails";
+import {
+  footer,
+  socialMediaFooterSection,
+  socialMediaLink,
+  footerColumn,
+} from "./footer";
 
 // Components
 const components: ExpandedContentModel[] = [
@@ -115,15 +120,22 @@ const other: ExpandedContentModel[] = [
   seoMetadata,
   market,
   siteSettings,
-  socialMediaLink,
   urlRedirect,
   script,
+];
+
+const footerParts = [
+  socialMediaLink,
+  socialMediaFooterSection,
+  footerColumn,
+  footer,
 ];
 
 export const models = [
   ...components,
   ...modules,
   ...pageAndContent,
+  ...footerParts,
   ...other,
 ].map(contentModelComposer);
 
