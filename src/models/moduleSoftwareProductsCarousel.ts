@@ -1,7 +1,7 @@
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 import { componentLink } from "./componentLink";
-import { pageContentSoftware } from "./pageContentSoftware";
+import { pageContentSoftwareDetails } from "./page/pageContentSoftwareDetails";
 
 export const moduleSoftwareProductsCarousel = {
   sys: { id: "moduleSoftwareProductsCarousel" },
@@ -32,7 +32,7 @@ export const moduleSoftwareProductsCarousel = {
       name: "Software Products",
       array: true,
       size: { max: 10 },
-      linkContentType: [pageContentSoftware],
+      linkContentType: [pageContentSoftwareDetails],
     }),
   ],
 } as const satisfies ExpandedContentModel;
