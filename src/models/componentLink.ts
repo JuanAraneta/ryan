@@ -17,6 +17,19 @@ export const componentLink = {
       name: "Internal Source",
       linkContentType: ["page"],
     }),
-    createField("shortText", { id: "externalSource", name: "External Source" }),
+    createField("shortText", {
+      id: "externalSource",
+      name: "External Source",
+      validations: [
+        {
+          regexp: {
+            pattern:
+              "^(ftp|http|https):\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-/]))?$",
+            //@ts-expect-error Package type error. This is valid.
+            flags: null,
+          },
+        },
+      ],
+    }),
   ],
 } as const satisfies ExpandedContentModel;
