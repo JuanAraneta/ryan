@@ -1,6 +1,6 @@
 import { graphql } from "gql.tada";
 import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
-import { ComponentInsightFragment } from "@/lib/contentful/fragments/ComponentInsightFragment";
+import { PageContentNewsAndInsightsFragment } from "@/lib/contentful/fragments/PageContentNewsAndInsightsFragment";
 
 export const GetModuleInsights3UpById = graphql(
   `
@@ -24,10 +24,10 @@ export const GetModuleInsights3UpById = graphql(
       }
       insightsCollection(limit: 3) {
         items {
-          ...ComponentInsightFragment
+          ...PageContentNewsAndInsightsFragment
         }
       }
     }
   `,
-  [ComponentLinkFragment, ComponentInsightFragment],
+  [ComponentLinkFragment, PageContentNewsAndInsightsFragment],
 );

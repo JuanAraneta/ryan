@@ -1,5 +1,5 @@
-import { pageCustomerStory } from "./pageCustomerStory";
 import { componentLink } from "./componentLink";
+import { pageContentCustomerStory } from "./page/pageContentCustomerStory";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
@@ -21,7 +21,7 @@ export const moduleCustomerStoriesCarousel = {
       id: "customerStories",
       name: "Customer stories",
       size: { max: 10 },
-      linkContentType: [pageCustomerStory],
+      linkContentType: [pageContentCustomerStory],
     }),
   ],
 } as const satisfies ExpandedContentModel;

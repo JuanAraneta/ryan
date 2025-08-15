@@ -1,9 +1,7 @@
-"use client";
-
 import { readFragment, FragmentOf } from "gql.tada";
 import { ComponentNewsletterSignupFragment } from "@/lib/contentful/fragments/ComponentNewsletterSignupFragment";
 import { Button } from "@/components/core/Button";
-import { useConstants } from "@/components/providers/ConstantsContext";
+import { Constant } from "@/components/providers/ConstantsContext";
 import { getInspector } from "@/utils/inspectorMode";
 
 export const NewsletterSignup = ({
@@ -11,8 +9,6 @@ export const NewsletterSignup = ({
 }: {
   data: FragmentOf<typeof ComponentNewsletterSignupFragment>;
 }) => {
-  const { subscribeButtonLabel } = useConstants();
-
   const newsletterSignup = readFragment(
     ComponentNewsletterSignupFragment,
     data,
@@ -30,7 +26,7 @@ export const NewsletterSignup = ({
       </p>
       {/* TODO: Newsletter signup integration -> https://dept-us.atlassian.net/browse/RT-110 */}
       <Button variant="secondary" className="dsk:ml-auto">
-        {subscribeButtonLabel}
+        <Constant name="subscribeButtonLabel" />
       </Button>
     </div>
   );

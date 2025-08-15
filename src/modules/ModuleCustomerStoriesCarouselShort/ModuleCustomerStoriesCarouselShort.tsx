@@ -1,10 +1,7 @@
-"use client";
-
 import { Button } from "@/components/core/Button";
 import { Link } from "@/components/core/Link";
 import { Section } from "@/components/core/Section";
 import { ScrollCarouselContainer } from "@/constants/ScrollCarouselContainer";
-import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
 import { getInspector } from "@/utils/inspectorMode";
 import { readFragment, ResultOf } from "gql.tada";
 import { GetModuleCustomerStoriesCarouselShortById } from "./GetModuleCustomerStoriesCarouselShortById";
@@ -24,9 +21,6 @@ export const ModuleCustomerStoriesCarouselShort = ({
 
   const inspector = getInspector(data.moduleCustomerStoriesCarouselShort);
 
-  const ctaLink = readFragment(ComponentLinkFragment, cta);
-  const cards = customerStoryCardsCollection?.items.filter(Boolean) || [];
-
   return (
     <Section
       data-testid="ModuleCustomerStoriesCarouselShort"
@@ -43,25 +37,26 @@ export const ModuleCustomerStoriesCarouselShort = ({
           </h2>
         )}
 
-        {ctaLink && (
+        {cta && (
           <Button asChild>
-            <Link {...inspector("cta")} link={ctaLink} />
+            <Link {...inspector("cta")} link={cta} />
           </Button>
         )}
       </div>
 
       {/* Customer Story Cards Carousel */}
-      {cards.length > 0 && (
+      {customerStoryCardsCollection?.items && (
         <ScrollCarouselContainer
-          items={cards}
+          items={customerStoryCardsCollection.items.map(
+            (card, index) =>
+              card && (
+                <ComponentCustomerStoryCard
+                  key={index}
+                  data={readFragment(ComponentCustomerStoryCardFragment, card)}
+                />
+              ),
+          )}
           className="!py-0"
-          itemRender={({ item: card }) => {
-            const cardData = readFragment(
-              ComponentCustomerStoryCardFragment,
-              card,
-            );
-            return <ComponentCustomerStoryCard data={cardData} />;
-          }}
         />
       )}
     </Section>

@@ -1,3 +1,5 @@
+"use client";
+
 import { FakeHorizontalScrollbar } from "@/components/core/FakeHorizontalScrollbar";
 import { IconButton } from "@/components/core/IconButton";
 import { useConstants } from "@/components/providers/ConstantsContext";
@@ -7,16 +9,11 @@ import { cx } from "cva";
 import { ReactNode, useRef } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
-export const ScrollCarouselContainer = <ListItem,>({
+export const ScrollCarouselContainer = ({
   items,
-  itemRender,
   className,
 }: {
-  items: Array<ListItem>;
-  itemRender: (props: {
-    item: TSReset.NonFalsy<ListItem>;
-    index: number;
-  }) => ReactNode;
+  items: Array<ReactNode>;
   className?: string;
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -48,7 +45,7 @@ export const ScrollCarouselContainer = <ListItem,>({
               key={index}
               className="flex flex-col gap-6 snap-start snap-always"
             >
-              {itemRender({ item, index })}
+              {item}
             </li>
           ))}
         </ul>
