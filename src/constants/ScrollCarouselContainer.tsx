@@ -1,21 +1,26 @@
 "use client";
 
+import { ComponentProps, ReactNode, useRef } from "react";
 import { FakeHorizontalScrollbar } from "@/components/core/FakeHorizontalScrollbar";
 import { IconButton } from "@/components/core/IconButton";
 import { useConstants } from "@/components/providers/ConstantsContext";
 import { useRerenderOnScreenSize } from "@/hooks/useRerenderOnScreenSize";
 import { useScrollJumpOnClickEventHandler } from "@/hooks/useScrollJumpOnClickEventHandler";
 import { cx } from "cva";
-import { ReactNode, useRef } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+
+type ScrollCarouselContainerProps = {
+  items: Array<ReactNode>;
+  className?: string;
+  hideControls?: boolean;
+} & ComponentProps<"div">;
 
 export const ScrollCarouselContainer = ({
   items,
   className,
-}: {
-  items: Array<ReactNode>;
-  className?: string;
-}) => {
+  hideControls,
+  ...props
+}: ScrollCarouselContainerProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const prevClickHandler = useScrollJumpOnClickEventHandler(
     scrollContainerRef,
@@ -31,11 +36,11 @@ export const ScrollCarouselContainer = ({
   useRerenderOnScreenSize();
 
   return (
-    <div>
+    <div {...props}>
       <div
         ref={scrollContainerRef}
         className={cx(
-          "-mx-(--x-section-padding) px-(--x-section-padding) scroll-pl-(--x-section-padding) overflow-x-auto no-scrollbar pt-10 snap-start snap-x snap-mandatory [mask-image:var(--horizontal-fade-linear-gradient-mask)] relative",
+          "-mx-(--x-section-padding) px-(--x-section-padding) scroll-pl-(--x-section-padding) overflow-x-auto no-scrollbar mt-10 snap-start snap-x snap-mandatory [mask-image:var(--horizontal-fade-linear-gradient-mask)] relative",
           className,
         )}
       >
@@ -50,37 +55,39 @@ export const ScrollCarouselContainer = ({
           ))}
         </ul>
       </div>
-      <div
-        className={cx(
-          "pt-6 dsk:pt-10 gap-6 items-center",
-          scrollContainerRef.current?.clientWidth ===
-            scrollContainerRef.current?.scrollWidth
-            ? "hidden"
-            : "flex",
-        )}
-      >
-        <div className="hidden dsk:flex gap-6">
-          <IconButton
-            variant="secondary"
-            onClick={prevClickHandler}
-            aria-label={constants.previousButtonAriaLabel ?? ""}
-          >
-            <MdChevronLeft size={24} />
-          </IconButton>
-          <IconButton
-            variant="secondary"
-            onClick={nextClickHandler}
-            aria-label={constants.nextButtonAriaLabel ?? ""}
-          >
-            <MdChevronRight size={24} />
-          </IconButton>
+      {!hideControls && (
+        <div
+          className={cx(
+            "pt-6 dsk:pt-10 gap-6 items-center",
+            scrollContainerRef.current?.clientWidth ===
+              scrollContainerRef.current?.scrollWidth
+              ? "hidden"
+              : "flex",
+          )}
+        >
+          <div className="hidden dsk:flex gap-6">
+            <IconButton
+              variant="secondary"
+              onClick={prevClickHandler}
+              aria-label={constants.previousButtonAriaLabel ?? ""}
+            >
+              <MdChevronLeft size={24} />
+            </IconButton>
+            <IconButton
+              variant="secondary"
+              onClick={nextClickHandler}
+              aria-label={constants.nextButtonAriaLabel ?? ""}
+            >
+              <MdChevronRight size={24} />
+            </IconButton>
+          </div>
+          <FakeHorizontalScrollbar
+            scrollContainerRef={scrollContainerRef}
+            scrollSnapTo="start"
+            itemQuerySelector="li"
+          />
         </div>
-        <FakeHorizontalScrollbar
-          scrollContainerRef={scrollContainerRef}
-          scrollSnapTo="start"
-          itemQuerySelector="li"
-        />
-      </div>
+      )}
     </div>
   );
 };

@@ -30,6 +30,10 @@ const light: Record<string, string> = {
   ),
   "Diagonal gradient from neutral 100 (#EFEFF3) to white (#FFFFFF)":
     "gradient-primary-gray",
+  "Horizontal gradient from white (#FFFFFF) to neutral 100 (#EFEFF3)":
+    "gradient-primary-gray-h-light-to-dark",
+  "Horizontal gradient from neutral 100 (#EFEFF3) to white (#FFFFFF)":
+    "gradient-primary-gray-h-dark-to-light",
   "Horizontal gradient from white (#FFFFFF) to neutral 50 (#F7F7F8)":
     "gradient-secondary-gray-h-light-to-dark",
   "Horizontal gradient from neutral 50 (#F7F7F8) to white (#FFFFFF)":

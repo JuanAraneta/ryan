@@ -13,6 +13,7 @@ export const ConstantsFragment = graphql(
       scrollbarTrackAriaLabel
       subscribeButtonLabel
       seeMore
+      exploreButtonLabel
     }
   `,
   [MarketFragment],
