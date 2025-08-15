@@ -108,7 +108,6 @@ type AssetLinkingCollections {
   componentCustomerStoryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentCustomerStoryCollection
   componentExpertCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentExpertCollection
   componentIconTextWrapCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentIconTextWrapCollection
-  componentInsightCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentInsightCollection
   componentLogoCarouselCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentLogoCarouselCollection
   componentNewsAndInsightsCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentNewsAndInsightsCollection
   componentRoutingItemCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentRoutingItemCollection
@@ -118,7 +117,6 @@ type AssetLinkingCollections {
   headerCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): HeaderCollection
   moduleExpertsOverflowCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ModuleExpertsOverflowCollection
   modulePlatformCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ModulePlatformCollection
-  pageSoftwareCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): PageSoftwareCollection
   seoMetadataCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): SeoMetadataCollection
   socialMediaLinkCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): SocialMediaLinkCollection
 }
@@ -1057,90 +1055,6 @@ enum ComponentIconTextWrapOrder {
 }
 
 """
-[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/componentInsight)
-"""
-type ComponentInsight implements Entry & _Node {
-  _id: ID!
-  contentType(locale: String): String
-  contentfulMetadata: ContentfulMetadata!
-  eyebrow(locale: String): String
-  image(locale: String, preview: Boolean): Asset
-  link(locale: String, preview: Boolean, where: ComponentLinkFilter): ComponentLink
-  linkedFrom(allowedLocales: [String]): ComponentInsightLinkingCollections
-  slug(locale: String): String
-  sys: Sys!
-  title(locale: String): String
-}
-
-type ComponentInsightCollection {
-  items: [ComponentInsight]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-input ComponentInsightFilter {
-  AND: [ComponentInsightFilter]
-  OR: [ComponentInsightFilter]
-  contentType: String
-  contentType_contains: String
-  contentType_exists: Boolean
-  contentType_in: [String]
-  contentType_not: String
-  contentType_not_contains: String
-  contentType_not_in: [String]
-  contentfulMetadata: ContentfulMetadataFilter
-  eyebrow: String
-  eyebrow_contains: String
-  eyebrow_exists: Boolean
-  eyebrow_in: [String]
-  eyebrow_not: String
-  eyebrow_not_contains: String
-  eyebrow_not_in: [String]
-  image_exists: Boolean
-  link: cfComponentLinkNestedFilter
-  link_exists: Boolean
-  slug: String
-  slug_contains: String
-  slug_exists: Boolean
-  slug_in: [String]
-  slug_not: String
-  slug_not_contains: String
-  slug_not_in: [String]
-  sys: SysFilter
-  title: String
-  title_contains: String
-  title_exists: Boolean
-  title_in: [String]
-  title_not: String
-  title_not_contains: String
-  title_not_in: [String]
-}
-
-type ComponentInsightLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-}
-
-enum ComponentInsightOrder {
-  contentType_ASC
-  contentType_DESC
-  eyebrow_ASC
-  eyebrow_DESC
-  slug_ASC
-  slug_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-  title_ASC
-  title_DESC
-}
-
-"""
 [See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/componentLink)
 """
 type ComponentLink implements Entry & _Node {
@@ -1186,7 +1100,6 @@ input ComponentLinkFilter {
 type ComponentLinkLinkingCollections {
   categorySolutionsImageLinkCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsCategorySolutionsImageLinkCollectionOrder], preview: Boolean, skip: Int = 0): CategorySolutionsImageLinkCollection
   componentCardDeviceMockCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsComponentCardDeviceMockCollectionOrder], preview: Boolean, skip: Int = 0): ComponentCardDeviceMockCollection
-  componentInsightCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsComponentInsightCollectionOrder], preview: Boolean, skip: Int = 0): ComponentInsightCollection
   componentRoutingItemCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsComponentRoutingItemCollectionOrder], preview: Boolean, skip: Int = 0): ComponentRoutingItemCollection
   componentServiceSoftwareRoutingCardCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsComponentServiceSoftwareRoutingCardCollectionOrder], preview: Boolean, skip: Int = 0): ComponentServiceSoftwareRoutingCardCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
@@ -1196,7 +1109,6 @@ type ComponentLinkLinkingCollections {
   moduleInsights3UpCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsModuleInsights3UpCollectionOrder], preview: Boolean, skip: Int = 0): ModuleInsights3UpCollection
   moduleInsightsBentoCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsModuleInsightsBentoCollectionOrder], preview: Boolean, skip: Int = 0): ModuleInsightsBentoCollection
   modulePlatformCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsModulePlatformCollectionOrder], preview: Boolean, skip: Int = 0): ModulePlatformCollection
-  moduleSoftwareProductsCarouselCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsModuleSoftwareProductsCarouselCollectionOrder], preview: Boolean, skip: Int = 0): ModuleSoftwareProductsCarouselCollection
   moduleSoftwareServicesRoutingGridCollection(limit: Int = 100, locale: String, order: [ComponentLinkLinkingCollectionsModuleSoftwareServicesRoutingGridCollectionOrder], preview: Boolean, skip: Int = 0): ModuleSoftwareServicesRoutingGridCollection
 }
 
@@ -1216,25 +1128,6 @@ enum ComponentLinkLinkingCollectionsCategorySolutionsImageLinkCollectionOrder {
 enum ComponentLinkLinkingCollectionsComponentCardDeviceMockCollectionOrder {
   moduleBackground_ASC
   moduleBackground_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-  title_ASC
-  title_DESC
-}
-
-enum ComponentLinkLinkingCollectionsComponentInsightCollectionOrder {
-  contentType_ASC
-  contentType_DESC
-  eyebrow_ASC
-  eyebrow_DESC
-  slug_ASC
-  slug_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -1353,21 +1246,6 @@ enum ComponentLinkLinkingCollectionsModuleInsightsBentoCollectionOrder {
 enum ComponentLinkLinkingCollectionsModulePlatformCollectionOrder {
   contentfulLabel_ASC
   contentfulLabel_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-enum ComponentLinkLinkingCollectionsModuleSoftwareProductsCarouselCollectionOrder {
-  body_ASC
-  body_DESC
-  headline_ASC
-  headline_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -2508,7 +2386,6 @@ type Constants implements Entry & _Node {
   _id: ID!
   contentfulLabel(locale: String): String
   contentfulMetadata: ContentfulMetadata!
-  exploreButtonLabel(locale: String): String
   defaultMarket(locale: String, preview: Boolean, where: MarketFilter): Market
   linkedFrom(allowedLocales: [String]): ConstantsLinkingCollections
   nextButtonAriaLabel(locale: String): String
@@ -2539,18 +2416,8 @@ input ConstantsFilter {
   contentfulLabel_not_contains: String
   contentfulLabel_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
-<<<<<<< HEAD
-  exploreButtonLabel: String
-  exploreButtonLabel_contains: String
-  exploreButtonLabel_exists: Boolean
-  exploreButtonLabel_in: [String]
-  exploreButtonLabel_not: String
-  exploreButtonLabel_not_contains: String
-  exploreButtonLabel_not_in: [String]
-=======
   defaultMarket: cfMarketNestedFilter
   defaultMarket_exists: Boolean
->>>>>>> origin/main
   nextButtonAriaLabel: String
   nextButtonAriaLabel_contains: String
   nextButtonAriaLabel_exists: Boolean
@@ -2610,8 +2477,6 @@ type ConstantsLinkingCollections {
 enum ConstantsOrder {
   contentfulLabel_ASC
   contentfulLabel_DESC
-  exploreButtonLabel_ASC
-  exploreButtonLabel_DESC
   nextButtonAriaLabel_ASC
   nextButtonAriaLabel_DESC
   previousButtonAriaLabel_ASC
@@ -3337,7 +3202,7 @@ input ModuleContainerModulesFilter {
   sys: SysFilter
 }
 
-union ModuleContainerModulesItem = ModuleChapterGroup | ModuleCustomerStoriesCarousel | ModuleCustomerStoriesCarouselShort | ModuleExpertsOverflow | ModuleGeneralVideoMission | ModuleInsights3Up | ModuleInsightsBento | ModulePlatform | ModuleServiceSoftwareRoutingCards | ModuleSoftwareProductsCarousel | ModuleSoftwareServicesRoutingGrid | ModuleStatementHome
+union ModuleContainerModulesItem = ModuleChapterGroup | ModuleCustomerStoriesCarousel | ModuleCustomerStoriesCarouselShort | ModuleExpertsOverflow | ModuleGeneralVideoMission | ModuleInsights3Up | ModuleInsightsBento | ModulePlatform | ModuleServiceSoftwareRoutingCards | ModuleSoftwareServicesRoutingGrid | ModuleStatementHome
 
 enum ModuleContainerOrder {
   contentfulLabel_ASC
@@ -4607,111 +4472,6 @@ enum ModuleServiceSoftwareRoutingCardsOrder {
 }
 
 """
-[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/moduleSoftwareProductsCarousel)
-"""
-type ModuleSoftwareProductsCarousel implements Entry & _Node {
-  _id: ID!
-  body(locale: String): String
-  contentfulMetadata: ContentfulMetadata!
-  cta(locale: String, preview: Boolean, where: ComponentLinkFilter): ComponentLink
-  headline(locale: String): String
-  linkedFrom(allowedLocales: [String]): ModuleSoftwareProductsCarouselLinkingCollections
-  softwareProductsCollection(limit: Int = 100, locale: String, order: [ModuleSoftwareProductsCarouselSoftwareProductsCollectionOrder], preview: Boolean, skip: Int = 0, where: PageSoftwareFilter): ModuleSoftwareProductsCarouselSoftwareProductsCollection
-  sys: Sys!
-}
-
-type ModuleSoftwareProductsCarouselCollection {
-  items: [ModuleSoftwareProductsCarousel]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-input ModuleSoftwareProductsCarouselFilter {
-  AND: [ModuleSoftwareProductsCarouselFilter]
-  OR: [ModuleSoftwareProductsCarouselFilter]
-  body: String
-  body_contains: String
-  body_exists: Boolean
-  body_in: [String]
-  body_not: String
-  body_not_contains: String
-  body_not_in: [String]
-  contentfulMetadata: ContentfulMetadataFilter
-  cta: cfComponentLinkNestedFilter
-  cta_exists: Boolean
-  headline: String
-  headline_contains: String
-  headline_exists: Boolean
-  headline_in: [String]
-  headline_not: String
-  headline_not_contains: String
-  headline_not_in: [String]
-  softwareProducts: cfPageSoftwareNestedFilter
-  softwareProductsCollection_exists: Boolean
-  sys: SysFilter
-}
-
-type ModuleSoftwareProductsCarouselLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  moduleContainerCollection(limit: Int = 100, locale: String, order: [ModuleSoftwareProductsCarouselLinkingCollectionsModuleContainerCollectionOrder], preview: Boolean, skip: Int = 0): ModuleContainerCollection
-}
-
-enum ModuleSoftwareProductsCarouselLinkingCollectionsModuleContainerCollectionOrder {
-  contentfulLabel_ASC
-  contentfulLabel_DESC
-  moduleBackground_ASC
-  moduleBackground_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-enum ModuleSoftwareProductsCarouselOrder {
-  body_ASC
-  body_DESC
-  headline_ASC
-  headline_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-type ModuleSoftwareProductsCarouselSoftwareProductsCollection {
-  items: [PageSoftware]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-enum ModuleSoftwareProductsCarouselSoftwareProductsCollectionOrder {
-  practiceArea_ASC
-  practiceArea_DESC
-  slug_ASC
-  slug_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-  title_ASC
-  title_DESC
-}
-
-"""
 [See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/moduleSoftwareServicesRoutingGrid)
 """
 type ModuleSoftwareServicesRoutingGrid implements Entry & _Node {
@@ -5660,269 +5420,6 @@ enum PageOrder {
 }
 
 """
-[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/pageService)
-"""
-type PageService implements Entry & _Node {
-  _id: ID!
-  contentfulMetadata: ContentfulMetadata!
-  linkedFrom(allowedLocales: [String]): PageServiceLinkingCollections
-  shortDescription(locale: String): PageServiceShortDescription
-  slug(locale: String): String
-  sys: Sys!
-  title(locale: String): String
-}
-
-type PageServiceCollection {
-  items: [PageService]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-input PageServiceFilter {
-  AND: [PageServiceFilter]
-  OR: [PageServiceFilter]
-  contentfulMetadata: ContentfulMetadataFilter
-  shortDescription_contains: String
-  shortDescription_exists: Boolean
-  shortDescription_not_contains: String
-  slug: String
-  slug_contains: String
-  slug_exists: Boolean
-  slug_in: [String]
-  slug_not: String
-  slug_not_contains: String
-  slug_not_in: [String]
-  sys: SysFilter
-  title: String
-  title_contains: String
-  title_exists: Boolean
-  title_in: [String]
-  title_not: String
-  title_not_contains: String
-  title_not_in: [String]
-}
-
-type PageServiceLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-}
-
-enum PageServiceOrder {
-  slug_ASC
-  slug_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-  title_ASC
-  title_DESC
-}
-
-type PageServiceShortDescription {
-  json: JSON!
-  links: PageServiceShortDescriptionLinks!
-}
-
-type PageServiceShortDescriptionAssets {
-  block: [Asset]!
-  hyperlink: [Asset]!
-}
-
-type PageServiceShortDescriptionEntries {
-  block: [Entry]!
-  hyperlink: [Entry]!
-  inline: [Entry]!
-}
-
-type PageServiceShortDescriptionLinks {
-  assets: PageServiceShortDescriptionAssets!
-  entries: PageServiceShortDescriptionEntries!
-  resources: PageServiceShortDescriptionResources!
-}
-
-type PageServiceShortDescriptionResources {
-  block: [PageServiceShortDescriptionResourcesBlock!]!
-  hyperlink: [PageServiceShortDescriptionResourcesHyperlink!]!
-  inline: [PageServiceShortDescriptionResourcesInline!]!
-}
-
-type PageServiceShortDescriptionResourcesBlock implements ResourceLink {
-  sys: ResourceSys!
-}
-
-type PageServiceShortDescriptionResourcesHyperlink implements ResourceLink {
-  sys: ResourceSys!
-}
-
-type PageServiceShortDescriptionResourcesInline implements ResourceLink {
-  sys: ResourceSys!
-}
-
-"""
-[See type definition](https://app.contentful.com/spaces/83g0mnvupozx/content_types/pageSoftware)
-"""
-type PageSoftware implements Entry & _Node {
-  _id: ID!
-  contentfulMetadata: ContentfulMetadata!
-  image(locale: String, preview: Boolean): Asset
-  linkedFrom(allowedLocales: [String]): PageSoftwareLinkingCollections
-  practiceArea(locale: String): String
-  shortDescription(locale: String): PageSoftwareShortDescription
-  slug(locale: String): String
-  sys: Sys!
-  title(locale: String): String
-}
-
-type PageSoftwareCollection {
-  items: [PageSoftware]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-input PageSoftwareFilter {
-  AND: [PageSoftwareFilter]
-  OR: [PageSoftwareFilter]
-  contentfulMetadata: ContentfulMetadataFilter
-  image_exists: Boolean
-  practiceArea: String
-  practiceArea_contains: String
-  practiceArea_exists: Boolean
-  practiceArea_in: [String]
-  practiceArea_not: String
-  practiceArea_not_contains: String
-  practiceArea_not_in: [String]
-  shortDescription_contains: String
-  shortDescription_exists: Boolean
-  shortDescription_not_contains: String
-  slug: String
-  slug_contains: String
-  slug_exists: Boolean
-  slug_in: [String]
-  slug_not: String
-  slug_not_contains: String
-  slug_not_in: [String]
-  sys: SysFilter
-  title: String
-  title_contains: String
-  title_exists: Boolean
-  title_in: [String]
-  title_not: String
-  title_not_contains: String
-  title_not_in: [String]
-}
-
-type PageSoftwareLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  moduleSoftwareProductsCarouselCollection(limit: Int = 100, locale: String, order: [PageSoftwareLinkingCollectionsModuleSoftwareProductsCarouselCollectionOrder], preview: Boolean, skip: Int = 0): ModuleSoftwareProductsCarouselCollection
-  moduleSoftwareServicesRoutingGridCollection(limit: Int = 100, locale: String, order: [PageSoftwareLinkingCollectionsModuleSoftwareServicesRoutingGridCollectionOrder], preview: Boolean, skip: Int = 0): ModuleSoftwareServicesRoutingGridCollection
-}
-
-enum PageSoftwareLinkingCollectionsComponentLinkCollectionOrder {
-  externalSource_ASC
-  externalSource_DESC
-  label_ASC
-  label_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-enum PageSoftwareLinkingCollectionsModuleSoftwareProductsCarouselCollectionOrder {
-  body_ASC
-  body_DESC
-  headline_ASC
-  headline_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-enum PageSoftwareLinkingCollectionsModuleSoftwareServicesRoutingGridCollectionOrder {
-  contentfulLabel_ASC
-  contentfulLabel_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-enum PageSoftwareOrder {
-  practiceArea_ASC
-  practiceArea_DESC
-  slug_ASC
-  slug_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-  title_ASC
-  title_DESC
-}
-
-type PageSoftwareShortDescription {
-  json: JSON!
-  links: PageSoftwareShortDescriptionLinks!
-}
-
-type PageSoftwareShortDescriptionAssets {
-  block: [Asset]!
-  hyperlink: [Asset]!
-}
-
-type PageSoftwareShortDescriptionEntries {
-  block: [Entry]!
-  hyperlink: [Entry]!
-  inline: [Entry]!
-}
-
-type PageSoftwareShortDescriptionLinks {
-  assets: PageSoftwareShortDescriptionAssets!
-  entries: PageSoftwareShortDescriptionEntries!
-  resources: PageSoftwareShortDescriptionResources!
-}
-
-type PageSoftwareShortDescriptionResources {
-  block: [PageSoftwareShortDescriptionResourcesBlock!]!
-  hyperlink: [PageSoftwareShortDescriptionResourcesHyperlink!]!
-  inline: [PageSoftwareShortDescriptionResourcesInline!]!
-}
-
-type PageSoftwareShortDescriptionResourcesBlock implements ResourceLink {
-  sys: ResourceSys!
-}
-
-type PageSoftwareShortDescriptionResourcesHyperlink implements ResourceLink {
-  sys: ResourceSys!
-}
-
-type PageSoftwareShortDescriptionResourcesInline implements ResourceLink {
-  sys: ResourceSys!
-}
-
-"""
 The 'Quality' type represents quality as whole numeric values between `1` and `100`.
 """
 scalar Quality
@@ -5952,8 +5449,6 @@ type Query {
   componentExpertCollection(limit: Int = 100, locale: String, order: [ComponentExpertOrder], preview: Boolean, skip: Int = 0, where: ComponentExpertFilter): ComponentExpertCollection
   componentIconTextWrap(id: String!, locale: String, preview: Boolean): ComponentIconTextWrap
   componentIconTextWrapCollection(limit: Int = 100, locale: String, order: [ComponentIconTextWrapOrder], preview: Boolean, skip: Int = 0, where: ComponentIconTextWrapFilter): ComponentIconTextWrapCollection
-  componentInsight(id: String!, locale: String, preview: Boolean): ComponentInsight
-  componentInsightCollection(limit: Int = 100, locale: String, order: [ComponentInsightOrder], preview: Boolean, skip: Int = 0, where: ComponentInsightFilter): ComponentInsightCollection
   componentLink(id: String!, locale: String, preview: Boolean): ComponentLink
   componentLinkCollection(limit: Int = 100, locale: String, order: [ComponentLinkOrder], preview: Boolean, skip: Int = 0, where: ComponentLinkFilter): ComponentLinkCollection
   componentLogoCarousel(id: String!, locale: String, preview: Boolean): ComponentLogoCarousel
@@ -6009,8 +5504,6 @@ type Query {
   modulePlatformCollection(limit: Int = 100, locale: String, order: [ModulePlatformOrder], preview: Boolean, skip: Int = 0, where: ModulePlatformFilter): ModulePlatformCollection
   moduleServiceSoftwareRoutingCards(id: String!, locale: String, preview: Boolean): ModuleServiceSoftwareRoutingCards
   moduleServiceSoftwareRoutingCardsCollection(limit: Int = 100, locale: String, order: [ModuleServiceSoftwareRoutingCardsOrder], preview: Boolean, skip: Int = 0, where: ModuleServiceSoftwareRoutingCardsFilter): ModuleServiceSoftwareRoutingCardsCollection
-  moduleSoftwareProductsCarousel(id: String!, locale: String, preview: Boolean): ModuleSoftwareProductsCarousel
-  moduleSoftwareProductsCarouselCollection(limit: Int = 100, locale: String, order: [ModuleSoftwareProductsCarouselOrder], preview: Boolean, skip: Int = 0, where: ModuleSoftwareProductsCarouselFilter): ModuleSoftwareProductsCarouselCollection
   moduleSoftwareServicesRoutingGrid(id: String!, locale: String, preview: Boolean): ModuleSoftwareServicesRoutingGrid
   moduleSoftwareServicesRoutingGridCollection(limit: Int = 100, locale: String, order: [ModuleSoftwareServicesRoutingGridOrder], preview: Boolean, skip: Int = 0, where: ModuleSoftwareServicesRoutingGridFilter): ModuleSoftwareServicesRoutingGridCollection
   moduleStatementHome(id: String!, locale: String, preview: Boolean): ModuleStatementHome
@@ -6029,10 +5522,6 @@ type Query {
   pageContentServiceDetailsCollection(limit: Int = 100, locale: String, order: [PageContentServiceDetailsOrder], preview: Boolean, skip: Int = 0, where: PageContentServiceDetailsFilter): PageContentServiceDetailsCollection
   pageContentSoftwareDetails(id: String!, locale: String, preview: Boolean): PageContentSoftwareDetails
   pageContentSoftwareDetailsCollection(limit: Int = 100, locale: String, order: [PageContentSoftwareDetailsOrder], preview: Boolean, skip: Int = 0, where: PageContentSoftwareDetailsFilter): PageContentSoftwareDetailsCollection
-  pageService(id: String!, locale: String, preview: Boolean): PageService
-  pageServiceCollection(limit: Int = 100, locale: String, order: [PageServiceOrder], preview: Boolean, skip: Int = 0, where: PageServiceFilter): PageServiceCollection
-  pageSoftware(id: String!, locale: String, preview: Boolean): PageSoftware
-  pageSoftwareCollection(limit: Int = 100, locale: String, order: [PageSoftwareOrder], preview: Boolean, skip: Int = 0, where: PageSoftwareFilter): PageSoftwareCollection
   script(id: String!, locale: String, preview: Boolean): Script
   scriptCollection(limit: Int = 100, locale: String, order: [ScriptOrder], preview: Boolean, skip: Int = 0, where: ScriptFilter): ScriptCollection
   seoMetadata(id: String!, locale: String, preview: Boolean): SeoMetadata
@@ -7191,38 +6680,6 @@ input cfPageNestedFilter {
   path_not_in: [String]
   seoMetadata_exists: Boolean
   sys: SysFilter
-}
-
-input cfPageSoftwareNestedFilter {
-  AND: [cfPageSoftwareNestedFilter]
-  OR: [cfPageSoftwareNestedFilter]
-  contentfulMetadata: ContentfulMetadataFilter
-  image_exists: Boolean
-  practiceArea: String
-  practiceArea_contains: String
-  practiceArea_exists: Boolean
-  practiceArea_in: [String]
-  practiceArea_not: String
-  practiceArea_not_contains: String
-  practiceArea_not_in: [String]
-  shortDescription_contains: String
-  shortDescription_exists: Boolean
-  shortDescription_not_contains: String
-  slug: String
-  slug_contains: String
-  slug_exists: Boolean
-  slug_in: [String]
-  slug_not: String
-  slug_not_contains: String
-  slug_not_in: [String]
-  sys: SysFilter
-  title: String
-  title_contains: String
-  title_exists: Boolean
-  title_in: [String]
-  title_not: String
-  title_not_contains: String
-  title_not_in: [String]
 }
 
 input cfScriptNestedFilter {
