@@ -9,7 +9,7 @@ import { Link } from "@/components/core/Link";
 import { ScrollCarouselContainer } from "@/constants/ScrollCarouselContainer";
 import { GetModuleSoftwareProductsCarouselById } from "./GetModuleSoftwareProductsCarouselById";
 import { SoftwareCard } from "@/components/core/SoftwareCard";
-import { PageSoftwareFragment } from "@/lib/contentful/fragments/PageSoftwareFragment";
+import { PageContentSoftwareDetails } from "@/lib/contentful/fragments/PageContentSoftwareDetails";
 import { motion } from "motion/react";
 import { getInspector } from "@/utils/inspectorMode";
 
@@ -37,7 +37,7 @@ export function ModuleSoftwareProductsCarousel({
 
   const items = useMemo(() => {
     return softwareProductsCollection?.items?.filter(Boolean).map((item) => {
-      const practiceArea = readFragment(PageSoftwareFragment, item);
+      const practiceArea = readFragment(PageContentSoftwareDetails, item);
       return practiceArea;
     });
   }, [softwareProductsCollection?.items]);
@@ -114,10 +114,9 @@ export function ModuleSoftwareProductsCarousel({
       {filteredItems && (
         <ScrollCarouselContainer
           hideControls
-          items={filteredItems}
-          {...inspector("softwareProductsCollection")}
-          itemRender={({ item, index }) => (
+          items={filteredItems.map((item, index) => (
             <motion.div
+              key={index}
               custom={index}
               variants={cardVariants}
               initial="hidden"
@@ -125,7 +124,8 @@ export function ModuleSoftwareProductsCarousel({
             >
               <SoftwareCard data={item} />
             </motion.div>
-          )}
+          ))}
+          {...inspector("softwareProductsCollection")}
         />
       )}
     </Section>

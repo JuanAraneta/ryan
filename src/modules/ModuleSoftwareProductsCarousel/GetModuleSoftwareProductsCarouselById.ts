@@ -1,6 +1,6 @@
 import { graphql } from "gql.tada";
 import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
-import { PageSoftwareFragment } from "@/lib/contentful/fragments/PageSoftwareFragment";
+import { PageSoftwareFragment } from "@/lib/contentful/fragments/PageContentSoftwareDetails";
 
 export const GetModuleSoftwareProductsCarouselById = graphql(
   `

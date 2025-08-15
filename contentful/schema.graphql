@@ -113,6 +113,7 @@ type AssetLinkingCollections {
   componentRoutingItemCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentRoutingItemCollection
   componentServiceDetailsCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentServiceDetailsCollection
   componentServiceSoftwareRoutingCardCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentServiceSoftwareRoutingCardCollection
+  componentSoftwareDetailsCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentSoftwareDetailsCollection
   componentTestimonialCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentTestimonialCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   headerCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): HeaderCollection
@@ -1876,7 +1877,9 @@ enum ComponentServiceSoftwareRoutingCardOrder {
 type ComponentSoftwareDetails implements Entry & _Node {
   _id: ID!
   contentfulMetadata: ContentfulMetadata!
+  image(locale: String, preview: Boolean): Asset
   linkedFrom(allowedLocales: [String]): ComponentSoftwareDetailsLinkingCollections
+  practiceArea(locale: String): String
   shortDescription(locale: String): ComponentSoftwareDetailsShortDescription
   sys: Sys!
   title(locale: String): String
@@ -1893,6 +1896,14 @@ input ComponentSoftwareDetailsFilter {
   AND: [ComponentSoftwareDetailsFilter]
   OR: [ComponentSoftwareDetailsFilter]
   contentfulMetadata: ContentfulMetadataFilter
+  image_exists: Boolean
+  practiceArea: String
+  practiceArea_contains: String
+  practiceArea_exists: Boolean
+  practiceArea_in: [String]
+  practiceArea_not: String
+  practiceArea_not_contains: String
+  practiceArea_not_in: [String]
   shortDescription_contains: String
   shortDescription_exists: Boolean
   shortDescription_not_contains: String
@@ -1925,6 +1936,8 @@ enum ComponentSoftwareDetailsLinkingCollectionsPageContentSoftwareDetailsCollect
 }
 
 enum ComponentSoftwareDetailsOrder {
+  practiceArea_ASC
+  practiceArea_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -6642,6 +6655,14 @@ input cfComponentSoftwareDetailsNestedFilter {
   AND: [cfComponentSoftwareDetailsNestedFilter]
   OR: [cfComponentSoftwareDetailsNestedFilter]
   contentfulMetadata: ContentfulMetadataFilter
+  image_exists: Boolean
+  practiceArea: String
+  practiceArea_contains: String
+  practiceArea_exists: Boolean
+  practiceArea_in: [String]
+  practiceArea_not: String
+  practiceArea_not_contains: String
+  practiceArea_not_in: [String]
   shortDescription_contains: String
   shortDescription_exists: Boolean
   shortDescription_not_contains: String

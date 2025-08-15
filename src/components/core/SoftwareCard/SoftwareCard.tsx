@@ -1,24 +1,22 @@
 import { readFragment, ResultOf } from "gql.tada";
-import { PageSoftwareFragment } from "@/lib/contentful/fragments/PageSoftwareFragment";
+import { PageContentSoftwareDetails } from "@/lib/contentful/fragments/PageContentSoftwareDetails";
 import { RichText } from "@/components/core/RichText";
 import { Image } from "@/components/core/Image";
-import { Button } from "@/components/core/Button";
-import { Link } from "@/components/core/Link";
-import { useConstants } from "@/components/providers/ConstantsContext";
 import { getInspector } from "@/utils/inspectorMode";
 
 export function SoftwareCard({
   data,
   variant: _variant = "tall", // TODO: add short variant
 }: {
-  data: ResultOf<typeof PageSoftwareFragment>;
+  data: ResultOf<typeof PageContentSoftwareDetails>;
   variant?: "tall" | "short";
 }) {
-  const { exploreButtonLabel } = useConstants();
-  const softwareData = readFragment(PageSoftwareFragment, data);
-  const { title, shortDescription, image, slug } = softwareData;
+  const softwareData = readFragment(PageContentSoftwareDetails, data);
 
-  const inspector = getInspector(data!);
+  const { title, shortDescription, image, practiceArea } =
+    softwareData.subject || {};
+
+  const inspector = getInspector(data.subject!);
 
   return (
     <div
@@ -36,17 +34,13 @@ export function SoftwareCard({
           <RichText content={shortDescription} spansOnly />
         </p>
 
-        {!!slug && (
+        {/*   {!!slug && (
           <Button asChild small>
-            <Link
-              className="mt-6"
-              href={`/software/${slug}`}
-              {...inspector("slug")}
-            >
-              {exploreButtonLabel}
+            <Link className="mt-6" href={`/software/${slug}`}>
+              <Constant name="exploreButtonLabel" />
             </Link>
           </Button>
-        )}
+        )} */}
       </div>
 
       <Image
