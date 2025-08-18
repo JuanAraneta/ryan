@@ -6,7 +6,7 @@ import { routingUtils } from "@/lib/util/routingUtils";
 import { Button } from "@/components/core/Button";
 import { Link } from "@/components/core/Link";
 import { Constant } from "@/components/providers/ConstantsContext";
-import { kebabCase } from "lodash";
+import kebabCase from "lodash/kebabCase";
 
 export async function SoftwareCard({
   data,
