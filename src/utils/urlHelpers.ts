@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 const MODULE_QUERY_KEY = "filter";
 
 export const getModuleQueryKey = (moduleType = "") =>
@@ -52,4 +54,36 @@ export function createQueryUrl(
 
   const queryString = params.toString();
   return queryString ? `${currentPath}?${queryString}` : currentPath || "/";
+}
+
+export function toggleFilterParam(
+  searchParams: Record<string, string | string[] | undefined>,
+  currentPath: string,
+  key: string,
+  filterValue: string,
+): string {
+  const sluggedValue = _.kebabCase(filterValue);
+  const currentValue = getQueryParam(searchParams, key);
+  const isActive = currentValue === sluggedValue;
+
+  return createQueryUrl(
+    searchParams,
+    currentPath,
+    key,
+    isActive ? null : sluggedValue,
+  );
+}
+
+export function getActiveFilter(
+  searchParams: Record<string, string | string[] | undefined>,
+  key: string,
+  availableFilters: string[],
+): string | null {
+  const sluggedParam = getQueryParam(searchParams, key);
+  if (!sluggedParam) return null;
+
+  return (
+    availableFilters.find((filter) => _.kebabCase(filter) === sluggedParam) ||
+    null
+  );
 }

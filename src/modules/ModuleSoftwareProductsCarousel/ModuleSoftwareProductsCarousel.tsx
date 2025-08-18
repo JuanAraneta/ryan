@@ -11,8 +11,8 @@ import { cx } from "cva";
 import NextLink from "next/link";
 import {
   getModuleQueryKey,
-  getQueryParam,
-  toggleQueryParam,
+  toggleFilterParam,
+  getActiveFilter,
 } from "@/utils/urlHelpers";
 
 export async function ModuleSoftwareProductsCarousel({
@@ -35,7 +35,6 @@ export async function ModuleSoftwareProductsCarousel({
       .map((item) => readFragment(PageContentSoftwareDetails, item)) || [];
 
   const moduleQueryKey = getModuleQueryKey(__typename);
-  const activeFilter = getQueryParam(searchParams, moduleQueryKey);
 
   const filters = [
     ...new Set(
@@ -43,22 +42,14 @@ export async function ModuleSoftwareProductsCarousel({
     ),
   ];
 
-  // Filter cards based on active filter
+  const activeFilter = getActiveFilter(searchParams, moduleQueryKey, filters);
+
   const filteredCardData = activeFilter
     ? cardData.filter((card) => card.subject?.practiceArea === activeFilter)
     : cardData;
 
-  // Helper function to generate filter URLs using utility
-  const createFilterUrl = (filter: string) => {
-    const url = toggleQueryParam(
-      searchParams,
-      currentPath!,
-      moduleQueryKey,
-      filter,
-    );
-
-    return url;
-  };
+  const getFilterUrl = (filter: string) =>
+    toggleFilterParam(searchParams, currentPath!, moduleQueryKey, filter);
 
   const inspector = getInspector(moduleData!);
 
@@ -98,7 +89,7 @@ export async function ModuleSoftwareProductsCarousel({
           {filters?.map((filter, idx) => (
             <li key={idx}>
               <NextLink
-                href={createFilterUrl(filter)}
+                href={getFilterUrl(filter)}
                 scroll={false}
                 replace={true}
                 className={cx(
