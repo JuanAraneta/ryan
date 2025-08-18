@@ -2,10 +2,8 @@ import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const componentCustomerStory = {
-  sys: {
-    id: "componentCustomerStory",
-  },
-  name: "Customer story",
+  sys: { id: "componentCustomerStory" },
+  name: "Page / Customer story",
   description:
     "An article or link to an article describing a customer's experience with Ryan.",
   fields: [
@@ -13,10 +11,6 @@ export const componentCustomerStory = {
       id: "customerName",
       name: "Customer name",
       displayField: true,
-    }),
-    createField("shortText", {
-      id: "slug",
-      name: "Slug",
     }),
     createField("richText", { id: "richTextHeadline", name: "Headline" }),
     createField("shortText", {

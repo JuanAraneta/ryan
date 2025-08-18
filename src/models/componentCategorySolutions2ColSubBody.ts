@@ -3,9 +3,7 @@ import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const componentCategorySolutions2ColSubBody = {
-  sys: {
-    id: "componentCategorySolutions2ColSubBody",
-  },
+  sys: { id: "componentCategorySolutions2ColSubBody" },
   name: "Category Solutions / 2 col sub + body",
   description: "",
   fields: [

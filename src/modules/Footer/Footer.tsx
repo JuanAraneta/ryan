@@ -1,11 +1,14 @@
-import { FooterFragment } from "@/lib/contentful/fragments/FooterFragment";
+import { FooterFragment } from "./FooterFragment";
 import { ResultOf } from "gql.tada";
 import { FC } from "react";
+import { getInspector } from "@/utils/inspectorMode";
 
 export interface FooterProps {
   data: ResultOf<typeof FooterFragment>;
 }
 
 export const Footer: FC<FooterProps> = (props: FooterProps) => {
-  return <footer>{props.data.title}</footer>;
+  const inspector = getInspector(props.data);
+
+  return <footer {...inspector("title")}>{props.data.title}</footer>;
 };

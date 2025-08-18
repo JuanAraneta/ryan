@@ -2,9 +2,7 @@ import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const componentLink = {
-  sys: {
-    id: "componentLink",
-  },
+  sys: { id: "componentLink" },
   name: "Component / Link",
   description:
     "The standard type for representing links both internal to the application and to external URLs. Only fulfill either an external or internal source.",

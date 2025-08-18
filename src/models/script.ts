@@ -2,9 +2,7 @@ import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const script = {
-  sys: {
-    id: "script",
-  },
+  sys: { id: "script" },
   name: "Script",
   description:
     "Manages custom scripts (e.g., analytics, cookie consent, marketing tags) that should be injected into the website. Supports external sources and inline code. Use with caution to ensure performance and security best practices.",

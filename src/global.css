@@ -51,6 +51,7 @@
   --color-icon-button-secondary-content-hover: var(--color-white);
   --color-icon-button-secondary-bg-active: var(--color-brand-900);
   --color-button-primary-content: var(--color-highlight);
+  --color-button-primary-bg: var(--color-white);
   --color-button-primary-bg-hover: var(--color-brand-700);
   --color-button-primary-bg-active: var(--color-brand-800);
   --color-button-primary-border-active: var(--color-brand-800);
@@ -67,6 +68,7 @@
   /* custom animations */
   --animate-pulse-scale: pulse-scale 5s ease-in-out infinite;
   --animate-fade-scale: fade-scale 5s ease-in-out infinite;
+  --animate-carousel: carousel 20s linear infinite;
 }
 
 /* themes */
@@ -83,6 +85,7 @@
   --color-icon-button-secondary-content-hover: var(--color-white);
   --color-icon-button-secondary-bg-active: var(--color-brand-900);
   --color-button-primary-content: var(--color-highlight);
+  --color-button-primary-bg: var(--color-white);
   --color-button-primary-bg-hover: var(--color-brand-700);
   --color-button-primary-bg-active: var(--color-brand-800);
   --color-button-primary-border-active: var(--color-brand-800);
@@ -113,13 +116,14 @@
     var(--color-white) 8%,
     transparent
   );
-  --color-content-secondary: var(--color-neutral-300);
+  --color-content-secondary: var(--color-silver-mist);
   --color-icon-button-secondary-border: var(--color-border-primary);
   --color-icon-button-secondary-bg-hover: var(--color-new-gold);
   --color-icon-button-secondary-content-hover: var(--color-neutral-900);
   --color-button-primary-border-active: var(--color-new-gold);
   --color-icon-button-secondary-bg-active: var(--color-dark-gold);
   --color-button-primary-content: var(--color-content-primary);
+  --color-button-primary-bg: transparent;
   --color-button-primary-bg-hover: color-mix(
     in oklab,
     var(--color-white) 15%,
@@ -161,11 +165,9 @@
 .gradient-gold-h-dark-to-light {
   @apply bg-gradient-to-r from-dark-gold to-new-gold;
 }
-.gradient-image-overlay {
-  @apply bg-gradient-to-b from-black to-transparent;
-}
+
 .gradient-container {
-  @apply bg-gradient-to-r from-brand-700 via-50% via-[rgba(88,104,158,0.5)] to-brand-700;
+  @apply bg-gradient-to-r from-brand-700/50 via-50% via-[rgba(88,104,158,0.5)] to-brand-700/50;
 }
 .gradient-primary-gray {
   @apply bg-gradient-to-br from-neutral-100 to-white;
@@ -185,6 +187,11 @@
 .gradient-tertiary-gray {
   @apply bg-gradient-to-b from-neutral-100 to-neutral-50;
 }
+
+@utility gradient-overlay {
+  @apply relative z-[1] before:content-[''] before:absolute before:inset-0 before:block before:bg-gradient-to-b before:from-black before:to-transparent before:opacity-70 before:z-[-5];
+}
+
 /* typography */
 @utility typo-display {
   @apply text-[36px] dsk:text-[64px] leading-[42px] dsk:leading-[72px];
@@ -265,6 +272,15 @@
   100% {
     transform: scale(0.8);
     opacity: 0;
+  }
+}
+
+@keyframes carousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / var(--carousel-repetitions)));
   }
 }
 

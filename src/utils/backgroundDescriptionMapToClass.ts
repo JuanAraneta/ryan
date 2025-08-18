@@ -1,3 +1,5 @@
+import { cx } from "cva";
+
 // Dark backgrounds for light content
 const dark: Record<string, string> = {
   "Solid brand-blue 700 (#0E247E)": "bg-brand-700",
@@ -21,6 +23,11 @@ const dark: Record<string, string> = {
 // Light backgrounds for dark content
 const light: Record<string, string> = {
   "Solid white (#FFFFFF)": "bg-white",
+  "Solid white (#FFFFFF) with large background chevron": cx(
+    "bg-white relative overflow-hidden [&>*]:relative [&>*]:z-10",
+    "max-dsk:before:hidden before:content-[''] before:size-[1000px] before:bg-brand-300/5 before:absolute before:top-1/2 before:-translate-y-1/2 before:-left-[750px] before:aspect-square before:rotate-45",
+    "max-dsk:after:hidden after:content-[''] after:size-[1000px] after:bg-white after:absolute after:top-1/2 after:-translate-y-1/2 after:-left-[1100px] after:aspect-square after:rotate-45",
+  ),
   "Diagonal gradient from neutral 100 (#EFEFF3) to white (#FFFFFF)":
     "gradient-primary-gray",
   "Horizontal gradient from white (#FFFFFF) to neutral 50 (#F7F7F8)":

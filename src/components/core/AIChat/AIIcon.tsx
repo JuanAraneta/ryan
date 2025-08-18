@@ -1,27 +1,15 @@
-"use client";
+import { SVGProps } from "react";
 
-import { cx } from "cva";
-import { Icons } from "@/components/icons";
-
-export const AIIcon = ({ className = "" }: { className?: string }) => {
-  return (
-    <div
-      className={cx(
-        "relative size-10 aspect-square flex items-center justify-center",
-        className,
-      )}
-    >
-      {/* Outer circle */}
-      <span className="absolute inset-0 rounded-full border border-new-gold animate-pulse-scale" />
-
-      {/* Inner circle */}
-      <span className="absolute inset-0 rounded-full border border-new-gold opacity-50 animate-fade-scale" />
-
-      <span className="absolute inset-0 bg-new-gold/50 rounded-full blur-lg" />
-
-      <span className="relative z-10 flex items-center justify-center">
-        <Icons.AI className="text-new-gold" />
-      </span>
-    </div>
-  );
-};
+export const AIIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 17 16"
+    {...props}
+  >
+    <path
+      d="M8.16089 0.379686C8.2181 0.215798 8.44987 0.215798 8.50708 0.379686L8.66919 0.844123C9.70098 3.80015 11.9436 6.17643 14.8349 7.3775L15.0221 7.45525C15.1728 7.51784 15.1728 7.73127 15.0221 7.79386L14.8349 7.87161C11.9435 9.07269 9.70098 11.449 8.66919 14.405L8.50708 14.8694C8.44987 15.0333 8.2181 15.0333 8.16089 14.8694L7.99878 14.405C6.96699 11.449 4.72442 9.07269 1.83303 7.87161L1.64586 7.79386C1.49519 7.73127 1.49519 7.51784 1.64586 7.45525L1.83303 7.3775C4.72442 6.17643 6.96699 3.80015 7.99878 0.844124L8.16089 0.379686Z"
+      fill="currentColor"
+    />
+  </svg>
+);

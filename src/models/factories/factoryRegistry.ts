@@ -7,6 +7,8 @@ import { entryReferenceFieldFactory } from "./entryReferenceFieldFactory";
 import { richTextFieldFactory } from "./richTextFieldFactory";
 import { shortTextFieldFactory } from "./shortTextFieldFactory";
 import { singletonLockFieldFactory } from "./singletonLockFieldFactory";
+import { iconFieldFactory } from "./iconFieldFactory";
+import { wistiaVideoFieldFactory } from "./wistiaVideoFieldFactory";
 
 export const factoryRegistry = {
   contentfulLabel: contentfulLabelFieldFactory,
@@ -18,4 +20,6 @@ export const factoryRegistry = {
   boolean: booleanFieldFactory,
   date: dateFieldFactory,
   moduleBackground: moduleBackgroundFieldFactory,
+  icon: iconFieldFactory,
+  wistiaVideo: wistiaVideoFieldFactory,
 };

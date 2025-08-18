@@ -1,20 +1,26 @@
 import { Link } from "@/components/core/Link";
 import { RichText } from "@/components/core/RichText";
+import { GetModuleExpertsOverflowById } from ".";
 import { ComponentStatisticFragment } from "@/lib/contentful/fragments/ComponentStatisticFragment";
-import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleExpertsOverflowById";
 import { readFragment, ResultOf } from "gql.tada";
-import { ExpertsOverflowExpertsListScroll } from "./components/ExpertsOverflowExpertsListScroll";
-import { ModuleExpertsOverflowExpertsListCollectionFragment } from "@/lib/contentful/fragments/ModuleExpertsOverflowExpertsListCollectionFragment";
+import { PageContentExpertCard } from "./components/PageContentExpertCard";
+import { PageContentExpertFragment } from "@/modules/ExpertsOverflow/fragments/PageContentExpertFragment";
 import { AnimatableNumber } from "@/components/core/AnimatableNumber";
 import { AssetFragment } from "@/lib/contentful/fragments/AssetFragment";
 import { Button } from "@/components/core/Button";
 import { Section } from "@/components/core/Section";
+import { getInspector } from "@/utils/inspectorMode";
+import { ScrollCarouselContainer } from "@/constants/ScrollCarouselContainer";
 
 export const ModuleExpertsOverflow = ({
   data,
 }: {
   data: ResultOf<typeof GetModuleExpertsOverflowById>;
 }) => {
+  if (!data.moduleExpertsOverflow) return null;
+
+  const inspector = getInspector(data.moduleExpertsOverflow);
+
   const statistic = readFragment(
     ComponentStatisticFragment,
     data.moduleExpertsOverflow?.statistic,
@@ -30,13 +36,19 @@ export const ModuleExpertsOverflow = ({
     >
       <div className="flex flex-col dsk:flex-row justify-between items-center">
         <div className="flex flex-col justify-center dsk:justify-left">
-          <h2 className="typo-heading-6 text-highlight text-center dsk:text-left">
+          <h2
+            className="typo-heading-6 text-highlight text-center dsk:text-left"
+            {...inspector("richTextEyebrow")}
+          >
             <RichText
               content={data.moduleExpertsOverflow?.richTextEyebrow}
               spansOnly
             />
           </h2>
-          <p className="typo-heading-1 pt-4 font-light text-center dsk:text-left">
+          <p
+            className="typo-heading-1 mt-4 font-light text-center dsk:text-left"
+            {...inspector("richTextTitle")}
+          >
             <RichText
               content={data.moduleExpertsOverflow?.richTextTitle}
               variant="title"
@@ -45,7 +57,10 @@ export const ModuleExpertsOverflow = ({
           </p>
           <div className="pt-6 flex items-center justify-center dsk:justify-start">
             <Button asChild>
-              <Link link={data.moduleExpertsOverflow?.callToAction} />
+              <Link
+                link={data.moduleExpertsOverflow?.callToAction}
+                {...inspector("callToAction")}
+              />
             </Button>
           </div>
         </div>
@@ -77,10 +92,15 @@ export const ModuleExpertsOverflow = ({
         )}
       </div>
       {!!data.moduleExpertsOverflow?.expertsListCollection && (
-        <ExpertsOverflowExpertsListScroll
-          data={readFragment(
-            ModuleExpertsOverflowExpertsListCollectionFragment,
-            data.moduleExpertsOverflow?.expertsListCollection,
+        <ScrollCarouselContainer
+          items={data.moduleExpertsOverflow?.expertsListCollection.items.map(
+            (content, index) =>
+              content && (
+                <PageContentExpertCard
+                  key={index}
+                  data={readFragment(PageContentExpertFragment, content)}
+                />
+              ),
           )}
         />
       )}

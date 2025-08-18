@@ -1,12 +1,12 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { ComponentProps, useRef, useState } from "react";
 import { cx } from "cva";
 import { useLayoutEffect } from "@/hooks/useLayoutEffect";
 import { useOnScreenState } from "@/hooks/useOnScreenEffect";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
 
-type AnimatableNumberProps = {
+type AnimatableNumberProps = ComponentProps<"span"> & {
   value: string;
   startingValue?: number;
   duration?: number;
@@ -25,6 +25,7 @@ export const AnimatableNumber: React.FC<AnimatableNumberProps> = ({
   startingValue = 0,
   duration = 3000,
   easing: easingProp = "quart",
+  ...props
 }) => {
   const [onScreen, ref] = useOnScreenState<HTMLSpanElement>({ once: true });
   const easingFunction =
@@ -60,7 +61,7 @@ export const AnimatableNumber: React.FC<AnimatableNumberProps> = ({
   ]);
 
   return (
-    <span ref={ref} className="relative">
+    <span ref={ref} className="relative" {...props}>
       <span className="select-none opacity-0" aria-hidden>
         {getPrintout(finalValue, precision, usesCommas)}
       </span>

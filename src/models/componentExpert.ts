@@ -2,10 +2,8 @@ import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const componentExpert = {
-  sys: {
-    id: "componentExpert",
-  },
-  name: "Expert",
+  sys: { id: "componentExpert" },
+  name: "Component / Expert",
   description:
     "The simple representation of a Ryan Tax Expert. Will have associated bio-pages, and other section references.",
   fields: [
@@ -13,14 +11,6 @@ export const componentExpert = {
       id: "fullName",
       name: "Full name",
       displayField: true,
-    }),
-    createField("shortText", {
-      id: "slug",
-      name: "Slug",
-      editorInterface: {
-        widgetId: "slugEditor",
-        widgetNamespace: "builtin",
-      },
     }),
     createField("shortText", {
       id: "title",

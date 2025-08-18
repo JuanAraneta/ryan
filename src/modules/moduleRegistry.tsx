@@ -1,48 +1,110 @@
-import { FC } from "react";
-import { PageModulesCollectionFragment } from "@/lib/contentful/fragments/PageModulesCollectionFragment";
-import { ResultOf, TadaDocumentNode } from "gql.tada";
-import { GetModuleExpertsOverflowById } from "@/lib/contentful/query/GetModuleExpertsOverflowById";
-import { GetModuleCustomerStoriesOverflowById } from "@/lib/contentful/query/GetModuleCustomerStoriesOverflowById";
-import { ModuleChapterGroup } from "./ModuleChapterGroup";
-import { GetModuleChapterGroupById } from "@/lib/contentful/query/GetModuleChapterGroupById";
+import { TadaDocumentNode } from "gql.tada";
 
-// Modules
-import { ModuleExpertsOverflow } from "./ExpertsOverflow";
-import { ModuleCustomerStoriesCarousel } from "./ModuleCustomerStoriesCarousel";
+import {
+  ModuleExpertsOverflow,
+  GetModuleExpertsOverflowById,
+} from "./ExpertsOverflow";
+import {
+  ModuleCustomerStoriesCarousel,
+  GetModuleCustomerStoriesOverflowById,
+} from "./ModuleCustomerStoriesCarousel";
+import {
+  ModuleChapterGroup,
+  GetModuleChapterGroupById,
+} from "./ModuleChapterGroup";
+import {
+  ModuleInsightsBento,
+  GetModuleInsightsBentoById,
+} from "./ModuleInsightsBento";
+import {
+  ModuleStatementHome,
+  GetModuleStatementHomeById,
+} from "./ModuleStatementHome";
+import {
+  ModuleSoftwareAndServicesRoutingGrid,
+  GetModuleSoftwareServicesRoutingGridById,
+} from "./ModuleSoftwareAndServicesRoutingGrid";
+import { ModulePlatform, GetModulePlatformById } from "./ModulePlatform";
+import {
+  ModuleServiceSoftwareRoutingCards,
+  GetModuleServiceSoftwareRoutingCardsById,
+} from "./ModuleServiceSoftwareRoutingCards";
+import {
+  ModuleInsights3Up,
+  GetModuleInsights3UpById,
+} from "./ModuleInsights3Up";
+import {
+  ModuleCustomerStoriesCarouselShort,
+  GetModuleCustomerStoriesCarouselShortById,
+} from "./ModuleCustomerStoriesCarouselShort";
+import {
+  ModuleGeneralVideoMission,
+  GetModuleGeneralVideoMissionById,
+} from "./ModuleGeneralVideoMission";
+import { introspection_types } from "@/graphql-env";
+import { ModuleHeroHome } from "./ModuleHeroHome";
+import { GetModuleHeroHomeById } from "./ModuleHeroHome/GetModuleHeroHomeById";
+import { ReactNode } from "react";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type ModuleComponent<Data = any> = {
-  // TODO: Check if there is a better way to type this
-  component: FC<{ data: Data }>;
+type ModuleComponent<Data> = {
+  component: (props: { data: Data }) => ReactNode;
   queryById: TadaDocumentNode<Data, { id: string }>;
 };
 
-type ModuleRegistry = Record<
-  NonNullable<
-    NonNullable<
-      NonNullable<
-        NonNullable<
-          ResultOf<typeof PageModulesCollectionFragment>["items"][number]
-        >["modulesCollection"]
-      >["items"][number]
-    >["__typename"]
-  >,
-  ModuleComponent | null
->;
+type ModuleRegistry = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [EntryType in introspection_types["Entry"]["possibleTypes"]]?: ModuleComponent<any>;
+};
+
+// Using this helper ensures that your component & query align properly
+const constructEntry = <Data,>(
+  component: ModuleComponent<Data>["component"],
+  queryById: ModuleComponent<Data>["queryById"],
+) => ({ component, queryById });
 
 const moduleRegistry: ModuleRegistry = {
-  ModuleExpertsOverflow: {
-    component: ModuleExpertsOverflow,
-    queryById: GetModuleExpertsOverflowById,
-  },
-  ModuleCustomerStoriesCarousel: {
-    component: ModuleCustomerStoriesCarousel,
-    queryById: GetModuleCustomerStoriesOverflowById,
-  },
-  ModuleChapterGroup: {
-    component: ModuleChapterGroup,
-    queryById: GetModuleChapterGroupById,
-  },
+  ModuleHeroHome: constructEntry(ModuleHeroHome, GetModuleHeroHomeById),
+  ModuleInsightsBento: constructEntry(
+    ModuleInsightsBento,
+    GetModuleInsightsBentoById,
+  ),
+  ModuleExpertsOverflow: constructEntry(
+    ModuleExpertsOverflow,
+    GetModuleExpertsOverflowById,
+  ),
+  ModuleCustomerStoriesCarousel: constructEntry(
+    ModuleCustomerStoriesCarousel,
+    GetModuleCustomerStoriesOverflowById,
+  ),
+  ModuleChapterGroup: constructEntry(
+    ModuleChapterGroup,
+    GetModuleChapterGroupById,
+  ),
+  ModuleStatementHome: constructEntry(
+    ModuleStatementHome,
+    GetModuleStatementHomeById,
+  ),
+  ModuleSoftwareServicesRoutingGrid: constructEntry(
+    ModuleSoftwareAndServicesRoutingGrid,
+    GetModuleSoftwareServicesRoutingGridById,
+  ),
+  ModulePlatform: constructEntry(ModulePlatform, GetModulePlatformById),
+  ModuleServiceSoftwareRoutingCards: constructEntry(
+    ModuleServiceSoftwareRoutingCards,
+    GetModuleServiceSoftwareRoutingCardsById,
+  ),
+  ModuleInsights3Up: constructEntry(
+    ModuleInsights3Up,
+    GetModuleInsights3UpById,
+  ),
+  ModuleCustomerStoriesCarouselShort: constructEntry(
+    ModuleCustomerStoriesCarouselShort,
+    GetModuleCustomerStoriesCarouselShortById,
+  ),
+  ModuleGeneralVideoMission: constructEntry(
+    ModuleGeneralVideoMission,
+    GetModuleGeneralVideoMissionById,
+  ),
 };
 
 export default moduleRegistry;

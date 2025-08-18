@@ -1,7 +1,5 @@
-"use client";
-
+import "server-only";
 import { ResultOf } from "gql.tada";
-import { useMemo } from "react";
 import {
   documentToReactComponents,
   Options,
@@ -12,8 +10,8 @@ import {
 } from "@contentful/rich-text-types";
 import {
   RichTextRenderOverrides,
-  useRichTextRenderOptions,
-} from "./useRichTextRenderOptions";
+  getRichTextRenderOptions,
+} from "./getRichTextRenderOptions";
 import { RichTextFragments } from "@/lib/contentful/fragments/RichTextFragments.generated";
 import merge from "lodash/merge";
 
@@ -33,30 +31,21 @@ export const RichText = ({
   spansOnly?: boolean;
   variant?: keyof typeof variants;
 }) => {
-  const options = useMemo(
-    () => ({
-      options: optionsProp,
-      overrides: merge(variant ? variants[variant] : {}, overrides),
-    }),
-    [optionsProp, overrides, variant],
-  );
+  const options = {
+    options: optionsProp,
+    overrides: merge(variant ? variants[variant] : {}, overrides),
+  };
 
-  const renderOptions = useRichTextRenderOptions(
+  const renderOptions = getRichTextRenderOptions(
     content?.links,
     options,
     spansOnly,
   );
 
-  const render = useMemo(
-    () =>
-      documentToReactComponents(
-        content?.json as RichTextDocument,
-        renderOptions,
-      ),
-    [content, renderOptions],
+  return documentToReactComponents(
+    content?.json as RichTextDocument,
+    renderOptions,
   );
-
-  return render;
 };
 
 const variants = {

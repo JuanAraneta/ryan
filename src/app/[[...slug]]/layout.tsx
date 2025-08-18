@@ -1,17 +1,15 @@
-import { Hero } from "@/modules/Hero/Hero";
-import { Footer } from "@/modules/Footer/Footer";
 import { SEOMetadata } from "@/components/SEOMetadata/SEOMetadata";
-import { contentClient } from "@/lib/contentful/contentClient";
-import { GetPageBySlugAndMarketQuery } from "@/lib/contentful/query/GetPageBySlugAndMarketQuery";
+import { contentClient, isPreviewMode } from "@/lib/contentful/contentClient";
 import { notFound } from "next/navigation";
 import { readFragment } from "gql.tada";
 import { SEOMetadataFragment } from "@/lib/contentful/fragments/SEOMetadataFragment";
-import { FooterFragment } from "@/lib/contentful/fragments/FooterFragment";
-import { HeroFragment } from "@/lib/contentful/fragments/HeroFragment";
 import { Lato } from "next/font/google";
 import { ConstantsProvider } from "@/components/providers/ConstantsContext";
-import { GetConstantsQuery } from "@/lib/contentful/query/GetConstantsQuery";
 import { ConstantsFragment } from "@/lib/contentful/fragments/ConstantsFragment";
+import { ContentfulLivePreviewScript } from "@/components/ContentfulLivePreviewScript";
+import { routingUtils } from "@/lib/util/routingUtils";
+import { getConstants } from "@/lib/contentful/utils/getConstants";
+import { GetLayoutById } from "@/lib/contentful/query/GetLayoutByIdQuery";
 
 const latoSans = Lato({
   variable: "--font-sans",
@@ -20,46 +18,47 @@ const latoSans = Lato({
   subsets: ["latin", "latin-ext"],
 });
 
-export default async function RootLayout(
-  props: Readonly<{
-    children: React.ReactNode;
-    params: Promise<{ slug: string[] }>;
-  }>,
-) {
-  const params = await props.params;
-  const slugs = Array.isArray(params.slug) ? params.slug : [params.slug];
+export default async function RootLayout(props: {
+  children: React.ReactNode;
+  params: Promise<{ slug?: string | Array<string> }>;
+}) {
+  const preview = await isPreviewMode();
 
-  const [marketSlug, locale, slug] = slugs;
-  const [pageResult, constantsResult] = await Promise.all([
-    contentClient.query(GetPageBySlugAndMarketQuery, {
-      marketSlug,
-      locale,
-      slug,
-    }),
-    contentClient.query(GetConstantsQuery, { locale }),
+  const [layout, constants] = await Promise.all([
+    routingUtils
+      .getPathFromProps(props)
+      .then((path) => routingUtils.getPageEntryByPath(path))
+      .then(async (pageEntry) => {
+        if (!pageEntry?.sys.id) return null;
+        return (
+          await contentClient.query(GetLayoutById, { id: pageEntry.sys.id })
+        ).data?.layout;
+      }),
+    getConstants(),
   ]);
 
-  const page = pageResult.data?.pageCollection?.items[0];
-  const constants = constantsResult.data?.constantsCollection?.items[0];
+  if (!layout || !constants) notFound();
 
-  if (!page || !constants) notFound();
+  if (!constants)
+    throw new Error(
+      "Constants instance is required for application, but not found!",
+    );
 
   return (
     <ConstantsProvider value={readFragment(ConstantsFragment, constants)}>
       <head>
-        {page.seoMetadata && (
+        {layout.seoMetadata && (
           <SEOMetadata
-            metadata={readFragment(SEOMetadataFragment, page.seoMetadata)}
+            metadata={readFragment(SEOMetadataFragment, layout.seoMetadata)}
           />
         )}
       </head>
       <body className={latoSans.variable}>
         <main className="min-h-screen">
-          {page.hero && <Hero data={readFragment(HeroFragment, page.hero)} />}
+          {/* Render header/menu for page.market here */}
           {props.children}
-          {page.footer && (
-            <Footer data={readFragment(FooterFragment, page.footer)} />
-          )}
+          {/* Render footer for page.market here */}
+          {preview && <ContentfulLivePreviewScript />}
         </main>
       </body>
     </ConstantsProvider>

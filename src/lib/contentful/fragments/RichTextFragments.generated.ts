@@ -16,7 +16,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -35,7 +41,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -54,7 +66,88 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  `),
+  ComponentServiceDetails_shortDescription: graphql(`
+    fragment ComponentServiceDetails_shortDescriptionFragment on ComponentServiceDetailsShortDescription
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  `),
+  ComponentServiceSoftwareRoutingCard_body: graphql(`
+    fragment ComponentServiceSoftwareRoutingCard_bodyFragment on ComponentServiceSoftwareRoutingCardBody
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  `),
+  ComponentSoftwareDetails_shortDescription: graphql(`
+    fragment ComponentSoftwareDetails_shortDescriptionFragment on ComponentSoftwareDetailsShortDescription
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -73,7 +166,38 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  `),
+  ComponentTestimonial_testimonial: graphql(`
+    fragment ComponentTestimonial_testimonialFragment on ComponentTestimonialTestimonial
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -92,7 +216,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -111,7 +241,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -130,7 +266,38 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  `),
+  ModuleCustomerStoriesCarouselShort_headline: graphql(`
+    fragment ModuleCustomerStoriesCarouselShort_headlineFragment on ModuleCustomerStoriesCarouselShortHeadline
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -149,7 +316,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -168,7 +341,38 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  `),
+  ModuleGeneralVideoMission_body: graphql(`
+    fragment ModuleGeneralVideoMission_bodyFragment on ModuleGeneralVideoMissionBody
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -187,7 +391,13 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }
@@ -206,7 +416,188 @@ export const RichTextFragments = {
             }
             __typename
             ... on Page {
-              slug
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  `),
+  ModulePlatform_headline: graphql(`
+    fragment ModulePlatform_headlineFragment on ModulePlatformHeadline
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  `),
+  ModuleServiceSoftwareRoutingCards_headline: graphql(`
+    fragment ModuleServiceSoftwareRoutingCards_headlineFragment on ModuleServiceSoftwareRoutingCardsHeadline
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  `),
+  ModuleSoftwareServicesRoutingGrid_description: graphql(`
+    fragment ModuleSoftwareServicesRoutingGrid_descriptionFragment on ModuleSoftwareServicesRoutingGridDescription
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  `),
+  ModuleSoftwareServicesRoutingGrid_title: graphql(`
+    fragment ModuleSoftwareServicesRoutingGrid_titleFragment on ModuleSoftwareServicesRoutingGridTitle
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  `),
+  ModuleStatementHome_headline: graphql(`
+    fragment ModuleStatementHome_headlineFragment on ModuleStatementHomeHeadline
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  `),
+  PageService_shortDescription: graphql(`
+    fragment PageService_shortDescriptionFragment on PageServiceShortDescription
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  `),
+  PageSoftware_shortDescription: graphql(`
+    fragment PageSoftware_shortDescriptionFragment on PageSoftwareShortDescription
+    @_unmask {
+      json
+      links {
+        entries {
+          hyperlink {
+            sys {
+              id
+            }
+            __typename
+            ... on Page {
+              path
+              content {
+                __typename
+              }
+              market {
+                slug
+              }
             }
           }
         }

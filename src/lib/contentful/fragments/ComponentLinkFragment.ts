@@ -4,7 +4,16 @@ export const ComponentLinkFragment = graphql(`
   fragment ComponentLinkFragment on ComponentLink {
     label
     internalSource {
-      slug
+      __typename
+      ... on Page {
+        path
+        market {
+          slug
+        }
+        content {
+          __typename
+        }
+      }
     }
     externalSource
   }

@@ -1,12 +1,11 @@
 // models
 import { componentCategorySolutionsHeadline } from "./componentCategorySolutionsHeadline";
 import { componentCategorySolutionsChapter } from "./componentCategorySolutionsChapter";
-import { componentTitleAndBody } from "./componentTitleAndBody";
+import { componentIconTextWrap } from "./componentIconTextWrap";
 import { componentCategorySolutions2ColSubBody } from "./componentCategorySolutions2ColSubBody";
 import { componentCardDeviceMock } from "./componentCardDeviceMock";
-import { componentExpert } from "./componentExpert";
-import { componentCustomerStory } from "./componentCustomerStory";
 import { componentLink } from "./componentLink";
+import { componentNewsletterSignup } from "./componentNewsletterSignup";
 import { componentStatistic } from "./componentStatistic";
 import { componentRoutingItem } from "./componentRoutingItem";
 import { moduleChapterGroup } from "./moduleChapterGroup";
@@ -14,13 +13,15 @@ import { moduleContainer } from "./moduleContainer";
 import { moduleExpertsOverflow } from "./moduleExpertsOverflow";
 import { moduleCustomerStoriesCarousel } from "./moduleCustomerStoriesCarousel";
 import { moduleHeroHome } from "./moduleHeroHome";
+import { moduleInsightsBento } from "./moduleInsightsBento";
+import { moduleInsights3Up } from "./moduleInsights3Up";
+import { moduleGeneralVideoMission } from "./moduleGeneralVideoMission";
+
 import {
   categorySolutionsImageLinkGrid,
   categorySolutionsImageLink,
 } from "./categorySolutionsImageLinkGrid";
-import { page } from "./page";
 import { constants } from "./constants";
-import { footer } from "./footer";
 import { seoMetadata } from "./seoMetadata";
 import { market } from "./market";
 import { siteSettings } from "./siteSettings";
@@ -31,19 +32,52 @@ import { script } from "./script";
 // utils
 import { contentModelComposer } from "./utils/contentModelComposer";
 import type { ExpandedContentModel } from "./types/ExpandedContentModel";
+import { moduleStatementHome } from "./moduleStatementHome";
+import { modulePlatform } from "./modulePlatform";
+import { componentLogoCarousel } from "./componentLogoCarousel";
+import {
+  componentTestimonial,
+  moduleSoftwareServicesRoutingGrid,
+} from "./moduleSoftwareServicesRoutingGrid";
+import {
+  componentServiceSoftwareRoutingCard,
+  moduleServiceSoftwareRoutingCards,
+} from "./moduleServiceSoftwareRoutingCards";
+import { componentCustomerStoryCard } from "./componentCustomerStoryCard";
+import { moduleCustomerStoriesCarouselShort } from "./moduleCustomerStoriesCarouselShort";
+import { page } from "./page";
+import { pageContentModular } from "./page/pageContentModular";
+import { pageContentExpert } from "./page/pageContentExpert";
+import { pageContentCustomerStory } from "./page/pageContentCustomerStory";
+import { pageContentNewsAndInsights } from "./page/pageContentNewsAndInsights";
+import { pageContentSoftwareDetails } from "./page/pageContentSoftwareDetails";
+import { pageContentServiceDetails } from "./page/pageContentServiceDetails";
+import { componentCustomerStory } from "./componentCustomerStory";
+import { componentExpert } from "./componentExpert";
+import { componentNewsAndInsights } from "./componentNewsAndInsights";
+import { componentServiceDetails } from "./componentServiceDetails";
+import { componentSoftwareDetails } from "./componentSoftwareDetails";
 
 // Components
 const components: ExpandedContentModel[] = [
   componentCategorySolutionsHeadline,
   componentCategorySolutionsChapter,
-  componentTitleAndBody,
+  componentIconTextWrap,
   componentCategorySolutions2ColSubBody,
   componentCardDeviceMock,
-  componentExpert,
-  componentCustomerStory,
   componentLink,
+  componentNewsletterSignup,
   componentStatistic,
   componentRoutingItem,
+  componentLogoCarousel,
+  componentTestimonial,
+  componentServiceSoftwareRoutingCard,
+  componentCustomerStoryCard,
+  componentCustomerStory,
+  componentExpert,
+  componentNewsAndInsights,
+  componentServiceDetails,
+  componentSoftwareDetails,
 ];
 
 // Modules
@@ -53,15 +87,31 @@ const modules: ExpandedContentModel[] = [
   moduleExpertsOverflow,
   moduleCustomerStoriesCarousel,
   moduleHeroHome,
+  moduleInsightsBento,
+  moduleInsights3Up,
+  moduleStatementHome,
+  moduleSoftwareServicesRoutingGrid,
+  moduleServiceSoftwareRoutingCards,
+  moduleCustomerStoriesCarouselShort,
+  moduleGeneralVideoMission,
+  modulePlatform,
+];
+
+const pageAndContent: ExpandedContentModel[] = [
+  page,
+  pageContentCustomerStory,
+  pageContentExpert,
+  pageContentModular,
+  pageContentNewsAndInsights,
+  pageContentSoftwareDetails,
+  pageContentServiceDetails,
 ];
 
 // Other content types
 const other: ExpandedContentModel[] = [
   categorySolutionsImageLink,
   categorySolutionsImageLinkGrid,
-  page,
   constants,
-  footer,
   seoMetadata,
   market,
   siteSettings,
@@ -70,9 +120,12 @@ const other: ExpandedContentModel[] = [
   script,
 ];
 
-export const models = [...components, ...modules, ...other].map(
-  contentModelComposer,
-);
+export const models = [
+  ...components,
+  ...modules,
+  ...pageAndContent,
+  ...other,
+].map(contentModelComposer);
 
 export const locales = [
   {

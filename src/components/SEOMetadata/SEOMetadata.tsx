@@ -1,7 +1,6 @@
 import { SEOMetadataFragment } from "@/lib/contentful/fragments/SEOMetadataFragment";
 import { ResultOf } from "gql.tada";
 import { FC } from "react";
-
 interface SEOMetadataProps {
   metadata: ResultOf<typeof SEOMetadataFragment>;
 }

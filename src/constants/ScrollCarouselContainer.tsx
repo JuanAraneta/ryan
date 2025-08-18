@@ -1,3 +1,5 @@
+"use client";
+
 import { FakeHorizontalScrollbar } from "@/components/core/FakeHorizontalScrollbar";
 import { IconButton } from "@/components/core/IconButton";
 import { useConstants } from "@/components/providers/ConstantsContext";
@@ -7,15 +9,12 @@ import { cx } from "cva";
 import { ReactNode, useRef } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
-export const ScrollCarouselContainer = <ListItem,>({
+export const ScrollCarouselContainer = ({
   items,
-  itemRender,
+  className,
 }: {
-  items: Array<ListItem>;
-  itemRender: (props: {
-    item: TSReset.NonFalsy<ListItem>;
-    index: number;
-  }) => ReactNode;
+  items: Array<ReactNode>;
+  className?: string;
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const prevClickHandler = useScrollJumpOnClickEventHandler(
@@ -35,19 +34,18 @@ export const ScrollCarouselContainer = <ListItem,>({
     <div>
       <div
         ref={scrollContainerRef}
-        className="-mx-(--x-section-padding) px-(--x-section-padding) scroll-pl-(--x-section-padding) overflow-x-auto no-scrollbar pt-10 snap-start snap-x snap-mandatory [mask-image:var(--linear-gradient-mask)] relative"
-        style={{
-          "--linear-gradient-mask":
-            "linear-gradient(to right, transparent 0px, black var(--x-section-padding), black calc(100% - var(--x-section-padding)), transparent 100%)",
-        }}
+        className={cx(
+          "-mx-(--x-section-padding) px-(--x-section-padding) scroll-pl-(--x-section-padding) overflow-x-auto no-scrollbar pt-10 snap-start snap-x snap-mandatory [mask-image:var(--horizontal-fade-linear-gradient-mask)] relative",
+          className,
+        )}
       >
         <ul className="flex gap-6 flex-1 w-max">
           {items.filter(Boolean).map((item, index) => (
             <li
               key={index}
-              className="flex flex-col gap-6 snap-start snap-always py-2"
+              className="flex flex-col gap-6 snap-start snap-always"
             >
-              {itemRender({ item, index })}
+              {item}
             </li>
           ))}
         </ul>

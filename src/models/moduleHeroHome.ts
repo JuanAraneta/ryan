@@ -2,9 +2,7 @@ import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
 export const moduleHeroHome = {
-  sys: {
-    id: "moduleHeroHome",
-  },
+  sys: { id: "moduleHeroHome" },
   name: "Module / Hero home",
   description:
     "Homepage Hero 50/50, which serves as the primary, top-of-the-fold content for the main homepage.",
