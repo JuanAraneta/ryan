@@ -2,11 +2,12 @@ import { Button } from "@/components/core/Button";
 import { Link } from "@/components/core/Link";
 import { GetModuleCustomerStoriesOverflowById } from ".";
 import { readFragment, ResultOf } from "gql.tada";
-import { CustomerStoriesCarousel } from "./CustomerStoriesCarousel";
-import { ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment } from "@/modules/ModuleCustomerStoriesCarousel/ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment";
+import { CustomerStoriesCarouselItem } from "./CustomerStoriesCarouselItem";
+import { PageContentCustomerStoryFragment } from "@/modules/ModuleCustomerStoriesCarousel/PageContentCustomerStoryFragment";
 import { Section } from "@/components/core/Section";
 import { RichText } from "@/components/core/RichText";
 import { getInspector } from "@/utils/inspectorMode";
+import { ScrollCarouselContainer } from "@/constants/ScrollCarouselContainer";
 
 export const ModuleCustomerStoriesCarousel = ({
   data,
@@ -41,10 +42,15 @@ export const ModuleCustomerStoriesCarousel = ({
         )}
       </div>
       {!!data.moduleCustomerStoriesCarousel?.customerStoriesCollection && (
-        <CustomerStoriesCarousel
-          data={readFragment(
-            ModuleCustomerStoriesCarouselCustomerStoriesCollectionFragment,
-            data.moduleCustomerStoriesCarousel?.customerStoriesCollection,
+        <ScrollCarouselContainer
+          items={data.moduleCustomerStoriesCarousel?.customerStoriesCollection.items.map(
+            (item, index) =>
+              item && (
+                <CustomerStoriesCarouselItem
+                  key={index}
+                  data={readFragment(PageContentCustomerStoryFragment, item)}
+                />
+              ),
           )}
         />
       )}
