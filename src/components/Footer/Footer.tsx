@@ -9,6 +9,7 @@ import { cx } from "cva";
 import { focusStyle } from "@/utils/focusStyle";
 import { Link } from "../core/Link";
 import { ExternalSVGIcon } from "../core/ExternalSVGIcon";
+import kebabCase from "lodash/kebabCase";
 
 export const Footer = async ({
   market,
@@ -39,27 +40,35 @@ export const Footer = async ({
           )}
           <div className="flex justify-between dsk:gap-8 flex-col dsk:flex-row">
             <ul className="py-16 dsk:py-9 grid grid-cols-2 dsk:flex flex-wrap gap-y-10">
-              {footer.columnsCollection?.items.map((column, index) => (
-                <li key={index}>
-                  <p className="typo-body-large">{column?.title}</p>
-                  <ul className="pr-10 pt-6 flex flex-col gap-2">
-                    {column?.linksCollection?.items.map((link, index) => (
-                      <li key={index}>
-                        <Link
-                          className={cx(
-                            focusStyle,
-                            "typo-body-small text-neutral-200",
-                          )}
-                          link={link}
-                        />
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
+              {footer.columnsCollection?.items.map((column, index) => {
+                const id = kebabCase(column?.title ?? "");
+                return (
+                  <li key={index}>
+                    <h3 id={id} className="typo-body-large">
+                      {column?.title}
+                    </h3>
+                    <ul
+                      aria-describedby={id}
+                      className="pr-10 pt-6 flex flex-col gap-2"
+                    >
+                      {column?.linksCollection?.items.map((link, index) => (
+                        <li key={index}>
+                          <Link
+                            className={cx(
+                              focusStyle,
+                              "typo-body-small text-neutral-200",
+                            )}
+                            link={link}
+                          />
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                );
+              })}
             </ul>
             <div className="flex flex-col gap-4 pb-10">
-              <p>{footer.socialMedia?.title}</p>
+              <h3>{footer.socialMedia?.title}</h3>
               <ul className="flex gap-4 items-center">
                 {footer.socialMedia?.linkCollection?.items.map(
                   (social, index) => {
