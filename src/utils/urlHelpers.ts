@@ -1,5 +1,5 @@
 import { introspection_types } from "@/graphql-env";
-import _ from "lodash";
+import kebabCase from "lodash/kebabCase";
 
 export const getModuleQueryKey = (
   moduleType: introspection_types["Entry"]["possibleTypes"],
@@ -64,7 +64,7 @@ export function toggleFilterParam(
   key: string,
   filterValue: string,
 ): string {
-  const sluggedValue = _.kebabCase(filterValue);
+  const sluggedValue = kebabCase(filterValue);
   const currentValue = getQueryParam(searchParams, key);
   const isActive = currentValue === sluggedValue;
 
@@ -85,7 +85,7 @@ export function getActiveFilter(
   if (!sluggedParam) return null;
 
   return (
-    availableFilters.find((filter) => _.kebabCase(filter) === sluggedParam) ||
+    availableFilters.find((filter) => kebabCase(filter) === sluggedParam) ||
     null
   );
 }

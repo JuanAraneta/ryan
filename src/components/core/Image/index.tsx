@@ -15,7 +15,7 @@ interface ImageProps extends Omit<ComponentProps<"img">, "src" | "alt"> {
   imgClassName?: string;
 }
 
-const aspectRatioMap: Record<Exclude<AspectRatio, number>, string> = {
+const aspectRatioMap: Record<AspectRatio, string> = {
   square: "aspect-square",
   video: "aspect-video",
   portrait: "aspect-[3/4]",
@@ -34,11 +34,7 @@ export function Image({
 }: ImageProps) {
   const asset = readFragment(AssetFragment, source);
 
-  const aspectRatioClass = aspectRatio
-    ? typeof aspectRatio === "number"
-      ? `aspect-[${aspectRatio}]`
-      : aspectRatioMap[aspectRatio]
-    : undefined;
+  const aspectRatioClass = aspectRatio && aspectRatioMap[aspectRatio];
 
   const altText = alt ?? asset?.description ?? "";
 
