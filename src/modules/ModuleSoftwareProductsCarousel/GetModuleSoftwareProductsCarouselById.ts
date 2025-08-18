@@ -1,6 +1,7 @@
 import { graphql } from "gql.tada";
 import { ComponentLinkFragment } from "@/lib/contentful/fragments/ComponentLinkFragment";
 import { PageContentSoftwareDetails } from "@/lib/contentful/fragments/PageContentSoftwareDetails";
+import { EntryCoreFragment } from "@/lib/contentful/fragments/EntryCoreFragment";
 
 export const GetModuleSoftwareProductsCarouselById = graphql(
   `
@@ -14,10 +15,7 @@ export const GetModuleSoftwareProductsCarouselById = graphql(
         preview: $preview
         locale: $locale
       ) {
-        __typename
-        sys {
-          id
-        }
+        ...EntryCoreFragment
         headline
         body
         cta {
@@ -31,5 +29,5 @@ export const GetModuleSoftwareProductsCarouselById = graphql(
       }
     }
   `,
-  [ComponentLinkFragment, PageContentSoftwareDetails],
+  [ComponentLinkFragment, PageContentSoftwareDetails, EntryCoreFragment],
 );

@@ -1,9 +1,10 @@
+import { introspection_types } from "@/graphql-env";
 import _ from "lodash";
 
-const MODULE_QUERY_KEY = "filter";
-
-export const getModuleQueryKey = (moduleType = "") =>
-  `${moduleType}.${MODULE_QUERY_KEY}`;
+export const getModuleQueryKey = (
+  moduleType: introspection_types["Entry"]["possibleTypes"],
+  moduleQueryKey = "filter",
+) => `${moduleType}.${moduleQueryKey}`;
 
 export function getQueryParam(
   searchParams: Record<string, string | string[] | undefined>,

@@ -33,7 +33,7 @@ export async function ModuleSoftwareProductsCarousel({
       .filter(Boolean)
       .map((item) => readFragment(PageContentSoftwareDetails, item)) || [];
 
-  const moduleQueryKey = getModuleQueryKey(__typename);
+  const moduleQueryKey = getModuleQueryKey(__typename!);
 
   const filters = [
     ...new Set(
