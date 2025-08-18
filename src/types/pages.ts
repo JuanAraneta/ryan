@@ -9,5 +9,4 @@ export interface PageProps {
 export interface NextPageProps {
   params: Promise<{ slug?: string | Array<string> }>;
   searchParams: Promise<SearchParams>;
-  currentPath?: Promise<string>;
 }

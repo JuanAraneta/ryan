@@ -8,9 +8,10 @@ import { MarketFragment } from "@/lib/contentful/fragments/MarketFragment";
 import { PageContentModular } from "@/modules/PageContentModular/PageContentModular";
 import { NextPageProps } from "@/types/pages";
 
-export default async function Page(props: NextPageProps) {
-  const [searchParams, page, currentPath] = await Promise.all([
-    props.searchParams,
+export default async function Page({ params, searchParams }: NextPageProps) {
+  const props = { params, searchParams };
+  const [resolvedSearchParams, page, currentPath] = await Promise.all([
+    searchParams,
     routingUtils
       .getPathFromProps(props)
       .then((path) => routingUtils.getPageEntryByPath(path))
@@ -42,7 +43,7 @@ export default async function Page(props: NextPageProps) {
   const pageProps = {
     id: pageId,
     locale,
-    searchParams,
+    searchParams: resolvedSearchParams,
     currentPath,
   };
 
