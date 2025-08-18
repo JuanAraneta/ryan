@@ -354,31 +354,6 @@ export const RichTextFragments = {
       }
     }
   `),
-  ModuleGeneralVideoMission_body: graphql(`
-    fragment ModuleGeneralVideoMission_bodyFragment on ModuleGeneralVideoMissionBody
-    @_unmask {
-      json
-      links {
-        entries {
-          hyperlink {
-            sys {
-              id
-            }
-            __typename
-            ... on Page {
-              path
-              content {
-                __typename
-              }
-              market {
-                slug
-              }
-            }
-          }
-        }
-      }
-    }
-  `),
   ModuleHeroHome_headline: graphql(`
     fragment ModuleHeroHome_headlineFragment on ModuleHeroHomeHeadline
     @_unmask {
@@ -531,56 +506,6 @@ export const RichTextFragments = {
   `),
   ModuleStatementHome_headline: graphql(`
     fragment ModuleStatementHome_headlineFragment on ModuleStatementHomeHeadline
-    @_unmask {
-      json
-      links {
-        entries {
-          hyperlink {
-            sys {
-              id
-            }
-            __typename
-            ... on Page {
-              path
-              content {
-                __typename
-              }
-              market {
-                slug
-              }
-            }
-          }
-        }
-      }
-    }
-  `),
-  PageService_shortDescription: graphql(`
-    fragment PageService_shortDescriptionFragment on PageServiceShortDescription
-    @_unmask {
-      json
-      links {
-        entries {
-          hyperlink {
-            sys {
-              id
-            }
-            __typename
-            ... on Page {
-              path
-              content {
-                __typename
-              }
-              market {
-                slug
-              }
-            }
-          }
-        }
-      }
-    }
-  `),
-  PageSoftware_shortDescription: graphql(`
-    fragment PageSoftware_shortDescriptionFragment on PageSoftwareShortDescription
     @_unmask {
       json
       links {

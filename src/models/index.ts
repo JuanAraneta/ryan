@@ -125,10 +125,9 @@ const other: ExpandedContentModel[] = [
 ];
 
 export const models = [
+  ...assets,
   ...components,
   ...modules,
-  ...other,
-  ...assets,
   ...pageAndContent,
   ...other,
 ].map(contentModelComposer);

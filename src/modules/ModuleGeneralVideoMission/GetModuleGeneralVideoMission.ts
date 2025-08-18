@@ -1,5 +1,6 @@
 import { graphql } from "gql.tada";
 import { WistiaVideoFragment } from "@/lib/contentful/fragments/WistiaVideoFragment";
+import { EntryCoreFragment } from "@/lib/contentful/fragments/EntryCoreFragment";
 
 export const GetModuleGeneralVideoMissionById = graphql(
   `
@@ -14,22 +15,17 @@ export const GetModuleGeneralVideoMissionById = graphql(
     }
 
     fragment ModuleGeneralVideoMissionFragment on ModuleGeneralVideoMission {
-      sys {
-        id
-      }
+      ...EntryCoreFragment
       headline
       description
       attribution
       video {
-        __typename
-        sys {
-          id
-        }
+        ...EntryCoreFragment
         ... on WistiaVideo {
           ...WistiaVideoFragment
         }
       }
     }
   `,
-  [WistiaVideoFragment],
+  [EntryCoreFragment, WistiaVideoFragment],
 );
