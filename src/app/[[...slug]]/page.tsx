@@ -6,14 +6,9 @@ import { GetPageById } from "@/lib/contentful/query/GetPageByIdQuery";
 import { readFragment } from "gql.tada";
 import { MarketFragment } from "@/lib/contentful/fragments/MarketFragment";
 import { PageContentModular } from "@/modules/PageContentModular/PageContentModular";
+import { NextPageProps } from "@/types/pages";
 
-interface PageProps {
-  params: Promise<{ slug?: string | Array<string> }>;
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
-  currentPath?: Promise<string>;
-}
-
-export default async function Page(props: PageProps) {
+export default async function Page(props: NextPageProps) {
   const [searchParams, page, currentPath] = await Promise.all([
     props.searchParams,
     routingUtils
@@ -39,9 +34,19 @@ export default async function Page(props: PageProps) {
     ) || locales.items.find((locale) => locale.default)
   )?.code;
 
-  if (!locale) notFound();
+  const pageType = page.content?.__typename;
+  const pageId = page.content?.sys.id;
 
-  switch (page.content?.__typename) {
+  if (!pageType || !locale || !pageId) notFound();
+
+  const pageProps = {
+    id: pageId,
+    locale,
+    searchParams,
+    currentPath,
+  };
+
+  switch (pageType) {
     case "PageContentCustomerStory":
       return null;
     case "PageContentExpert":
@@ -53,13 +58,6 @@ export default async function Page(props: PageProps) {
     case "PageContentSoftwareDetails":
       return null;
     case "PageContentModular":
-      return (
-        <PageContentModular
-          id={page.content.sys.id}
-          locale={locale}
-          searchParams={searchParams}
-          currentPath={currentPath}
-        />
-      );
+      return <PageContentModular {...pageProps} />;
   }
 }

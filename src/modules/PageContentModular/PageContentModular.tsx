@@ -3,18 +3,14 @@ import { cx } from "cva";
 import { contentClient } from "@/lib/contentful/contentClient";
 import { GetPageContentModularByIdQuery } from "./GetPageContentModularById";
 import { RenderModuleFromRegistry } from "../RenderModuleFromRegistry";
+import { PageProps } from "@/types/pages";
 
 export const PageContentModular = async ({
   locale,
   id,
   searchParams,
   currentPath,
-}: {
-  id: string;
-  locale: string;
-  searchParams?: Record<string, string | string[] | undefined>;
-  currentPath?: string;
-}) => {
+}: { id: string } & PageProps) => {
   const data = (
     await contentClient.query(GetPageContentModularByIdQuery, {
       id,

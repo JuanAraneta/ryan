@@ -50,11 +50,7 @@ import {
   ModuleSoftwareProductsCarousel,
   GetModuleSoftwareProductsCarouselById,
 } from "./ModuleSoftwareProductsCarousel";
-
-type PageProps = {
-  searchParams?: Record<string, string | string[]>;
-  currentPath?: string;
-};
+import { PageProps } from "@/types/pages";
 
 type ModuleComponent<Data> = {
   component: (props: { data: Data } & PageProps) => ReactNode;

@@ -14,6 +14,7 @@ import {
   toggleFilterParam,
   getActiveFilter,
 } from "@/utils/urlHelpers";
+import { PageProps } from "@/types/pages";
 
 export async function ModuleSoftwareProductsCarousel({
   data,
@@ -21,9 +22,7 @@ export async function ModuleSoftwareProductsCarousel({
   currentPath = "/",
 }: {
   data: ResultOf<typeof GetModuleSoftwareProductsCarouselById>;
-  searchParams?: Record<string, string | string[]>;
-  currentPath?: string;
-}) {
+} & PageProps) {
   const moduleData = data.moduleSoftwareProductsCarousel;
 
   const { __typename, headline, body, cta, softwareProductsCollection } =

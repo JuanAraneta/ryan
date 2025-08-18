@@ -2,18 +2,14 @@ import { FragmentOf, readFragment } from "gql.tada";
 import moduleRegistry from "./moduleRegistry";
 import { contentClient } from "@/lib/contentful/contentClient";
 import { EntryCoreFragment } from "@/lib/contentful/fragments/EntryCoreFragment";
+import { PageProps } from "@/types/pages";
 
 export const RenderModuleFromRegistry = async ({
   module: moduleFragment,
   locale,
   searchParams,
   currentPath,
-}: {
-  module: FragmentOf<typeof EntryCoreFragment> | null;
-  locale: string;
-  searchParams?: Record<string, string | string[]>;
-  currentPath?: string;
-}) => {
+}: { module: FragmentOf<typeof EntryCoreFragment> | null } & PageProps) => {
   const mod = readFragment(EntryCoreFragment, moduleFragment);
   if (!mod) return null;
   const type = mod.__typename;
