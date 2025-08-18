@@ -1,5 +1,5 @@
 import "server-only";
-import { graphql, readFragment } from "gql.tada";
+import { graphql, readFragment, ResultOf } from "gql.tada";
 import { contentClient } from "../contentful/contentClient";
 import { getConstants } from "../contentful/utils/getConstants";
 import { MarketFragment } from "../contentful/fragments/MarketFragment";
@@ -7,6 +7,7 @@ import { introspection_types } from "@/graphql-env";
 import { EntryCoreFragment } from "../contentful/fragments/EntryCoreFragment";
 import { InvertRecord } from "@/types/utils/InvertRecord";
 import { createInMemoryCacheMapFetcher } from "@/utils/createInMemoryCacheMapFetcher";
+import { getContentfulLocales } from "../contentful/getContentfulLocales";
 
 // TYPES
 type Entry<Type extends string = string> = {
@@ -37,18 +38,18 @@ const GetMarketBySlugQuery = graphql(
   `,
   [MarketFragment],
 );
-const GetPageByPathAndMarketSlug = graphql(
+const GetPageByPathAndMarketId = graphql(
   `
     query GetComponentPageCoreByPathAndMarketSlug(
       $locale: String
       $preview: Boolean
       $path: String
-      $market: String
+      $marketId: String
     ) {
       pageCollection(
         locale: $locale
         preview: $preview
-        where: { path: $path, market: { sys: { id: $market } } }
+        where: { path: $path, market: { sys: { id: $marketId } } }
       ) {
         items {
           ...EntryCoreFragment
@@ -110,12 +111,12 @@ const GetAllPages = graphql(
 // TODO - Wrap as many of these calculations in lodash/memoize as possible
 
 // Determine the slug for the market, based on the current path
-const getMarketIdFromPath = async (
+const getMarketFromPath = async (
   // The Array of slugs representing the full current path
   path: string,
 ): Promise<{
   // The slug that represents the current market
-  market: string;
+  market: ResultOf<typeof MarketFragment>;
   // All leftover slugs after taking off the market slug,
   // or just the slugs argument if we resolved the default slug
   path: string;
@@ -135,10 +136,7 @@ const getMarketIdFromPath = async (
     );
 
     if (market) {
-      return {
-        market: market.sys.id,
-        path: leftover.join("/"),
-      };
+      return { market, path: leftover.join("/") };
     }
   }
 
@@ -147,10 +145,7 @@ const getMarketIdFromPath = async (
   if (!defaultMarket?.slug)
     throw new Error("No default market found to fall back to!");
 
-  return {
-    market: defaultMarket.sys.id,
-    path,
-  };
+  return { market: defaultMarket, path };
 };
 
 // Turn the NextJS default page/layout props into the Path type
@@ -196,8 +191,15 @@ const slugToPageContentType: InvertRecord<typeof pageContentTypeToSlug> =
   ) as InvertRecord<typeof pageContentTypeToSlug>;
 
 // How to find the proper path, based on the Page instance
-const getPageEntryByPath = async (fullPath: string): Promise<Entry | null> => {
-  const { market, path: pathSansMarket } = await getMarketIdFromPath(fullPath);
+const getPageEntryByPath = async (
+  fullPath: string,
+  marketInput?: ResultOf<typeof MarketFragment>,
+): Promise<Entry | null> => {
+  const { market, path: pathSansMarket } = marketInput
+    ? // if the caller provides the market ID, we don't need to fetch it!
+      // and we assume the input path is the pathSansMarket
+      { market: marketInput, path: fullPath }
+    : await getMarketFromPath(fullPath);
   const splitPathSansMarket = pathSansMarket.split("/");
   const isNonModularPage = splitPathSansMarket[0] in slugToPageContentType;
   const path = isNonModularPage
@@ -210,9 +212,9 @@ const getPageEntryByPath = async (fullPath: string): Promise<Entry | null> => {
         ]
       : "PageContentModular";
 
-  const pagesResult = await contentClient.query(GetPageByPathAndMarketSlug, {
+  const pagesResult = await contentClient.query(GetPageByPathAndMarketId, {
     path: path || "index",
-    market,
+    marketId: market.sys.id,
   });
 
   const page = pagesResult.data?.pageCollection?.items.find(
@@ -328,14 +330,25 @@ const getPathByContentEntry = async (
   return getPathByPage(pageEntry);
 };
 
+const getLocale = async (market: ResultOf<typeof MarketFragment>) => {
+  const locales = await getContentfulLocales();
+  return (
+    locales.items.find(
+      // we maybe want to eventually base this on the market having a locale ID embedded
+      (locale) => locale.code === readFragment(MarketFragment, market)?.slug,
+    ) || locales.items.find((locale) => locale.default)
+  )?.code;
+};
+
 export const routingUtils = {
   // mappings
   pageContentTypeToSlug,
   slugToPageContentType,
   // helper functions
   getPathFromProps,
-  getMarketIdFromPath,
+  getMarketFromPath,
   getPageEntryByPath,
   getPathByPage,
   getPathByContentEntry,
+  getLocale,
 };

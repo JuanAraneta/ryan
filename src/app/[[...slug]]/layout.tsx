@@ -10,6 +10,7 @@ import { ContentfulLivePreviewScript } from "@/components/ContentfulLivePreviewS
 import { routingUtils } from "@/lib/util/routingUtils";
 import { getConstants } from "@/lib/contentful/utils/getConstants";
 import { GetLayoutById } from "@/lib/contentful/query/GetLayoutByIdQuery";
+import { Footer } from "@/components/Footer";
 
 const latoSans = Lato({
   variable: "--font-sans",
@@ -24,20 +25,27 @@ export default async function RootLayout(props: {
 }) {
   const preview = await isPreviewMode();
 
-  const [layout, constants] = await Promise.all([
+  const [{ layout, market }, constants] = await Promise.all([
     routingUtils
       .getPathFromProps(props)
-      .then((path) => routingUtils.getPageEntryByPath(path))
-      .then(async (pageEntry) => {
-        if (!pageEntry?.sys.id) return null;
-        return (
-          await contentClient.query(GetLayoutById, { id: pageEntry.sys.id })
-        ).data?.layout;
+      .then((path) => routingUtils.getMarketFromPath(path))
+      .then(async ({ path, market }) => ({
+        pageEntry: await routingUtils.getPageEntryByPath(path, market),
+        market,
+      }))
+      .then(async ({ pageEntry, market }) => {
+        if (!pageEntry?.sys.id) return { layout: null, market: null };
+        return {
+          layout: (
+            await contentClient.query(GetLayoutById, { id: pageEntry.sys.id })
+          ).data?.layout,
+          market,
+        };
       }),
     getConstants(),
   ]);
 
-  if (!layout || !constants) notFound();
+  if (!layout || !market || !constants) notFound();
 
   if (!constants)
     throw new Error(
@@ -57,7 +65,7 @@ export default async function RootLayout(props: {
         <main className="min-h-screen">
           {/* Render header/menu for page.market here */}
           {props.children}
-          {/* Render footer for page.market here */}
+          <Footer market={market} />
           {preview && <ContentfulLivePreviewScript />}
         </main>
       </body>

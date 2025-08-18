@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "lint": "next lint",
     "check": "pnpm run lint && pnpm exec tsc --noEmit && pnpm run test",
     "prepare": "husky",

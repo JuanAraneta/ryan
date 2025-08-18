@@ -1,4 +1,4 @@
-import { socialMediaLink } from "./socialMediaLink";
+import { footer } from "./footer";
 import { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { createField } from "./utils/createField";
 
@@ -37,11 +37,9 @@ export const market = {
       ],
     }),
     createField("entryReference", {
-      array: true,
-      id: "socialMediaLinks",
-      name: "Social Media Links",
-      size: { max: 10 },
-      linkContentType: [socialMediaLink],
+      id: "footer",
+      name: "Footer",
+      linkContentType: [footer],
     }),
   ],
 } as const satisfies ExpandedContentModel;

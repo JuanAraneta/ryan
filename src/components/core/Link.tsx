@@ -19,6 +19,13 @@ type LinkProps =
       href?: never;
     });
 
+const missingLinkWarning = () =>
+  console.warn(
+    "Null link & href props provided to Link component!",
+    "This could be because a page-content reference which is not part of a page was linked to.",
+    'Search the DOM for "#missing-link" to identify bad links.',
+  );
+
 export const Link = async ({
   link: linkProp,
   href: hrefProp,
@@ -36,11 +43,7 @@ export const Link = async ({
       return hrefProp;
     }
     if (!link) {
-      console.warn(
-        "Null link & href props provided to Link component!",
-        "This could be because a page-content reference which is not part of a page was linked to.",
-        'Search the DOM for "#missing-link" to identify bad links.',
-      );
+      missingLinkWarning();
       return "#missing-link";
     }
     if (link.internalSource) {
@@ -60,7 +63,12 @@ export const Link = async ({
       if (source.path && source.path !== "index") href.push(source.path);
 
       return href.join("/");
-    } else return link?.externalSource ?? "#";
+    } else if (link.externalSource) {
+      return link?.externalSource;
+    } else {
+      missingLinkWarning();
+      return "#missing-link";
+    }
   })();
 
   const isInternal = href.startsWith("/");

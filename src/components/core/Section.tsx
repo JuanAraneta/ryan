@@ -14,7 +14,7 @@ export const Section = ({
       children: ReactElement;
     }) => {
   const sectionClasses =
-    "max-w-hd [--x-section-padding:24px] dsk:[--x-section-padding:80px] px-(--x-section-padding) mx-auto";
+    "max-w-hd [--x-section-padding:24px] dsk:[--x-section-padding:80px] px-(--x-section-padding) ml-auto mr-auto";
   if ("asChild" in props) {
     reactNodeIsSingleElement(props.children);
 
