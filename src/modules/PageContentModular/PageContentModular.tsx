@@ -7,9 +7,13 @@ import { RenderModuleFromRegistry } from "../RenderModuleFromRegistry";
 export const PageContentModular = async ({
   locale,
   id,
+  searchParams,
+  currentPath,
 }: {
   id: string;
   locale: string;
+  searchParams?: Record<string, string | string[] | undefined>;
+  currentPath?: string;
 }) => {
   const data = (
     await contentClient.query(GetPageContentModularByIdQuery, {
@@ -25,12 +29,14 @@ export const PageContentModular = async ({
     return null;
   }
 
+  const pageProps = { locale, searchParams, currentPath };
+
   return (
     <>
       {data.pageContentModular?.hero && (
         <RenderModuleFromRegistry
           module={data.pageContentModular.hero}
-          locale={locale}
+          {...pageProps}
         />
       )}
       {(data.pageContentModular?.moduleContainersCollection?.items ?? []).map(
@@ -50,7 +56,7 @@ export const PageContentModular = async ({
                   <RenderModuleFromRegistry
                     key={index}
                     module={module}
-                    locale={locale}
+                    {...pageProps}
                   />
                 ),
               )}

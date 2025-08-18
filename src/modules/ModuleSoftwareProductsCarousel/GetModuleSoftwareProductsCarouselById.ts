@@ -14,6 +14,7 @@ export const GetModuleSoftwareProductsCarouselById = graphql(
         preview: $preview
         locale: $locale
       ) {
+        __typename
         sys {
           id
         }

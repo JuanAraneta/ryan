@@ -6,9 +6,13 @@ import { EntryCoreFragment } from "@/lib/contentful/fragments/EntryCoreFragment"
 export const RenderModuleFromRegistry = async ({
   module: moduleFragment,
   locale,
+  searchParams,
+  currentPath,
 }: {
   module: FragmentOf<typeof EntryCoreFragment> | null;
   locale: string;
+  searchParams?: Record<string, string | string[]>;
+  currentPath?: string;
 }) => {
   const mod = readFragment(EntryCoreFragment, moduleFragment);
   if (!mod) return null;
@@ -41,7 +45,13 @@ export const RenderModuleFromRegistry = async ({
       return null;
     }
 
-    return <Component data={result.data} />;
+    return (
+      <Component
+        data={result.data}
+        searchParams={searchParams}
+        currentPath={currentPath}
+      />
+    );
   } catch (e) {
     console.error(
       `Failed to fetch module "${mod.sys.id}" with __typename "${mod.__typename}"`,

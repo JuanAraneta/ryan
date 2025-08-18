@@ -51,8 +51,13 @@ import {
   GetModuleSoftwareProductsCarouselById,
 } from "./ModuleSoftwareProductsCarousel";
 
+type PageProps = {
+  searchParams?: Record<string, string | string[]>;
+  currentPath?: string;
+};
+
 type ModuleComponent<Data> = {
-  component: (props: { data: Data }) => ReactNode;
+  component: (props: { data: Data } & PageProps) => ReactNode;
   queryById: TadaDocumentNode<Data, { id: string }>;
 };
 

@@ -4,32 +4,61 @@ import { Button } from "@/components/core/Button";
 import { Link } from "@/components/core/Link";
 import { GetModuleSoftwareProductsCarouselById } from "./GetModuleSoftwareProductsCarouselById";
 import { getInspector } from "@/utils/inspectorMode";
-import { FilteredSoftwareProductsCarousel } from "./components/FilteredSoftwareProductsCarousel";
 import { SoftwareCard } from "@/components/core/SoftwareCard";
 import { PageContentSoftwareDetails } from "@/lib/contentful/fragments/PageContentSoftwareDetails";
+import { ScrollCarouselContainer } from "@/constants/ScrollCarouselContainer";
+import { cx } from "cva";
+import NextLink from "next/link";
+import {
+  getModuleQueryKey,
+  getQueryParam,
+  toggleQueryParam,
+} from "@/utils/urlHelpers";
 
 export async function ModuleSoftwareProductsCarousel({
   data,
+  searchParams = {},
+  currentPath = "/",
 }: {
   data: ResultOf<typeof GetModuleSoftwareProductsCarouselById>;
+  searchParams?: Record<string, string | string[]>;
+  currentPath?: string;
 }) {
   const moduleData = data.moduleSoftwareProductsCarousel;
 
-  const { headline, body, cta, softwareProductsCollection } =
+  const { __typename, headline, body, cta, softwareProductsCollection } =
     data.moduleSoftwareProductsCarousel || {};
 
-  const cardData = softwareProductsCollection?.items.filter(Boolean) || [];
+  const cardData =
+    softwareProductsCollection?.items
+      .filter(Boolean)
+      .map((item) => readFragment(PageContentSoftwareDetails, item)) || [];
 
-  const preRenderedCards = await Promise.all(
-    cardData.map(async (item, index) => {
-      const card = readFragment(PageContentSoftwareDetails, item);
-      return {
-        id: card.sys.id,
-        practiceArea: card.subject?.practiceArea,
-        renderedCard: <SoftwareCard key={index} data={card} />,
-      };
-    }),
-  );
+  const moduleQueryKey = getModuleQueryKey(__typename);
+  const activeFilter = getQueryParam(searchParams, moduleQueryKey);
+
+  const filters = [
+    ...new Set(
+      cardData.map((card) => card.subject?.practiceArea).filter(Boolean),
+    ),
+  ];
+
+  // Filter cards based on active filter
+  const filteredCardData = activeFilter
+    ? cardData.filter((card) => card.subject?.practiceArea === activeFilter)
+    : cardData;
+
+  // Helper function to generate filter URLs using utility
+  const createFilterUrl = (filter: string) => {
+    const url = toggleQueryParam(
+      searchParams,
+      currentPath!,
+      moduleQueryKey,
+      filter,
+    );
+
+    return url;
+  };
 
   const inspector = getInspector(moduleData!);
 
@@ -64,7 +93,34 @@ export async function ModuleSoftwareProductsCarousel({
         </p>
       )}
 
-      <FilteredSoftwareProductsCarousel cards={preRenderedCards} />
+      {filters?.length && (
+        <ul className="flex gap-3 flex-wrap">
+          {filters?.map((filter, idx) => (
+            <li key={idx}>
+              <NextLink
+                href={createFilterUrl(filter)}
+                scroll={false}
+                replace={true}
+                className={cx(
+                  "inline-block py-2 px-3 rounded-sm border-1 transition-all duration-200 bg-white shadow-xs text-decoration-none",
+                  activeFilter === filter
+                    ? "border-new-gold"
+                    : "border-transparent",
+                )}
+              >
+                {filter}
+              </NextLink>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <ScrollCarouselContainer
+        hideControls
+        items={filteredCardData?.map((card) => (
+          <SoftwareCard key={card?.sys.id} data={card} />
+        ))}
+      />
     </Section>
   );
 }
