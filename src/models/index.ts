@@ -16,6 +16,7 @@ import { moduleHeroHome } from "./moduleHeroHome";
 import { moduleInsightsBento } from "./moduleInsightsBento";
 import { moduleInsights3Up } from "./moduleInsights3Up";
 import { moduleGeneralVideoMission } from "./moduleGeneralVideoMission";
+import { moduleSoftwareProductsCarousel } from "./moduleSoftwareProductsCarousel";
 
 import {
   categorySolutionsImageLinkGrid,
@@ -29,7 +30,6 @@ import { socialMediaLink } from "./socialMediaLink";
 import { urlRedirect } from "./urlRedirect";
 import { script } from "./script";
 
-// utils
 import { contentModelComposer } from "./utils/contentModelComposer";
 import type { ExpandedContentModel } from "./types/ExpandedContentModel";
 import { moduleStatementHome } from "./moduleStatementHome";
@@ -94,6 +94,7 @@ const modules: ExpandedContentModel[] = [
   moduleServiceSoftwareRoutingCards,
   moduleCustomerStoriesCarouselShort,
   moduleGeneralVideoMission,
+  moduleSoftwareProductsCarousel,
   modulePlatform,
 ];
 

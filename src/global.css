@@ -172,6 +172,18 @@
 .gradient-primary-gray {
   @apply bg-gradient-to-br from-neutral-100 to-white;
 }
+
+.gradient-primary-gray-h-light-to-dark {
+  @apply bg-gradient-to-r from-white to-neutral-100;
+}
+
+.gradient-primary-gray-h-dark-to-light {
+  @apply bg-gradient-to-r from-neutral-100 to-white;
+}
+
+.gradient-secondary-gray {
+  @apply bg-gradient-to-br from-neutral-100 to-white;
+}
 .gradient-secondary-gray-h-light-to-dark {
   @apply bg-gradient-to-r from-white to-neutral-50;
 }

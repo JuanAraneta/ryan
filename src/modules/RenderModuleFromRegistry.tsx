@@ -2,14 +2,14 @@ import { FragmentOf, readFragment } from "gql.tada";
 import moduleRegistry from "./moduleRegistry";
 import { contentClient } from "@/lib/contentful/contentClient";
 import { EntryCoreFragment } from "@/lib/contentful/fragments/EntryCoreFragment";
+import { PageProps } from "@/types/pages";
 
 export const RenderModuleFromRegistry = async ({
   module: moduleFragment,
   locale,
-}: {
-  module: FragmentOf<typeof EntryCoreFragment> | null;
-  locale: string;
-}) => {
+  searchParams,
+  currentPath,
+}: { module: FragmentOf<typeof EntryCoreFragment> | null } & PageProps) => {
   const mod = readFragment(EntryCoreFragment, moduleFragment);
   if (!mod) return null;
   const type = mod.__typename;
@@ -41,7 +41,13 @@ export const RenderModuleFromRegistry = async ({
       return null;
     }
 
-    return <Component data={result.data} />;
+    return (
+      <Component
+        data={result.data}
+        searchParams={searchParams}
+        currentPath={currentPath}
+      />
+    );
   } catch (e) {
     console.error(
       `Failed to fetch module "${mod.sys.id}" with __typename "${mod.__typename}"`,

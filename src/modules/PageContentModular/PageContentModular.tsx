@@ -3,14 +3,14 @@ import { cx } from "cva";
 import { contentClient } from "@/lib/contentful/contentClient";
 import { GetPageContentModularByIdQuery } from "./GetPageContentModularById";
 import { RenderModuleFromRegistry } from "../RenderModuleFromRegistry";
+import { PageProps } from "@/types/pages";
 
 export const PageContentModular = async ({
   locale,
   id,
-}: {
-  id: string;
-  locale: string;
-}) => {
+  searchParams,
+  currentPath,
+}: { id: string } & PageProps) => {
   const data = (
     await contentClient.query(GetPageContentModularByIdQuery, {
       id,
@@ -25,12 +25,14 @@ export const PageContentModular = async ({
     return null;
   }
 
+  const pageProps = { locale, searchParams, currentPath };
+
   return (
     <>
       {data.pageContentModular?.hero && (
         <RenderModuleFromRegistry
           module={data.pageContentModular.hero}
-          locale={locale}
+          {...pageProps}
         />
       )}
       {(data.pageContentModular?.moduleContainersCollection?.items ?? []).map(
@@ -50,7 +52,7 @@ export const PageContentModular = async ({
                   <RenderModuleFromRegistry
                     key={index}
                     module={module}
-                    locale={locale}
+                    {...pageProps}
                   />
                 ),
               )}

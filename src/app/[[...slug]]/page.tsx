@@ -6,19 +6,23 @@ import { GetPageById } from "@/lib/contentful/query/GetPageByIdQuery";
 import { readFragment } from "gql.tada";
 import { MarketFragment } from "@/lib/contentful/fragments/MarketFragment";
 import { PageContentModular } from "@/modules/PageContentModular/PageContentModular";
+import { NextPageProps } from "@/types/pages";
 
-export default async function Page(props: {
-  params: Promise<{ slug?: string | Array<string> }>;
-}) {
-  const page = await routingUtils
-    .getPathFromProps(props)
-    .then((path) => routingUtils.getPageEntryByPath(path))
-    .then(async (pageEntry) =>
-      pageEntry?.sys.id
-        ? (await contentClient.query(GetPageById, { id: pageEntry.sys.id }))
-            .data?.page
-        : null,
-    );
+export default async function Page({ params, searchParams }: NextPageProps) {
+  const props = { params, searchParams };
+  const [resolvedSearchParams, page, currentPath] = await Promise.all([
+    searchParams,
+    routingUtils
+      .getPathFromProps(props)
+      .then((path) => routingUtils.getPageEntryByPath(path))
+      .then(async (pageEntry) =>
+        pageEntry?.sys.id
+          ? (await contentClient.query(GetPageById, { id: pageEntry.sys.id }))
+              .data?.page
+          : null,
+      ),
+    routingUtils.getPathFromProps(props),
+  ]);
 
   if (!page) notFound();
 
@@ -31,9 +35,19 @@ export default async function Page(props: {
     ) || locales.items.find((locale) => locale.default)
   )?.code;
 
-  if (!locale) notFound();
+  const pageType = page.content?.__typename;
+  const pageId = page.content?.sys.id;
 
-  switch (page.content?.__typename) {
+  if (!pageType || !locale || !pageId) notFound();
+
+  const pageProps = {
+    id: pageId,
+    locale,
+    searchParams: resolvedSearchParams,
+    currentPath,
+  };
+
+  switch (pageType) {
     case "PageContentCustomerStory":
       return null;
     case "PageContentExpert":
@@ -45,6 +59,6 @@ export default async function Page(props: {
     case "PageContentSoftwareDetails":
       return null;
     case "PageContentModular":
-      return <PageContentModular id={page.content.sys.id} locale={locale} />;
+      return <PageContentModular {...pageProps} />;
   }
 }

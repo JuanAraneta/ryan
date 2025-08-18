@@ -1,4 +1,8 @@
+import { ReactNode } from "react";
 import { TadaDocumentNode } from "gql.tada";
+import { introspection_types } from "@/graphql-env";
+
+import { ModuleHeroHome, GetModuleHeroHomeById } from "./ModuleHeroHome";
 
 import {
   ModuleExpertsOverflow,
@@ -41,13 +45,15 @@ import {
   ModuleGeneralVideoMission,
   GetModuleGeneralVideoMissionById,
 } from "./ModuleGeneralVideoMission";
-import { introspection_types } from "@/graphql-env";
-import { ModuleHeroHome } from "./ModuleHeroHome";
-import { GetModuleHeroHomeById } from "./ModuleHeroHome/GetModuleHeroHomeById";
-import { ReactNode } from "react";
+
+import {
+  ModuleSoftwareProductsCarousel,
+  GetModuleSoftwareProductsCarouselById,
+} from "./ModuleSoftwareProductsCarousel";
+import { PageProps } from "@/types/pages";
 
 type ModuleComponent<Data> = {
-  component: (props: { data: Data }) => ReactNode;
+  component: (props: { data: Data } & PageProps) => ReactNode;
   queryById: TadaDocumentNode<Data, { id: string }>;
 };
 
@@ -104,6 +110,10 @@ const moduleRegistry: ModuleRegistry = {
   ModuleGeneralVideoMission: constructEntry(
     ModuleGeneralVideoMission,
     GetModuleGeneralVideoMissionById,
+  ),
+  ModuleSoftwareProductsCarousel: constructEntry(
+    ModuleSoftwareProductsCarousel,
+    GetModuleSoftwareProductsCarouselById,
   ),
 };
 

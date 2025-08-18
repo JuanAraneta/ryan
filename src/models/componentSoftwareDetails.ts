@@ -15,5 +15,14 @@ export const componentSoftwareDetails = {
       id: "shortDescription",
       name: "Short description",
     }),
+    createField("assetReference", {
+      id: "image",
+      name: "Image",
+      imagesOnly: true,
+    }),
+    createField("shortText", {
+      id: "practiceArea",
+      name: "Practice Area",
+    }),
   ],
 } as const satisfies ExpandedContentModel;
