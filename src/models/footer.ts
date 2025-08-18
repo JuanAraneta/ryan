@@ -32,6 +32,12 @@ export const socialMediaLink = {
       id: "platformName",
       name: "Platform name",
       displayField: true,
+      editorInterface: {
+        settings: {
+          helpText:
+            "Enter the official platform name (e.g., Facebook, Twitter).",
+        },
+      },
     }),
     createField("entryReference", {
       id: "link",
