@@ -56,6 +56,7 @@ export function createQueryUrl(
   return queryString ? `${currentPath}?${queryString}` : currentPath || "/";
 }
 
+// TODO: Validate with other pages and filters
 export function toggleFilterParam(
   searchParams: Record<string, string | string[] | undefined>,
   currentPath: string,
